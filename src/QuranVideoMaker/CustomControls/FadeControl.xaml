@@ -1,0 +1,64 @@
+﻿<Grid x:Class="QuranVideoMaker.CustomControls.FadeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:QuranVideoMaker.Converters"
+             xmlns:models="clr-namespace:QuranVideoMaker.Data"
+             xmlns:local="clr-namespace:QuranVideoMaker.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="20" d:DesignWidth="20" Height="auto" Width="auto">
+    <Grid.Style>
+        <Style>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ControlType, RelativeSource={RelativeSource Mode=Self}}" Value="{x:Static models:FadeControlType.Left}">
+                    <Setter Property="Canvas.Left">
+                        <Setter.Value>
+                            <MultiBinding Converter="{converters:TrackItemFadePositionConverter}" ConverterParameter="{x:Static models:FadeControlType.Left}">
+                                <Binding Path="Project" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}" />
+                                <Binding Path="Project.TimelineZoom" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}" />
+                                <Binding Path="." />
+                                <Binding Path="FadeInFrame" />
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ControlType, RelativeSource={RelativeSource Mode=Self}}" Value="{x:Static models:FadeControlType.Right}">
+                    <Setter Property="Canvas.Right">
+                        <Setter.Value>
+                            <MultiBinding Converter="{converters:TrackItemFadePositionConverter}" ConverterParameter="{x:Static models:FadeControlType.Right}">
+                                <Binding Path="Project" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}" />
+                                <Binding Path="Project.TimelineZoom" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}" />
+                                <Binding Path="." />
+                                <Binding Path="FadeOutFrame" />
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Grid.Style>
+    <Ellipse VerticalAlignment="Top" Width="10" Height="10" StrokeThickness="2">
+        <Ellipse.Style>
+            <Style TargetType="Ellipse">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=local:TrackItemControl}}" Value="True">
+                        <Setter Property="Visibility" Value="Visible" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=local:TrackItemControl}}" Value="False">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                    
+                    <DataTrigger Binding="{Binding ControlType, RelativeSource={RelativeSource AncestorType=local:FadeControl}}" Value="Left">
+                        <Setter Property="Fill" Value="Green" />
+                        <Setter Property="Stroke" Value="LightGreen" />                    
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ControlType, RelativeSource={RelativeSource AncestorType=local:FadeControl}}" Value="Right">
+                        <Setter Property="Fill" Value="Red" />
+                        <Setter Property="Stroke" Value="LightPink" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Ellipse.Style>
+    </Ellipse>
+</Grid>

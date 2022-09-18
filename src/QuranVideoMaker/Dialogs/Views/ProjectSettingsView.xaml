@@ -1,0 +1,64 @@
+﻿<views:DialogViewBase
+        x:Class="QuranVideoMaker.Dialogs.Views.ProjectSettingsView"
+        xmlns:views="clr-namespace:QuranVideoMaker.Dialogs.Views"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuranVideoMaker"
+        xmlns:data="clr-namespace:QuranVideoMaker.Data"
+        xmlns:quran="clr-namespace:QuranTranslationImageGenerator;assembly=QuranTranslationImageGenerator"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:customcontrols="clr-namespace:QuranVideoMaker.CustomControls"
+        xmlns:qtg="clr-namespace:QuranTranslationImageGenerator;assembly=QuranTranslationImageGenerator"
+        mc:Ignorable="d"
+        Title="New Project" MinHeight="300" Width="400" SizeToContent="Height">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <TabControl>
+                
+                <TabItem Header="Settings">
+                    <StackPanel>
+                        <GroupBox Header="Resolution">
+                            <ListBox ItemsSource="{x:Static data:ResolutionProfile.Presets}" SelectedItem="{Binding SelectedProfile, Mode=TwoWay}" BorderThickness="0" Background="#1b1e20">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </GroupBox>
+                        
+                        <GroupBox Header="Project Directory">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.Column="0" Text="{Binding Project.ExportDirectory}" />
+                                <Button Grid.Column="1" Padding="5" Margin="5,0,0,0" Command="{Binding BrowseProjectDirectoryCommand}">
+                                    <Image Source="{svgc:SvgImage Source=/Resources/Icons/folder.svg}" />
+                                </Button>
+                            </Grid>
+                        </GroupBox>
+
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+        <customcontrols:DialogButtonsGrid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <customcontrols:DialogButton Content="OK" Command="{Binding OKCommand}" />
+                <customcontrols:DialogButton Content="Cancel" Command="{Binding CancelCommand}" />
+            </StackPanel>
+        </customcontrols:DialogButtonsGrid>
+        
+    </Grid>
+</views:DialogViewBase>

@@ -1,0 +1,140 @@
+﻿<Window x:Class="QuranVideoMaker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuranVideoMaker"
+        xmlns:customcontrols="clr-namespace:QuranVideoMaker.CustomControls"
+        xmlns:converters="clr-namespace:QuranVideoMaker.Converters"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
+        mc:Ignorable="d"
+        Title="Quran Video Maker" Height="650" Width="1000" MinWidth="900" MinHeight="600">
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding SaveProjectCommand}" />
+        <KeyBinding Key="Space" Command="{Binding ProjectPlayCommand}" />
+        <KeyBinding Key="L" Command="{Binding ProjectFastForwardCommand}" />
+        <KeyBinding Key="J" Command="{Binding ProjectRewindCommand}" />
+    </Window.InputBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="New" Command="{Binding NewProjectCommand}" />
+                <MenuItem Header="Open" Command="{Binding OpenProjectCommand}" />
+                <Separator />
+                <MenuItem Header="Save" Command="{Binding SaveProjectCommand}" InputGestureText="Ctrl+S" />
+                <MenuItem Header="Save As..." Command="{Binding SaveProjectAsCommand}" />
+                <Separator />
+                <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
+            </MenuItem>
+            <MenuItem Header="Quran">
+                <MenuItem Header="Add" Command="{Binding QuranAddCommand}" />
+                <Separator />
+                <MenuItem Header="Settings" Command="{Binding QuranSettingsCommand}" />
+            </MenuItem>
+            <MenuItem Header="Project">
+                <MenuItem Header="Export" Command="{Binding ExportProjectCommand}" />
+                <Separator />
+                <MenuItem Header="Settings" Command="{Binding ProjectSettingsCommand}" />
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*" />
+                <ColumnDefinition Width="1" />
+                <ColumnDefinition Width="60*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <TabControl TabStripPlacement="Bottom" BorderThickness="0">
+                    <TabItem Header="Clips">
+                        <customcontrols:ProjectClipsControl ItemsSource="{Binding CurrentProject.Clips}" >
+
+                        </customcontrols:ProjectClipsControl>
+                    </TabItem>
+                </TabControl>
+
+            </Grid>
+
+            <GridSplitter Grid.Column="1" ResizeDirection="Columns" HorizontalAlignment="Stretch" />
+
+            <Grid Grid.Column="2" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="WhiteSmoke" BorderThickness="1" Margin="2">
+                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding CurrentProject.CurrentPreviewFrame, Converter={converters:ByteArrayToImageConverter}}" />
+                </Border>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+
+                    <Button Command="{Binding ProjectRewindCommand}" Width="30" Padding="5" Margin="1,0">
+                        <Image Source="{svgc:SvgImage Source=/Resources/Icons/rew.svg}" />
+                    </Button>
+
+                    <Button Command="{Binding ProjectPlayCommand}" Width="30" Padding="5" Margin="1,0">
+                        <Image>
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentProject.IsPlaying}" Value="False">
+                                            <Setter Property="Source" Value="{svgc:SvgImage Source=/Resources/Icons/play.svg}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentProject.IsPlaying}" Value="True">
+                                            <Setter Property="Source" Value="{svgc:SvgImage Source=/Resources/Icons/pause.svg}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Button>
+                    
+                    <Button Command="{Binding ProjectFastForwardCommand}" Width="30" Padding="5" Margin="1,0">
+                        <Image Source="{svgc:SvgImage Source=/Resources/Icons/ffw.svg}" />
+                    </Button>
+                    <!--<Button Content="Stop" Command="{Binding StopProjectCommand}" />-->
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <customcontrols:TimelineControl Grid.Row="2" Project="{Binding CurrentProject}">
+
+        </customcontrols:TimelineControl>
+
+        <StatusBar Grid.Row="3">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel LastChildFill="False" />
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem>
+                <TextBlock Text="Ready" />
+            </StatusBarItem>
+            <StatusBarItem  DockPanel.Dock="Right">
+                <Slider Value="{Binding CurrentProject.TimelineZoom}" Width="100" Minimum="1" Maximum="13" TickFrequency="1" />
+            </StatusBarItem>
+            <StatusBarItem DockPanel.Dock="Right">
+                <TextBlock Text="{Binding CurrentProject.TimelineZoom, StringFormat=Zoom:{0}}" />
+            </StatusBarItem>
+            <StatusBarItem DockPanel.Dock="Right">
+                <TextBlock Text="|" />
+            </StatusBarItem>
+            <StatusBarItem DockPanel.Dock="Right">
+                <TextBlock Text="{Binding CurrentProject.NeedlePositionTime}" />
+            </StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>

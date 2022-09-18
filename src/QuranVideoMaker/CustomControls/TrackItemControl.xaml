@@ -1,0 +1,135 @@
+﻿<Border x:Class="QuranVideoMaker.CustomControls.TrackItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuranVideoMaker.CustomControls"
+             xmlns:models="clr-namespace:QuranVideoMaker.Data"
+             xmlns:quranvideomaker="clr-namespace:QuranVideoMaker.Converters"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             xmlns:converters="clr-namespace:QuranVideoMaker.Converters"
+             BorderThickness="1"
+             VerticalAlignment="Stretch"
+             Height="48"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="100">
+    <Border.InputBindings>
+        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding DoubleClickCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}}" />
+    </Border.InputBindings>
+    <Border.Width>
+        <MultiBinding Converter="{quranvideomaker:TrackItemDataToLengthConverter}">
+            <Binding Path="Project" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}" />
+            <Binding Path="Project.TimelineZoom" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}" />
+            <Binding Path="." />
+            <Binding Path="Start" />
+            <Binding Path="End" />
+        </MultiBinding>
+    </Border.Width>
+
+    <Border.Style>
+        <Style TargetType="Border">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Type}" Value="Quran">
+                    <Setter Property="Background" Value="#4f3e84" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Type}" Value="Video">
+                    <Setter Property="Background" Value="#1366a2" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Type}" Value="Image">
+                    <Setter Property="Background" Value="#a44d00" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Type}" Value="Audio">
+                    <Setter Property="Background" Value="#0d3a20" />
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                    <Setter Property="BorderBrush" Value="Black" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="BorderBrush" Value="WhiteSmoke" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Border.Style>
+
+    <Grid>
+        <Canvas ClipToBounds="True">
+
+            <Grid IsHitTestVisible="False">
+                <Border Grid.Column="0" Height="50" Width="80" HorizontalAlignment="Left">
+                    <Image Stretch="Uniform" HorizontalAlignment="Left">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Type}" Value="Video">
+                                        <Setter Property="Source" Value="{Binding Thumbnail}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Type}" Value="Image">
+                                        <Setter Property="Source" Value="{Binding Thumbnail}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Type}" Value="Audio">
+                                        <Setter Property="Source" Value="{svgc:SvgImage Source=/Resources/Icons/sound.svg}" />
+                                        <Setter Property="Margin" Value="7" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Border>
+
+
+                <TextBlock Text="{Binding Name}" Padding="3,0" Foreground="WhiteSmoke" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <TextBlock.Background>
+                        <SolidColorBrush Color="#1b1e20" Opacity="0.5" />
+                    </TextBlock.Background>
+                </TextBlock>
+                <TextBlock Text="{Binding Note}" Padding="3,0" Foreground="WhiteSmoke" VerticalAlignment="Bottom" />
+            </Grid>
+            <local:FadeControl ControlType="Left" />
+            <local:FadeControl ControlType="Right" />
+        </Canvas>
+
+        <Polygon Fill="Green" Opacity="0.5" HorizontalAlignment="Left" Panel.ZIndex="1">
+            <Polygon.Style>
+                <Style TargetType="Polygon">
+                    <Setter Property="Points">
+                        <Setter.Value>
+                            <MultiBinding Converter="{converters:TrackItemFadePositionConverter}" ConverterParameter="{x:Static models:FadeControlType.Left}">
+                                <Binding Path="Project" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}" />
+                                <Binding Path="Project.TimelineZoom" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}" />
+                                <Binding Path="." />
+                                <Binding Path="FadeInFrame" />
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
+            </Polygon.Style>
+        </Polygon>
+
+        <Polygon Fill="Red" Opacity="0.5" HorizontalAlignment="Right" Panel.ZIndex="1">
+            <Polygon.Style>
+                <Style TargetType="Polygon">
+                    <Setter Property="Points">
+                        <Setter.Value>
+                            <MultiBinding Converter="{converters:TrackItemFadePositionConverter}" ConverterParameter="{x:Static models:FadeControlType.Right}">
+                                <Binding Path="Project" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}" />
+                                <Binding Path="Project.TimelineZoom" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}" />
+                                <Binding Path="." />
+                                <Binding Path="FadeOutFrame" />
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Polygon.Style>
+        </Polygon>
+        
+        <Border x:Name="resizeBorder" BorderBrush="Orange" Margin="-1">
+
+        </Border>
+        
+    </Grid>
+
+
+
+</Border>

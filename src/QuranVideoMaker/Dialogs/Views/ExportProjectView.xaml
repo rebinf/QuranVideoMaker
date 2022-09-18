@@ -1,0 +1,50 @@
+﻿<views:DialogViewBase
+        x:Class="QuranVideoMaker.Dialogs.Views.ExportProjectView"
+        xmlns:views="clr-namespace:QuranVideoMaker.Dialogs.Views"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:qtg="clr-namespace:QuranTranslationImageGenerator;assembly=QuranTranslationImageGenerator"
+        xmlns:converters="clr-namespace:QuranVideoMaker.Converters"
+        xmlns:customcontrols="clr-namespace:QuranVideoMaker.CustomControls"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        mc:Ignorable="d"
+        Title="Export Project" MinHeight="100" MaxHeight="400" SizeToContent="Height" Width="400">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Visibility="{Binding IsExporting, Converter={converters:BoolToVisibilityConverter Invert=True}}">
+                <GroupBox Header="Export Directory">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" Text="{Binding Project.ExportDirectory}" />
+                        <Button Grid.Column="1" Padding="5" Margin="5,0,0,0" Command="{Binding BrowseExportPathCommand}">
+                            <Image Source="{svgc:SvgImage Source=/Resources/Icons/folder.svg}" />
+                        </Button>
+                    </Grid>
+                </GroupBox>
+            </StackPanel>
+            <StackPanel Visibility="{Binding IsExporting, Converter={converters:BoolToVisibilityConverter}}">
+                <TextBlock Text="Exporting..." Foreground="WhiteSmoke" />
+                <ProgressBar Value="{Binding ExportProgress}" Height="15" Margin="0,10" />
+            </StackPanel>
+        </Grid>
+
+        <customcontrols:DialogButtonsGrid Grid.Row="1" Visibility="{Binding IsExporting, Converter={converters:BoolToVisibilityConverter Invert=True}}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <customcontrols:DialogButton Content="Export" Command="{Binding OKCommand}" />
+                <customcontrols:DialogButton Content="Cancel" Command="{Binding CancelCommand}" />
+            </StackPanel>
+        </customcontrols:DialogButtonsGrid>
+        
+    </Grid>
+</views:DialogViewBase>

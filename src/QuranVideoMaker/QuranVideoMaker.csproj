@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+		<PackageReference Include="FFMpegCore" Version="4.8.0" />
+		<PackageReference Include="OpenCvSharp4" Version="4.6.0.20220608" />
+		<PackageReference Include="OpenCvSharp4.runtime.win" Version="4.6.0.20220608" />
+		<PackageReference Include="OpenCvSharp4.Windows" Version="4.6.0.20220608" />
+		<PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.6.0.20220608" />
+		<PackageReference Include="SharpVectors" Version="1.8.0" />
+		<PackageReference Include="NAudio" Version="2.1.0" />
+		<PackageReference Include="SkiaSharp" Version="2.88.2" />
+		<PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\Icons\*" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Icons\cut.svg" />
+	  <None Remove="Resources\Icons\ffw.svg" />
+	  <None Remove="Resources\Icons\folder.svg" />
+	  <None Remove="Resources\Icons\pause.svg" />
+	  <None Remove="Resources\Icons\play.svg" />
+	  <None Remove="Resources\Icons\rew.svg" />
+	  <None Remove="Resources\Icons\select.svg" />
+	  <None Remove="Resources\Icons\select_add.svg" />
+	  <None Remove="Resources\Icons\select_new.svg" />
+	  <None Remove="Resources\Icons\sound.svg" />
+	  <None Remove="Resources\Icons\split.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\QuranTranslationImageGenerator\QuranTranslationImageGenerator.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Fonts\**\*.*">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Dialogs\Views\ExportProjectView.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	</ItemGroup>
+	
+</Project>

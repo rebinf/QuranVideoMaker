@@ -1,0 +1,54 @@
+﻿<views:DialogViewBase
+        x:Class="QuranVideoMaker.Dialogs.Views.QuranTrackItemSettingsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:QuranVideoMaker.Dialogs.Views"
+        xmlns:converters="clr-namespace:QuranVideoMaker.Converters"
+        xmlns:customcontrols="clr-namespace:QuranVideoMaker.CustomControls"
+        mc:Ignorable="d"
+        Title="Settings" Height="500" Width="900">
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60*" />
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="40*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        
+        <GroupBox Grid.Column="0" Header="Preview">
+            <Border Background="Black" CornerRadius="3">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding PreviewBitmap, Converter={converters:ByteArrayToImageConverter}}" />
+            </Border>
+        </GroupBox>
+        
+        <GridSplitter Grid.Column="1" Width="2" HorizontalAlignment="Center" Background="Transparent" />
+        
+        <Grid Grid.Row="0" Grid.Column="2">
+            <StackPanel>
+                <GroupBox Header="Quran">
+                    <TextBox Text="{Binding CurrentVerse.VerseText, UpdateSourceTrigger=PropertyChanged}" Height="50" VerticalContentAlignment="Top" FlowDirection="RightToLeft" BorderBrush="Transparent" AcceptsReturn="True" AcceptsTab="True" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" />
+                </GroupBox>
+                <ItemsControl ItemsSource="{Binding CurrentVerse.Translations}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <GroupBox Header="{Binding TypeId, Mode=OneWay, Converter={converters:TranslationGuidToInfoConverter}}">
+                                <TextBox Text="{Binding VerseText, UpdateSourceTrigger=PropertyChanged}" Height="50" VerticalContentAlignment="Top" FlowDirection="{Binding TypeId, Mode=OneWay, Converter={converters:TranslationGuidToFlowDirectionConverter}}" BorderBrush="Transparent" AcceptsReturn="True" AcceptsTab="True" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" />
+                            </GroupBox>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Grid>
+        <customcontrols:DialogButtonsGrid Grid.Row="1" Grid.ColumnSpan="3">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <customcontrols:DialogButton Content="OK" Command="{Binding OKCommand}" IsDefault="True" />
+                <customcontrols:DialogButton Content="Cancel" Command="{Binding CancelCommand}" IsCancel="True" />
+            </StackPanel>
+        </customcontrols:DialogButtonsGrid>
+    </Grid>
+</views:DialogViewBase>
