@@ -368,7 +368,7 @@ namespace QuranVideoMaker.Data
 
                         while (capture.Read(mat))
                         {
-                            FramesCache.Add(new FrameCache(capture.PosFrames, mat.ToBytes()));
+                            FramesCache.Add(new FrameCache(capture.PosFrames, mat.ToBytes(".jpg")));
                             var progress = ((double)capture.PosFrames / max) * 100d;
                             CacheProgress?.Invoke(this, progress);
                         }
