@@ -29,5 +29,6 @@ It is written in C# using WPF for the UI, the performance is not great.
 So it needs major work in several areas.
 
 
-## Quran and Translations
-Downloaded from https://tanzil.net/
+## Resources
+* Quran and Translations: https://tanzil.net/
+* Icons: https://www.svgrepo.com/
