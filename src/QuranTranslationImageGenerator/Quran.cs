@@ -131,6 +131,245 @@ namespace QuranTranslationImageGenerator
 
         private static List<QuranTranslation> _translations = new List<QuranTranslation>()
         {
+            new QuranTranslation(QuranIds.AlbanianEfendiNahi, Properties.Resources.sq_nahi)
+            {
+                Language = "Albanian",
+                Name = "Efendi Nahi",
+                Translator = "Hasan Efendi Nahi",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.AlbanianFetiMehdiu, Properties.Resources.sq_mehdiu)
+            {
+                Language = "Albanian",
+                Name = "Feti Mehdiu",
+                Translator = "Feti Mehdiu",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.AlbanianSherifAhmeti, Properties.Resources.sq_ahmeti)
+            {
+                Language = "Albanian",
+                Name = "Sherif Ahmeti",
+                Translator = "Sherif Ahmeti",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.AmazighAtMensur, Properties.Resources.ber_mensur)
+            {
+                Language = "Amazigh",
+                Name = "At Mensur",
+                Translator = "Ramdane At Mansour",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.ArabicJalalayn, Properties.Resources.ar_jalalayn)
+            {
+                Language = "Arabic",
+                Name = "تفسير الجلالين",
+                Translator = "Jalal ad-Din al-Mahalli and Jalal ad-Din as-Suyuti",
+                Font = "Amiri",
+                IsRightToLeft = true,
+                IsNonAscii = true
+            },
+            new QuranTranslation(QuranIds.ArabicAlmisr, Properties.Resources.ar_muyassar)
+            {
+                Language = "Arabic",
+                Name = "تفسير المیسر",
+                Translator = "King Fahad Quran Complex",
+                Font = "Amiri",
+                IsRightToLeft = true,
+                IsNonAscii = true
+            },
+            new QuranTranslation(QuranIds.AmharicSadiqSani, Properties.Resources.am_sadiq)
+            {
+                Language = "Amharic",
+                Name = "ሳዲቅ & ሳኒ ሐቢብ",
+                Translator = "Muhammed Sadiq and Muhammed Sani Habib",
+                Font = "Ebrima"
+            },
+            new QuranTranslation(QuranIds.AzerbaijaniVasimZiya, Properties.Resources.az_mammadaliyev)
+            {
+                Language = "Azerbaijani",
+                Name = "Məmmədəliyev & Bünyadov",
+                Translator = "Vasim Mammadaliyev and Ziya Bunyadov",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.AzerbaijaniMusayev, Properties.Resources.az_musayev)
+            {
+                Language = "Azerbaijani",
+                Name = "Musayev",
+                Translator = "Alikhan Musayev",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.BengaliZohurulHoque, Properties.Resources.bn_hoque)
+            {
+                Language = "Bengali",
+                Name = "জহুরুল হক",
+                Translator = "Zohurul Hoque",
+                Font = "Nirmala UI",
+            },
+            new QuranTranslation(QuranIds.BengaliMuhiuddinKhan, Properties.Resources.bn_bengali)
+            {
+                Language = "Bengali",
+                Name = "মুহিউদ্দীন খান",
+                Translator = "Muhiuddin Khan",
+                Font = "Nirmala UI",
+            },
+            new QuranTranslation(QuranIds.BosnianKorkut, Properties.Resources.bs_korkut)
+            {
+                Language = "Bosnian",
+                Name = "Korkut",
+                Translator = "Besim Korkut",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.BosnianMlivo, Properties.Resources.bs_mlivo)
+            {
+                Language = "Bosnian",
+                Name = "Mlivo",
+                Translator = "Mustafa Mlivo",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.BulgarianTzvetanTheophanov, Properties.Resources.bg_theophanov)
+            {
+                Language = "Bulgarian",
+                Name = "Теофанов",
+                Translator = "Tzvetan Theophanov",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.ChineseMaJian, Properties.Resources.zh_jian)
+            {
+                Language = "Chinese",
+                Name = "Ma Jian",
+                Translator = "Ma Jian",
+                Font = "SimSun",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.ChineseMaJianTraditional, Properties.Resources.zh_majian)
+            {
+                Language = "Chinese",
+                Name = "Ma Jian (Traditional)",
+                Translator = "Ma Jian",
+                Font = "SimSun",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.CzechHrbek, Properties.Resources.cs_hrbek)
+            {
+                Language = "Czech",
+                Name = "Hrbek",
+                Translator = "Preklad I. Hrbek",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.CzechNykl, Properties.Resources.cs_nykl)
+            {
+                Language = "Czech",
+                Name = "Nykl",
+                Translator = "A. R. Nykl",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.Divehi, Properties.Resources.dv_divehi)
+            {
+                Language = "Divehi",
+                Name = "ދިވެހި",
+                Translator = "Office of the President of Maldives",
+                Font = "Arial",
+                IsRightToLeft = true,
+                IsNonAscii = true
+            },
+            new QuranTranslation(QuranIds.DutchKeyzer, Properties.Resources.nl_keyzer)
+            {
+                Language = "Dutch",
+                Name = "Keyzer",
+                Translator = "Salomo Keyzer",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.DutchLeemhuis, Properties.Resources.nl_leemhuis)
+            {
+                Language = "Dutch",
+                Name = "Leemhuis",
+                Translator = "Fred Leemhuis",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.DutchSiregar, Properties.Resources.nl_siregar)
+            {
+                Language = "Dutch",
+                Name = "Siregar",
+                Translator = "Sofian S. Siregar",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishAhmedAli, Properties.Resources.en_ahmedali)
+            {
+                Language = "English",
+                Name = "Ahmed Ali",
+                Translator = "Ahmed Ali",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishAhmedRazaKhan, Properties.Resources.en_ahmedraza)
+            {
+                Language = "English",
+                Name = "Ahmed Raza Khan",
+                Translator = "Ahmed Raza Khan",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishArberry, Properties.Resources.en_arberry)
+            {
+                Language = "English",
+                Name = "Arberry",
+                Translator = "A. J. Arberry",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishDaryabadi, Properties.Resources.en_daryabadi)
+            {
+                Language = "English",
+                Name = "Daryabadi",
+                Translator = "Abdul Majid Daryabadi",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishHilali, Properties.Resources.en_hilali)
+            {
+                Language = "English",
+                Name = "Hilali & Khan",
+                Translator = "Muhammad Taqi-ud-Din al-Hilali and Muhammad Muhsin Khan",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishItani, Properties.Resources.en_itani)
+            {
+                Language = "English",
+                Name = "Itani",
+                Translator = "Talal Itani",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishMaududi, Properties.Resources.en_maududi)
+            {
+                Language = "English",
+                Name = "Maududi",
+                Translator = "Abul Ala Maududi",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishMubarakpuri, Properties.Resources.en_mubarakpuri)
+            {
+                Language = "English",
+                Name = "Mubarakpuri",
+                Translator = "Safi-ur-Rahman al-Mubarakpuri",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishPickthall, Properties.Resources.en_pickthall)
+            {
+                Language = "English",
+                Name = "Pickthall",
+                Translator = "Mohammed Marmaduke William Pickthall",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishQarai, Properties.Resources.en_qarai)
+            {
+                Language = "English",
+                Name = "Qarai",
+                Translator = "Ali Quli Qarai",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishQaribullah, Properties.Resources.en_qaribullah)
+            {
+                Language = "English",
+                Name = "Qaribullah & Darwish",
+                Translator = "Hasan al-Fatih Qaribullah and Ahmad Darwish",
+                Font = "Arial",
+            },
             new QuranTranslation(QuranIds.EnglishSaheehInternational, Properties.Resources.en_sahih)
             {
                 Language = "English",
@@ -138,15 +377,141 @@ namespace QuranTranslationImageGenerator
                 Translator = "Saheeh International",
                 Font = "Arial",
             },
-
-            new QuranTranslation(QuranIds.GermanAbuRida, Properties.Resources.de_aburida)
+            new QuranTranslation(QuranIds.EnglishSarwar, Properties.Resources.en_sarwar)
+            {
+                Language = "English",
+                Name = "Sarwar",
+                Translator = "Muhammad Sarwar",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishShakir, Properties.Resources.en_shakir)
+            {
+                Language = "English",
+                Name = "Shakir",
+                Translator = "Mohammad Habib Shakir",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishTransliteration, Properties.Resources.en_transliteration)
+            {
+                Language = "English",
+                Name = "Transliteration",
+                Translator = "English Transliteration",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishWahiduddin, Properties.Resources.en_wahiduddin)
+            {
+                Language = "English",
+                Name = "Wahiduddin Khan",
+                Translator = "Wahiduddin Khan",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.EnglishYusufAli, Properties.Resources.en_yusufali)
+            {
+                Language = "English",
+                Name = "Yusuf Ali",
+                Translator = "Abdullah Yusuf Ali",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.FrenchHamidullah, Properties.Resources.fr_hamidullah)
+            {
+                Language = "French",
+                Name = "Hamidullah",
+                Translator = "Muhammad Hamidullah",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.GermanBubenheimElyas, Properties.Resources.de_aburida)
             {
                 Language = "German",
-                Name = "Abu Rida",
+                Name = "Bubenheim & Elyas",
                 Translator = "Abu Rida Muhammad ibn Ahmad ibn Rassoul",
                 Font = "Arial",
             },
-
+            new QuranTranslation(QuranIds.GermanAbuRida, Properties.Resources.de_bubenheim)
+            {
+                Language = "German",
+                Name = "Abu Rida",
+                Translator = "A. S. F. Bubenheim and N. Elyas",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.GermanKhoury, Properties.Resources.de_khoury)
+            {
+                Language = "German",
+                Name = "Khoury",
+                Translator = "Adel Theodor Khoury",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.GermanZaidan, Properties.Resources.de_zaidan)
+            {
+                Language = "German",
+                Name = "Zaidan",
+                Translator = "Amir Zaidan",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.HausaGumi, Properties.Resources.ha_gumi)
+            {
+                Language = "Hausa",
+                Name = "Gumi",
+                Translator = "Abubakar Mahmoud Gumi",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.HindiKhanAhmed, Properties.Resources.hi_farooq)
+            {
+                Language = "Hindi",
+                Name = "फ़ारूक़ ख़ान & अहमद",
+                Translator = "Muhammad Farooq Khan and Muhammad Ahmed",
+                Font = "Nirmala UI",
+            },
+            new QuranTranslation(QuranIds.HindiKhanNadwi, Properties.Resources.hi_hindi)
+            {
+                Language = "Hindi",
+                Name = "फ़ारूक़ ख़ान & नदवी",
+                Translator = "Suhel Farooq Khan and Saifur Rahman Nadwi",
+                Font = "Nirmala UI",
+            },
+            new QuranTranslation(QuranIds.IndonesianBahasa, Properties.Resources.id_indonesian)
+            {
+                Language = "Indonesian",
+                Name = "Bahasa Indonesia",
+                Translator = "Indonesian Ministry of Religious Affairs",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.IndonesianQuraishShihab, Properties.Resources.id_muntakhab)
+            {
+                Language = "Indonesian",
+                Name = "Quraish Shihab",
+                Translator = "Muhammad Quraish Shihab et al.",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.IndonesianJalalayn, Properties.Resources.id_jalalayn)
+            {
+                Language = "Indonesian",
+                Name = "Tafsir Jalalayn",
+                Translator = "Jalal ad-Din al-Mahalli and Jalal ad-Din as-Suyuti",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.ItalianPiccardo, Properties.Resources.it_piccardo)
+            {
+                Language = "Italian",
+                Name = "Piccardo",
+                Translator = "Hamza Roberto Piccardo",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.Japanese, Properties.Resources.ja_japanese)
+            {
+                Language = "Japanese",
+                Name = "Japanese",
+                Translator = "Unknown",
+                Font = "SimSun",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.Korean, Properties.Resources.ko_korean)
+            {
+                Language = "Korean",
+                Name = "Korean",
+                Translator = "Unknown",
+                Font = "Malgun Gothic",
+                IsNonAscii = true,
+            },
             new QuranTranslation(QuranIds.KurdishTafsiriAsan, Properties.Resources.ku_asan)
             {
                 Language = "Kurdish",
@@ -154,6 +519,507 @@ namespace QuranTranslationImageGenerator
                 Translator = "Burhan Muhammad-Amin",
                 Font = "Amiri",
                 IsRightToLeft = true,
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.MalayBasmeih, Properties.Resources.ms_basmeih)
+            {
+                Language = "Malay",
+                Name = "Basmeih",
+                Translator = "Abdullah Muhammad Basmeih",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.MalayalamAbdulHameedParappoor, Properties.Resources.ml_abdulhameed)
+            {
+                Language = "Malayalam",
+                Name = "അബ്ദുല്‍ ഹമീദ് & പറപ്പൂര്‍",
+                Translator = "Cheriyamundam Abdul Hameed and Kunhi Mohammed Parappoor",
+                Font = "Nirmala UI",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.MalayalamKarakunnuElayavoor, Properties.Resources.ml_karakunnu)
+            {
+                Language = "Malayalam",
+                Name = "കാരകുന്ന് & എളയാവൂര്",
+                Translator = "Muhammad Karakunnu and Vanidas Elayavoor",
+                Font = "Nirmala UI",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.NorwegianEinarBerg, Properties.Resources.no_berg)
+            {
+                Language = "Norwegian",
+                Name = "Einar Berg",
+                Translator = "Einar Berg",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.PashtoAbdulwaliKhan, Properties.Resources.ps_abdulwali)
+            {
+                Language = "Pashto",
+                Name = "عبدالولي",
+                Translator = "Abdulwali Khan",
+                Font = "Lateef",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianAnsarian, Properties.Resources.fa_ansarian)
+            {
+                Language = "Persian",
+                Name = "انصاریان",
+                Translator = "Hussain Ansarian",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianAbdolAyati, Properties.Resources.fa_ayati)
+            {
+                Language = "Persian",
+                Name = "آیتی",
+                Translator = "AbdolMohammad Ayati",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianBahrampour, Properties.Resources.fa_bahrampour)
+            {
+                Language = "Persian",
+                Name = "بهرام‌پور",
+                Translator = "Abolfazl Bahrampour",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianGharaati, Properties.Resources.fa_gharaati)
+            {
+                Language = "Persian",
+                Name = "قرائتی",
+                Translator = "Mohsen Gharaati",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianElahiGhomshei, Properties.Resources.fa_ghomshei)
+            {
+                Language = "Persian",
+                Name = "الهی قمشه‌ای",
+                Translator = "Mahdi Elahi Ghomshei",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianKhorramdel, Properties.Resources.fa_khorramdel)
+            {
+                Language = "Persian",
+                Name = "خرمدل",
+                Translator = "Mostafa Khorramdel",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianKhorramshahi, Properties.Resources.fa_khorramshahi)
+            {
+                Language = "Persian",
+                Name = "خرمشاهی",
+                Translator = "Baha'oddin Khorramshahi",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianSadeqiTehrani, Properties.Resources.fa_sadeqi)
+            {
+                Language = "Persian",
+                Name = "صادقی تهرانی",
+                Translator = "Mohammad Sadeqi Tehrani",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianSafavi, Properties.Resources.fa_safavi)
+            {
+                Language = "Persian",
+                Name = "صفوی",
+                Translator = "Sayyed Mohammad Reza Safavi",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianFooladvand, Properties.Resources.fa_fooladvand)
+            {
+                Language = "Persian",
+                Name = "فولادوند",
+                Translator = "Mohammad Mahdi Fooladvand",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianMojtabavi, Properties.Resources.fa_mojtabavi)
+            {
+                Language = "Persian",
+                Name = "مجتبوی",
+                Translator = "Sayyed Jalaloddin Mojtabavi",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianMoezzi, Properties.Resources.fa_moezzi)
+            {
+                Language = "Persian",
+                Name = "معزی",
+                Translator = "Mohammad Kazem Moezzi",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PersianMakaremShirazi, Properties.Resources.fa_makarem)
+            {
+                Language = "Persian",
+                Name = "مکارم شیرازی",
+                Translator = "Naser Makarem Shirazi",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.PolishBielawskiego, Properties.Resources.pl_bielawskiego)
+            {
+                Language = "Polish",
+                Name = "Bielawskiego",
+                Translator = "Józefa Bielawskiego",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.PortugueseElHayek, Properties.Resources.pt_elhayek)
+            {
+                Language = "Portuguese",
+                Name = "El-Hayek",
+                Translator = "Samir El-Hayek",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.RomanianGrigore, Properties.Resources.ro_grigore)
+            {
+                Language = "Romanian",
+                Name = "Grigore",
+                Translator = "George Grigore",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.RussianAbuAdel, Properties.Resources.ru_abuadel)
+            {
+                Language = "Russian",
+                Name = "Абу Адель",
+                Translator = "Abu Adel",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.RussianEgyptAwqaf, Properties.Resources.ru_muntahab)
+            {
+                Language = "Russian",
+                Name = "Аль-Мунтахаб",
+                Translator = "Ministry of Awqaf, Egypt",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.RussianKrachkovsky, Properties.Resources.ru_krachkovsky)
+            {
+                Language = "Russian",
+                Name = "Крачковский",
+                Translator = "Ignaty Yulianovich Krachkovsky",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.RussianKuliev, Properties.Resources.ru_kuliev)
+            {
+                Language = "Russian",
+                Name = "Кулиев",
+                Translator = "Elmir Kuliev",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.RussianKulievAbdulRahman, Properties.Resources.ru_kuliev_alsaadi)
+            {
+                Language = "Russian",
+                Name = "Кулиев + ас-Саади",
+                Translator = "Elmir Kuliev (with Abd ar-Rahman as-Saadi's commentaries)",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.RussianOsmanov, Properties.Resources.ru_osmanov)
+            {
+                Language = "Russian",
+                Name = "Османов",
+                Translator = "Magomed-Nuri Osmanovich Osmanov",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.RussianPorokhova, Properties.Resources.ru_porokhova)
+            {
+                Language = "Russian",
+                Name = "Порохова",
+                Translator = "V. Porokhova",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.RussianSablukov, Properties.Resources.ru_sablukov)
+            {
+                Language = "Russian",
+                Name = "Саблуков",
+                Translator = "Gordy Semyonovich Sablukov",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.SindhiAmroti, Properties.Resources.sd_amroti)
+            {
+                Language = "Sindhi",
+                Name = "امروٽي",
+                Translator = "Taj Mehmood Amroti",
+                Font = "Arial",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.SomaliAbduh, Properties.Resources.so_abduh)
+            {
+                Language = "Somali",
+                Name = "Abduh",
+                Translator = "Mahmud Muhammad Abduh",
+                Font = "Arial",
+            },
+            new QuranTranslation(QuranIds.SpanishBornez, Properties.Resources.es_bornez)
+            {
+                Language = "Spanish",
+                Name = "Bornez",
+                Translator = "Raúl González Bórnez",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.SpanishCortes, Properties.Resources.es_cortes)
+            {
+                Language = "Spanish",
+                Name = "Cortes",
+                Translator = "Julio Cortes",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.SpanishGarcia, Properties.Resources.es_garcia)
+            {
+                Language = "Spanish",
+                Name = "Garcia",
+                Translator = "Muhammad Isa García",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.SwahiliAlBarwani, Properties.Resources.sw_barwani)
+            {
+                Language = "Swahili",
+                Name = "Al-Barwani",
+                Translator = "Ali Muhsin Al-Barwani",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.SwedishBernstrom, Properties.Resources.sv_bernstrom)
+            {
+                Language = "Swedish",
+                Name = "Bernström",
+                Translator = "Knut Bernström",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.TajikAyati, Properties.Resources.tg_ayati)
+            {
+                Language = "Tajik",
+                Name = "Оятӣ",
+                Translator = "AbdolMohammad Ayati",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.Tamil, Properties.Resources.ta_tamil)
+            {
+                Language = "Tamil",
+                Name = "ஜான் டிரஸ்ட்",
+                Translator = "Jan Turst Foundation",
+                Font = "Nirmala UI",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.Tatar, Properties.Resources.tt_nugman)
+            {
+                Language = "Tatar",
+                Name = "Yakub Ibn Nugman",
+                Translator = "Yakub Ibn Nugman",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.Thai, Properties.Resources.th_thai)
+            {
+                Language = "Thai",
+                Name = "ภาษาไทย",
+                Translator = "King Fahad Quran Complex",
+                Font = "Microsoft Sans Serif",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.TurkishAbdulbaki, Properties.Resources.tr_golpinarli)
+            {
+                Language = "Turkish",
+                Name = "Abdulbakî Gölpınarlı",
+                Translator = "Abdulbakî Gölpınarlı",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.TurkishAliBulac, Properties.Resources.tr_bulac)
+            {
+                Language = "Turkish",
+                Name = "Alİ Bulaç",
+                Translator = "Alİ Bulaç",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.TurkishCeviriyazi, Properties.Resources.tr_transliteration)
+            {
+                Language = "Turkish",
+                Name = "Çeviriyazı",
+                Translator = "Muhammet Abay",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.TurkishDiyanetIsleri, Properties.Resources.tr_diyanet)
+            {
+                Language = "Turkish",
+                Name = "Diyanet İşleri",
+                Translator = "Diyanet Isleri",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.TurkishVakfi, Properties.Resources.tr_vakfi)
+            {
+                Language = "Turkish",
+                Name = "Diyanet Vakfı",
+                Translator = "Diyanet Vakfi",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.TurkishEdipYuksel, Properties.Resources.tr_yuksel)
+            {
+                Language = "Turkish",
+                Name = "Edip Yüksel",
+                Translator = "Edip Yüksel",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.TurkishElmalili, Properties.Resources.tr_yazir)
+            {
+                Language = "Turkish",
+                Name = "Elmalılı Hamdi Yazır",
+                Translator = "Elmalılı Hamdi Yazır",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.TurkishOzturk, Properties.Resources.tr_ozturk)
+            {
+                Language = "Turkish",
+                Name = "Öztürk",
+                Translator = "Yasar Nuri Ozturk",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.TurkishSuatYildirim, Properties.Resources.tr_yildirim)
+            {
+                Language = "Turkish",
+                Name = "Suat Yıldırım",
+                Translator = "Suat Yıldırım",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.TurkishSuleymanAtes, Properties.Resources.tr_ates)
+            {
+                Language = "Turkish",
+                Name = "Süleyman Ateş",
+                Translator = "Suleyman Ates",
+                Font = "Arial",
+                IsNonAscii = true,
+            },
+            new QuranTranslation(QuranIds.UrduAbulAla, Properties.Resources.ur_maududi)
+            {
+                Language = "Urdu",
+                Name = "ابوالاعلی مودودی",
+                Translator = "Abul A'ala Maududi",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.UrduAhmedRazaKhan, Properties.Resources.ur_kanzuliman)
+            {
+                Language = "Urdu",
+                Name = "احمد رضا خان",
+                Translator = "Ahmed Raza Khan",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.UrduAhmedAli, Properties.Resources.ur_ahmedali)
+            {
+                Language = "Urdu",
+                Name = "احمد علی",
+                Translator = "Ahmed Ali",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.UrduJalandhry, Properties.Resources.ur_jalandhry)
+            {
+                Language = "Urdu",
+                Name = "جالندہری",
+                Translator = "Fateh Muhammad Jalandhry",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.UrduQadri, Properties.Resources.ur_qadri)
+            {
+                Language = "Urdu",
+                Name = "طاہر القادری",
+                Translator = "Tahir ul Qadri",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.UrduJawadi, Properties.Resources.ur_jawadi)
+            {
+                Language = "Urdu",
+                Name = "علامہ جوادی",
+                Translator = "Syed Zeeshan Haider Jawadi",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.UrduJunagarhi, Properties.Resources.ur_junagarhi)
+            {
+                Language = "Urdu",
+                Name = "محمد جوناگڑھی",
+                Translator = "Muhammad Junagarhi",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.UrduNajafi, Properties.Resources.ur_najafi)
+            {
+                Language = "Urdu",
+                Name = "محمد حسین نجفی",
+                Translator = "Muhammad Hussain Najafi",
+                Font = "Urdu Typesetting",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.UyghurSaleh, Properties.Resources.ug_saleh)
+            {
+                Language = "Uyghur",
+                Name = "محمد صالح",
+                Translator = "Muhammad Saleh",
+                Font = "Arial",
+                IsNonAscii = true,
+                IsRightToLeft = true,
+            },
+            new QuranTranslation(QuranIds.UzbekSodik, Properties.Resources.uz_sodik)
+            {
+                Language = "Uzbek",
+                Name = "Мухаммад Содик",
+                Translator = "Muhammad Sodik Muhammad Yusuf",
+                Font = "Arial",
                 IsNonAscii = true,
             },
         };

@@ -92,7 +92,7 @@ namespace QuranTranslationImageGenerator
                         paints[translationId] = CreatePaints(translationSettings, GetTypeface(translationSettings.Font, translationSettings.BoldFont, translationSettings.ItalicFont));
                     }
 
-                    if (translationSettings.IsRightToLeft && translationSettings.IsNonAscii)
+                    if (translationSettings.IsRightToLeft || translationSettings.IsNonAscii)
                     {
                         shapers[translationId] = new SKShaper(GetTypeface(translationSettings.Font, translationSettings.BoldFont, translationSettings.ItalicFont));
 

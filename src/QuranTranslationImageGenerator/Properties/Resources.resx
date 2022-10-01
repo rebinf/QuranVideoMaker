@@ -118,14 +118,221 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="am_sadiq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\am.sadiq.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ar_jalalayn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ar.jalalayn.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ar_muyassar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ar.muyassar.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="az_mammadaliyev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\az.mammadaliyev.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="az_musayev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\az.musayev.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ber_mensur" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ber.mensur.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="bg_theophanov" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bg.theophanov.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="bn_bengali" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bn.bengali.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="bn_hoque" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bn.hoque.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="bs_korkut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bs.korkut.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="bs_mlivo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bs.mlivo.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="cs_hrbek" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cs.hrbek.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="cs_nykl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cs.nykl.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="de_aburida" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\de.aburida.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="de_bubenheim" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\de.bubenheim.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="de_khoury" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\de.khoury.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="de_zaidan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\de.zaidan.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="dv_divehi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dv.divehi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="en.sahih" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\en.sahih.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="en_ahmedali" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.ahmedali.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="en_ahmedraza" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.ahmedraza.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="en_arberry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.arberry.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="en_daryabadi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.daryabadi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="en_hilali" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.hilali.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="en_itani" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.itani.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="en_maududi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.maududi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="en_mubarakpuri" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.mubarakpuri.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="en_pickthall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.pickthall.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="en_qarai" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.qarai.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="en_qaribullah" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.qaribullah.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="en_sarwar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.sarwar.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="en_shakir" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.shakir.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="en_transliteration" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.transliteration.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="en_wahiduddin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.wahiduddin.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="en_yusufali" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\en.yusufali.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="es_bornez" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\es.bornez.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="es_cortes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\es.cortes.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="es_garcia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\es.garcia.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_ansarian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.ansarian.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_ayati" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.ayati.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_bahrampour" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.bahrampour.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_fooladvand" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.fooladvand.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_gharaati" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.gharaati.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_ghomshei" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.ghomshei.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_khorramdel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.khorramdel.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_khorramshahi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.khorramshahi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_makarem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.makarem.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_moezzi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.moezzi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_mojtabavi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.mojtabavi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_sadeqi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.sadeqi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fa_safavi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fa.safavi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="fr_hamidullah" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fr.hamidullah.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ha_gumi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ha.gumi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="hi_farooq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hi.farooq.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="hi_hindi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hi.hindi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="id_indonesian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\id.indonesian.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="id_jalalayn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\id.jalalayn.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="id_muntakhab" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\id.muntakhab.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="it_piccardo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\it.piccardo.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ja_japanese" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ja.japanese.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ko_korean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ko.korean.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="ku.asan" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ku.asan.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ml_abdulhameed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ml.abdulhameed.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ml_karakunnu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ml.karakunnu.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ms_basmeih" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ms.basmeih.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="nl_keyzer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nl.keyzer.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="nl_leemhuis" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nl.leemhuis.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="nl_siregar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nl.siregar.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="no_berg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\no.berg.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="pl_bielawskiego" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pl.bielawskiego.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ps_abdulwali" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ps.abdulwali.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="pt_elhayek" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pt.elhayek.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="quran-simple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\quran-simple.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -138,5 +345,131 @@
   </data>
   <data name="quran_uthmani_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\quran-uthmani-min.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ro_grigore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ro.grigore.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ru_abuadel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ru.abuadel.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ru_krachkovsky" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ru.krachkovsky.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ru_kuliev" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ru.kuliev.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ru_kuliev_alsaadi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ru.kuliev-alsaadi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ru_muntahab" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ru.muntahab.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ru_osmanov" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ru.osmanov.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ru_porokhova" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ru.porokhova.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ru_sablukov" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ru.sablukov.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sd_amroti" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sd.amroti.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="so_abduh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\so.abduh.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sq_ahmeti" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sq.ahmeti.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sq_mehdiu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sq.mehdiu.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sq_nahi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sq.nahi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sv_bernstrom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sv.bernstrom.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="sw_barwani" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sw.barwani.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ta_tamil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ta.tamil.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tg_ayati" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tg.ayati.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="th_thai" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\th.thai.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tr_ates" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tr.ates.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tr_bulac" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tr.bulac.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tr_diyanet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tr.diyanet.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tr_golpinarli" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tr.golpinarli.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tr_ozturk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tr.ozturk.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tr_transliteration" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tr.transliteration.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tr_vakfi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tr.vakfi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tr_yazir" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tr.yazir.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tr_yildirim" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tr.yildirim.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tr_yuksel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tr.yuksel.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="tt_nugman" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tt.nugman.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ug_saleh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ug.saleh.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ur_ahmedali" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ur.ahmedali.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ur_jalandhry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ur.jalandhry.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ur_jawadi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ur.jawadi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ur_junagarhi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ur.junagarhi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ur_kanzuliman" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ur.kanzuliman.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ur_maududi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ur.maududi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ur_najafi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ur.najafi.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ur_qadri" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ur.qadri.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="uz_sodik" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uz.sodik.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="zh_jian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zh.jian.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="zh_majian" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zh.majian.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
