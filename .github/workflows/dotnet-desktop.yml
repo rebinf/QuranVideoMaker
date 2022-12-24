@@ -50,7 +50,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v0.0.${{github.run_number}}
-        release_name: v0.0.${{github.run_number}}
+        release_name: Quran Video Maker v0.0.${{github.run_number}}
         draft: false
         prerelease: false
 
