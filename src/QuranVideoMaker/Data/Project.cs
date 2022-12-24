@@ -811,8 +811,14 @@ namespace QuranVideoMaker.Data
             _playTimer.Interval = 1000d / (double)FPS;
 
             var audioItems = GetAudioTrackItemsAtFrame(Convert.ToInt32(NeedlePositionTime.TotalFrames));
-            var first = audioItems.First();
-            var clip = Clips.FirstOrDefault(x => x.Id == first.ClipId);
+            var firstAudio = audioItems.FirstOrDefault();
+
+            if (firstAudio == null)
+            {
+                return;
+            }
+
+            var clip = Clips.FirstOrDefault(x => x.Id == firstAudio.ClipId);
 
             if (_outputDevice != null)
             {
