@@ -1,0 +1,67 @@
+name: Release App
+
+on:
+  push:
+    branches: [ "main" ]
+    
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Release]
+    
+    runs-on: windows-latest
+    
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+      
+    #- name: install dotnet (installed already)
+    #  uses: actions/setup-dotnet@v3
+    #  with:
+    #    dotnet-version: 7.0.x
+    
+    - name: restore
+      run: |
+        cd src
+        dotnet restore
+      
+    - name: publish
+      run: |
+        cd src
+        dotnet publish -c release
+        
+    - name: download ffmpeg
+      run: Invoke-WebRequest -URI 'https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl-shared.zip' -OutFile .\ffmpeg.zip
+    
+    - name: extract ffmpeg
+      run: Expand-Archive -Path .\ffmpeg.zip -Force -DestinationPath .\ffmpeg
+     
+    - name: copy ffmpeg
+      run: Copy-Item -Path .\ffmpeg\ffmpeg-master-latest-win64-gpl-shared\bin\* -Destination .\src\QuranVideoMaker\bin\Release\net7.0-windows\publish
+      
+    - name: zip release
+      run: Compress-Archive -Path src\QuranVideoMaker\bin\Release\net7.0-windows\publish\* -DestinationPath .\QuranVideoMaker.zip
+        
+    - name: create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v0.0.${{github.run_number}}
+        release_name: v0.0.${{github.run_number}}
+        draft: false
+        prerelease: false
+
+    - name: upload release asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ./QuranVideoMaker.zip
+        asset_name: QuranVideoMaker.zip
+        asset_content_type: application/zip
+        
