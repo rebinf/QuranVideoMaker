@@ -198,6 +198,35 @@ namespace QuranVideoMaker
             CurrentProject.Stop();
         }
 
+        [RelayCommand]
+        private void OnAddMedia()
+        {
+            var dlg = new OpenFileDialog()
+            {
+                Multiselect = true,
+                Filter = $"Media files|{Constants.AllSupportedFormatsOpenFileExtensions}"
+            };
+
+            if (dlg.ShowDialog() == true)
+            {
+                foreach (var file in dlg.FileNames)
+                {
+                    var clip = new ProjectClipInfo(file);
+                    CurrentProject.Clips.Add(clip);
+                    QuranVideoMakerUI.ShowDialog(DialogType.ClipImport, clip);
+                }
+            }
+        }
+
+        [RelayCommand]
+        private void OnRemoveMedia()
+        {
+            foreach (var clip in CurrentProject.Clips.Where(x => x.IsSelected).ToArray())
+            {
+                CurrentProject.Clips.Remove(clip);
+            }
+        }
+
         private void OpenProject(string projectFile)
         {
             var result = Project.OpenProject(projectFile);
@@ -238,7 +267,7 @@ namespace QuranVideoMaker
 
         public void OnLoaded()
         {
-            //OpenProject(@"C:\Users\rebin\source\repos\QuranVideoMaker\testproject.qv");
+
         }
 
         /// <summary>

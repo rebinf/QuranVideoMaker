@@ -27,6 +27,9 @@ Download and extract the zip file and run `QuranVideoMaker.exe`.
 7. Click OK.
 8. Modify and rearrange track items.
 
+## Preview Quality
+Please note that preview quality has been reduced to improve performance, the quality of the actual export is much higher.
+
 ## Development
 I wrote this app in my spare time, so most of the effort is to make something that "works".
 It is written in C# using WPF for the UI, the performance is not great.

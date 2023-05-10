@@ -59,9 +59,26 @@
             <Grid Grid.Column="0">
                 <TabControl TabStripPlacement="Bottom" BorderThickness="0">
                     <TabItem Header="Clips">
-                        <customcontrols:ProjectClipsControl ItemsSource="{Binding CurrentProject.Clips}" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                        </customcontrols:ProjectClipsControl>
+                            <StackPanel Orientation="Horizontal" Margin="-1,0,0,2">
+                                <Button Width="24" Height="24" ToolTip="Add media" Command="{Binding AddMediaCommand}" Margin="1,0">
+                                    <Image Source="{svgc:SvgImage Source=/Resources/Icons/add.svg}" Width="13" Height="13" Margin="-8" />
+                                </Button>
+                                <Button Width="24" Height="24" ToolTip="Remove selected clips" Command="{Binding RemoveMediaCommand}" Margin="1,0">
+                                    <Image Source="{svgc:SvgImage Source=/Resources/Icons/bin.svg}" Width="13" Height="13" Margin="-8" />
+                                </Button>
+                            </StackPanel>
+                            
+                            <customcontrols:ProjectClipsControl Grid.Row="1" ItemsSource="{Binding CurrentProject.Clips}" >
+
+                            </customcontrols:ProjectClipsControl>
+                        </Grid>
+
                     </TabItem>
                 </TabControl>
 

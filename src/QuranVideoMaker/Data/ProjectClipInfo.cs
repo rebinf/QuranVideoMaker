@@ -33,6 +33,7 @@ namespace QuranVideoMaker.Data
         private string _fileHash;
         private string _filePath;
         private string _thumbnail;
+        private bool _isSelected;
 
         private int _width;
         private int _height;
@@ -156,6 +157,26 @@ namespace QuranVideoMaker.Data
                 if (_height != value)
                 {
                     _height = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this clip is selected.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this clip is selected; otherwise, <c>false</c>.
+        /// </value>
+        [JsonIgnore]
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                if (_isSelected != value)
+                {
+                    _isSelected = value;
                     OnPropertyChanged();
                 }
             }

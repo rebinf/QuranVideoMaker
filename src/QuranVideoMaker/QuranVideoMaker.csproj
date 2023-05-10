@@ -8,12 +8,12 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-		<PackageReference Include="FFMpegCore" Version="4.8.0" />
-		<PackageReference Include="OpenCvSharp4" Version="4.6.0.20220608" />
-		<PackageReference Include="OpenCvSharp4.runtime.win" Version="4.6.0.20220608" />
-		<PackageReference Include="OpenCvSharp4.Windows" Version="4.6.0.20220608" />
-		<PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.6.0.20220608" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+		<PackageReference Include="FFMpegCore" Version="5.1.0" />
+		<PackageReference Include="OpenCvSharp4" Version="4.7.0.20230115" />
+		<PackageReference Include="OpenCvSharp4.runtime.win" Version="4.7.0.20230115" />
+		<PackageReference Include="OpenCvSharp4.Windows" Version="4.7.0.20230115" />
+		<PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.7.0.20230115" />
 		<PackageReference Include="SharpVectors" Version="1.8.1" />
 		<PackageReference Include="NAudio" Version="2.1.0" />
 		<PackageReference Include="SkiaSharp" Version="2.88.3" />
