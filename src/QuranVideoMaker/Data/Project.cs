@@ -351,10 +351,10 @@ namespace QuranVideoMaker.Data
         }
 
         /// <summary>
-        /// Gets or sets the quran settings.
+        /// Gets or sets the Quran settings.
         /// </summary>
         /// <value>
-        /// The quran settings.
+        /// The Quran settings.
         /// </value>
         public QuranRenderSettings QuranSettings
         {
@@ -477,7 +477,13 @@ namespace QuranVideoMaker.Data
 
             last.End = new TimeCode(NeedlePositionTime.TotalFrames - last.Position.TotalFrames, FPS);
 
-            var verse = Quran.UthmaniScript.First(x => x.ChapterNumber == last.Verse.ChapterNumber && x.VerseNumber == last.Verse.VerseNumber + 1);
+            var verse = Quran.UthmaniScript.FirstOrDefault(x => x.ChapterNumber == last.Verse.ChapterNumber && x.VerseNumber == last.Verse.VerseNumber + 1);
+
+            //if there is no next verse, we are done
+            if (verse.ChapterNumber == 0 && verse.VerseNumber == 0)
+            {
+                return;
+            }
 
             var verseInfo = new VerseInfo(QuranIds.Quran, verse.ChapterNumber, verse.VerseNumber, verse.VerseText);
 
