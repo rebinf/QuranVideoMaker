@@ -1,14 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<ApplicationIcon>icon.ico</ApplicationIcon>
+	</PropertyGroup>
 
+	<PropertyGroup>
+		<BeautyLibsDir Condition="$(BeautySharedRuntimeMode) == 'True'">../libraries</BeautyLibsDir>
+		<BeautyLibsDir Condition="$(BeautySharedRuntimeMode) != 'True'">./libraries</BeautyLibsDir>
+		<DisableBeauty>False</DisableBeauty>
+		<BeautyOnPublishOnly>False</BeautyOnPublishOnly>
+		<BeautyEnableDebugging>False</BeautyEnableDebugging>
+		<BeautyUsePatch>True</BeautyUsePatch>
+		<BeautyLogLevel>Info</BeautyLogLevel>
+	</PropertyGroup>
+	
 	<ItemGroup>
+		<PackageReference Include="nulastudio.NetBeauty" Version="2.1.4.0-beta.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="FFMpegCore" Version="5.1.0" />
 		<PackageReference Include="OpenCvSharp4" Version="4.7.0.20230115" />
@@ -21,42 +32,43 @@
 		<PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.3" />
 	</ItemGroup>
 
+
 	<ItemGroup>
-	  <Resource Include="Resources\Icons\*" />
+		<Resource Include="Resources\Icons\*" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Icons\cut.svg" />
-	  <None Remove="Resources\Icons\ffw.svg" />
-	  <None Remove="Resources\Icons\folder.svg" />
-	  <None Remove="Resources\Icons\pause.svg" />
-	  <None Remove="Resources\Icons\play.svg" />
-	  <None Remove="Resources\Icons\rew.svg" />
-	  <None Remove="Resources\Icons\select.svg" />
-	  <None Remove="Resources\Icons\select_add.svg" />
-	  <None Remove="Resources\Icons\select_new.svg" />
-	  <None Remove="Resources\Icons\sound.svg" />
-	  <None Remove="Resources\Icons\split.svg" />
+		<None Remove="Resources\Icons\cut.svg" />
+		<None Remove="Resources\Icons\ffw.svg" />
+		<None Remove="Resources\Icons\folder.svg" />
+		<None Remove="Resources\Icons\pause.svg" />
+		<None Remove="Resources\Icons\play.svg" />
+		<None Remove="Resources\Icons\rew.svg" />
+		<None Remove="Resources\Icons\select.svg" />
+		<None Remove="Resources\Icons\select_add.svg" />
+		<None Remove="Resources\Icons\select_new.svg" />
+		<None Remove="Resources\Icons\sound.svg" />
+		<None Remove="Resources\Icons\split.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="icon.ico" />
+		<Content Include="icon.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\QuranTranslationImageGenerator\QuranTranslationImageGenerator.csproj" />
+		<ProjectReference Include="..\QuranTranslationImageGenerator\QuranTranslationImageGenerator.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Fonts\**\*.*">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+		<None Update="Fonts\**\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Dialogs\Views\ExportProjectView.xaml.cs">
-	    <SubType>Code</SubType>
-	  </Compile>
+		<Compile Update="Dialogs\Views\ExportProjectView.xaml.cs">
+			<SubType>Code</SubType>
+		</Compile>
 	</ItemGroup>
-	
+
 </Project>
