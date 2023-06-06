@@ -5,6 +5,7 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -36,6 +37,10 @@
 	  <None Remove="Resources\Icons\select_new.svg" />
 	  <None Remove="Resources\Icons\sound.svg" />
 	  <None Remove="Resources\Icons\split.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="icon.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
