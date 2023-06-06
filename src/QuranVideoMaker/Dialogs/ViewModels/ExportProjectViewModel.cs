@@ -106,10 +106,20 @@ namespace QuranVideoMaker
             {
                 IsExporting = true;
                 var verses = Project.OrderedVerses;
-                var fileName = $"Quran {verses.First().Verse.VerseNumber}-{verses.Last().Verse.VerseNumber}.mp4";
+
+                var fileName = "Quran.mp4";
+
+                if (verses.Any())
+                {
+                    fileName = $"Quran {verses.First().Verse.VerseNumber}-{verses.Last().Verse.VerseNumber}.mp4";
+                }
+
                 var filePath = Path.Combine(Project.ExportDirectory, fileName);
 
                 Project.Export(filePath);
+
+                MessageBox.Show("Export Complete", "Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 IsExporting = false;
             });
         }
