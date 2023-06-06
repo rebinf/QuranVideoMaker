@@ -38,7 +38,7 @@ jobs:
       run: Expand-Archive -Path .\ffmpeg.zip -Force -DestinationPath .\ffmpeg
      
     - name: copy ffmpeg
-      run: Copy-Item -Path .\ffmpeg\ffmpeg-master-latest-win64-gpl-shared\bin\* -Destination .\src\QuranVideoMaker\bin\Release\net7.0-windows\win-x64\publish\ffmpeg
+      run: Copy-Item -Path .\ffmpeg\ffmpeg-master-latest-win64-gpl-shared\bin\ -Destination .\src\QuranVideoMaker\bin\Release\net7.0-windows\win-x64\publish\ffmpeg\ -Recurse
     
     - name: delete locales directory
       run: Remove-Item -Path .\src\QuranVideoMaker\bin\Release\net7.0-windows\win-x64\publish\libraries\locales -Recurse -ErrorAction Ignore
