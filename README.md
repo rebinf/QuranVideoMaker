@@ -1,4 +1,8 @@
-# Quran Video Maker
+<h1 align="center">
+    <img src="./icon.png" width=80 height=80>
+    <p>Quran Video Maker</p>
+</h1>
+
 Quran Video Maker is a limited video editor with the emphasis on creating Quran translation videos.
 
 ![image](https://user-images.githubusercontent.com/16520022/190927246-2406f201-fecb-4710-a9e1-f977a4e5a529.png)
