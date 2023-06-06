@@ -23,6 +23,8 @@ namespace QuranVideoMaker
                 Directory.CreateDirectory(tmpDir);
             }
 
+            FFMpegCore.GlobalFFOptions.Current.BinaryFolder = Path.Combine(AppContext.BaseDirectory, "ffmpeg");
+
             base.OnStartup(e);
         }
     }
