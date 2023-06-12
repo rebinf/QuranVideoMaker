@@ -781,9 +781,9 @@ namespace QuranVideoMaker.Data
                     }
                 }
 
-                using (var pixmap = frameBitmap.PeekPixels())
+                using (var pixMap = frameBitmap.PeekPixels())
                 {
-                    using (var data = pixmap.Encode(new SKPngEncoderOptions(SKPngEncoderFilterFlags.NoFilters, 0)))
+                    using (var data = pixMap.Encode(new SKPngEncoderOptions(SKPngEncoderFilterFlags.NoFilters, 0)))
                     {
                         var frameBytes = data.ToArray();
                         frames.Add(new FrameContainer(i) { Rendered = frameBytes });
@@ -828,12 +828,17 @@ namespace QuranVideoMaker.Data
 
             if (_outputDevice != null)
             {
-                _outputDevice?.Stop();
+                _outputDevice?.Dispose();
+                _audioReader?.Dispose();
+                _outputDevice = null;
+                _audioReader = null;
             }
+
+            var playTime = TimeSpan.FromSeconds(firstAudio.GetPlayPosition(TimelineZoom, NeedlePositionTime.Frame));
 
             _audioReader = new AudioFileReader(clip.FilePath)
             {
-                CurrentTime = TimeSpan.FromSeconds(NeedlePositionTime.TotalSeconds)
+                CurrentTime = playTime
             };
 
             _outputDevice = new WaveOutEvent();
@@ -878,6 +883,11 @@ namespace QuranVideoMaker.Data
                 NeedlePositionTime = NeedlePositionTime.AddFrames(1);
             });
 
+            if (GetAudioTrackItemsAtFrame(Convert.ToInt32(NeedlePositionTime.TotalFrames)).Count == 0)
+            {
+                _outputDevice?.Stop();
+            }
+
             PreviewCurrentFrame();
         }
 
@@ -911,7 +921,20 @@ namespace QuranVideoMaker.Data
         {
             if (_outputDevice != null)
             {
-                _audioReader.CurrentTime = TimeSpan.FromSeconds(NeedlePositionTime.TotalSeconds);
+                var audioItems = GetAudioTrackItemsAtFrame(Convert.ToInt32(NeedlePositionTime.TotalFrames));
+                var firstAudio = audioItems.FirstOrDefault();
+
+                if (firstAudio != null)
+                {
+                    var playTime = TimeSpan.FromSeconds(firstAudio.GetPlayPosition(TimelineZoom, NeedlePositionTime.Frame));
+                    _outputDevice.Stop();
+                    _audioReader.CurrentTime = playTime;
+
+                    if (IsPlaying)
+                    {
+                        _outputDevice.Play();
+                    }
+                }
             }
 
             PreviewCurrentFrame();

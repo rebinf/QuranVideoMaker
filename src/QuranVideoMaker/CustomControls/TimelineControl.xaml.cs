@@ -238,7 +238,7 @@ namespace QuranVideoMaker.CustomControls
 
                 _mouseDownTrackItem.Position = new TimeCode(resultFrame, Project.FPS);
 
-                if (destinationTrack != null && destinationTrack != track)
+                if (destinationTrack != null && destinationTrack != track && _mouseDownTrackItem.IsCompatibleWith(destinationTrack.Type))
                 {
                     track.Items.Remove(_mouseDownTrackItem);
                     destinationTrack.Items.Add(_mouseDownTrackItem);
@@ -356,9 +356,9 @@ namespace QuranVideoMaker.CustomControls
             }
         }
 
-        private void UpdateNeedlePosition(double neeleXPosition)
+        private void UpdateNeedlePosition(double needleXPosition)
         {
-            var x = Math.Round(neeleXPosition);
+            var x = Math.Round(needleXPosition);
 
             if (x <= 0)
             {

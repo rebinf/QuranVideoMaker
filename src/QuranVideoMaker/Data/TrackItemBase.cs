@@ -365,10 +365,33 @@ namespace QuranVideoMaker.Data
             End = end;
         }
 
+        public bool IsCompatibleWith(TrackType trackType)
+        {
+            switch (trackType)
+            {
+                case TrackType.Quran:
+                    return Type == TrackItemType.Quran;
+                case TrackType.Video:
+                    return Type == TrackItemType.Video || Type == TrackItemType.Image;
+                case TrackType.Audio:
+                    return Type == TrackItemType.Audio;
+                default:
+                    return false;
+            }
+        }
+
         public double GetPosition(int zoom)
         {
             var position = Position.TotalFrames * Constants.TimelinePixelsInSeparator / Constants.TimelineZooms[zoom];
             return position;
+        }
+
+        public double GetPlayPosition(int zoom, double needleFrame)
+        {
+            var position = GetPosition(zoom);
+            var playPosition = needleFrame + Start.Frame;
+
+            return playPosition;
         }
 
         public double GetFadeInPosition(int zoom)
