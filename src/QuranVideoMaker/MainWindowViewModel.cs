@@ -1,19 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
-using QuranVideoMaker.Data;
+using QuranVideoMaker.CustomControls;
 using QuranVideoMaker.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using QuranVideoMaker.Data;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace QuranVideoMaker
@@ -199,19 +193,34 @@ namespace QuranVideoMaker
         }
 
         [RelayCommand]
+        private void AutoVerse()
+        {
+            if (CurrentProject.SelectedTool == TimelineSelectedTool.AutoVerse)
+            {
+                CurrentProject.AutoVerse();
+            }
+        }
+
+        [RelayCommand]
+        private void SelectTool(TimelineSelectedTool tool)
+        {
+            CurrentProject.SelectedTool = tool;
+        }
+
+        [RelayCommand]
         private void OnAddMedia()
         {
             var dlg = new OpenFileDialog()
             {
                 Multiselect = true,
-                Filter = $"Media files|{Constants.AllSupportedFormatsOpenFileExtensions}"
+                Filter = $"Media files|{FileFormats.AllSupportedFormatsOpenFileExtensions}"
             };
 
             if (dlg.ShowDialog() == true)
             {
                 foreach (var file in dlg.FileNames)
                 {
-                    var clip = new ProjectClipInfo(file);
+                    var clip = new ProjectClip(file);
                     CurrentProject.Clips.Add(clip);
                     QuranVideoMakerUI.ShowDialog(DialogType.ClipImport, clip);
                 }

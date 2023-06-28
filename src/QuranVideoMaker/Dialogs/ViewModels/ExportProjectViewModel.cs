@@ -1,21 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using Microsoft.VisualBasic;
-using QuranTranslationImageGenerator;
 using QuranVideoMaker.Data;
-using QuranVideoMaker.Dialogs;
 using QuranVideoMaker.Dialogs.ViewModels;
-using SkiaSharp;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Runtime;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuranVideoMaker
@@ -111,7 +99,7 @@ namespace QuranVideoMaker
 
                 if (verses.Any())
                 {
-                    fileName = $"Quran {verses.First().Verse.VerseNumber}-{verses.Last().Verse.VerseNumber}.mp4";
+                    fileName = $"Quran {verses.First().Verse.ChapterNumber} {verses.First().Verse.VerseNumber}-{verses.Last().Verse.VerseNumber}.mp4";
                 }
 
                 var filePath = Path.Combine(Project.ExportDirectory, fileName);

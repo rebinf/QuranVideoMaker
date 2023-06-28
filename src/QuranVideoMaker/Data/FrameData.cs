@@ -1,5 +1,4 @@
-﻿using OpenCvSharp;
-using SkiaSharp;
+﻿using SkiaSharp;
 
 namespace QuranVideoMaker.Data
 {

@@ -1,15 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using QuranTranslationImageGenerator;
 using QuranVideoMaker.Data;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuranVideoMaker.Dialogs.ViewModels
@@ -291,17 +285,17 @@ namespace QuranVideoMaker.Dialogs.ViewModels
 
             Project.QuranSettings.ShowArabicScript = ShowArabicScript;
 
-            var audioTrack = Project.Tracks.First(x => x.Type == TrackType.Audio);
+            var audioTrack = Project.Tracks.First(x => x.Type == TimelineTrackType.Audio);
 
             var totalFrames = 0d;
 
             if (!string.IsNullOrWhiteSpace(QuranAudioFile))
             {
-                var clip = new ProjectClipInfo(QuranAudioFile, Project.FPS);
+                var clip = new ProjectClip(QuranAudioFile, Project.FPS);
                 totalFrames = clip.Length.TotalFrames;
                 Project.Clips.Add(clip);
 
-                audioTrack.Items.Add(new TrackItemBase(clip, new TimeCode(0, Project.FPS), new TimeCode(0, Project.FPS), clip.Length));
+                audioTrack.Items.Add(new TrackItem(clip, new TimeCode(0, Project.FPS), new TimeCode(0, Project.FPS), clip.Length));
             }
 
             if (!AddVerses)
@@ -322,7 +316,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                 verses.Insert(0, Quran.UthmaniScript.First());
             }
 
-            var quranTrack = Project.Tracks.First(x => x.Type == TrackType.Quran);
+            var quranTrack = Project.Tracks.First(x => x.Type == TimelineTrackType.Quran);
 
             var itemLength = totalFrames / verses.Count;
 
@@ -337,7 +331,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                     UnlimitedSourceLength = true,
                     Name = $"{verseInfo.ChapterNumber}:{verseInfo.VerseNumber}.{verseInfo.VersePart}",
                     Verse = verseInfo,
-                    SourceLength = new TimeCode(itemLength, Project.FPS),
+                    //SourceLength = new TimeCode(itemLength, Project.FPS),
                     Start = new TimeCode(0, Project.FPS),
                     End = new TimeCode(itemLength, Project.FPS),
                     Position = new TimeCode(i * itemLength, Project.FPS),

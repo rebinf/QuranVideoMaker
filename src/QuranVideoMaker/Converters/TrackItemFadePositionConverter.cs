@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using QuranVideoMaker.Data;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Media;
-using QuranVideoMaker.Data;
 
 namespace QuranVideoMaker.Converters
 {
@@ -20,7 +15,7 @@ namespace QuranVideoMaker.Converters
 
             if (targetType == typeof(double))
             {
-                var pos = (FadeControlType)parameter == FadeControlType.Left ? item.GetFadeInPosition(project.TimelineZoom) : item.GetFadeOutPosition(project.TimelineZoom);
+                var pos = (FadeControlType)parameter == FadeControlType.Left ? item.GetFadeInXPosition(project.TimelineZoom) : item.GetFadeOutXPosition(project.TimelineZoom);
 
                 return pos;
             }
@@ -33,7 +28,7 @@ namespace QuranVideoMaker.Converters
                 {
                     collection.Add(new System.Windows.Point(0, 0));
                     collection.Add(new System.Windows.Point(0, 48));
-                    collection.Add(new System.Windows.Point(item.GetFadeInPosition(project.TimelineZoom), 0));
+                    collection.Add(new System.Windows.Point(item.GetFadeInXPosition(project.TimelineZoom), 0));
                 }
                 else
                 {
@@ -42,7 +37,7 @@ namespace QuranVideoMaker.Converters
                     //<Point X="-10" Y="0" />
                     collection.Add(new System.Windows.Point(0, 0));
                     collection.Add(new System.Windows.Point(0, 48));
-                    collection.Add(new System.Windows.Point(item.GetFadeOutPosition(project.TimelineZoom) * -1, 0));
+                    collection.Add(new System.Windows.Point(item.GetFadeOutXPosition(project.TimelineZoom) * -1, 0));
                 }
 
                 return collection;

@@ -14,10 +14,16 @@
         <local:MainWindowViewModel />
     </Window.DataContext>
     <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="N" Command="{Binding NewProjectCommand}" />
+        <KeyBinding Modifiers="Ctrl" Key="O" Command="{Binding OpenProjectCommand}" />
         <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding SaveProjectCommand}" />
+        <KeyBinding Modifiers="Ctrl+Shift" Key="S" Command="{Binding SaveProjectAsCommand}" />
+
+        <KeyBinding Key="X" Command="{Binding AutoVerseCommand}" />
+
+        <KeyBinding Key="J" Command="{Binding ProjectRewindCommand}" />
         <KeyBinding Key="Space" Command="{Binding ProjectPlayCommand}" />
         <KeyBinding Key="L" Command="{Binding ProjectFastForwardCommand}" />
-        <KeyBinding Key="J" Command="{Binding ProjectRewindCommand}" />
     </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -29,11 +35,11 @@
 
         <Menu Grid.Row="0">
             <MenuItem Header="File">
-                <MenuItem Header="New" Command="{Binding NewProjectCommand}" />
-                <MenuItem Header="Open" Command="{Binding OpenProjectCommand}" />
+                <MenuItem Header="New" Command="{Binding NewProjectCommand}" InputGestureText="Ctrl+N" />
+                <MenuItem Header="Open" Command="{Binding OpenProjectCommand}" InputGestureText="Ctrl+O" />
                 <Separator />
                 <MenuItem Header="Save" Command="{Binding SaveProjectCommand}" InputGestureText="Ctrl+S" />
-                <MenuItem Header="Save As..." Command="{Binding SaveProjectAsCommand}" />
+                <MenuItem Header="Save As..." Command="{Binding SaveProjectAsCommand}" InputGestureText="Ctrl+Shift+S" />
                 <Separator />
                 <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
             </MenuItem>
@@ -41,12 +47,60 @@
                 <MenuItem Header="Add" Command="{Binding QuranAddCommand}" />
                 <Separator />
                 <MenuItem Header="Settings" Command="{Binding QuranSettingsCommand}" />
+                <Separator Visibility="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolVisibilityConverter SelectedTool=AutoVerse, IsVisible=True}}" />
+                <MenuItem x:Name="miAutoVerse" Header="Auto Verse" Command="{Binding AutoVerseCommand}" Visibility="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolVisibilityConverter SelectedTool=AutoVerse, IsVisible=True}}" InputGestureText="X" />
             </MenuItem>
             <MenuItem Header="Project">
                 <MenuItem Header="Export" Command="{Binding ExportProjectCommand}" />
                 <Separator />
                 <MenuItem Header="Settings" Command="{Binding ProjectSettingsCommand}" />
             </MenuItem>
+
+            <MenuItem Header="Timeline">
+                <MenuItem Header="Select Tool" IsChecked="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolToSelectedConverter SelectedTool=SelectionTool}}" Command="{Binding SelectToolCommand}" CommandParameter="{x:Static customcontrols:TimelineSelectedTool.SelectionTool}" />
+                <MenuItem Header="Cutting Tool" IsChecked="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolToSelectedConverter SelectedTool=CuttingTool}}" Command="{Binding SelectToolCommand}" CommandParameter="{x:Static customcontrols:TimelineSelectedTool.CuttingTool}" />
+                <MenuItem Header="Verse Resizer" IsChecked="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolToSelectedConverter SelectedTool=VerseResizer}}" Command="{Binding SelectToolCommand}" CommandParameter="{x:Static customcontrols:TimelineSelectedTool.VerseResizer}" />
+                <MenuItem Header="Auto Verse" IsChecked="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolToSelectedConverter SelectedTool=AutoVerse}}" Command="{Binding SelectToolCommand}" CommandParameter="{x:Static customcontrols:TimelineSelectedTool.AutoVerse}" />
+            </MenuItem>
+
+            <MenuItem Header="Monitor">
+                <MenuItem Header="Rewind" Command="{Binding ProjectRewindCommand}" InputGestureText="J">
+                    <MenuItem.Icon>
+                        <svgc:SvgIcon UriSource="/Resources/Icons/rew.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="{Binding ProjectPlayCommand}" InputGestureText="Space">
+                    <MenuItem.Style>
+                        <Style TargetType="MenuItem">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentProject.IsPlaying}" Value="False">
+                                    <Setter Property="Header" Value="Play" />
+                                    <Setter Property="Icon">
+                                        <Setter.Value>
+                                            <svgc:SvgIcon UriSource="/Resources/Icons/play.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CurrentProject.IsPlaying}" Value="True">
+                                    <Setter Property="Header" Value="Pause" />
+                                    <Setter Property="Icon">
+                                        <Setter.Value>
+                                            <svgc:SvgIcon UriSource="/Resources/Icons/pause.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </MenuItem.Style>
+                </MenuItem>
+                <MenuItem Header="Fast Forward" Command="{Binding ProjectFastForwardCommand}" InputGestureText="L">
+                    <MenuItem.Icon>
+                        <svgc:SvgIcon UriSource="/Resources/Icons/ffw.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+
+
         </Menu>
 
         <Grid Grid.Row="1">
@@ -67,13 +121,13 @@
 
                             <StackPanel Orientation="Horizontal" Margin="-1,0,0,2">
                                 <Button Width="24" Height="24" ToolTip="Add media" Command="{Binding AddMediaCommand}" Margin="1,0">
-                                    <Image Source="{svgc:SvgImage Source=/Resources/Icons/add.svg}" Width="13" Height="13" Margin="-8" />
+                                    <svgc:SvgIcon UriSource="/Resources/Icons/add.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
                                 </Button>
                                 <Button Width="24" Height="24" ToolTip="Remove selected clips" Command="{Binding RemoveMediaCommand}" Margin="1,0">
-                                    <Image Source="{svgc:SvgImage Source=/Resources/Icons/bin.svg}" Width="13" Height="13" Margin="-8" />
+                                    <svgc:SvgIcon UriSource="/Resources/Icons/bin.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
                                 </Button>
                             </StackPanel>
-                            
+
                             <customcontrols:ProjectClipsControl Grid.Row="1" ItemsSource="{Binding CurrentProject.Clips}" >
 
                             </customcontrols:ProjectClipsControl>
@@ -97,31 +151,32 @@
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
 
-                    <Button Command="{Binding ProjectRewindCommand}" Width="30" Padding="5" Margin="1,0">
-                        <Image Source="{svgc:SvgImage Source=/Resources/Icons/rew.svg}" />
+                    <Button Command="{Binding ProjectRewindCommand}" ToolTip="Rewind (J)" Width="30" Padding="5" Margin="1,0">
+                        <svgc:SvgIcon UriSource="/Resources/Icons/rew.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
                     </Button>
 
                     <Button Command="{Binding ProjectPlayCommand}" Width="30" Padding="5" Margin="1,0">
-                        <Image>
-                            <Image.Style>
-                                <Style TargetType="Image">
+                        <svgc:SvgIcon Fill="LightGray" Width="13" Height="13" Margin="-8">
+                            <svgc:SvgIcon.Style>
+                                <Style TargetType="svgc:SvgIcon">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding CurrentProject.IsPlaying}" Value="False">
-                                            <Setter Property="Source" Value="{svgc:SvgImage Source=/Resources/Icons/play.svg}" />
+                                            <Setter Property="UriSource" Value="/Resources/Icons/play.svg" />
+                                            <Setter Property="ToolTip" Value="Play (Space)" />
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentProject.IsPlaying}" Value="True">
-                                            <Setter Property="Source" Value="{svgc:SvgImage Source=/Resources/Icons/pause.svg}" />
+                                            <Setter Property="UriSource" Value="Resources/Icons/pause.svg" />
+                                            <Setter Property="ToolTip" Value="Pause (Space)" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
-                            </Image.Style>
-                        </Image>
+                            </svgc:SvgIcon.Style>
+                        </svgc:SvgIcon>
                     </Button>
-                    
-                    <Button Command="{Binding ProjectFastForwardCommand}" Width="30" Padding="5" Margin="1,0">
-                        <Image Source="{svgc:SvgImage Source=/Resources/Icons/ffw.svg}" />
+
+                    <Button Command="{Binding ProjectFastForwardCommand}" ToolTip="Fast Forward (L)" Width="30" Padding="5" Margin="1,0">
+                        <svgc:SvgIcon UriSource="/Resources/Icons/ffw.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
                     </Button>
-                    <!--<Button Content="Stop" Command="{Binding StopProjectCommand}" />-->
                 </StackPanel>
             </Grid>
         </Grid>

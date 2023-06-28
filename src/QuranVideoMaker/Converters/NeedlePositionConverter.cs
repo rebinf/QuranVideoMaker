@@ -1,10 +1,5 @@
 ﻿using QuranVideoMaker.Data;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Markup;
 
@@ -14,7 +9,10 @@ namespace QuranVideoMaker.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            var project = values[0] as Project;
+            if (values[0] is not Project project)
+            {
+                return 0;
+            }
 
             var x = project.NeedlePositionTime.TotalFrames * Constants.TimelinePixelsInSeparator / Constants.TimelineZooms[project.TimelineZoom];
 

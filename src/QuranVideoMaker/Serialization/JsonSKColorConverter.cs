@@ -1,12 +1,6 @@
-﻿using QuranVideoMaker.Data;
-using SkiaSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using SkiaSharp;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace QuranVideoMaker.Serialization
 {

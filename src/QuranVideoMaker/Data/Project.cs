@@ -1,26 +1,18 @@
-﻿using FFMpegCore;
-using NAudio.Wave;
+﻿using NAudio.Wave;
 using OpenCvSharp;
 using QuranTranslationImageGenerator;
+using QuranVideoMaker.CustomControls;
 using QuranVideoMaker.Serialization;
 using SkiaSharp;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Text.Json.Serialization.Metadata;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
-using System.Windows.Media.Media3D;
 
 namespace QuranVideoMaker.Data
 {
@@ -44,18 +36,18 @@ namespace QuranVideoMaker.Data
         private int _trackHeadersWidth = 100;
         private TimeCode _needlePositionTime = new TimeCode(0, 25);
         private ObservableCollection<TimelineTrack> _tracks;
-        private ObservableCollection<ProjectClipInfo> _clips = new ObservableCollection<ProjectClipInfo>();
+        private ObservableCollection<IProjectClip> _clips = new ObservableCollection<IProjectClip>();
         private string _exportDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
         private QuranRenderSettings _quranSettings = new QuranRenderSettings();
         private byte[] _currentPreviewFrame;
         private bool _isPlaying;
+        private TimelineSelectedTool _selectedTool;
 
-        private Timer _playTimer = new Timer() { AutoReset = true, Enabled = false };
+        private System.Timers.Timer _playTimer = new System.Timers.Timer() { AutoReset = true, Enabled = false };
         private AudioFileReader _audioReader;
         private WaveOutEvent _outputDevice;
 
         public event EventHandler<double> ExportProgress;
-
 
         /// <summary>
         /// Occurs when a property value changes.
@@ -235,7 +227,7 @@ namespace QuranVideoMaker.Data
         /// <value>
         /// The clips.
         /// </value>
-        public ObservableCollection<ProjectClipInfo> Clips
+        public ObservableCollection<IProjectClip> Clips
         {
             get { return _clips; }
             set
@@ -369,9 +361,9 @@ namespace QuranVideoMaker.Data
             }
         }
 
-        public TimelineTrack QuranTrack { get { return Tracks.FirstOrDefault(x => x.Type == TrackType.Quran); } }
+        public TimelineTrack QuranTrack { get { return Tracks.FirstOrDefault(x => x.Type == TimelineTrackType.Quran); } }
 
-        public IEnumerable<QuranTrackItem> OrderedVerses { get { return Tracks.FirstOrDefault(x => x.Type == TrackType.Quran)?.Items.Cast<QuranTrackItem>().OrderBy(x => x.Verse.VerseNumber); } }
+        public IEnumerable<QuranTrackItem> OrderedVerses { get { return Tracks.FirstOrDefault(x => x.Type == TimelineTrackType.Quran)?.Items.Cast<QuranTrackItem>().OrderBy(x => x.Verse.VerseNumber); } }
 
         /// <summary>
         /// Gets or sets the current image.
@@ -393,6 +385,20 @@ namespace QuranVideoMaker.Data
             }
         }
 
+        [JsonIgnore]
+        public TimelineSelectedTool SelectedTool
+        {
+            get { return _selectedTool; }
+            set
+            {
+                if (_selectedTool != value)
+                {
+                    _selectedTool = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Project"/> class.
         /// </summary>
@@ -406,7 +412,7 @@ namespace QuranVideoMaker.Data
         /// </summary>
         /// <param name="item">The item.</param>
         /// <param name="frame">The frame.</param>
-        public void CutItem(TrackItemBase item, double frame)
+        public void CutItem(TrackItem item, double frame)
         {
             var cutFrame = frame - item.Position.TotalFrames;
             var oldEnd = item.End;
@@ -424,7 +430,6 @@ namespace QuranVideoMaker.Data
                     Name = item.Name,
                     Thumbnail = item.Thumbnail,
                     Position = newItemPosition,
-                    SourceLength = item.SourceLength,
                     Start = new TimeCode(),
                     End = oldEnd - item.End,
                     Verse = (item as QuranTrackItem).Verse.Clone(),
@@ -436,7 +441,7 @@ namespace QuranVideoMaker.Data
             }
             else
             {
-                var newItem = new TrackItemBase(item.Type, item.UnlimitedSourceLength, item.ClipId, item.Name, item.Thumbnail, newItemPosition, item.SourceLength, newItemStart, oldEnd);
+                var newItem = new TrackItem(item.Type, item.UnlimitedSourceLength, item.ClipId, item.Name, item.Thumbnail, newItemPosition, item.SourceLength, newItemStart, oldEnd);
 
                 track.Items.Add(newItem);
             }
@@ -447,7 +452,7 @@ namespace QuranVideoMaker.Data
         /// </summary>
         /// <param name="item">The item.</param>
         /// <param name="frame">The frame.</param>
-        public void ResizeQuranItem(TrackItemBase item, double frame)
+        public void ResizeQuranItem(TrackItem item, double frame)
         {
             if (item.Type == TrackItemType.Quran)
             {
@@ -459,9 +464,9 @@ namespace QuranVideoMaker.Data
                 var newItemPosition = new TimeCode(frame, FPS);
                 var newItemStart = item.End;
 
-                if (Tracks.First(x => x.Type == TrackType.Quran).Items.Cast<QuranTrackItem>().FirstOrDefault(x => x.Verse.VerseNumber == (item as QuranTrackItem).Verse.VerseNumber + 1) is QuranTrackItem right)
+                if (Tracks.First(x => x.Type == TimelineTrackType.Quran).Items.Cast<QuranTrackItem>().FirstOrDefault(x => x.Verse.VerseNumber == (item as QuranTrackItem).Verse.VerseNumber + 1) is QuranTrackItem right)
                 {
-                    var oldRight = right.GetRight().TotalFrames;
+                    var oldRight = right.GetRightTime().TotalFrames;
                     right.Position = newItemPosition;
 
                     right.End = new TimeCode(oldRight - newItemPosition.TotalFrames, FPS);
@@ -471,7 +476,7 @@ namespace QuranVideoMaker.Data
 
         public void AutoVerse()
         {
-            var quranTrack = Tracks.First(x => x.Type == TrackType.Quran);
+            var quranTrack = Tracks.First(x => x.Type == TimelineTrackType.Quran);
             var items = quranTrack.Items.Cast<QuranTrackItem>();
             var last = items.OrderByDescending(x => x.Verse.VerseNumber).First();
 
@@ -492,10 +497,10 @@ namespace QuranVideoMaker.Data
                 UnlimitedSourceLength = true,
                 Name = $"{verseInfo.ChapterNumber}:{verseInfo.VerseNumber}.{verseInfo.VersePart}",
                 Verse = verseInfo,
-                SourceLength = TimeCode.FromSeconds(30, FPS),
+                //SourceLength = TimeCode.FromSeconds(30, FPS),
                 Start = new TimeCode(0, FPS),
                 End = TimeCode.FromSeconds(30, FPS),
-                Position = last.GetRight(),
+                Position = last.GetRightTime(),
                 FadeInFrame = 25,
                 FadeOutFrame = 25,
             };
@@ -521,11 +526,11 @@ namespace QuranVideoMaker.Data
         /// </summary>
         /// <param name="trackItem">The track item.</param>
         /// <returns></returns>
-        public int GetItemRenderOrder(TrackItemBase trackItem)
+        public int GetItemRenderOrder(ITrackItem trackItem)
         {
             var track = Tracks.First(x => x.Items.Contains(trackItem));
 
-            if (track.Type == TrackType.Quran)
+            if (track.Type == TimelineTrackType.Quran)
             {
                 return Tracks.Count + 1;
             }
@@ -544,7 +549,7 @@ namespace QuranVideoMaker.Data
                 return 0;
             }
 
-            return Tracks.SelectMany(x => x.Items).Max(x => x.GetRight().TotalFrames);
+            return Tracks.SelectMany(x => x.Items).Max(x => x.GetRightTime().TotalFrames);
         }
 
         /// <summary>
@@ -552,23 +557,23 @@ namespace QuranVideoMaker.Data
         /// </summary>
         /// <param name="frame">The frame.</param>
         /// <returns></returns>
-        public List<TrackItemBase> GetVisualTrackItemsAtFrame(int frame)
+        public List<ITrackItem> GetVisualTrackItemsAtFrame(int frame)
         {
             return this.Tracks.SelectMany(x => x.Items).Where(x => x.Type != TrackItemType.Audio)
-                .Where(x => x.Position.TotalFrames <= frame && x.GetRight().TotalFrames >= frame).ToList();
+                .Where(x => x.Position.TotalFrames <= frame && x.GetRightTime().TotalFrames >= frame).ToList();
         }
 
-        public List<TrackItemBase> GetAudioTrackItemsAtFrame(int frame)
+        public List<ITrackItem> GetAudioTrackItemsAtFrame(int frame)
         {
             return this.Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Audio)
-                .Where(x => x.Position.TotalFrames <= frame && x.GetRight().TotalFrames >= frame).ToList();
+                .Where(x => x.Position.TotalFrames <= frame && x.GetRightTime().TotalFrames >= frame).ToList();
         }
 
         /// <summary>
         /// Gets the audio track items.
         /// </summary>
         /// <returns></returns>
-        public List<TrackItemBase> GetAudioTrackItems()
+        public List<ITrackItem> GetAudioTrackItems()
         {
             return this.Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Audio).ToList();
         }
@@ -582,7 +587,7 @@ namespace QuranVideoMaker.Data
         {
             try
             {
-                var project = JsonSerializer.Deserialize<Project>(System.IO.File.ReadAllText(projectFile), JsonSerializationSettings.ProjectSerializationSettings);
+                var project = ProjectSerializer.Deserialize(System.IO.File.ReadAllText(projectFile));
                 return new OperationResult<Project>(true, string.Empty, project);
             }
             catch (Exception ex)
@@ -600,7 +605,7 @@ namespace QuranVideoMaker.Data
         {
             try
             {
-                System.IO.File.WriteAllText(projectFile, JsonSerializer.Serialize(this, JsonSerializationSettings.ProjectSerializationSettings));
+                System.IO.File.WriteAllText(projectFile, ProjectSerializer.Serialize(this));
 
                 return new OperationResult(true, string.Empty);
             }
@@ -834,7 +839,7 @@ namespace QuranVideoMaker.Data
                 _audioReader = null;
             }
 
-            var playTime = TimeSpan.FromSeconds(firstAudio.GetPlayPosition(TimelineZoom, NeedlePositionTime.Frame));
+            var playTime = TimeSpan.FromSeconds(firstAudio.GetPlayXPosition(TimelineZoom, NeedlePositionTime.Frame));
 
             _audioReader = new AudioFileReader(clip.FilePath)
             {
@@ -926,7 +931,7 @@ namespace QuranVideoMaker.Data
 
                 if (firstAudio != null)
                 {
-                    var playTime = TimeSpan.FromSeconds(firstAudio.GetPlayPosition(TimelineZoom, NeedlePositionTime.Frame));
+                    var playTime = TimeSpan.FromSeconds(firstAudio.GetPlayXPosition(TimelineZoom, NeedlePositionTime.Frame));
                     _outputDevice.Stop();
                     _audioReader.CurrentTime = playTime;
 

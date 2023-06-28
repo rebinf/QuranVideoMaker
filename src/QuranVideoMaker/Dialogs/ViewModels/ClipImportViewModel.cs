@@ -1,20 +1,11 @@
-﻿using OpenCvSharp;
-using QuranVideoMaker.Data;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using QuranVideoMaker.Data;
 using System.Windows;
 
 namespace QuranVideoMaker.Dialogs.ViewModels
 {
     public class ClipImportViewModel : DialogViewModelBase
     {
-        public ProjectClipInfo Clip { get; }
+        public ProjectClip Clip { get; }
 
         private double _progress;
 
@@ -31,7 +22,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
             }
         }
 
-        public ClipImportViewModel(ProjectClipInfo clip)
+        public ClipImportViewModel(ProjectClip clip)
         {
             Clip = clip;
             Clip.CacheProgress += Clip_CacheProgress;

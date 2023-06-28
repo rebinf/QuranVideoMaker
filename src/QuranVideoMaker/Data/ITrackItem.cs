@@ -1,174 +1,133 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace QuranVideoMaker.Data
 {
+    /// <summary>
+    /// Represents a track item.
+    /// </summary>
     public interface ITrackItem : INotifyPropertyChanged
     {
         /// <summary>
-        /// Gets or sets the identifier.
+        /// The Id of the track item.
         /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
         string Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the type.
+        /// The type of track item.
         /// </summary>
-        /// <value>
-        /// The type.
-        /// </value>
         TrackItemType Type { get; set; }
 
         /// <summary>
-        /// Gets or sets the clip identifier.
+        /// The id of the associated clip.
         /// </summary>
-        /// <value>
-        /// The clip identifier.
-        /// </value>
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         string ClipId { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
+        /// The name of the track item.
         /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the note.
+        /// Gets or sets the path of the item thumbnail.
         /// </summary>
-        /// <value>
-        /// The note.
-        /// </value>
-        string Note { get; set; }
-
-        /// <summary>
-        /// Gets or sets the thumbnail.
-        /// </summary>
-        /// <value>
-        /// The thumbnail.
-        /// </value>
         string Thumbnail { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this item is selected.
+        /// Additional notes about the track item.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if this item is selected; otherwise, <c>false</c>.
-        /// </value>
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        string Note { get; set; }
+
+        /// <summary>
+        /// The number of frames to fade in.
+        /// </summary>
+        double FadeInFrame { get; set; }
+
+        /// <summary>
+        /// The number of frames to fade out.
+        /// </summary>
+        double FadeOutFrame { get; set; }
+
+        /// <summary>
+        /// Whether the track item is selected.
+        /// </summary>
+        [JsonIgnore]
         bool IsSelected { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this instance is changing fade in.
+        /// Gets or sets a value indicating whether this item is changing fade in.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is changing fade in; otherwise, <c>false</c>.
-        /// </value>
+        [JsonIgnore]
         bool IsChangingFadeIn { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this instance is changing fade out.
+        /// Gets or sets a value indicating whether this item is changing fade out.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is changing fade out; otherwise, <c>false</c>.
-        /// </value>
+        [JsonIgnore]
         bool IsChangingFadeOut { get; set; }
 
         /// <summary>
-        /// Gets or sets the position.
+        /// The position of the track item.
         /// </summary>
-        /// <value>
-        /// The position.
-        /// </value>
         TimeCode Position { get; set; }
 
         /// <summary>
-        /// Gets or sets the length of the source.
+        /// The start time of the track item's associated clip.
         /// </summary>
-        /// <value>
-        /// The length of the source.
-        /// </value>
-        TimeCode SourceLength { get; set; }
-
-        /// <summary>
-        /// Gets or sets the start.
-        /// </summary>
-        /// <value>
-        /// The start.
-        /// </value>
         TimeCode Start { get; set; }
 
         /// <summary>
-        /// Gets or sets the end.
+        /// The end time of the track item's associated clip.
         /// </summary>
-        /// <value>
-        /// The end.
-        /// </value>
         TimeCode End { get; set; }
+
+        /// <summary>
+        /// The duration of the clip.
+        /// </summary>
+        [JsonIgnore]
+        TimeCode Duration { get; }
+
+        /// <summary>
+        /// Gets or sets the duration of the source.
+        /// </summary>
+        TimeCode SourceDuration { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this item has an unlimited source length.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if this item has an unlimited source length; otherwise, <c>false</c>.
-        /// </value>
         bool UnlimitedSourceLength { get; set; }
 
         /// <summary>
-        /// Gets or sets the fade in frame.
+        /// Gets the right time of the track item (i.e. position + duration).
         /// </summary>
-        /// <value>
-        /// The fade in frame.
-        /// </value>
-        double FadeInFrame { get; set; }
+        TimeCode GetRightTime();
 
         /// <summary>
-        /// Gets or sets the fade out frame.
+        /// Gets the local frame of the track item (i.e. timelineFrame - position).
         /// </summary>
-        /// <value>
-        /// The fade out frame.
-        /// </value>
-        double FadeOutFrame { get; set; }
+        double GetLocalFrame(double timelineFrame);
 
         /// <summary>
-        /// Gets the width.
+        /// Gets the timeline frame of the track item (i.e. localFrame + position).
         /// </summary>
-        /// <param name="zoom">The zoom.</param>
-        /// <returns></returns>
-        double GetWidth(int zoom);
+        double GetTimelineFrame(double localFrame);
 
         /// <summary>
-        /// Gets the position.
+        /// Gets the opacity of the track item at the specified local frame.
         /// </summary>
-        /// <param name="zoom">The zoom.</param>
-        /// <returns></returns>
-        double GetPosition(int zoom);
+        double GetOpacity(double localFrame);
 
         /// <summary>
-        /// Gets the length.
+        /// Checks whether the track item is compatible with the specified track type.
         /// </summary>
-        /// <returns></returns>
-        TimeCode GetLength();
+        bool IsCompatibleWith(TimelineTrackType trackType);
 
         /// <summary>
-        /// Gets the fade in position.
+        /// Clones this instance.
         /// </summary>
-        /// <param name="zoom">The zoom.</param>
-        /// <returns></returns>
-        double GetFadeInPosition(int zoom);
-
-        /// <summary>
-        /// Gets the fade out position.
-        /// </summary>
-        /// <param name="zoom">The zoom.</param>
-        /// <returns></returns>
-        double GetFadeOutPosition(int zoom);
+        ITrackItem Clone();
     }
 }

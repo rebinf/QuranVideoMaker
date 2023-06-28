@@ -1,13 +1,6 @@
 ﻿using QuranTranslationImageGenerator;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuranVideoMaker.Data
 {
@@ -18,16 +11,13 @@ namespace QuranVideoMaker.Data
     [Description("QuranTrackItem")]
     [DisplayName("QuranTrackItem")]
     [DebuggerDisplay("QuranTrackItem")]
-    public class QuranTrackItem : TrackItemBase
+    public class QuranTrackItem : TrackItem
     {
         private VerseInfo _verse;
 
         /// <summary>
         /// Gets or sets the verse.
         /// </summary>
-        /// <value>
-        /// The verse.
-        /// </value>
         public VerseInfo Verse
         {
             get { return _verse; }
@@ -48,6 +38,16 @@ namespace QuranVideoMaker.Data
         {
             Type = TrackItemType.Quran;
             UnlimitedSourceLength = true;
+        }
+
+        /// <inheritdoc/>
+        public override ITrackItem Clone()
+        {
+            var clone = base.Clone() as QuranTrackItem;
+
+            clone.Verse = Verse.Clone();
+
+            return clone;
         }
     }
 }

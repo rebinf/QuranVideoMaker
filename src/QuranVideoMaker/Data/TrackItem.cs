@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
-using System.Windows;
-using System.Windows.Controls;
 
 namespace QuranVideoMaker.Data
 {
@@ -16,7 +12,7 @@ namespace QuranVideoMaker.Data
     [Description("TrackItemBase")]
     [DisplayName("TrackItemBase")]
     [DebuggerDisplay("TrackItemBase")]
-    public class TrackItemBase : ITrackItem
+    public class TrackItem : ITrackItem
     {
         private string _id = Guid.NewGuid().ToString().Replace("-", string.Empty);
         private TrackItemType _type;
@@ -27,14 +23,15 @@ namespace QuranVideoMaker.Data
         private TimeCode _sourceLength;
         private bool _unlimitedSourceLength;
         private bool _isSelected;
-        private bool _ischangingFadeIn;
+        private bool _isChangingFadeIn;
         private TimeCode _start;
         private TimeCode _end;
         private string _thumbnail;
 
         private double _fadeInFrame;
         private double _fadeOutFrame;
-        private bool _ischangingFadeOut;
+        private bool _isChangingFadeOut;
+        private TimeCode _sourceDuration;
 
         /// <summary>
         /// Occurs when a property value changes.
@@ -125,6 +122,20 @@ namespace QuranVideoMaker.Data
             }
         }
 
+        /// <inheritdoc/>
+        public TimeCode SourceDuration
+        {
+            get { return _sourceDuration; }
+            set
+            {
+                if (_sourceDuration != value)
+                {
+                    _sourceDuration = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         ///<inheritdoc/>
         public bool UnlimitedSourceLength
         {
@@ -153,7 +164,7 @@ namespace QuranVideoMaker.Data
             }
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public TimeCode Start
         {
             get { return _start; }
@@ -161,31 +172,20 @@ namespace QuranVideoMaker.Data
             {
                 if (_start != value)
                 {
-                    if (!UnlimitedSourceLength)
+                    // ClipStart cannot be more than ClipEnd
+                    if (End.TotalFrames > 0 && value >= End)
                     {
-                        if (End.TotalFrames > 0 && value >= End)
-                        {
-                            value = new TimeCode(Convert.ToInt32(End.TotalFrames) - 1, End.FPS);
-                        }
-                    }
-                    else
-                    {
-                        value = new TimeCode();
-                    }
-
-                    if (value <= new TimeCode())
-                    {
-                        value = new TimeCode();
+                        value = new TimeCode(End.TotalFrames - 1, value.FPS);
                     }
 
                     _start = value;
-
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(Duration));
                 }
             }
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public TimeCode End
         {
             get { return _end; }
@@ -193,23 +193,32 @@ namespace QuranVideoMaker.Data
             {
                 if (_end != value)
                 {
-                    if (!UnlimitedSourceLength)
-                    {
-                        if (value >= SourceLength)
-                        {
-                            value = new TimeCode(SourceLength.TotalFrames, SourceLength.FPS);
-                        }
-                    }
-
+                    // ClipEnd cannot be less than ClipStart
                     if (value <= Start)
                     {
                         value = new TimeCode(Start.TotalFrames + 1, value.FPS);
                     }
 
-                    _end = value;
+                    // ClipEnd cannot be more than SourceDuration
+                    if (!UnlimitedSourceLength && SourceDuration.TotalFrames > 0 && value > SourceDuration)
+                    {
+                        value = SourceDuration;
+                    }
 
+                    _end = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(Duration));
                 }
+            }
+        }
+
+        /// <inheritdoc/>
+        [JsonIgnore]
+        public TimeCode Duration
+        {
+            get
+            {
+                return End - Start;
             }
         }
 
@@ -231,12 +240,12 @@ namespace QuranVideoMaker.Data
         [JsonIgnore]
         public bool IsChangingFadeIn
         {
-            get { return _ischangingFadeIn; }
+            get { return _isChangingFadeIn; }
             set
             {
-                if (_ischangingFadeIn != value)
+                if (_isChangingFadeIn != value)
                 {
-                    _ischangingFadeIn = value;
+                    _isChangingFadeIn = value;
                     OnPropertyChanged();
                 }
             }
@@ -246,12 +255,12 @@ namespace QuranVideoMaker.Data
         [JsonIgnore]
         public bool IsChangingFadeOut
         {
-            get { return _ischangingFadeOut; }
+            get { return _isChangingFadeOut; }
             set
             {
-                if (_ischangingFadeOut != value)
+                if (_isChangingFadeOut != value)
                 {
-                    _ischangingFadeOut = value;
+                    _isChangingFadeOut = value;
                     OnPropertyChanged();
                 }
             }
@@ -284,13 +293,13 @@ namespace QuranVideoMaker.Data
                         value = 0;
                     }
 
-                    if (value > GetLength().TotalFrames - 25)
+                    if (value > Duration.TotalFrames - 25)
                     {
-                        value = GetLength().TotalFrames - 25;
+                        value = Duration.TotalFrames - 25;
                     }
 
                     _fadeInFrame = value;
-                    Debug.WriteLine($"set: {value}, max({GetLength().TotalFrames})");
+                    Debug.WriteLine($"set: {value}, max({Duration.TotalFrames})");
                     OnPropertyChanged();
                 }
             }
@@ -309,27 +318,27 @@ namespace QuranVideoMaker.Data
                         value = 0;
                     }
 
-                    if (value > GetLength().TotalFrames - 25)
+                    if (value > Duration.TotalFrames - 25)
                     {
-                        value = GetLength().TotalFrames - 25;
+                        value = Duration.TotalFrames - 25;
                     }
 
                     _fadeOutFrame = value;
-                    Debug.WriteLine($"set: {value}, max({GetLength().TotalFrames})");
+                    Debug.WriteLine($"set: {value}, max({Duration.TotalFrames})");
                     OnPropertyChanged();
                 }
             }
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrackItemBase"/> class.
+        /// Initializes a new instance of the <see cref="TrackItem"/> class.
         /// </summary>
-        public TrackItemBase()
+        public TrackItem()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrackItemBase" /> class.
+        /// Initializes a new instance of the <see cref="TrackItem" /> class.
         /// </summary>
         /// <param name="unlimitedSourceLength">if set to <c>true</c> [unlimited source length].</param>
         /// <param name="clipId">The clip identifier.</param>
@@ -339,7 +348,7 @@ namespace QuranVideoMaker.Data
         /// <param name="sourceLength">Length of the source.</param>
         /// <param name="start">The start.</param>
         /// <param name="end">The end.</param>
-        public TrackItemBase(TrackItemType type, bool unlimitedSourceLength, string clipId, string name, string thumbnail, TimeCode position, TimeCode sourceLength, TimeCode start, TimeCode end)
+        public TrackItem(TrackItemType type, bool unlimitedSourceLength, string clipId, string name, string thumbnail, TimeCode position, TimeCode sourceLength, TimeCode start, TimeCode end)
         {
             Type = type;
             UnlimitedSourceLength = unlimitedSourceLength;
@@ -352,7 +361,7 @@ namespace QuranVideoMaker.Data
             End = end;
         }
 
-        public TrackItemBase(ProjectClipInfo clipInfo, TimeCode position, TimeCode start, TimeCode end)
+        public TrackItem(ProjectClip clipInfo, TimeCode position, TimeCode start, TimeCode end)
         {
             Type = clipInfo.ItemType;
             UnlimitedSourceLength = clipInfo.UnlimitedLength;
@@ -365,42 +374,38 @@ namespace QuranVideoMaker.Data
             End = end;
         }
 
-        public bool IsCompatibleWith(TrackType trackType)
+        public bool IsCompatibleWith(TimelineTrackType trackType)
         {
-            switch (trackType)
+            return trackType switch
             {
-                case TrackType.Quran:
-                    return Type == TrackItemType.Quran;
-                case TrackType.Video:
-                    return Type == TrackItemType.Video || Type == TrackItemType.Image;
-                case TrackType.Audio:
-                    return Type == TrackItemType.Audio;
-                default:
-                    return false;
-            }
+                TimelineTrackType.Quran => Type == TrackItemType.Quran,
+                TimelineTrackType.Video => Type == TrackItemType.Video || Type == TrackItemType.Image,
+                TimelineTrackType.Audio => Type == TrackItemType.Audio,
+                _ => false,
+            };
         }
 
-        public double GetPosition(int zoom)
+        public double GetXPosition(int zoom)
         {
             var position = Position.TotalFrames * Constants.TimelinePixelsInSeparator / Constants.TimelineZooms[zoom];
             return position;
         }
 
-        public double GetPlayPosition(int zoom, double needleFrame)
+        public double GetPlayXPosition(int zoom, double needleFrame)
         {
-            var position = GetPosition(zoom);
+            var position = GetXPosition(zoom);
             var playPosition = needleFrame + Start.Frame;
 
             return playPosition;
         }
 
-        public double GetFadeInPosition(int zoom)
+        public double GetFadeInXPosition(int zoom)
         {
             var position = FadeInFrame * Constants.TimelinePixelsInSeparator / Constants.TimelineZooms[zoom];
             return position;
         }
 
-        public double GetFadeOutPosition(int zoom)
+        public double GetFadeOutXPosition(int zoom)
         {
             var position = FadeOutFrame * Constants.TimelinePixelsInSeparator / Constants.TimelineZooms[zoom];
             return position;
@@ -408,21 +413,29 @@ namespace QuranVideoMaker.Data
 
         public double GetWidth(int zoom)
         {
-            var length = GetLength().TotalFrames / Constants.TimelineZooms[zoom] * Constants.TimelinePixelsInSeparator;
+            var length = Duration.TotalFrames / Constants.TimelineZooms[zoom] * Constants.TimelinePixelsInSeparator;
             return length;
         }
 
-        public TimeCode GetLength()
+        /// <inheritdoc/>
+        public TimeCode GetRightTime()
         {
-            return End - Start;
+            return Position + Duration;
         }
 
-        public TimeCode GetRight()
+        /// <inheritdoc/>
+        public double GetLocalFrame(double timelineFrame)
         {
-            return Position + GetLength();
+            return timelineFrame - Position.TotalFrames + Start.TotalFrames;
         }
 
-        public double GetOpacity(int itemFrame)
+        /// <inheritdoc/>
+        public double GetTimelineFrame(double localFrame)
+        {
+            return localFrame + Position.TotalFrames;
+        }
+
+        public double GetOpacity(double itemFrame)
         {
             var opacity = 1d;
 
@@ -436,7 +449,7 @@ namespace QuranVideoMaker.Data
 
             if (this.FadeOutFrame > 0)
             {
-                var itemRightFrame = this.GetRight().TotalFrames - this.Position.TotalFrames;
+                var itemRightFrame = this.GetRightTime().TotalFrames - this.Position.TotalFrames;
 
                 if (itemFrame > itemRightFrame - this.FadeOutFrame)
                 {
@@ -446,6 +459,7 @@ namespace QuranVideoMaker.Data
 
             return opacity;
         }
+
         /// <summary>
         /// Called when public properties changed.
         /// </summary>
@@ -455,9 +469,25 @@ namespace QuranVideoMaker.Data
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public int GetLocalFrame(int i)
+        /// <inheritdoc/>
+        public virtual ITrackItem Clone()
         {
-            return Convert.ToInt32(i + this.Start.TotalFrames - this.Position.TotalFrames);
+            var item = new TrackItem
+            {
+                ClipId = ClipId,
+                Name = Name,
+                Note = Note,
+                FadeInFrame = FadeInFrame,
+                FadeOutFrame = FadeOutFrame,
+                Position = Position,
+                Start = Start,
+                End = End,
+                SourceDuration = SourceDuration,
+                UnlimitedSourceLength = UnlimitedSourceLength,
+                Type = Type,
+            };
+
+            return item;
         }
     }
 }

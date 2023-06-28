@@ -1,22 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using QuranVideoMaker.Data;
 using QuranVideoMaker.Dialogs;
 using QuranVideoMaker.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using QuranVideoMaker.Data;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace QuranVideoMaker.CustomControls
 {
@@ -34,12 +22,11 @@ namespace QuranVideoMaker.CustomControls
 
         protected override void OnPreviewMouseMove(MouseEventArgs e)
         {
-            if (_timelineControl == null)
-            {
-                _timelineControl = VisualHelper.GetAncestor<TimelineControl>(this);
-            }
+            _timelineControl ??= VisualHelper.GetAncestor<TimelineControl>(this);
 
-            if (_timelineControl.SelectedTool == TimelineSelectedTool.SelectionTool && this.DataContext is TrackItemBase trackItem && !trackItem.IsChangingFadeIn && !trackItem.IsChangingFadeOut)
+            var project = _timelineControl.Project;
+
+            if (project.SelectedTool == TimelineSelectedTool.SelectionTool && this.DataContext is TrackItem trackItem && !trackItem.IsChangingFadeIn && !trackItem.IsChangingFadeOut)
             {
                 var mouseX = e.GetPosition(this).X;
 
@@ -60,7 +47,7 @@ namespace QuranVideoMaker.CustomControls
                     resizeBorder.BorderThickness = new Thickness(0);
                 }
             }
-            else if (_timelineControl.SelectedTool == TimelineSelectedTool.CuttingTool || _timelineControl.SelectedTool == TimelineSelectedTool.VerseResizer)
+            else if (project.SelectedTool == TimelineSelectedTool.CuttingTool || project.SelectedTool == TimelineSelectedTool.VerseResizer)
             {
                 this.Cursor = Cursors.IBeam;
             }

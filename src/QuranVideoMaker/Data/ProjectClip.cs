@@ -1,20 +1,12 @@
-﻿using FFMpegCore;
-using NAudio.Wave;
+﻿using NAudio.Wave;
 using OpenCvSharp;
-using SkiaSharp;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace QuranVideoMaker.Data
 {
@@ -25,10 +17,10 @@ namespace QuranVideoMaker.Data
     [Description("ProjectClipInfo")]
     [DisplayName("ProjectClipInfo")]
     [DebuggerDisplay("{FileName} {Length}")]
-    public class ProjectClipInfo : INotifyPropertyChanged
+    public class ProjectClip : IProjectClip
     {
         private string _id = Guid.NewGuid().ToString().Replace("-", string.Empty);
-        private TrackType _trackType;
+        private TimelineTrackType _trackType;
         private TrackItemType _itemType;
         private string _fileHash;
         private string _filePath;
@@ -70,7 +62,7 @@ namespace QuranVideoMaker.Data
         /// <value>
         /// The type.
         /// </value>
-        public TrackType TrackType
+        public TimelineTrackType TrackType
         {
             get { return _trackType; }
             set
@@ -214,51 +206,59 @@ namespace QuranVideoMaker.Data
         public List<FrameCache> FramesCache { get; } = new List<FrameCache>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectClipInfo"/> class.
+        /// Initializes a new instance of the <see cref="ProjectClip"/> class.
         /// </summary>
-        public ProjectClipInfo()
+        public ProjectClip()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectClipInfo"/> class.
+        /// Initializes a new instance of the <see cref="ProjectClip"/> class.
         /// </summary>
         /// <param name="filePath">The file path.</param>
-        public ProjectClipInfo(string filePath)
+        public ProjectClip(string filePath)
         {
             FilePath = filePath;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectClipInfo"/> class.
+        /// Initializes a new instance of the <see cref="ProjectClip"/> class.
         /// </summary>
         /// <param name="filePath">The file path.</param>
         /// <param name="fps">The FPS.</param>
-        public ProjectClipInfo(string filePath, double fps)
+        public ProjectClip(string filePath, double fps)
         {
             FilePath = filePath;
             FPS = fps;
         }
 
+        public bool IsCompatibleWith(TimelineTrackType trackType)
+        {
+            return trackType switch
+            {
+                TimelineTrackType.Quran => ItemType == TrackItemType.Quran,
+                TimelineTrackType.Video => ItemType == TrackItemType.Video || ItemType == TrackItemType.Image,
+                TimelineTrackType.Audio => ItemType == TrackItemType.Audio,
+                _ => false,
+            };
+        }
+
         private void GetInfo()
         {
-            var propertes = GetClipProperties();
+            var properties = GetClipProperties();
 
-            UnlimitedLength = propertes.UnlimitedLength;
-            TrackType = propertes.TrackType;
-            ItemType = propertes.ItemType;
-            Length = propertes.Length;
-            FPS = propertes.FPS;
-            Width = propertes.Width;
-            Height = propertes.Height;
+            UnlimitedLength = properties.UnlimitedLength;
+            TrackType = properties.TrackType;
+            ItemType = properties.ItemType;
+            Length = properties.Length;
+            FPS = properties.FPS;
+            Width = properties.Width;
+            Height = properties.Height;
         }
 
         private void GetThumbnail()
         {
-            Task.Factory.StartNew(() =>
-            {
-                CreateThumbnail();
-            });
+            Task.Factory.StartNew(CreateThumbnail);
         }
 
         public string GetFileHash()
@@ -295,7 +295,7 @@ namespace QuranVideoMaker.Data
                 return;
             }
 
-            if (Constants.SupportedVideoFormats.Contains(extension))
+            if (FileFormats.SupportedVideoFormats.Contains(extension))
             {
                 using (var capture = new VideoCapture(FilePath))
                 {
@@ -307,11 +307,11 @@ namespace QuranVideoMaker.Data
                 }
             }
 
-            if (Constants.SupportedAudioFormats.Contains(extension))
+            if (FileFormats.SupportedAudioFormats.Contains(extension))
             {
             }
 
-            if (Constants.SupportedImageFormats.Contains(extension))
+            if (FileFormats.SupportedImageFormats.Contains(extension))
             {
                 File.Copy(FilePath, thumbnailPath);
             }
@@ -319,17 +319,17 @@ namespace QuranVideoMaker.Data
             Thumbnail = thumbnailPath;
         }
 
-        public ClipProperties GetClipProperties()
+        public ProjectClipMetadata GetClipProperties()
         {
             var extension = Path.GetExtension(FilePath);
 
-            if (Constants.SupportedVideoFormats.Contains(extension))
+            if (FileFormats.SupportedVideoFormats.Contains(extension))
             {
                 using (var capture = new VideoCapture(FilePath))
                 {
-                    return new ClipProperties()
+                    return new ProjectClipMetadata()
                     {
-                        TrackType = TrackType.Video,
+                        TrackType = TimelineTrackType.Video,
                         ItemType = TrackItemType.Video,
                         Length = new TimeCode(capture.FrameCount, capture.Fps),
                         FPS = capture.Fps,
@@ -339,13 +339,13 @@ namespace QuranVideoMaker.Data
                 }
             }
 
-            if (Constants.SupportedAudioFormats.Contains(extension))
+            if (FileFormats.SupportedAudioFormats.Contains(extension))
             {
                 using (var reader = new Mp3FileReader(FilePath))
                 {
-                    return new ClipProperties()
+                    return new ProjectClipMetadata()
                     {
-                        TrackType = TrackType.Audio,
+                        TrackType = TimelineTrackType.Audio,
                         ItemType = TrackItemType.Audio,
                         Length = TimeCode.FromSeconds(reader.TotalTime.TotalSeconds, MainWindowViewModel.Instance.CurrentProject.FPS),
                         FPS = 0,
@@ -355,13 +355,13 @@ namespace QuranVideoMaker.Data
                 }
             }
 
-            if (Constants.SupportedImageFormats.Contains(extension))
+            if (FileFormats.SupportedImageFormats.Contains(extension))
             {
                 var img = System.Drawing.Image.FromFile(FilePath);
 
-                return new ClipProperties()
+                return new ProjectClipMetadata()
                 {
-                    TrackType = TrackType.Video,
+                    TrackType = TimelineTrackType.Video,
                     ItemType = TrackItemType.Image,
                     UnlimitedLength = true,
                     Length = TimeCode.FromSeconds(5, 25),
@@ -371,7 +371,7 @@ namespace QuranVideoMaker.Data
                 };
             }
 
-            return new ClipProperties();
+            return new ProjectClipMetadata();
         }
 
         public void CacheFrames()

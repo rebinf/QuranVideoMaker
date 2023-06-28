@@ -26,17 +26,17 @@
         <Border BorderBrush="Gray" BorderThickness="1">
             <StackPanel Orientation="Horizontal">
                 <Grid Width="100" />
-                <RadioButton Style="{StaticResource {x:Type ToggleButton}}" Margin="1" IsChecked="True" Command="{Binding ToolSelectedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}}" CommandParameter="{x:Static local:TimelineSelectedTool.SelectionTool}" ToolTip="Selecting tool">
-                    <Image Source="{svgc:SvgImage Source=/Resources/Icons/select.svg}" Width="14" Height="14" Margin="4" />
+                <RadioButton Style="{StaticResource {x:Type ToggleButton}}" Margin="1" IsChecked="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolToSelectedConverter SelectedTool=SelectionTool}}" Command="{Binding ToolSelectedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}}" CommandParameter="{x:Static local:TimelineSelectedTool.SelectionTool}" ToolTip="Selecting Tool">
+                    <svgc:SvgIcon UriSource="/Resources/Icons/select.svg" Fill="LightGray" Width="14" Height="14" Margin="4" />
                 </RadioButton>
-                <RadioButton Style="{StaticResource {x:Type ToggleButton}}" Margin="1" Command="{Binding ToolSelectedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}}" CommandParameter="{x:Static local:TimelineSelectedTool.CuttingTool}" ToolTip="Cutting tool">
-                    <Image Source="{svgc:SvgImage Source=/Resources/Icons/cut.svg}" Width="14" Height="14" Margin="4" />
+                <RadioButton Style="{StaticResource {x:Type ToggleButton}}" Margin="1" IsChecked="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolToSelectedConverter SelectedTool=CuttingTool}}" Command="{Binding ToolSelectedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}}" CommandParameter="{x:Static local:TimelineSelectedTool.CuttingTool}" ToolTip="Cutting Tool">
+                    <svgc:SvgIcon UriSource="/Resources/Icons/cut.svg" Fill="LightGray" Width="14" Height="14" Margin="4" />
                 </RadioButton>
-                <RadioButton Style="{StaticResource {x:Type ToggleButton}}" Margin="1" Command="{Binding ToolSelectedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}}" CommandParameter="{x:Static local:TimelineSelectedTool.VerseResizer}" ToolTip="Verse resizer">
-                    <Image Source="{svgc:SvgImage Source=/Resources/Icons/split.svg}" Width="14" Height="14" Margin="4" />
+                <RadioButton Style="{StaticResource {x:Type ToggleButton}}" Margin="1" IsChecked="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolToSelectedConverter SelectedTool=VerseResizer}}" Command="{Binding ToolSelectedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}}" CommandParameter="{x:Static local:TimelineSelectedTool.VerseResizer}" ToolTip="Verse Resizer">
+                    <svgc:SvgIcon UriSource="/Resources/Icons/split.svg" Fill="LightGray" Width="14" Height="14" Margin="4" />
                 </RadioButton>
-                <RadioButton Style="{StaticResource {x:Type ToggleButton}}" Margin="1" Command="{Binding ToolSelectedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}}" CommandParameter="{x:Static local:TimelineSelectedTool.AutoVerse}" ToolTip="Auto verse">
-                    <Image Source="{svgc:SvgImage Source=/Resources/Icons/select_new.svg}" Width="14" Height="14" Margin="4" />
+                <RadioButton Style="{StaticResource {x:Type ToggleButton}}" Margin="1" IsChecked="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolToSelectedConverter SelectedTool=AutoVerse}}" Command="{Binding ToolSelectedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}}" CommandParameter="{x:Static local:TimelineSelectedTool.AutoVerse}" ToolTip="Auto Verse">
+                    <svgc:SvgIcon UriSource="/Resources/Icons/select_new.svg" Fill="LightGray" Width="14" Height="14" Margin="4" />
                 </RadioButton>
                 <!--<ToggleButton Margin="1">
                     <Image Source="{svgc:SvgImage Source=/Resources/Icons/Select.svg}" Width="24" Height="24" />

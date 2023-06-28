@@ -12,12 +12,12 @@ namespace QuranVideoMaker.Data
     [Description("TimelineTrack")]
     [DisplayName("TimelineTrack")]
     [DebuggerDisplay("{Type} ({Name})")]
-    public class TimelineTrack : INotifyPropertyChanged
+    public class TimelineTrack : ITimelineTrack
     {
-        private TrackType _type;
+        private TimelineTrackType _type;
         private string _name;
         private int _height = 50;
-        private ObservableCollection<TrackItemBase> _items;
+        private ObservableCollection<ITrackItem> _items;
 
         /// <summary>
         /// Occurs when a property value changes.
@@ -30,7 +30,7 @@ namespace QuranVideoMaker.Data
         /// <value>
         /// The type.
         /// </value>
-        public TrackType Type
+        public TimelineTrackType Type
         {
             get { return _type; }
             set
@@ -87,9 +87,9 @@ namespace QuranVideoMaker.Data
         /// <value>
         /// The items.
         /// </value>
-        public ObservableCollection<TrackItemBase> Items
+        public ObservableCollection<ITrackItem> Items
         {
-            get { return _items ??= new ObservableCollection<TrackItemBase>(); }
+            get { return _items ??= new ObservableCollection<ITrackItem>(); }
             set
             {
                 if (_items != value)
@@ -99,6 +99,8 @@ namespace QuranVideoMaker.Data
                 }
             }
         }
+
+        ObservableCollection<ITrackItem> ITimelineTrack.Items { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TimelineTrack"/> class.
@@ -112,10 +114,49 @@ namespace QuranVideoMaker.Data
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="name">The name.</param>
-        public TimelineTrack(TrackType type, string name)
+        public TimelineTrack(TimelineTrackType type, string name)
         {
             Type = type;
             Name = name;
+        }
+
+        /// <inheritdoc/>
+        public TimeCode GetDuration()
+        {
+            if (Items.Count == 0)
+            {
+                return new TimeCode();
+            }
+
+            var lastItem = Items.OrderByDescending(x => x.GetRightTime()).FirstOrDefault();
+            return lastItem.GetRightTime();
+        }
+
+        /// <inheritdoc/>
+        public void CutItem(ITrackItem item, double timelineFrame)
+        {
+            if (!Items.Contains(item))
+            {
+                throw new Exception("Item not found in track.");
+            }
+
+            var copy = item.Clone();
+
+            var oldEnd = item.End;
+
+            var localFrame = item.GetLocalFrame(timelineFrame);
+            item.End = new TimeCode(localFrame, item.End.FPS);
+            copy.End = new TimeCode(oldEnd.TotalFrames, oldEnd.FPS);
+            copy.Start = new TimeCode(localFrame, item.Start.FPS);
+            copy.Position = new TimeCode(item.GetRightTime().TotalFrames, item.Position.FPS);
+
+            Items.Add(copy);
+        }
+
+        /// <inheritdoc/>
+        public ITrackItem GetItemAtTimelineFrame(double timelineFrame)
+        {
+            return Items.FirstOrDefault(x => x.Position.TotalSeconds <= timelineFrame && x.GetRightTime().TotalSeconds >= timelineFrame);
         }
 
         /// <summary>

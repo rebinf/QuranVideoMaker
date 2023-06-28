@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QuranTranslationImageGenerator
+﻿namespace QuranTranslationImageGenerator
 {
     public static class Quran
     {
@@ -1038,7 +1031,6 @@ namespace QuranTranslationImageGenerator
         }
 
         public static IEnumerable<QuranTranslation> Translations { get { return _translations; } }
-
 
         public static IEnumerable<ChapterInfo> Chapters { get { return _chapters; } }
 

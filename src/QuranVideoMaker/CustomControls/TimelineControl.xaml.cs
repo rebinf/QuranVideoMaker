@@ -1,28 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using HarfBuzzSharp;
 using QuranVideoMaker.Data;
 using QuranVideoMaker.Dialogs;
 using QuranVideoMaker.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Xml.Linq;
 
 namespace QuranVideoMaker.CustomControls
 {
@@ -36,7 +21,7 @@ namespace QuranVideoMaker.CustomControls
         private Ellipse _mouseDownFadeControl;
         private double _mouseDownX;
         private double _trackMouseDownX;
-        private TrackItemBase _mouseDownTrackItem;
+        private TrackItem _mouseDownTrackItem;
         private bool _resizingLeft;
         private bool _resizingRight;
 
@@ -49,21 +34,6 @@ namespace QuranVideoMaker.CustomControls
         // Using a DependencyProperty as the backing store for Project.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ProjectProperty = DependencyProperty.Register("Project", typeof(Project), typeof(TimelineControl), new PropertyMetadata(null, OnProjectChangedCallback));
 
-        private TimelineSelectedTool _selectedTool;
-
-        public TimelineSelectedTool SelectedTool
-        {
-            get { return _selectedTool; }
-            set
-            {
-                if (_selectedTool != value)
-                {
-                    _selectedTool = value;
-                    OnSelectedToolChanged();
-                }
-            }
-        }
-
         public TimelineControl()
         {
             InitializeComponent();
@@ -72,11 +42,11 @@ namespace QuranVideoMaker.CustomControls
         [RelayCommand]
         private void OnToolSelected(TimelineSelectedTool tool)
         {
-            SelectedTool = tool;
+            Project.SelectedTool = tool;
 
-            if (SelectedTool == TimelineSelectedTool.AutoVerse)
+            if (Project.SelectedTool == TimelineSelectedTool.AutoVerse)
             {
-                if (Project.Tracks.First(x => x.Type == TrackType.Quran).Items.Count == 0)
+                if (Project.Tracks.First(x => x.Type == TimelineTrackType.Quran).Items.Count == 0)
                 {
                     QuranVideoMakerUI.ShowDialog(DialogType.AddQuran, Project, true);
                 }
@@ -107,6 +77,10 @@ namespace QuranVideoMaker.CustomControls
 
                 needle.BringIntoView();
             }
+            else if (e.PropertyName == nameof(Project.SelectedTool))
+            {
+                OnToolSelected(Project.SelectedTool);
+            }
         }
 
         private void ScrollBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -127,7 +101,7 @@ namespace QuranVideoMaker.CustomControls
 
             Project.Tracks.SelectMany(x => x.Items).ToList().ForEach(x => x.IsSelected = false);
 
-            if (e.OriginalSource is FrameworkElement fe && fe.DataContext is TrackItemBase item)
+            if (e.OriginalSource is FrameworkElement fe && fe.DataContext is TrackItem item)
             {
                 var trackItemControl = fe is TrackItemControl tic ? tic : VisualHelper.GetAncestor<TrackItemControl>(fe);
                 var mouseX = e.GetPosition(tracksControl).X;
@@ -140,7 +114,7 @@ namespace QuranVideoMaker.CustomControls
                 _mouseDownX = e.GetPosition(_mouseDownElement).X;
                 _mouseDownTrackItem = item;
 
-                if (SelectedTool == TimelineSelectedTool.SelectionTool)
+                if (Project.SelectedTool == TimelineSelectedTool.SelectionTool)
                 {
                     //if left border clicked, else if right border clicked
                     if (Math.Abs(mouseX - itemX) <= 3)
@@ -158,16 +132,16 @@ namespace QuranVideoMaker.CustomControls
                         _mouseDownTrackItem.IsSelected = true;
                     }
                 }
-                else if (SelectedTool == TimelineSelectedTool.CuttingTool)
+                else if (Project.SelectedTool == TimelineSelectedTool.CuttingTool)
                 {
                     Project.CutItem(item, frame);
                 }
-                else if (SelectedTool == TimelineSelectedTool.VerseResizer)
+                else if (Project.SelectedTool == TimelineSelectedTool.VerseResizer)
                 {
                     Project.ResizeQuranItem(item, frame);
                 }
             }
-            else if (e.OriginalSource is Ellipse fadeControl && fadeControl.DataContext is TrackItemBase trackItem)
+            else if (e.OriginalSource is Ellipse fadeControl && fadeControl.DataContext is TrackItem trackItem)
             {
                 _mouseDownTrackItem = trackItem;
                 _mouseDownFadeControl = fadeControl;
@@ -202,7 +176,7 @@ namespace QuranVideoMaker.CustomControls
                 }
 
                 var destinationStartFrame = Convert.ToInt32(Math.Round(x / Constants.TimelinePixelsInSeparator * Constants.TimelineZooms[Project.TimelineZoom], MidpointRounding.ToZero));
-                var destinationEndFrame = Convert.ToInt32(destinationStartFrame + _mouseDownTrackItem.GetLength().TotalFrames);
+                var destinationEndFrame = Convert.ToInt32(destinationStartFrame + _mouseDownTrackItem.Duration.TotalFrames);
                 var resultFrame = destinationStartFrame;
 
                 if (destinationStartFrame <= 0)
@@ -225,14 +199,14 @@ namespace QuranVideoMaker.CustomControls
 
                 foreach (var item in itemsToCheck)
                 {
-                    if (item.Position.TotalFrames < destinationEndFrame && destinationStartFrame <= (item.Position.TotalFrames + item.GetLength().TotalFrames))
+                    if (item.Position.TotalFrames < destinationEndFrame && destinationStartFrame <= (item.Position.TotalFrames + item.Duration.TotalFrames))
                     {
-                        resultFrame = Convert.ToInt32(item.Position.TotalFrames + item.GetLength().TotalFrames);
+                        resultFrame = Convert.ToInt32(item.Position.TotalFrames + item.Duration.TotalFrames);
                     }
 
                     if (destinationEndFrame >= item.Position.TotalFrames && destinationStartFrame < item.Position.TotalFrames)
                     {
-                        resultFrame = Convert.ToInt32(item.Position.TotalFrames - _mouseDownTrackItem.GetLength().TotalFrames);
+                        resultFrame = Convert.ToInt32(item.Position.TotalFrames - _mouseDownTrackItem.Duration.TotalFrames);
                     }
                 }
 
@@ -275,7 +249,7 @@ namespace QuranVideoMaker.CustomControls
                 //{
                 //    if (Keyboard.IsKeyDown(Key.LeftShift))
                 //    {
-                //        var leftItem = Project.Tracks.First(x => x.Type == TrackType.Quran).Items.FirstOrDefault(x => x != _mouseDownTrackItem && x.GetRight().TotalFrames - 10 <= _mouseDownTrackItem.Position.TotalFrames + 10);
+                //        var leftItem = Project.Tracks.First(x => x.Type == TrackType.Quran).Items.FirstOrDefault(x => x != _mouseDownTrackItem && x.GetRightTime().TotalFrames - 10 <= _mouseDownTrackItem.Position.TotalFrames + 10);
 
                 //        if (leftItem != null)
                 //        {
@@ -380,48 +354,31 @@ namespace QuranVideoMaker.CustomControls
             Project.RaiseNeedlePositionTimeChanged(Project.NeedlePositionTime);
         }
 
-
-
         private void Timeline_PreviewDrop(object sender, DragEventArgs e)
         {
-            var data = e.Data.GetData(typeof(ProjectClipInfo));
+            var data = e.Data.GetData(typeof(ProjectClip));
 
             if (data != null)
             {
-                var clip = data as ProjectClipInfo;
+                var clip = data as ProjectClip;
 
-                if (e.OriginalSource is FrameworkElement element && element.DataContext is TimelineTrack track)
+                if (e.OriginalSource is FrameworkElement element && element.DataContext is TimelineTrack track && clip.IsCompatibleWith(track.Type))
                 {
                     var x = e.GetPosition(header).X;
                     var frame = Math.Round(x / Constants.TimelinePixelsInSeparator * Constants.TimelineZooms[Project.TimelineZoom], MidpointRounding.ToZero);
 
                     var position = new TimeCode(frame, Project.FPS);
 
-                    var trackItem = new TrackItemBase(clip, position, TimeCode.Zero, clip.Length);
+                    var trackItem = new TrackItem(clip, position, TimeCode.Zero, clip.Length);
 
                     track.Items.Add(trackItem);
                 }
             }
         }
 
-        private void OnSelectedToolChanged()
-        {
-            //switch (SelectedTool)
-            //{
-            //    case TimelineSelectedTool.SelectionTool:
-            //        this.Cursor = Cursors.Arrow;
-            //        break;
-            //    case TimelineSelectedTool.CuttingTool:
-            //        this.Cursor = Cursors.IBeam;
-            //        break;
-            //    default:
-            //        break;
-            //}
-        }
-
         private void Timeline_PreviewDragOver(object sender, DragEventArgs e)
         {
-            if (e.Data.GetData(typeof(ProjectClipInfo)) is not ProjectClipInfo)
+            if (e.Data.GetData(typeof(ProjectClip)) is not ProjectClip clip || (e.OriginalSource is FrameworkElement element && element.DataContext is TimelineTrack track && !clip.IsCompatibleWith(track.Type)))
             {
                 e.Effects = DragDropEffects.None;
                 e.Handled = true;
@@ -441,10 +398,6 @@ namespace QuranVideoMaker.CustomControls
                             track.Items.Remove(item);
                         }
                     }
-                }
-                else if (e.Key == Key.X && SelectedTool == TimelineSelectedTool.AutoVerse)
-                {
-                    Project.AutoVerse();
                 }
             }
         }

@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuranVideoMaker.Data
 {
     /// <summary>
-    /// Resoultion Profile
+    /// Resolution Profile
     /// </summary>
     /// <seealso cref="INotifyPropertyChanged" />
     [Description("ResolutionProfile")]
     [DisplayName("ResolutionProfile")]
-    [DebuggerDisplay("ResolutionProfile")]
+    [DebuggerDisplay("ResolutionProfile {Name}")]
     public class ResolutionProfile : INotifyPropertyChanged
     {
         private string _name;

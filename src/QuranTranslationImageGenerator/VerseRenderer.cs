@@ -1,9 +1,6 @@
 ﻿using HarfBuzzSharp;
 using SkiaSharp;
 using SkiaSharp.HarfBuzz;
-using System.Drawing;
-using System.Transactions;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace QuranTranslationImageGenerator
 {
