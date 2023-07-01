@@ -1,8 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
 using QuranVideoMaker.CustomControls;
-using QuranVideoMaker.Dialogs;
 using QuranVideoMaker.Data;
+using QuranVideoMaker.Dialogs;
+using QuranVideoMaker.Utilities;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -69,6 +70,14 @@ namespace QuranVideoMaker
         public MainWindowViewModel()
         {
             Instance = this;
+
+            Task.Delay(3000).ContinueWith((task) =>
+            {
+                if (task.IsCompletedSuccessfully)
+                {
+                    CheckForUpdates();
+                }
+            });
         }
 
         [RelayCommand]
@@ -234,6 +243,46 @@ namespace QuranVideoMaker
             {
                 CurrentProject.Clips.Remove(clip);
             }
+        }
+
+        [RelayCommand]
+        private void ReportIssue()
+        {
+            Process.Start(new ProcessStartInfo("https://github.com/rebinf/QuranVideoMaker/issues/new") { UseShellExecute = true });
+        }
+
+        [RelayCommand]
+        private void GoToWebsite()
+        {
+            Process.Start(new ProcessStartInfo("https://github.com/rebinf/QuranVideoMaker") { UseShellExecute = true });
+        }
+
+        [RelayCommand]
+        private void About()
+        {
+            QuranVideoMakerUI.ShowDialog(DialogType.About);
+        }
+
+        private void CheckForUpdates()
+        {
+            UpdateChecker.CheckForUpdates().ContinueWith((task) =>
+            {
+                if (task.IsCompletedSuccessfully)
+                {
+                    var result = task.Result;
+
+                    if (result.LatestVersion > UpdateChecker.GetCurrentVersion())
+                    {
+                        MainWindow.Instance.Dispatcher.Invoke(() =>
+                        {
+                            if (MessageBox.Show(MainWindow.Instance, "A new version is available. Do you want to go to the download page?", "Update Available", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                            {
+                                Process.Start(new ProcessStartInfo(result.ReleaseInfo.HtmlUrl) { UseShellExecute = true });
+                            }
+                        });
+                    }
+                }
+            });
         }
 
         private void OpenProject(string projectFile)

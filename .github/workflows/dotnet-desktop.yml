@@ -21,6 +21,11 @@ jobs:
     #  with:
     #    dotnet-version: 7.0.x
     
+    - name: set version
+      run: |
+        cd src
+        Set-Content .\QuranVideoMaker\Resources\VERSION.txt -Value 0.0.${{github.run_number}};
+
     - name: restore
       run: |
         cd src

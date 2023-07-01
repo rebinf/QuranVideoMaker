@@ -9,6 +9,7 @@
         QuranTrackItemSettings,
         NewProject,
         ExportProject,
-        ProjectSettings
+        ProjectSettings,
+        About
     }
 }

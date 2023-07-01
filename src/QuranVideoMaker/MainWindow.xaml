@@ -100,6 +100,12 @@
                 </MenuItem>
             </MenuItem>
 
+            <MenuItem Header="Help">
+                <MenuItem Header="Report Issue" Command="{Binding ReportIssueCommand}" />
+                <Separator />
+                <MenuItem Header="Website" Command="{Binding GoToWebsiteCommand}" />
+                <MenuItem Header="About" Command="{Binding AboutCommand}" />
+            </MenuItem>
 
         </Menu>
 

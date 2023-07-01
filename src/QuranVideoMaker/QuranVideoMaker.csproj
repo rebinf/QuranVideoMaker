@@ -50,10 +50,15 @@
 		<None Remove="Resources\Icons\select_new.svg" />
 		<None Remove="Resources\Icons\sound.svg" />
 		<None Remove="Resources\Icons\split.svg" />
+		<None Remove="Resources\logo.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="icon.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\logo.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -70,6 +75,18 @@
 		<Compile Update="Dialogs\Views\ExportProjectView.xaml.cs">
 			<SubType>Code</SubType>
 		</Compile>
+		<Compile Update="Properties\Resources.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 </Project>
