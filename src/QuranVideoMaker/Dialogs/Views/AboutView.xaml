@@ -33,7 +33,7 @@
                             </TextBlock>
                         </Hyperlink>
                     </TextBlock>
-                    <TextBlock Text="You are using the latest version" HorizontalAlignment="Center" Visibility="{Binding UpdateAvailable,Converter={converters:BoolToVisibilityConverter Invert=True}}" />
+                    <TextBlock Text="You are using the latest version" Foreground="LightGray" HorizontalAlignment="Center" Visibility="{Binding UpdateAvailable,Converter={converters:BoolToVisibilityConverter Invert=True}}" />
                 </StackPanel>
             </StackPanel>
 
