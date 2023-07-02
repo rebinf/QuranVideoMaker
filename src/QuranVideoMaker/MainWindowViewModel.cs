@@ -211,6 +211,15 @@ namespace QuranVideoMaker
         }
 
         [RelayCommand]
+        private void ResizeVerse()
+        {
+            if (CurrentProject.SelectedTool == TimelineSelectedTool.VerseResizer)
+            {
+                CurrentProject.AutoVerse();
+            }
+        }
+
+        [RelayCommand]
         private void SelectTool(TimelineSelectedTool tool)
         {
             CurrentProject.SelectedTool = tool;

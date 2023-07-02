@@ -18,7 +18,7 @@ Download and extract the zip file and run `QuranVideoMaker.exe`.
 3. Select desired resolution in the Settings tab.
 4. Select your audio file.
 5. Click OK.
-6. Click the "Auto Verse" button, select chapter and verses from and to and add translations in the Translations tab.
+6. Select the "Auto Verse" tool, select chapter and verses from and to and add translations in the Translations tab.
 8. Click Play and hit X on your keyboard at the end of each verse.
 
 ### Method 2
@@ -29,7 +29,7 @@ Download and extract the zip file and run `QuranVideoMaker.exe`.
 5. Select your audio file.
 6. Add translations in the Translations tab.
 7. Click OK.
-8. Modify and rearrange track items.
+8. Select the "Verse Resizer" tool, then either click on the verses or hit R on your keyboard to resize them.
 
 ## Preview Quality
 Please note that preview quality has been reduced to improve performance, the quality of the actual export is much higher.

@@ -20,6 +20,7 @@
         <KeyBinding Modifiers="Ctrl+Shift" Key="S" Command="{Binding SaveProjectAsCommand}" />
 
         <KeyBinding Key="X" Command="{Binding AutoVerseCommand}" />
+        <KeyBinding Key="R" Command="{Binding ResizeVerseCommand}" />
 
         <KeyBinding Key="J" Command="{Binding ProjectRewindCommand}" />
         <KeyBinding Key="Space" Command="{Binding ProjectPlayCommand}" />
@@ -47,8 +48,9 @@
                 <MenuItem Header="Add" Command="{Binding QuranAddCommand}" />
                 <Separator />
                 <MenuItem Header="Settings" Command="{Binding QuranSettingsCommand}" />
-                <Separator Visibility="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolVisibilityConverter SelectedTool=AutoVerse, IsVisible=True}}" />
-                <MenuItem x:Name="miAutoVerse" Header="Auto Verse" Command="{Binding AutoVerseCommand}" Visibility="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolVisibilityConverter SelectedTool=AutoVerse, IsVisible=True}}" InputGestureText="X" />
+                <Separator />
+                <MenuItem Header="Auto Verse" Command="{Binding AutoVerseCommand}" Visibility="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolVisibilityConverter SelectedTool=AutoVerse, IsVisible=True}}" InputGestureText="X" />
+                <MenuItem Header="Resize Verse" Command="{Binding ResizeVerseCommand}" Visibility="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolVisibilityConverter SelectedTool=VerseResizer, IsVisible=True}}" InputGestureText="R" />
             </MenuItem>
             <MenuItem Header="Project">
                 <MenuItem Header="Export" Command="{Binding ExportProjectCommand}" />
