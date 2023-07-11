@@ -71,6 +71,7 @@ namespace QuranVideoMaker
         {
             Instance = this;
 
+#if !DEBUG
             Task.Delay(3000).ContinueWith((task) =>
             {
                 if (task.IsCompletedSuccessfully)
@@ -78,6 +79,7 @@ namespace QuranVideoMaker
                     CheckForUpdates();
                 }
             });
+#endif
         }
 
         [RelayCommand]
