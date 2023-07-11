@@ -38,6 +38,7 @@ namespace QuranVideoMaker.Data
         private ObservableCollection<TimelineTrack> _tracks;
         private ObservableCollection<IProjectClip> _clips = new ObservableCollection<IProjectClip>();
         private string _exportDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
+        private int _exportThreads = 4;
         private QuranRenderSettings _quranSettings = new QuranRenderSettings();
         private byte[] _currentPreviewFrame;
         private bool _isPlaying;
@@ -337,6 +338,27 @@ namespace QuranVideoMaker.Data
                 if (_exportDirectory != value)
                 {
                     _exportDirectory = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the export threads, i.e how many threads to use for exporting.
+        public int ExportThreads
+        {
+            get { return _exportThreads; }
+            set
+            {
+                if (_exportThreads != value)
+                {
+                    // cannot be less than 1
+                    if (value < 1)
+                    {
+                        value = 1;
+                    }
+
+                    _exportThreads = value;
                     OnPropertyChanged();
                 }
             }
@@ -717,8 +739,14 @@ namespace QuranVideoMaker.Data
 
             var count = 0;
 
-            Parallel.ForEach(frameNumbers, i =>
-            //foreach (var i in frameNumbers)
+            var parallelOptions = new ParallelOptions();
+
+            if (!preview)
+            {
+                parallelOptions.MaxDegreeOfParallelism = ExportThreads;
+            }
+
+            Parallel.ForEach(frameNumbers, parallelOptions, i =>
             {
                 var visualItems = GetVisualTrackItemsAtFrame(i);
                 var currentFrames = new List<FrameData>();

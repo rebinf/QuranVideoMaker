@@ -30,6 +30,15 @@
                         </Button>
                     </Grid>
                 </GroupBox>
+                <GroupBox Header="Threads">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" Text="{Binding Project.ExportThreads, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                </GroupBox>
             </StackPanel>
             <StackPanel Visibility="{Binding IsExporting, Converter={converters:BoolToVisibilityConverter}}">
                 <TextBlock Text="Exporting..." Foreground="WhiteSmoke" />
