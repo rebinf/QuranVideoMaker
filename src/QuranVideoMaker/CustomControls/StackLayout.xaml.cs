@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Markup;
 
 namespace QuranVideoMaker.CustomControls
@@ -59,7 +60,14 @@ namespace QuranVideoMaker.CustomControls
 
                 grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Auto) });
 
-                var label = new TextBlock() { Text = item.Label, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 3, 0, 3) };
+                var label = new TextBlock()
+                {
+                    Text = item.Label,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Margin = new Thickness(0, 3, 0, 3)
+                };
+
+                label.SetBinding(TextBlock.VisibilityProperty, new Binding(nameof(Grid.Visibility)) { Source = item, Mode = BindingMode.TwoWay, UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
 
                 grid.Children.Add(label);
                 grid.Children.Add(item);

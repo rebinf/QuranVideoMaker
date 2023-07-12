@@ -175,22 +175,43 @@ namespace QuranVideoMaker
             var quranTrack = Project.Tracks.First(x => x.Type == TimelineTrackType.Quran);
             var audioTrack = Project.Tracks.First(x => x.Type == TimelineTrackType.Audio);
 
-            List<Verse> verses = null;
+            var verses = new List<Verse>();
             var itemLength = 0d;
+
+            if (IncludeBismillah)
+            {
+                var bismillah = Quran.UthmaniScript.First();
+
+                if (SelectedChapter.Number == 1 && FromVerse == 1)
+                {
+                    FromVerse = 2;
+                }
+                else
+                {
+                    bismillah.ChapterNumber = SelectedChapter.Number;
+                    bismillah.VerseNumber = 0;
+                }
+
+                verses.Add(bismillah);
+            }
 
             if (AutoVerse)
             {
-                verses = Quran.UthmaniScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber == FromVerse).ToList();
-                itemLength = TimeCode.FromSeconds(30, Project.FPS).TotalFrames;
-            }
-            else
-            {
-                verses = Quran.UthmaniScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber >= FromVerse && x.VerseNumber <= ToVerse).ToList();
+                ToVerse = FromVerse;
 
                 if (IncludeBismillah)
                 {
-                    verses.Insert(0, Quran.UthmaniScript.First());
+                    itemLength = TimeCode.FromSeconds(5, Project.FPS).TotalFrames;
                 }
+                else
+                {
+                    verses = Quran.UthmaniScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber == FromVerse).ToList();
+                    itemLength = TimeCode.FromSeconds(30, Project.FPS).TotalFrames;
+                }
+            }
+            else
+            {
+                verses.AddRange(Quran.UthmaniScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber >= FromVerse && x.VerseNumber <= ToVerse));
 
                 var lastItem = audioTrack.Items.OrderByDescending(x => x.Position.TotalFrames).First();
                 var lastFrame = lastItem.Position.TotalFrames + lastItem.Duration.TotalFrames;
