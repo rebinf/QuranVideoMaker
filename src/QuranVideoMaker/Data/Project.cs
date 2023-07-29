@@ -724,7 +724,7 @@ namespace QuranVideoMaker.Data
 		public List<FrameContainer> RenderFrames(int[] frameNumbers, bool preview)
 		{
 			var sw = Stopwatch.StartNew();
-
+			var lastProgress = 0d;
 			//extract video frames
 			var videoItems = Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Video);
 
@@ -819,7 +819,7 @@ namespace QuranVideoMaker.Data
 
 				using (var pixMap = frameBitmap.PeekPixels())
 				{
-					using (var data = pixMap.Encode(new SKPngEncoderOptions(SKPngEncoderFilterFlags.NoFilters, 0)))
+					using (var data = pixMap.Encode(new SKJpegEncoderOptions() { Quality = 100, AlphaOption = SKJpegEncoderAlphaOption.BlendOnBlack }))
 					{
 						var frameBytes = data.ToArray();
 						frames.Add(new FrameContainer(i) { Rendered = frameBytes });
@@ -829,6 +829,16 @@ namespace QuranVideoMaker.Data
 				count++;
 
 				var progress = Math.Round(((double)count / (double)frameNumbers.Length) * 100d, 2);
+
+				// if current progress is up by 5%, collect garbage
+				if (progress - lastProgress >= 5)
+				{
+					lastProgress = progress;
+					GC.Collect();
+					GC.WaitForPendingFinalizers();
+					GC.Collect();
+				}
+
 				ExportProgress?.Invoke(null, progress);
 				Debug.WriteLine($"Progress: {progress}%");
 			}
@@ -836,6 +846,10 @@ namespace QuranVideoMaker.Data
 
 			sw.Stop();
 			Debug.WriteLine($"Elapsed: {sw.ElapsedMilliseconds}");
+
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+			GC.Collect();
 
 			return frames.ToList();
 		}
