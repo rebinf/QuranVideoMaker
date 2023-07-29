@@ -1,8 +1,10 @@
-﻿using NAudio.Wave;
-using OpenCvSharp;
+﻿using FFMpegCore;
+using FFMpegCore.Enums;
+using NAudio.Wave;
 using QuranTranslationImageGenerator;
 using QuranVideoMaker.CustomControls;
 using QuranVideoMaker.Serialization;
+using QuranVideoMaker.Utilities;
 using SkiaSharp;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
@@ -654,34 +656,26 @@ namespace QuranVideoMaker.Data
 			//extract video frames
 			var videoItems = Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Video);
 
-			var frames = RenderTimeline(0, Convert.ToInt32(GetTotalFrames()), false);
+			var frames = RenderTimeline(0, Convert.ToInt32(GetTotalFrames()), false).OrderBy(x => x.Frame).Select(x => x.Rendered);
 
 			Debug.WriteLine($"Elapsed: {sw.Elapsed}");
 
-			var count = 0;
-
-			var width = Width;
-			var height = Height;
-
-			using (var writer = new VideoWriter(videoExportPath, FourCC.MP4V, FPS, new OpenCvSharp.Size(width, height), true))
+			var ffmpegArguments = FFMpegArguments.FromPipeInput(new FramePipeSource(frames, FPS))
+			.OutputToFile(videoExportPath, true, options =>
 			{
-				foreach (var item in frames.OrderBy(x => x.Frame))
-				{
-					var mat = Mat.FromImageData(item.Rendered);
+				options.WithVideoCodec(VideoCodec.LibX264);
+				options.WithFramerate(FPS);
+				options.WithFastStart();
+				options.ForceFormat("mp4");
+			});
+			//.OutputToPipe(new StreamPipeSink(outputStream), options =>{})
 
-					if (mat.Width != width || mat.Height != height)
-					{
-						mat = mat.Resize(new OpenCvSharp.Size(width, height));
-					}
+			var args = ffmpegArguments.Arguments;
+			ffmpegArguments.ProcessSynchronously();
 
-					writer.Write(mat);
-					count++;
-
-					var progress = Math.Round(((double)count / (double)totalFrames) * 100d, 2);
-					ExportProgress?.Invoke(null, progress);
-					Debug.WriteLine($"Progress: {progress}%");
-				}
-			}
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+			GC.Collect();
 
 			using (var audioOutStream = new FileStream(audioExportPath, FileMode.Create))
 			{
@@ -706,6 +700,10 @@ namespace QuranVideoMaker.Data
 			}
 
 			FFMpegCore.FFMpeg.ReplaceAudio(videoExportPath, audioExportPath, exportPath);
+
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+			GC.Collect();
 
 			sw.Stop();
 			Debug.WriteLine($"Elapsed: {sw.Elapsed}");
