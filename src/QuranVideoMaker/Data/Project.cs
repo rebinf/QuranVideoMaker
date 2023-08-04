@@ -665,6 +665,8 @@ namespace QuranVideoMaker.Data
 			{
 				options.WithVideoCodec(VideoCodec.LibX264);
 				options.WithFramerate(FPS);
+				options.WithSpeedPreset(Speed.UltraFast); // can make a listbox later
+				options.WithHardwareAcceleration(HardwareAccelerationDevice.Auto); // can make an checkbox option later
 				options.WithFastStart();
 				options.ForceFormat("mp4");
 			});
