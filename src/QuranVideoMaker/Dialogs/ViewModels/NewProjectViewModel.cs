@@ -134,10 +134,10 @@ namespace QuranVideoMaker.Dialogs.ViewModels
 		}
 
 		/// <summary>
-		/// Gets or sets a value indicating whether to include arabic script.
+		/// Gets or sets a value indicating whether to include Arabic script.
 		/// </summary>
 		/// <value>
-		///   <c>true</c> if include arabic script; otherwise, <c>false</c>.
+		///   <c>true</c> if include Arabic script; otherwise, <c>false</c>.
 		/// </value>
 		public bool ShowArabicScript
 		{
