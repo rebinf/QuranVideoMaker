@@ -18,10 +18,11 @@ namespace QuranVideoMaker.Dialogs.Views
 
 		private void BackgroundColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
 		{
-			var colorPicker = new System.Windows.Forms.ColorDialog();
+			var colorPicker = GetColorDialog();
 
 			if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
+				MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
 				var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
 
 				((QuranSettingsViewModel)DataContext).Settings.BackgroundColor = color;
@@ -31,10 +32,11 @@ namespace QuranVideoMaker.Dialogs.Views
 
 		private void TextColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
 		{
-			var colorPicker = new System.Windows.Forms.ColorDialog();
+			var colorPicker = GetColorDialog();
 
 			if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
+				MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
 				var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
 
 				((QuranSettingsViewModel)DataContext).Settings.ArabicScriptRenderSettings.TextColor = color;
@@ -45,10 +47,11 @@ namespace QuranVideoMaker.Dialogs.Views
 
 		private void TextShadowColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
 		{
-			var colorPicker = new System.Windows.Forms.ColorDialog();
+			var colorPicker = GetColorDialog();
 
 			if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
+				MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
 				var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
 
 				((QuranSettingsViewModel)DataContext).Settings.ArabicScriptRenderSettings.TextShadowColor = color;
@@ -58,10 +61,11 @@ namespace QuranVideoMaker.Dialogs.Views
 
 		private void TranslationTextColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
 		{
-			var colorPicker = new System.Windows.Forms.ColorDialog();
+			var colorPicker = GetColorDialog();
 
 			if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
+				MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
 				var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
 
 				((sender as FrameworkElement).DataContext as VerseRenderSettings).TextColor = color;
@@ -71,10 +75,11 @@ namespace QuranVideoMaker.Dialogs.Views
 
 		private void TranslationTextShadowColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
 		{
-			var colorPicker = new System.Windows.Forms.ColorDialog();
+			var colorPicker = GetColorDialog();
 
 			if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
+				MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
 				var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
 
 				((sender as FrameworkElement).DataContext as VerseRenderSettings).TextShadowColor = color;
@@ -86,6 +91,11 @@ namespace QuranVideoMaker.Dialogs.Views
 		{
 			((QuranSettingsViewModel)DataContext).Settings.TranslationRenderSettings.Remove((sender as FrameworkElement).DataContext as VerseRenderSettings);
 			((QuranSettingsViewModel)DataContext).UpdatePreview();
+		}
+
+		private static System.Windows.Forms.ColorDialog GetColorDialog()
+		{
+			return new System.Windows.Forms.ColorDialog() { CustomColors = MainWindowViewModel.Instance.CurrentProject.CustomColors };
 		}
 	}
 }

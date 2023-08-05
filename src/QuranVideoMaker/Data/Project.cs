@@ -390,6 +390,11 @@ namespace QuranVideoMaker.Data
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the custom colors.
+		/// </summary>
+		public int[] CustomColors { get; set; }
+
 		public TimelineTrack QuranTrack { get { return Tracks.FirstOrDefault(x => x.Type == TimelineTrackType.Quran); } }
 
 		public IEnumerable<QuranTrackItem> OrderedVerses { get { return Tracks.FirstOrDefault(x => x.Type == TimelineTrackType.Quran)?.Items.Cast<QuranTrackItem>().OrderBy(x => x.Verse.VerseNumber); } }
