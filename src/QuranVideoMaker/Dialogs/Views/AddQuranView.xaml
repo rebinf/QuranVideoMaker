@@ -37,6 +37,10 @@
                                 <TextBox Text="{Binding ToVerse, UpdateSourceTrigger=PropertyChanged}" />
                             </customcontrols:LayoutItem>
 
+                            <customcontrols:LayoutItem Label="Verse Transitions">
+                                <CheckBox IsChecked="{Binding VerseTransitions, UpdateSourceTrigger=PropertyChanged}" />
+                            </customcontrols:LayoutItem>
+
                         </customcontrols:StackLayout>
 
                     </StackPanel>

@@ -80,6 +80,10 @@
                                     <CheckBox IsChecked="{Binding ShowArabicScript, UpdateSourceTrigger=PropertyChanged}" />
                                 </customcontrols:LayoutItem>
 
+                                <customcontrols:LayoutItem Label="Verse Transitions">
+                                    <CheckBox IsChecked="{Binding VerseTransitions, UpdateSourceTrigger=PropertyChanged}" />
+                                </customcontrols:LayoutItem>
+
                             </customcontrols:StackLayout>
                         </GroupBox>
                         
