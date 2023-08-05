@@ -834,9 +834,12 @@ namespace QuranVideoMaker.Data
 				if (progress - lastProgress >= 5)
 				{
 					lastProgress = progress;
-					GC.Collect();
-					GC.WaitForPendingFinalizers();
-					GC.Collect();
+					if (!preview)
+					{
+						GC.Collect();
+						GC.WaitForPendingFinalizers();
+						GC.Collect();
+					}
 				}
 
 				ExportProgress?.Invoke(null, progress);
@@ -847,9 +850,12 @@ namespace QuranVideoMaker.Data
 			sw.Stop();
 			Debug.WriteLine($"Elapsed: {sw.ElapsedMilliseconds}");
 
-			GC.Collect();
-			GC.WaitForPendingFinalizers();
-			GC.Collect();
+			if (!preview)
+			{
+				GC.Collect();
+				GC.WaitForPendingFinalizers();
+				GC.Collect();
+			}
 
 			return frames.ToList();
 		}
