@@ -41,6 +41,8 @@ namespace QuranVideoMaker.Data
 		private ObservableCollection<IProjectClip> _clips = new ObservableCollection<IProjectClip>();
 		private string _exportDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
 		private int _exportThreads = -1;
+		private HardwareAccelerationDevice _hardwareAcceleration = HardwareAccelerationDevice.Auto;
+		private Speed _encodingSpeed = Speed.Medium;
 		private QuranRenderSettings _quranSettings = new QuranRenderSettings();
 		private byte[] _currentPreviewFrame;
 		private bool _isPlaying;
@@ -372,6 +374,38 @@ namespace QuranVideoMaker.Data
 		}
 
 		/// <summary>
+		/// Gets or sets the hardware acceleration.
+		/// </summary>
+		public HardwareAccelerationDevice HardwareAcceleration
+		{
+			get { return _hardwareAcceleration; }
+			set
+			{
+				if (_hardwareAcceleration != value)
+				{
+					_hardwareAcceleration = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		/// <summary>
+		/// Gets or sets the encoding speed.
+		/// </summary>
+		public Speed EncodingSpeed
+		{
+			get { return _encodingSpeed; }
+			set
+			{
+				if (_encodingSpeed != value)
+				{
+					_encodingSpeed = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		/// <summary>
 		/// Gets or sets the Quran settings.
 		/// </summary>
 		/// <value>
@@ -671,6 +705,8 @@ namespace QuranVideoMaker.Data
 				options.WithVideoCodec(VideoCodec.LibX264);
 				options.WithFramerate(FPS);
 				options.WithFastStart();
+				//options.WithHardwareAcceleration(HardwareAcceleration);
+				options.WithSpeedPreset(EncodingSpeed);
 				options.ForceFormat("mp4");
 			});
 			//.OutputToPipe(new StreamPipeSink(outputStream), options =>{})
