@@ -467,6 +467,12 @@ namespace QuranVideoMaker.Data
 			}
 		}
 
+		[JsonIgnore]
+		public TimeSpan ExportProgressTime { get; set; } = TimeSpan.Zero;
+
+		[JsonIgnore]
+		public string ExportProgressMessage { get; set; }
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Project"/> class.
 		/// </summary>
@@ -699,6 +705,8 @@ namespace QuranVideoMaker.Data
 
 			Debug.WriteLine($"Elapsed: {sw.Elapsed}");
 
+			ExportProgressMessage = "Exporting video...";
+
 			var ffmpegArguments = FFMpegArguments.FromPipeInput(new FramePipeSource(frames, FPS))
 			.OutputToFile(videoExportPath, true, options =>
 			{
@@ -712,6 +720,8 @@ namespace QuranVideoMaker.Data
 			//.OutputToPipe(new StreamPipeSink(outputStream), options =>{})
 
 			var args = ffmpegArguments.Arguments;
+
+			ffmpegArguments.NotifyOnProgress((e) => ExportProgress?.Invoke(this, e), ExportProgressTime);
 			ffmpegArguments.ProcessSynchronously();
 
 			GC.Collect();
@@ -883,7 +893,9 @@ namespace QuranVideoMaker.Data
 					}
 				}
 
+				ExportProgressMessage = $"Rendering frame {count} of {frameNumbers.Length}...";
 				ExportProgress?.Invoke(null, progress);
+				ExportProgressTime = sw.Elapsed;
 				Debug.WriteLine($"Progress: {progress}%");
 			}
 			);

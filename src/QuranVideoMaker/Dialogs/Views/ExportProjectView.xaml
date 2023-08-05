@@ -18,36 +18,42 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <StackPanel Visibility="{Binding IsExporting, Converter={converters:BoolToVisibilityConverter Invert=True}}">
-                <GroupBox Header="Export Directory">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBox Grid.Column="0" Text="{Binding Project.ExportDirectory}" />
-                        <Button Grid.Column="1" Padding="5" Margin="5,0,0,0" Command="{Binding BrowseExportPathCommand}">
-                            <Image Source="{svgc:SvgImage Source=/Resources/Icons/folder.svg}" />
-                        </Button>
-                    </Grid>
-                </GroupBox>
-                <GroupBox Header="Options">
-                    <customcontrols:StackLayout Padding="5">
-                        <customcontrols:LayoutItem Label="Threads">
-                            <TextBox Text="{Binding Project.ExportThreads, UpdateSourceTrigger=PropertyChanged}" />
-                        </customcontrols:LayoutItem>
-                        <!--<customcontrols:LayoutItem Label="Hardware Acceleration">
+            <StackPanel>
+                <StackPanel Visibility="{Binding IsExporting, Converter={converters:BoolToVisibilityConverter Invert=True}}">
+                    <GroupBox Header="Export Directory">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" Text="{Binding Project.ExportDirectory}" />
+                            <Button Grid.Column="1" Padding="5" Margin="5,0,0,0" Command="{Binding BrowseExportPathCommand}">
+                                <Image Source="{svgc:SvgImage Source=/Resources/Icons/folder.svg}" />
+                            </Button>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Options">
+                        <customcontrols:StackLayout Padding="5">
+                            <customcontrols:LayoutItem Label="Threads">
+                                <TextBox Text="{Binding Project.ExportThreads, UpdateSourceTrigger=PropertyChanged}" />
+                            </customcontrols:LayoutItem>
+                            <!--<customcontrols:LayoutItem Label="Hardware Acceleration">
                             <ComboBox ItemsSource="{Binding Project.HardwareAcceleration, Converter={converters:EnumToCollectionConverter}}" SelectedItem="{Binding Project.HardwareAcceleration}" />
                         </customcontrols:LayoutItem>-->
-                        <customcontrols:LayoutItem Label="Encoding Speed">
-                            <ComboBox ItemsSource="{Binding Project.EncodingSpeed, Converter={converters:EnumToCollectionConverter}}" SelectedItem="{Binding Project.EncodingSpeed}" />
-                        </customcontrols:LayoutItem>
-                    </customcontrols:StackLayout>
-                </GroupBox>
-            </StackPanel>
-            <StackPanel Visibility="{Binding IsExporting, Converter={converters:BoolToVisibilityConverter}}">
-                <TextBlock Text="Exporting..." Foreground="WhiteSmoke" />
-                <ProgressBar Value="{Binding ExportProgress}" Height="15" Margin="0,10" />
+                            <customcontrols:LayoutItem Label="Encoding Speed">
+                                <ComboBox ItemsSource="{Binding Project.EncodingSpeed, Converter={converters:EnumToCollectionConverter}}" SelectedItem="{Binding Project.EncodingSpeed}" />
+                            </customcontrols:LayoutItem>
+                        </customcontrols:StackLayout>
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel Visibility="{Binding IsExporting, Converter={converters:BoolToVisibilityConverter}}">
+                    <TextBlock Text="{Binding ExportProgressMessage}" Foreground="WhiteSmoke" />
+                    <ProgressBar Value="{Binding ExportProgress}" Height="15" Margin="0,10" />
+                    <TextBlock  Foreground="WhiteSmoke">
+                        <Run Text="Time Elapsed:" />
+                        <Run Text="{Binding ExportElapsed, Mode=OneWay, StringFormat='hh\\:mm\\:ss'}" />
+                    </TextBlock>
+                </StackPanel>
             </StackPanel>
         </Grid>
 
