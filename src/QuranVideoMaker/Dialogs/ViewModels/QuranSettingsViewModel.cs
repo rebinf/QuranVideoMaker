@@ -135,7 +135,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
 			base.OnClosed();
 		}
 
-		private void UpdatePreview()
+		public void UpdatePreview()
 		{
 			var verseInfo = Quran.UthmaniScript.First(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber == PreviewVerse).ToVerseInfo();
 
