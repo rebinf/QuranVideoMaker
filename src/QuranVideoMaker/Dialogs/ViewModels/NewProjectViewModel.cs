@@ -18,7 +18,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
 	[DebuggerDisplay("NewProjectViewModel")]
 	public partial class NewProjectViewModel : DialogViewModelBase
 	{
-		private bool _addVerses;
+		private bool _addVerses = true;
 		private string _projectDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
 		private string _quranAudioFile;
 		private ResolutionProfile _selectedProfile;
