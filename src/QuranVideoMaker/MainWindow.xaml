@@ -159,32 +159,37 @@
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
 
-                    <Button Command="{Binding ProjectRewindCommand}" ToolTip="Rewind (J)" Width="30" Padding="5" Margin="1,0">
-                        <svgc:SvgIcon UriSource="/Resources/Icons/rew.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
-                    </Button>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Command="{Binding ProjectRewindCommand}" ToolTip="Rewind (J)" Width="30" Padding="5" Margin="1,0">
+                            <svgc:SvgIcon UriSource="/Resources/Icons/rew.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
+                        </Button>
 
-                    <Button Command="{Binding ProjectPlayCommand}" Width="30" Padding="5" Margin="1,0">
-                        <svgc:SvgIcon Fill="LightGray" Width="13" Height="13" Margin="-8">
-                            <svgc:SvgIcon.Style>
-                                <Style TargetType="svgc:SvgIcon">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding CurrentProject.IsPlaying}" Value="False">
-                                            <Setter Property="UriSource" Value="/Resources/Icons/play.svg" />
-                                            <Setter Property="ToolTip" Value="Play (Space)" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding CurrentProject.IsPlaying}" Value="True">
-                                            <Setter Property="UriSource" Value="Resources/Icons/pause.svg" />
-                                            <Setter Property="ToolTip" Value="Pause (Space)" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </svgc:SvgIcon.Style>
-                        </svgc:SvgIcon>
-                    </Button>
+                        <Button Command="{Binding ProjectPlayCommand}" Width="30" Padding="5" Margin="1,0">
+                            <svgc:SvgIcon Fill="LightGray" Width="13" Height="13" Margin="-8">
+                                <svgc:SvgIcon.Style>
+                                    <Style TargetType="svgc:SvgIcon">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding CurrentProject.IsPlaying}" Value="False">
+                                                <Setter Property="UriSource" Value="/Resources/Icons/play.svg" />
+                                                <Setter Property="ToolTip" Value="Play (Space)" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding CurrentProject.IsPlaying}" Value="True">
+                                                <Setter Property="UriSource" Value="Resources/Icons/pause.svg" />
+                                                <Setter Property="ToolTip" Value="Pause (Space)" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </svgc:SvgIcon.Style>
+                            </svgc:SvgIcon>
+                        </Button>
 
-                    <Button Command="{Binding ProjectFastForwardCommand}" ToolTip="Fast Forward (L)" Width="30" Padding="5" Margin="1,0">
-                        <svgc:SvgIcon UriSource="/Resources/Icons/ffw.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
-                    </Button>
+                        <Button Command="{Binding ProjectFastForwardCommand}" ToolTip="Fast Forward (L)" Width="30" Padding="5" Margin="1,0">
+                            <svgc:SvgIcon UriSource="/Resources/Icons/ffw.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
+                        </Button>
+                    </StackPanel>
+
+                    <TextBlock Text="{Binding CurrentProject.NeedlePositionTime, Mode=OneWay}" VerticalAlignment="Center" Foreground="LightGray" Margin="10,0" />
+
                 </StackPanel>
             </Grid>
         </Grid>
