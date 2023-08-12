@@ -945,7 +945,7 @@ namespace QuranVideoMaker.Data
                 _audioReader = null;
             }
 
-            var playTime = TimeSpan.FromSeconds(firstAudio.GetPlayXPosition(TimelineZoom, NeedlePositionTime.Frame));
+            var playTime = NeedlePositionTime.ToTimeSpan();
 
             _audioReader = new AudioFileReader(clip.FilePath)
             {
@@ -1037,7 +1037,7 @@ namespace QuranVideoMaker.Data
 
                 if (firstAudio != null)
                 {
-                    var playTime = TimeSpan.FromSeconds(firstAudio.GetPlayXPosition(TimelineZoom, NeedlePositionTime.Frame));
+                    var playTime = NeedlePositionTime.ToTimeSpan();
                     _outputDevice.Stop();
                     _audioReader.CurrentTime = playTime;
 
