@@ -37,9 +37,9 @@
                             <customcontrols:LayoutItem Label="Threads">
                                 <TextBox Text="{Binding Project.ExportThreads, UpdateSourceTrigger=PropertyChanged}" />
                             </customcontrols:LayoutItem>
-                            <!--<customcontrols:LayoutItem Label="Hardware Acceleration">
-                            <ComboBox ItemsSource="{Binding Project.HardwareAcceleration, Converter={converters:EnumToCollectionConverter}}" SelectedItem="{Binding Project.HardwareAcceleration}" />
-                        </customcontrols:LayoutItem>-->
+                            <customcontrols:LayoutItem Label="Hardware Acceleration">
+                                <ComboBox ItemsSource="{Binding Project.HardwareAcceleration, Converter={converters:EnumToCollectionConverter}}" SelectedItem="{Binding Project.HardwareAcceleration}" />
+                            </customcontrols:LayoutItem>
                             <customcontrols:LayoutItem Label="Encoding Speed">
                                 <ComboBox ItemsSource="{Binding Project.EncodingSpeed, Converter={converters:EnumToCollectionConverter}}" SelectedItem="{Binding Project.EncodingSpeed}" />
                             </customcontrols:LayoutItem>
