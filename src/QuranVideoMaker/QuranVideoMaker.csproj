@@ -28,9 +28,9 @@
 		<PackageReference Include="OpenCvSharp4.Windows" Version="4.8.0.20230708" />
 		<PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.8.0.20230708" />
 		<PackageReference Include="SharpVectors" Version="1.8.1" />
-		<PackageReference Include="NAudio" Version="2.1.0" />
-		<PackageReference Include="SkiaSharp" Version="2.88.3" />
-		<PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.3" />
+		<PackageReference Include="NAudio" Version="2.2.0" />
+		<PackageReference Include="SkiaSharp" Version="2.88.5" />
+		<PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.5" />
 	</ItemGroup>
 
 
