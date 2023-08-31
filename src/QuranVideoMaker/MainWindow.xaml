@@ -47,6 +47,8 @@
             <MenuItem Header="Quran">
                 <MenuItem Header="Add" Command="{Binding QuranAddCommand}" />
                 <Separator />
+                <MenuItem Header="Remove All Verses" Command="{Binding RemoveAllVersesCommand}" />
+                <Separator />
                 <MenuItem Header="Settings" Command="{Binding QuranSettingsCommand}" />
                 <Separator />
                 <MenuItem Header="Auto Verse" Command="{Binding AutoVerseCommand}" Visibility="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolVisibilityConverter SelectedTool=AutoVerse, IsVisible=True}}" InputGestureText="X" />

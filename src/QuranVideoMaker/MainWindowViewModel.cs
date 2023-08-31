@@ -162,6 +162,14 @@ namespace QuranVideoMaker
         }
 
         [RelayCommand]
+        private void OnRemoveAllVerses()
+        {
+            var quranTrack = CurrentProject.Tracks.First(x => x.Type == TimelineTrackType.Quran);
+
+            quranTrack.Items.Clear();
+        }
+
+        [RelayCommand]
         private void OnQuranSettings()
         {
             QuranVideoMakerUI.ShowDialog(DialogType.QuranSettings, CurrentProject.QuranSettings);
