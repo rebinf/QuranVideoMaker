@@ -566,6 +566,16 @@ namespace QuranVideoMaker.Data
 
             var verseInfo = new VerseInfo(QuranIds.Quran, verse.ChapterNumber, verse.VerseNumber, verse.VerseText);
 
+            var fadeInFrame = 0d;
+            var fadeOutFrame = 0d;
+
+            // fade frame based on the last item
+            if (quranTrack.Items.LastOrDefault() is ITrackItem prevItem)
+            {
+                fadeInFrame = prevItem.FadeInFrame;
+                fadeOutFrame = prevItem.FadeOutFrame;
+            }
+
             var newItem = new QuranTrackItem()
             {
                 UnlimitedSourceLength = true,
@@ -575,8 +585,8 @@ namespace QuranVideoMaker.Data
                 Start = new TimeCode(0, FPS),
                 End = TimeCode.FromSeconds(30, FPS),
                 Position = last.GetRightTime(),
-                FadeInFrame = 25,
-                FadeOutFrame = 25,
+                FadeInFrame = fadeInFrame,
+                FadeOutFrame = fadeOutFrame,
             };
 
             foreach (var translation in QuranSettings.TranslationRenderSettings)
