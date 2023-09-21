@@ -11,6 +11,9 @@ Quran Video Maker is a limited video editor with the emphasis on creating Quran 
 
 Download and extract the zip file and run `QuranVideoMaker.exe`.
 
+If you do not see the `.exe` file extension, look for `QuranVideoMaker` with a <img src="./icon.png" width=20 height=20>
+ icon.
+
 ## How to create a video
 ### Method 1
 1. Open the app.
