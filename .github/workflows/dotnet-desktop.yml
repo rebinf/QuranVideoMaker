@@ -46,7 +46,7 @@ jobs:
       run: cp -R ./ffmpeg/ffmpeg-master-latest-win64-gpl-shared/bin/ ./src/QuranVideoMaker/bin/Release/net8.0-windows/win-x64/publish/ffmpeg/
     
     - name: delete locales directory
-      run: rm ./src/QuranVideoMaker/bin/Release/net8.0-windows/win-x64/publish/libraries/locales -r
+      run: rm -f ./src/QuranVideoMaker/bin/Release/net8.0-windows/win-x64/publish/libraries/locales -r
       
     - name: zip release
       run: |
