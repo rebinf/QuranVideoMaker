@@ -2,7 +2,8 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net7.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<UseWPF>true</UseWPF>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -18,19 +19,19 @@
 		<BeautyUsePatch>True</BeautyUsePatch>
 		<BeautyLogLevel>Info</BeautyLogLevel>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
-		<PackageReference Include="nulastudio.NetBeauty" Version="2.1.4-beta.2" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+		<PackageReference Include="nulastudio.NetBeauty" Version="2.1.4.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="FFMpegCore" Version="5.1.0" />
 		<PackageReference Include="OpenCvSharp4" Version="4.8.0.20230708" />
 		<PackageReference Include="OpenCvSharp4.runtime.win" Version="4.8.0.20230708" />
 		<PackageReference Include="OpenCvSharp4.Windows" Version="4.8.0.20230708" />
 		<PackageReference Include="OpenCvSharp4.WpfExtensions" Version="4.8.0.20230708" />
-		<PackageReference Include="SharpVectors" Version="1.8.1" />
-		<PackageReference Include="NAudio" Version="2.2.0" />
-		<PackageReference Include="SkiaSharp" Version="2.88.5" />
-		<PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.5" />
+		<PackageReference Include="SharpVectors" Version="1.8.2" />
+		<PackageReference Include="NAudio" Version="2.2.1" />
+		<PackageReference Include="SkiaSharp" Version="2.88.6" />
+		<PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.6" />
 	</ItemGroup>
 
 
@@ -58,7 +59,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Resource Include="Resources\logo.png" />
+		<Resource Include="Resources\logo.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -76,17 +77,17 @@
 			<SubType>Code</SubType>
 		</Compile>
 		<Compile Update="Properties\Resources.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>Resources.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Properties\Resources.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 
 </Project>
