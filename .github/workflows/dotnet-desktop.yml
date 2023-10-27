@@ -24,7 +24,7 @@ jobs:
     - name: set version
       run: |
         cd src
-        cat ./QuranVideoMaker/Resources/VERSION.txt > 0.0.${{github.run_number}};
+        echo 0.0.${{github.run_number}} > ./QuranVideoMaker/Resources/VERSION.txt
 
     - name: restore
       run: |
