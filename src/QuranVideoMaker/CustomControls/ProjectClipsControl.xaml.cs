@@ -83,7 +83,7 @@ namespace QuranVideoMaker.CustomControls
                 {
                     if (SelectedItem != null)
                     {
-                        (ItemsSource as ObservableCollection<ProjectClip>).Remove((ProjectClip)SelectedItem);
+                        (ItemsSource as ObservableCollection<IProjectClip>).Remove((ProjectClip)SelectedItem);
                     }
                 }
             }
