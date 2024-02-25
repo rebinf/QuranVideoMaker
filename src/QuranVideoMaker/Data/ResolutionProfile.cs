@@ -159,6 +159,7 @@ namespace QuranVideoMaker.Data
                     new ResolutionProfile("QHD 2048 25 fps", 2048, 1152, 640, 480, 25),
                     new ResolutionProfile("UHD 2160 25 fps", 3840, 2160, 640, 480, 25),
                     new ResolutionProfile("4K DCI 2160 25 fps", 4096, 2160, 640, 480, 25),
+                    new ResolutionProfile("Custom", 0, 0, 640, 480, 25)
                 };
             }
         }

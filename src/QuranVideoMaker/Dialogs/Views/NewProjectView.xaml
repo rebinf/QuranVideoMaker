@@ -24,7 +24,7 @@
                 
                 <TabItem Header="Settings">
                     <StackPanel>
-                        <GroupBox Header="Resolution">
+                        <GroupBox Header="Resolution Presets">
                             <ListBox ItemsSource="{x:Static data:ResolutionProfile.Presets}" SelectedItem="{Binding SelectedProfile, Mode=TwoWay}" BorderThickness="0" Background="#1b1e20">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
@@ -32,6 +32,17 @@
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
+                        </GroupBox>
+
+                        <GroupBox Header="Resolution">
+                            <customcontrols:StackLayout Padding="5">
+                                <customcontrols:LayoutItem Label="Width">
+                                    <TextBox Text="{Binding ResolutionWidth, UpdateSourceTrigger=PropertyChanged}" />
+                                </customcontrols:LayoutItem>
+                                <customcontrols:LayoutItem Label="Height">
+                                    <TextBox Text="{Binding ResolutionHeight, UpdateSourceTrigger=PropertyChanged}" />
+                                </customcontrols:LayoutItem>
+                            </customcontrols:StackLayout>
                         </GroupBox>
                         
                         <GroupBox Header="Export Directory">
