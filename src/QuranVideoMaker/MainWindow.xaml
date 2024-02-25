@@ -9,7 +9,7 @@
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="Quran Video Maker" Height="650" Width="1000" MinWidth="900" MinHeight="600">
+        Title="{Binding Title}" Height="650" Width="1000" MinWidth="900" MinHeight="600">
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>

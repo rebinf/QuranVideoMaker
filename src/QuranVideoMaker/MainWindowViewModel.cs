@@ -4,6 +4,7 @@ using QuranVideoMaker.CustomControls;
 using QuranVideoMaker.Data;
 using QuranVideoMaker.Dialogs;
 using QuranVideoMaker.Utilities;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -58,6 +59,21 @@ namespace QuranVideoMaker
                 {
                     _projectFilePath = value;
                     OnPropertyChanged();
+                }
+            }
+        }
+
+        public string Title
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(ProjectFilePath))
+                {
+                    return "Quran Video Maker";
+                }
+                else
+                {
+                    return $"Quran Video Maker - {ProjectFilePath}";
                 }
             }
         }
@@ -146,6 +162,7 @@ namespace QuranVideoMaker
                 }
 
                 ProjectFilePath = dlg.FileName;
+                OnPropertyChanged(nameof(Title));
             }
         }
 
@@ -312,6 +329,7 @@ namespace QuranVideoMaker
             {
                 CurrentProject = result.Data;
                 ProjectFilePath = projectFile;
+                OnPropertyChanged(nameof(Title));
 
                 foreach (var clip in CurrentProject.Clips)
                 {
