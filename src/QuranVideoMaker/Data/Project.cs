@@ -699,77 +699,95 @@ namespace QuranVideoMaker.Data
             }
         }
 
-        public void Export(string exportPath)
+        public OperationResult Export(string exportPath)
         {
-            var sw = Stopwatch.StartNew();
-
-            var videoExportPath = Path.Combine(Path.GetTempPath(), "QuranVideoMaker", $"project_{Id}_video.mp4");
-            var audioExportPath = Path.Combine(Path.GetTempPath(), "QuranVideoMaker", $"project_{Id}_audio.mp3");
-
-            var totalFrames = GetTotalFrames();
-
-            //extract video frames
-            var videoItems = Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Video);
-
-            var frames = RenderTimeline(0, Convert.ToInt32(GetTotalFrames()), false).OrderBy(x => x.Frame).Select(x => x.Rendered);
-
-            Debug.WriteLine($"Elapsed: {sw.Elapsed}");
-
-            ExportProgressMessage = "Exporting video...";
-
-            var ffmpegArguments = FFMpegArguments.FromPipeInput(new FramePipeSource(frames, FPS), options =>
+            try
             {
-                options.WithHardwareAcceleration(HardwareAcceleration);
-            })
-            .OutputToFile(videoExportPath, true, options =>
-            {
-                options.WithVideoCodec(VideoCodec.LibX264);
-                options.WithFramerate(FPS);
-                options.WithFastStart();
-                options.WithSpeedPreset(EncodingSpeed);
-                options.ForceFormat("mp4");
-            });
-            //.OutputToPipe(new StreamPipeSink(outputStream), options =>{})
+                var sw = Stopwatch.StartNew();
 
-            var args = ffmpegArguments.Arguments;
+                var videoExportPath = Path.Combine(Path.GetTempPath(), "QuranVideoMaker", $"project_{Id}_video.mp4");
+                var audioExportPath = Path.Combine(Path.GetTempPath(), "QuranVideoMaker", $"project_{Id}_audio.mp3");
 
-            ffmpegArguments.NotifyOnProgress((e) => ExportProgress?.Invoke(this, e), ExportProgressTime);
-            ffmpegArguments.ProcessSynchronously();
+                var totalFrames = GetTotalFrames();
 
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
+                //extract video frames
+                var videoItems = Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Video);
 
-            using (var audioOutStream = new FileStream(audioExportPath, FileMode.Create))
-            {
-                foreach (var audioItem in GetAudioTrackItems())
+                var frames = RenderTimeline(0, Convert.ToInt32(GetTotalFrames()), false).OrderBy(x => x.Frame).Select(x => x.Rendered);
+
+                Debug.WriteLine($"Elapsed: {sw.Elapsed}");
+
+                ExportProgressMessage = "Exporting video...";
+
+                var ffmpegArguments = FFMpegArguments.FromPipeInput(new FramePipeSource(frames, FPS), options =>
                 {
-                    var clip = Clips.FirstOrDefault(x => x.Id == audioItem.ClipId);
+                    options.WithHardwareAcceleration(HardwareAcceleration);
+                })
+                .OutputToFile(videoExportPath, true, options =>
+                {
+                    options.WithVideoCodec(VideoCodec.LibX264);
+                    options.WithFramerate(FPS);
+                    options.WithFastStart();
+                    options.WithSpeedPreset(EncodingSpeed);
+                    options.ForceFormat("mp4");
+                });
+                //.OutputToPipe(new StreamPipeSink(outputStream), options =>{})
 
-                    using (var reader = new Mp3FileReader(clip.FilePath))
+                var args = ffmpegArguments.Arguments;
+
+                ffmpegArguments.NotifyOnProgress((e) => ExportProgress?.Invoke(this, e), ExportProgressTime);
+                ffmpegArguments.ProcessSynchronously();
+
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+
+                var audioTrackItems = GetAudioTrackItems();
+
+                if (audioTrackItems.Count > 0)
+                {
+                    using (var audioOutStream = new FileStream(audioExportPath, FileMode.Create))
                     {
-                        Mp3Frame frame;
-                        while ((frame = reader.ReadNextFrame()) != null)
+                        foreach (var audioItem in GetAudioTrackItems())
                         {
-                            var currentSecond = reader.CurrentTime.TotalSeconds;
+                            var clip = Clips.FirstOrDefault(x => x.Id == audioItem.ClipId);
 
-                            if (currentSecond >= audioItem.Start.TotalSeconds && currentSecond <= audioItem.End.TotalSeconds)
+                            using (var reader = new Mp3FileReader(clip.FilePath))
                             {
-                                audioOutStream.Write(frame.RawData, 0, frame.RawData.Length);
+                                Mp3Frame frame;
+                                while ((frame = reader.ReadNextFrame()) != null)
+                                {
+                                    var currentSecond = reader.CurrentTime.TotalSeconds;
+
+                                    if (currentSecond >= audioItem.Start.TotalSeconds && currentSecond <= audioItem.End.TotalSeconds)
+                                    {
+                                        audioOutStream.Write(frame.RawData, 0, frame.RawData.Length);
+                                    }
+                                }
                             }
                         }
                     }
+
+                    FFMpegCore.FFMpeg.ReplaceAudio(videoExportPath, audioExportPath, exportPath);
                 }
+                else
+                {
+                    File.Copy(videoExportPath, exportPath);
+                }
+
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+
+                sw.Stop();
+                Debug.WriteLine($"Elapsed: {sw.Elapsed}");
+
+                return new OperationResult(true, string.Empty);
             }
-
-            FFMpegCore.FFMpeg.ReplaceAudio(videoExportPath, audioExportPath, exportPath);
-
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
-
-            sw.Stop();
-            Debug.WriteLine($"Elapsed: {sw.Elapsed}");
+            catch (Exception ex)
+            {
+                return new OperationResult(false, ex.Message);
+            }
         }
 
         public List<FrameContainer> RenderTimeline(int fromFrame, int toFrame, bool preview)
