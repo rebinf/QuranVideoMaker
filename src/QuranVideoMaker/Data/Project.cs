@@ -876,9 +876,23 @@ namespace QuranVideoMaker.Data
                 {
                     var cfBitmap = cf.Bitmap ?? SKBitmap.Decode(cf.Data);
 
+                    var left = 0;
+                    var top = 0;
+                    var right = cfBitmap.Width;
+                    var bottom = cfBitmap.Height;
+
                     if (cfBitmap.Width != width || cfBitmap.Height != height)
                     {
-                        cfBitmap = cfBitmap.Resize(new SKSizeI(width, height), SKFilterQuality.High);
+                        double ratio = Math.Max((double)cfBitmap.Width / (double)width, (double)cfBitmap.Height / (double)height);
+                        var newWidth = (int)(cfBitmap.Width / ratio);
+                        var newHeight = (int)(cfBitmap.Height / ratio);
+
+                        left = (width - newWidth) / 2;
+                        top = (height - newHeight) / 2;
+                        right = left + newWidth;
+                        bottom = top + newHeight;
+
+                        cfBitmap = cfBitmap.Resize(new SKSizeI(newWidth, newHeight), SKFilterQuality.High);
                     }
 
                     if (cf.Opacity != 1)
@@ -890,11 +904,11 @@ namespace QuranVideoMaker.Data
                             Color = new SKColor(255, 255, 255, alpha)
                         };
 
-                        frameCanvas.DrawBitmap(cfBitmap, new SKRect(0, 0, cfBitmap.Width, cfBitmap.Height), textPaint);
+                        frameCanvas.DrawBitmap(cfBitmap, new SKRect(left, top, right, bottom), textPaint);
                     }
                     else
                     {
-                        frameCanvas.DrawBitmap(cfBitmap, new SKRect(0, 0, cfBitmap.Width, cfBitmap.Height));
+                        frameCanvas.DrawBitmap(cfBitmap, new SKRect(left, top, right, bottom));
                     }
                 }
 
