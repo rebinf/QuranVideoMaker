@@ -79,6 +79,10 @@
                                     <CheckBox IsChecked="{Binding IncludeBismillah, UpdateSourceTrigger=PropertyChanged}" />
                                 </customcontrols:LayoutItem>
 
+                                <customcontrols:LayoutItem Label="Include Verse Numbers">
+                                    <CheckBox IsChecked="{Binding IncludeVerseNumbers, UpdateSourceTrigger=PropertyChanged}" />
+                                </customcontrols:LayoutItem>
+
                                 <customcontrols:LayoutItem Label="From Verse">
                                     <TextBox Text="{Binding FromVerse, UpdateSourceTrigger=PropertyChanged}" />
                                 </customcontrols:LayoutItem>

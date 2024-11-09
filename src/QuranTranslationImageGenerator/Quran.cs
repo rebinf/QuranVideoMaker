@@ -1,4 +1,6 @@
-﻿namespace QuranTranslationImageGenerator
+﻿using System.Text;
+
+namespace QuranTranslationImageGenerator
 {
     public static class Quran
     {
@@ -1052,6 +1054,19 @@
 
                 verses.Add(new Verse(id, chapter, verse, text));
             }
+        }
+
+        public static string ToArabicNumbers(int number)
+        {
+            var arabicNumbers = new char[] { '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩' };
+            var arabicNumberString = new StringBuilder();
+
+            foreach (var digit in number.ToString())
+            {
+                arabicNumberString.Append(arabicNumbers[digit - '0']);
+            }
+
+            return arabicNumberString.ToString();
         }
     }
 }

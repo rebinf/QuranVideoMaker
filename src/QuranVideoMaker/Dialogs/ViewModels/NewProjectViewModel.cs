@@ -26,6 +26,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         private int _fromVerse = 1;
         private int _toVerse = 7;
         private bool _includeBismillah;
+        private bool _includeVerseNumbers;
         private bool _showArabicScript = true;
         private bool _verseTransitions = true;
         private ObservableCollection<TranslationInfo> _translations = new ObservableCollection<TranslationInfo>();
@@ -74,6 +75,13 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                 if (_selectedChapter != value)
                 {
                     _selectedChapter = value;
+
+                    if (_selectedChapter != null)
+                    {
+                        FromVerse = 1;
+                        ToVerse = _selectedChapter.VersesCount;
+                    }
+
                     OnPropertyChanged();
                 }
             }
@@ -131,6 +139,22 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                 if (_includeBismillah != value)
                 {
                     _includeBismillah = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include verse numbers.
+        /// </summary>
+        public bool IncludeVerseNumbers
+        {
+            get { return _includeVerseNumbers; }
+            set
+            {
+                if (_includeVerseNumbers != value)
+                {
+                    _includeVerseNumbers = value;
                     OnPropertyChanged();
                 }
             }
@@ -374,9 +398,13 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                 totalFrames = (double)(verses.Count * (5 * Project.FPS)); //5 seconds for each verse
             }
 
-            if (IncludeBismillah)
+            if (IncludeBismillah && SelectedChapter.Number != 1)
             {
-                verses.Insert(0, Quran.UthmaniScript.First());
+                var bismillah = Quran.UthmaniScript.First();
+
+                bismillah.ChapterNumber = SelectedChapter.Number;
+                bismillah.VerseNumber = 0;
+                verses.Insert(0, bismillah);
             }
 
             var quranTrack = Project.Tracks.First(x => x.Type == TimelineTrackType.Quran);
@@ -388,6 +416,11 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                 var verse = verses[i];
 
                 var verseInfo = new VerseInfo(QuranIds.Quran, verse.ChapterNumber, verse.VerseNumber, verse.VerseText);
+
+                if (IncludeVerseNumbers && verseInfo.VerseNumber != 0)
+                {
+                    verseInfo.VerseText = $"{verseInfo.VerseText}{Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
+                }
 
                 var newItem = new QuranTrackItem()
                 {
