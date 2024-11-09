@@ -30,6 +30,11 @@ namespace QuranTranslationImageGenerator
         private float _horizontalMarginPercentage = 20f;
         private bool _includeBismillah;
         private bool _showArabicScript = true;
+        private bool _textBackground;
+
+        private SKColor _textBackgroundColor = SKColors.Black;
+        private double _textBackgroundOpacity = 0.5;
+        private double _textBackgroundPadding = 100;
 
         private VerseRenderSettings _arabicScriptRenderSettings = new VerseRenderSettings()
         {
@@ -194,6 +199,70 @@ namespace QuranTranslationImageGenerator
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to show text background.
+        /// </summary>
+        public bool TextBackground
+        {
+            get { return _textBackground; }
+            set
+            {
+                if (_textBackground != value)
+                {
+                    _textBackground = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the text background color.
+        /// </summary>
+        public SKColor TextBackgroundColor
+        {
+            get { return _textBackgroundColor; }
+            set
+            {
+                if (_textBackgroundColor != value)
+                {
+                    _textBackgroundColor = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the text background opacity.
+        /// </summary>
+        public double TextBackgroundOpacity
+        {
+            get { return _textBackgroundOpacity; }
+            set
+            {
+                if (_textBackgroundOpacity != value)
+                {
+                    _textBackgroundOpacity = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the text background padding.
+        /// </summary>
+        public double TextBackgroundPadding
+        {
+            get { return _textBackgroundPadding; }
+            set
+            {
+                if (_textBackgroundPadding != value)
+                {
+                    _textBackgroundPadding = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the output directory.
         /// </summary>
         /// <value>
@@ -296,6 +365,10 @@ namespace QuranTranslationImageGenerator
                 ShowArabicScript = this.ShowArabicScript,
                 OutputType = this.OutputType,
                 ArabicScriptRenderSettings = this.ArabicScriptRenderSettings.Clone(),
+                TextBackground = this.TextBackground,
+                TextBackgroundColor = this.TextBackgroundColor,
+                TextBackgroundOpacity = this.TextBackgroundOpacity,
+                TextBackgroundPadding = this.TextBackgroundPadding,
             };
 
             foreach (var ts in TranslationRenderSettings)

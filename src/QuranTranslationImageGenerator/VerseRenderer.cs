@@ -117,6 +117,50 @@ namespace QuranTranslationImageGenerator
                 float currentX = 0;
                 float currentY = (bitmap.Height / 2) - (((totalHeight / 2) + renderSettings.GapBetweenVerses * drawGroups.SelectMany(x => x.Draws).Count()) / 2);
 
+                // does the text has a background color?
+                if (renderSettings.TextBackground)
+                {
+                    var padding = Convert.ToSingle(renderSettings.TextBackgroundPadding);
+
+                    // draw the background color (draw a rectangle with TextBackgroundPadding property)
+                    //var left = bitmap.Width / 2 - (drawGroups.SelectMany(x => x.Draws).Max(x => x.Width) / 2);
+                    //var top = currentY - Convert.ToSingle(renderSettings.TextBackgroundPadding);
+                    //var right = bitmap.Width / 2 - (drawGroups.SelectMany(x => x.Draws).Max(x => x.Width) / 2) + drawGroups.SelectMany(x => x.Draws).Max(x => x.Width);
+                    //var bottom = top + totalHeight + Convert.ToSingle(renderSettings.TextBackgroundPadding);
+
+                    var w = drawGroups.SelectMany(x => x.Draws).Max(x => x.Width) + padding * 2;
+                    var h = drawGroups.SelectMany(x => x.Draws).Sum(x => x.Height) + padding * 2 + renderSettings.GapBetweenVerses * drawGroups.SelectMany(x => x.Draws).Count();
+
+                    // add default padding
+                    var defaultPadding = 100;
+                    w += defaultPadding;
+                    h += defaultPadding;
+
+                    var x = (bitmap.Width - w) / 2;
+                    var y = (bitmap.Height - h) / 2;
+
+                    y -= defaultPadding / 2;
+
+                    var rect = SKRect.Create(x, y, w, h);
+
+                    var textBackgroundPaint = new SKPaint();
+
+                    // what's the color opacity?
+                    if (renderSettings.TextBackgroundOpacity > 0)
+                    {
+                        // convert the float opacity to byte
+                        var opacity = Convert.ToByte(renderSettings.TextBackgroundOpacity * 255);
+
+                        textBackgroundPaint.Color = new SKColor(renderSettings.TextBackgroundColor.Red, renderSettings.TextBackgroundColor.Green, renderSettings.TextBackgroundColor.Blue, opacity);
+                    }
+                    else
+                    {
+                        textBackgroundPaint.Color = renderSettings.TextBackgroundColor;
+                    }
+
+                    canvas.DrawRect(rect, textBackgroundPaint);
+                }
+
                 foreach (var group in drawGroups)
                 {
                     foreach (var draw in group.Draws)

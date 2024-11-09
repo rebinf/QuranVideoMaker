@@ -6,96 +6,109 @@ using System.Windows.Input;
 
 namespace QuranVideoMaker.Dialogs.Views
 {
-	/// <summary>
-	/// Interaction logic for QuranSettingsView.xaml
-	/// </summary>
-	public partial class QuranSettingsView : DialogViewBase
-	{
-		public QuranSettingsView()
-		{
-			InitializeComponent();
-		}
+    /// <summary>
+    /// Interaction logic for QuranSettingsView.xaml
+    /// </summary>
+    public partial class QuranSettingsView : DialogViewBase
+    {
+        public QuranSettingsView()
+        {
+            InitializeComponent();
+        }
 
-		private void BackgroundColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-		{
-			var colorPicker = GetColorDialog();
+        private void BackgroundColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var colorPicker = GetColorDialog();
 
-			if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-			{
-				MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
-				var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
+            if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
+                var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
 
-				((QuranSettingsViewModel)DataContext).Settings.BackgroundColor = color;
-				((QuranSettingsViewModel)DataContext).UpdatePreview();
-			}
-		}
+                ((QuranSettingsViewModel)DataContext).Settings.BackgroundColor = color;
+                ((QuranSettingsViewModel)DataContext).UpdatePreview();
+            }
+        }
 
-		private void TextColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-		{
-			var colorPicker = GetColorDialog();
+        private void TextColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var colorPicker = GetColorDialog();
 
-			if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-			{
-				MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
-				var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
+            if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
+                var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
 
-				((QuranSettingsViewModel)DataContext).Settings.ArabicScriptRenderSettings.TextColor = color;
-				((QuranSettingsViewModel)DataContext).UpdatePreview();
+                ((QuranSettingsViewModel)DataContext).Settings.ArabicScriptRenderSettings.TextColor = color;
+                ((QuranSettingsViewModel)DataContext).UpdatePreview();
 
-			}
-		}
+            }
+        }
 
-		private void TextShadowColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-		{
-			var colorPicker = GetColorDialog();
+        private void TextShadowColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var colorPicker = GetColorDialog();
 
-			if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-			{
-				MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
-				var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
+            if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
+                var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
 
-				((QuranSettingsViewModel)DataContext).Settings.ArabicScriptRenderSettings.TextShadowColor = color;
-				((QuranSettingsViewModel)DataContext).UpdatePreview();
-			}
-		}
+                ((QuranSettingsViewModel)DataContext).Settings.ArabicScriptRenderSettings.TextShadowColor = color;
+                ((QuranSettingsViewModel)DataContext).UpdatePreview();
+            }
+        }
 
-		private void TranslationTextColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-		{
-			var colorPicker = GetColorDialog();
+        private void TranslationTextColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var colorPicker = GetColorDialog();
 
-			if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-			{
-				MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
-				var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
+            if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
+                var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
 
-				((sender as FrameworkElement).DataContext as VerseRenderSettings).TextColor = color;
-				((QuranSettingsViewModel)DataContext).UpdatePreview();
-			}
-		}
+                ((sender as FrameworkElement).DataContext as VerseRenderSettings).TextColor = color;
+                ((QuranSettingsViewModel)DataContext).UpdatePreview();
+            }
+        }
 
-		private void TranslationTextShadowColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-		{
-			var colorPicker = GetColorDialog();
+        private void TranslationTextShadowColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var colorPicker = GetColorDialog();
 
-			if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-			{
-				MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
-				var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
+            if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
+                var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
 
-				((sender as FrameworkElement).DataContext as VerseRenderSettings).TextShadowColor = color;
-				((QuranSettingsViewModel)DataContext).UpdatePreview();
-			}
-		}
+                ((sender as FrameworkElement).DataContext as VerseRenderSettings).TextShadowColor = color;
+                ((QuranSettingsViewModel)DataContext).UpdatePreview();
+            }
+        }
 
-		private void RemoveTranslation_Click(object sender, RoutedEventArgs e)
-		{
-			((QuranSettingsViewModel)DataContext).Settings.TranslationRenderSettings.Remove((sender as FrameworkElement).DataContext as VerseRenderSettings);
-			((QuranSettingsViewModel)DataContext).UpdatePreview();
-		}
+        private void TextBackgroundColor_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var colorPicker = GetColorDialog();
 
-		private static System.Windows.Forms.ColorDialog GetColorDialog()
-		{
-			return new System.Windows.Forms.ColorDialog() { CustomColors = MainWindowViewModel.Instance.CurrentProject.CustomColors };
-		}
-	}
+            if (colorPicker.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MainWindowViewModel.Instance.CurrentProject.CustomColors = colorPicker.CustomColors;
+                var color = new SKColor(colorPicker.Color.R, colorPicker.Color.G, colorPicker.Color.B, colorPicker.Color.A);
+                ((QuranSettingsViewModel)DataContext).Settings.TextBackgroundColor = color;
+                ((QuranSettingsViewModel)DataContext).UpdatePreview();
+            }
+        }
+
+        private void RemoveTranslation_Click(object sender, RoutedEventArgs e)
+        {
+            ((QuranSettingsViewModel)DataContext).Settings.TranslationRenderSettings.Remove((sender as FrameworkElement).DataContext as VerseRenderSettings);
+            ((QuranSettingsViewModel)DataContext).UpdatePreview();
+        }
+
+        private static System.Windows.Forms.ColorDialog GetColorDialog()
+        {
+            return new System.Windows.Forms.ColorDialog() { CustomColors = MainWindowViewModel.Instance.CurrentProject.CustomColors };
+        }
+    }
 }

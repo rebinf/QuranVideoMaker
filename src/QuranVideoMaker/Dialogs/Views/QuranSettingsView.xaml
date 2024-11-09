@@ -111,6 +111,23 @@
                                     <TextBox Text="{Binding Settings.ArabicScriptRenderSettings.TextShadowOffset, UpdateSourceTrigger=PropertyChanged, Converter={converters:StringToSKPointConverter}}" />
                                 </customcontrols:LayoutItem>
 
+                                <customcontrols:LayoutItem Label="Text Background">
+                                    <CheckBox IsChecked="{Binding Settings.TextBackground, UpdateSourceTrigger=PropertyChanged}" />
+                                </customcontrols:LayoutItem>
+
+                                <customcontrols:LayoutItem Label="Text Background Color">
+                                    <Border BorderThickness="1" BorderBrush="Black" Background="{Binding Settings.TextBackgroundColor, UpdateSourceTrigger=PropertyChanged, Converter={converters:SKColorToBrushConverter}}" PreviewMouseLeftButtonUp="TextBackgroundColor_PreviewMouseLeftButtonUp" Height="17" />
+                                </customcontrols:LayoutItem>
+
+                                <customcontrols:LayoutItem Label="Text Background Opacity">
+                                    <TextBox Text="{Binding Settings.TextBackgroundOpacity, UpdateSourceTrigger=PropertyChanged}" />
+                                </customcontrols:LayoutItem>
+
+                                <customcontrols:LayoutItem Label="Text Background Padding">
+                                    <TextBox Text="{Binding Settings.TextBackgroundPadding, UpdateSourceTrigger=PropertyChanged}" />
+                                </customcontrols:LayoutItem>
+                                
+
                             </customcontrols:StackLayout>
                         </StackPanel>
                     </ScrollViewer>
