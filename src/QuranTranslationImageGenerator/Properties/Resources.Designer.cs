@@ -72,7 +72,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|2|ይህ መጽሐፍ (ከአላህ ለመኾኑ) ጥርጥር የለበትም፤ ለፈራህያን መሪ ነው፡፡
         ///2|3|ለነዚያ በሩቁ ነገር የሚያምኑ ሶላትንም ደንቡን ጠብቀው የሚሰግዱ ከሰጠናቸውም ሲሳይ የሚቸሩ ለኾኑት፤
         ///2|4|ለእነዚያም ወደ አንተ በተወረደውና ከአንተ በፊትም በተወረደው የሚያምኑ በመጨረሻይቱም (ዓለም) እነርሱ የሚያረጋግጡ ለኾኑት (መሪ ነው)፡፡
-        ///2|5|እነዚያ ከጌታቸው በመመራ [rest of string was truncated]&quot;;.
+        ///2|5|እነዚያ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string am_sadiq {
             get {
@@ -84,7 +84,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///   Looks up a localized string similar to 1|1|«بسم الله الرحمن الرحيم»
         ///1|2|«الحمد لله» جملة خبرية قصد بها الثناء على الله بمضمونها من أنه تعالى: مالك لجميع الحمد من الخلق أو مستحق لأن يحمدوه، والله علم على المعبود بحق «ربِّ العالمين» أي مالك جميع الخلق من الإنس والجن والملائكة والدواب وغيرهم، وكل منها يُطلق عليه عالم، يقال عالم الإنس وعالم الجن إلى غير ذلك، وغلب في جمعه بالياء والنون أولي العلم على غيرهم، وهو من العلامة لأنه علامة على موجده.
         ///1|3|«الرحمن الرحيم» أي ذي الرحمة وهي إرادة الخير لأهله.
-        ///1|4|أي الجزاء وهو يوم القيامة، وخص بالذكر لأنه لا مل [rest of string was truncated]&quot;;.
+        ///1|4|أي الجزاء وهو يوم القيامة، وخص بالذكر لأنه لا [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ar_jalalayn {
             get {
@@ -94,7 +94,7 @@ namespace QuranTranslationImageGenerator.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 1|1|سورة الفاتحة سميت هذه السورة بالفاتحة؛ لأنه يفتتح بها القرآن العظيم، وتسمى المثاني؛ لأنها تقرأ في كل ركعة، ولها أسماء أخر. أبتدئ قراءة القرآن باسم الله مستعينا به، (اللهِ) علم على الرب -تبارك وتعالى- المعبود بحق دون سواه، وهو أخص أسماء الله تعالى، ولا يسمى به غيره سبحانه. (الرَّحْمَنِ) ذي الرحمة العامة الذي وسعت رحمته جميع الخلق، (الرَّحِيمِ) بالمؤمنين، وهما اسمان من أسمائه تعالى، يتضمنان إثبات صفة الرحمة لله تعالى كما يليق بجلاله.
-        ///1|2|(الحَمْدُ للهِ رَبِّ العَالَمِينَ) الثناء على الله بصفاته التي كلُّه [rest of string was truncated]&quot;;.
+        ///1|2|(الحَمْدُ للهِ رَبِّ العَالَمِينَ) الثناء على الله بصفاته التي كلُّ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ar_muyassar {
             get {
@@ -111,7 +111,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Bizi doğru (düz) yola yönəlt!
         ///1|7|Ne’mət verdiyin kəslərin yoluna! Qəzəbə düçar olmuşların və (haqdan) azmışların (yoluna) yox!
         ///2|1|Əlif, Lam, Mim.
-        ///2|2|Bu, (Allah tərəfindən nazil edi [rest of string was truncated]&quot;;.
+        ///2|2|Bu, (Allah tərəfindən n [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string az_mammadaliyev {
             get {
@@ -129,7 +129,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|nemət bəxş etdiyin şəxslərin yoluna, qəzəbə uğramışların və azmışların yoluna yox!
         ///2|1|Əlif. Ləm. Mim.
         ///2|2|Bu, qətiyyən şübhə doğurmayan, müttəqilərə doğru yol göstərən bir Kitabdır.
-        ///2|3|O kəslər ki, qeybə iman gətirir, namaz qılır və Bizim onlara verdiyimiz ruzidən Al [rest of string was truncated]&quot;;.
+        ///2|3|O kəslər ki, qeybə iman gətirir, namaz qılır və Bizim onlara verdiyimiz r [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string az_musayev {
             get {
@@ -148,8 +148,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|Alm.
         ///2|2|Appan Tezmamt, ur degs ccekk, d nnhaya i wid ipêezziben;
         ///2|3|wid iumnen s tbavnit, ipéallan, ipseddiqen seg wayen iten N$at;
-        ///2|4|wid iumnen s wayen i k d irsen, akked wayen id irsen, uqbel ik, u, $ef laxeôt, nitni, pputebbten.
-        ///2|5 [rest of string was truncated]&quot;;.
+        ///2|4|wid iumnen s wayen i k d irsen, akked wayen id irsen, uqbel ik, u, $ef laxeôt, nitni, ppute [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ber_mensur {
             get {
@@ -167,7 +166,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|пътя на тези, които си дарил с благодат, а не на [тези], над които тегне гняв, нито на заблудените!
         ///2|1|Алиф. Лам. Мим.
         ///2|2|Тази Книга - без съмнение в нея - е напътствие за богобоязливите,
-        ///2|3|които вярват в неведомото и отслужват молитвата, и раздават от онова, което сме им  [rest of string was truncated]&quot;;.
+        ///2|3|които вярват в неведомото и отслужват молитвата, и раздават от онова, коет [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string bg_theophanov {
             get {
@@ -184,8 +183,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|আমাদেরকে সরল পথ দেখাও,
         ///1|7|সে সমস্ত লোকের পথ, যাদেরকে তুমি নেয়ামত দান করেছ। তাদের পথ নয়, যাদের প্রতি তোমার গজব নাযিল হয়েছে এবং যারা পথভ্রষ্ট হয়েছে।
         ///2|1|আলিফ লাম মীম।
-        ///2|2|এ সেই কিতাব যাতে কোনই সন্দেহ নেই। পথ প্রদর্শনকারী পরহেযগারদের জন্য,
-        ///2| [rest of string was truncated]&quot;;.
+        ///2|2|এ সেই কিতাব যাতে কোনই সন্দেহ নেই। পথ প্রদর্শনকারী পরহেযগারদের  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string bn_bengali {
             get {
@@ -199,7 +197,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|3|রহমান, রহীম।
         ///1|4|বিচারকালের মালিক।
         ///1|5|“তোমারই আমরা এবাদত করি, এবং তোমারই কাছে আমরা সাহায্য প্রার্থনা করি।”
-        ///1|6|“আমাদের তুমি সহজ-সঠিক প [rest of string was truncated]&quot;;.
+        ///1|6|“আমাদের তুমি সহজ-স [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string bn_hoque {
             get {
@@ -217,7 +215,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|na Put onih kojima si milost Svoju darovao, a ne onih koji su protiv sebe srdžbu izazvali, niti onih koji su zalutali!
         ///2|1|Elif Lām Mīm.
         ///2|2|Ova Knjiga, u koju nema nikakve sumnje, uputstvo je svima onima koji se budu Allaha bojali;
-        ///2|3|onima koji u nevidljivi svijet budu vjerovali i molitv [rest of string was truncated]&quot;;.
+        ///2|3|onima koji u nevidljivi svijet budu vjerovali [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string bs_korkut {
             get {
@@ -236,7 +234,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|Alif. Lam. Mim.
         ///2|2|Taj Kitab, u kojeg nema sumnje, Uputa je za bogobojazne,
         ///2|3|One koji vjeruju u nevidljivo i obavljaju salat i od onog čim smo ih opskrbili, udjeljuju,
-        ///2|4|I one koji vjeruju u ono šta je objavljen [rest of string was truncated]&quot;;.
+        ///2|4|I one koji vjeruju u ono šta je [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string bs_mlivo {
             get {
@@ -255,7 +253,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|Alif lám mím!
         ///2|2|Toto Písmo, o němž pochyby není, je vedením pro bohabojné,
         ///2|3|kteří v nepoznatelné věří, modlitbu dodržují a z toho, co jsme jim uštědřili, rozdávají,
-        ///2|4|kteří věří v to, co byl [rest of string was truncated]&quot;;.
+        ///2|4|kteří věří v  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string cs_hrbek {
             get {
@@ -274,7 +272,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|Alif, Lám, Mím.
         ///2|2|Tato Kniha — o níž není pochyby — jest vedením pro bohabojné,
         ///2|3|již věří ve věci neviditelné a zachovávají modlitbu a štědře rozdávají z toho, čímž jsme je obdařili:
-        ///2|4|a pro ty, kte [rest of string was truncated]&quot;;.
+        ///2|4|a p [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string cs_nykl {
             get {
@@ -291,7 +289,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Führe uns den geraden Weg
         ///1|7|den Weg derer, denen Du Gnade erwiesen hast, nicht (den Weg) derer, die(Deinen) Zorn erregt haben, und nicht (den Weg) der Irregehenden.
         ///2|1|Alif Lam Mim.
-        ///2|2|Dies ist (ganz gewiß) das Buch (Allahs), das keinen Anlaß zum Zwei [rest of string was truncated]&quot;;.
+        ///2|2|Dies ist (ganz gewiß) das Buch (Allahs), das keinen Anlaß  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string de_aburida {
             get {
@@ -308,7 +306,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Leite uns den geraden Weg,
         ///1|7|den Weg derjenigen, denen Du Gunst erwiesen hast, nicht derjenigen, die (Deinen) Zorn erregt haben, und nicht der Irregehenden!
         ///2|1|Alif-Lam-Mim
-        ///2|2|Dieses Buch, an dem es keinen Zweifel gibt, ist eine Rechtleitung für die G [rest of string was truncated]&quot;;.
+        ///2|2|Dieses Buch, an dem es keinen Zweifel gibt, ist eine Rechtleitung f [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string de_bubenheim {
             get {
@@ -326,7 +324,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Den Weg derer, die Du begnadet hast, die nicht dem Zorn verfallen und nicht irregehen.
         ///2|1|Alif Lam Mim.
         ///2|2|Dies ist das Buch, an ihm ist kein Zweifel möglich, es ist eine Rechtleitung für die Gottesfürchtigen,
-        ///2|3|Die an das Unsichtba [rest of string was truncated]&quot;;.
+        ///2|3|Die an das  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string de_khoury {
             get {
@@ -342,7 +340,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|5|Dir allein dienen wir, und Dich allein bitten wir um Hilfe!
         ///1|6|Leite uns recht auf den geradlinigen Weg,
         ///1|7|den Weg derer, denen DU Wohlergehen hast zuteil werden lassen, die weder vom Zorn geplagt werden noch abgeirrt sind!
-        ///2|1|Alif-lam- [rest of string was truncated]&quot;;.
+        ///2|1|Al [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string de_zaidan {
             get {
@@ -357,7 +355,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|4|قيامة ދުވަހުގެ ވެރި ރަސްކަލާނގެއެވެ.
         ///1|5|އަޅަމެން އަޅުކަންކުރަނީ، އިބަރަސްކަލާނގެއަށެވެ. އަދި އަޅަމެން ވާގިއެދެނީ، އިބަރަސްކަލާނގެ حضرة ންނެވެ.
         ///1|6|އަޅަމެންނަށް، ސީދާވެގެންވާ ތެދުމަގަށް މަގު ދައްކަވާނދޭވެ!
-        ///1|7|(އެއީ) އެއުރެންނަށް އިބަރަސްކަލާނގެ نعمة ދެއްވި މީހުންގެ މަގެވެ. އެއުރެންގެ މައްޗަށް ކޯފާލައްވާފައިވާ މީހުންގެ މަގެއްނޫނެވެ. އ [rest of string was truncated]&quot;;.
+        ///1|7|(އެއީ) އެއުރެންނަށް އިބަރަސްކަލާނގެ نعمة ދެއްވި މީހުންގެ މަގެވެ. އެއުރެންގެ މައްޗަށް ކޯފާލައްވާފައިވާ މީހުންގެ މަގެއްނޫނ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string dv_divehi {
             get {
@@ -374,7 +372,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Guide us (O Lord) to the path that is straight,
         ///1|7|The path of those You have blessed, Not of those who have earned Your anger, nor those who have gone astray.
         ///2|1|ALIF LAM MIM.
-        ///2|2|This is The Book free of doubt and involution, a guidance for those who preserve themse [rest of string was truncated]&quot;;.
+        ///2|2|This is The Book free of doubt and involution, a guidance for those who preserv [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_ahmedali {
             get {
@@ -390,7 +388,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|5|You alone we worship and from You alone we seek help (and may we always).
         ///1|6|Guide us on the Straight Path.
         ///1|7|The path of those whom You have favoured – Not the path of those who earned Your anger – nor of those who are astray.
-        ///2|1|Alif-Laam-Meem. (Alphabets of the Arabic language; Allah and to  [rest of string was truncated]&quot;;.
+        ///2|1|Alif-Laam-Meem. (Alphabets of the Arabic language; Allah  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_ahmedraza {
             get {
@@ -408,7 +406,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|the path of those whom Thou hast blessed, not of those against whom Thou art wrathful, nor of those who are astray.
         ///2|1|Alif Lam Mim
         ///2|2|That is the Book, wherein is no doubt, a guidance to the godfearing
-        ///2|3|who believe in the  [rest of string was truncated]&quot;;.
+        ///2|3|who believ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_arberry {
             get {
@@ -425,8 +423,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Guide us Thou unto the path straight
         ///1|7|The path of those whom Thou hast favoured. Not of those on whom is indignation brought down, nor of the astray.
         ///2|1|Alif. Lam Mim
-        ///2|2|This Book whereof there is no doubt, is a guidance unto the God-fearing.
-        ///2|3|Who [rest of string was truncated]&quot;;.
+        ///2|2|This Book whereof there is no doubt, is a guidance unto the God-fearing. [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_daryabadi {
             get {
@@ -441,7 +438,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|4|The Only Owner (and the Only Ruling Judge) of the Day of Recompense (i.e. the Day of Resurrection)
         ///1|5|You (Alone) we worship, and you (Alone) we ask for help (for each and everything).
         ///1|6|Guide us to the Straight Way
-        ///1|7|The Way of those on whom You have bestowed Your Grace, not (the way)  [rest of string was truncated]&quot;;.
+        ///1|7|The Way of those on whom You have bestowed Your Grace, not (the [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_hilali {
             get {
@@ -459,7 +456,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|The path of those You have blessed, not of those against whom there is anger, nor of those who are misguided.
         ///2|1|Alif, Lam, Meem.
         ///2|2|This is the Book in which there is no doubt, a guide for the righteous.
-        ///2|3|Those who believe in the unseen, a [rest of string was truncated]&quot;;.
+        ///2|3|Those who believe in the  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_itani {
             get {
@@ -476,8 +473,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Direct us on to the Straight Way,
         ///1|7|The way of those whom You have favoured, who did not incur Your wrath, who are not astray.
         ///2|1|Alif. Lam. Mim.
-        ///2|2|This is the Book of Allah: there is no doubt about it. It is guidance to Godfearing people,
-        ///2|3|who  [rest of string was truncated]&quot;;.
+        ///2|2|This is the Book of Allah: there is no doubt about it. It is guidance to Godfearing people,        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_maududi {
             get {
@@ -494,7 +490,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Guide us to the straight path.
         ///1|7|The way of those upon whom You have bestowed Your grace, not (that) of those who earned Your anger, nor of those who went astray.
         ///2|1|Alif Lam Mim.
-        ///2|2|That is Book in which there is no Rayb, guidance for  [rest of string was truncated]&quot;;.
+        ///2|2|That is Book in which there is no Rayb, guida [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_mubarakpuri {
             get {
@@ -512,7 +508,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|The path of those whom Thou hast favoured; Not the (path) of those who earn Thine anger nor of those who go astray.
         ///2|1|Alif. Lam. Mim.
         ///2|2|This is the Scripture whereof there is no doubt, a guidance unto those who ward off (evil).
-        ///2|3|Who believe i [rest of string was truncated]&quot;;.
+        ///2|3|Who  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_pickthall {
             get {
@@ -530,7 +526,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|the path of those whom You have blessed — such as have not incurred Your wrath, nor are astray.
         ///2|1|Alif, Lam, Mim.
         ///2|2|This is the Book, there is no doubt in it, a guidance to the Godwary,
-        ///2|3|who bel [rest of string was truncated]&quot;;.
+        ///2| [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_qarai {
             get {
@@ -547,7 +543,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Guide us to the Straight Path,
         ///1|7|the Path of those upon whom You have favored, not those upon whom is the anger, nor the astray. (Amen please answer)
         ///2|1|AlifLaamMeem.
-        ///2|2|That is the (Holy) Book, where there is no doubt. It is a guidance for the cautious (of evil and  [rest of string was truncated]&quot;;.
+        ///2|2|That is the (Holy) Book, where there is no doubt. It is a guidance for the cautious (of e [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_qaribullah {
             get {
@@ -564,7 +560,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Guide us to the straight path -
         ///1|7|The path of those upon whom You have bestowed favor, not of those who have evoked [Your] anger or of those who are astray.
         ///2|1|Alif, Lam, Meem.
-        ///2|2|This is the Book about which there is no doubt, a g [rest of string was truncated]&quot;;.
+        ///2|2|This is the Book about which there is no do [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_sahih {
             get {
@@ -582,7 +578,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|the path of those to whom You have granted blessings, those who are neither subject to Your anger nor have gone astray.
         ///2|1|Alif. Lam. Mim.
         ///2|2|There is no doubt that this book is a guide for the pious;
-        ///2|3|the p [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_sarwar {
             get {
@@ -599,7 +595,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Keep us on the right path.
         ///1|7|The path of those upon whom Thou hast bestowed favors. Not (the path) of those upon whom Thy wrath is brought down, nor of those who go astray.
         ///2|1|Alif Lam Mim.
-        ///2|2|This Book, there is no doubt in it, is a guide to those who guard (against e [rest of string was truncated]&quot;;.
+        ///2|2|This Book, there is no doubt in it, is a guide to those who guard (a [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_shakir {
             get {
@@ -618,7 +614,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|Aliflammeem
         ///2|2|Thalika alkitabu la rayba feehi hudan lilmuttaqeena
         ///2|3|Allatheena yuminoona bialghaybi wayuqeemoona alssalata wamimma razaqnahum yunfiqoona
-        ///2|4|Waallatheena yuminoona bima onzila ilayka wama onzila m [rest of string was truncated]&quot;;.
+        ///2|4|Waallatheena yuminoona bima onzila ilayka wam [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_transliteration {
             get {
@@ -635,7 +631,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Guide us to the straight path:
         ///1|7|the path of those You have blessed; not of those who have incurred Your wrath, nor of those who have gone astray.
         ///2|1|Alif Lam Mim.
-        ///2|2|This is the Book; there is no doubt in it. It is a guide for those who are mindful of God [rest of string was truncated]&quot;;.
+        ///2|2|This is the Book; there is no doubt in it. It is a guide for those who are mindfu [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_wahiduddin {
             get {
@@ -653,7 +649,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|The way of those on whom Thou hast bestowed Thy Grace, those whose (portion) is not wrath, and who go not astray.
         ///2|1|A. L. M.
         ///2|2|This is the Book; in it is guidance sure, without doubt, to those who fear Allah;
-        ///2|3|Who believe in the Uns [rest of string was truncated]&quot;;.
+        ///2|3|Who believe i [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_yusufali {
             get {
@@ -670,7 +666,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Guíanos al camino recto,
         ///1|7|el camino de aquellos a los que Tú has agraciado; no el de aquellos con los que Tú estás disgustado, ni el de los extraviados.
         ///2|1|Alif, lam, mim
-        ///2|2|Esta es la Escritura (Sagrad [rest of string was truncated]&quot;;.
+        ///2|2|Esta es la Escritura [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string es_bornez {
             get {
@@ -688,7 +684,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|la vía de los que Tú has agraciado, no de los que han incurrido en la ira, ni de los extraviados.
         ///2|1|`lm.
         ///2|2|Ésta es la Escritura, exenta de dudas, como dirección para los temerosos de Alá,
-        ///2|3|que creen en lo oculto, hacen la azalá y dan limosna de lo q [rest of string was truncated]&quot;;.
+        ///2|3|que creen en lo oculto, hacen la azalá y dan limosn [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string es_cortes {
             get {
@@ -705,7 +701,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|¡Guíanos por el camino recto!
         ///1|7|El camino de los que has colmado con Tus favores, no el de los que cayeron en Tu ira, ni el de los que se extraviaron.
         ///2|1|Álif. Lam. Mim.
-        ///2|2|Este es el Libro del cu [rest of string was truncated]&quot;;.
+        ///2|2|Este es el Libr [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string es_garcia {
             get {
@@ -722,7 +718,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|ما را به راهِ راست راهنمایی کن.
         ///1|7|راه کسانی [چون پیامبران، صدّیقان، شهیدان و صالحان که به خاطر لیاقتشان] به آنان نعمتِ [ایمان، عمل شایسته و اخلاق حسنه] عطا کردی، هم آنان که نه مورد خشم تواند و نه گمراه اند.
         ///2|1|الم
-        ///2|2|در [وحی بودن و حقّانی [rest of string was truncated]&quot;;.
+        ///2|2|در [وحی بودن  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fa_ansarian {
             get {
@@ -741,7 +737,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|الف. لام. ميم.
         ///2|2|اين است همان كتابى كه در آن هيچ شكى نيست. پرهيزگاران را راهنماست:
         ///2|3|آنان كه به غيب ايمان مى‌آورند و نماز مى گزارند، و از آنچه روزيشان داده‌ايم انفاق مى كنند،
-        ///2|4|و آنان كه به آنچه بر تو و بر پيامبران [rest of string was truncated]&quot;;.
+        ///2|4|و آنان كه به آنچه بر تو و ب [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fa_ayati {
             get {
@@ -760,7 +756,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|الف، لام، ميم
         ///2|2|آن كتاب [بلند مرتبه‌] هيچ ترديدى در آن نيست، راهنماى پرهيزگاران است
         ///2|3|آنان كه به غيب ايمان مى‌آورند و نماز را برپا مى‌دارند و از آنچه روزيشان كرده‌ايم، انفاق مى‌كنند
-        ///2|4|و آنان كه به آنچه به تو نازل گرديده و آنچه پي [rest of string was truncated]&quot;;.
+        ///2|4|و آنان كه به آنچه به تو نازل گرديده [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fa_bahrampour {
             get {
@@ -778,8 +774,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|راه آنان که گرامی‌شان داشته‌ای، نه [راه‌] مغضوبان، و نه [راه‌] گمراهان.
         ///2|1|الف، لام، میم.
         ///2|2|این است کتابی که در [حقانیت‌] آن هیچ تردیدی نیست؛ [و] مایه هدایت تقواپیشگان است:
-        ///2|3|آنان که به غیب ایمان می‌آورند، و نماز را بر پا می‌دارند، و از آنچه به ایشان روزی داده‌ایم انفاق می‌کنند؛
-        ///2|4|و آ [rest of string was truncated]&quot;;.
+        ///2|3|آنان که به غیب ایمان می‌آورند، و نماز را بر پا می‌دارند، و از آنچه به ایشان روزی داده‌ایم انفاق می‌کنند [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fa_fooladvand {
             get {
@@ -797,7 +792,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|راه کسانی که به آنان نعمت دادی، نه کسانی که مورد غضب واقع شدند و نه گمراهان.
         ///2|1|الف، لام، میم.
         ///2|2|آن کتاب [با عظمت که] در [حقّانیت] آن هیچ تردیدی راه ندارد، راهنمای پرهیزکاران است.
-        ///2|3|[متّقین] کسانی هستند که به غیب ایمان دارند و نماز را [rest of string was truncated]&quot;;.
+        ///2|3|[متّقین] کسانی هستند که به غیب ایمان دارند  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fa_gharaati {
             get {
@@ -815,7 +810,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|راه آنان که به آنها انعام فرمودی، نه راه کسانی که بر آنها خشم فرمودی (قوم یهود) و نه گمراهان (چون اغلب نصاری).
         ///2|1|الم (از رموز قرآن است).
         ///2|2|این کتاب که هیچ شک در آن نیست، راهنمای پرهیزگاران است.
-        ///2|3|آن کسانی که به جهان غیب ایمان آرند و نم [rest of string was truncated]&quot;;.
+        ///2|3|آن کسانی که به جهان غیب ایمان  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fa_ghomshei {
             get {
@@ -843,7 +838,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|الم [الف لام میم‌]
         ///2|2|این کتابی است که شک در آن روا نیست [که‌] راهنمای پرهیزگاران است‌
         ///2|3|همان کسانی که به غیب ایمان دارند و نماز را برپا می‌دارند و از آنچه روزیشان داده‌ایم، انفاق می‌کنند
-        ///2|4|و کسانی که به آنچ [rest of string was truncated]&quot;;.
+        ///2|4|و کسانی [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fa_khorramshahi {
             get {
@@ -860,7 +855,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|ما را به راه راست هدایت کن...
         ///1|7|راه کسانی که آنان را مشمول نعمت خود ساختی؛ نه کسانی که بر آنان غضب کرده‌ای؛ و نه گمراهان.
         ///2|1|الم (بزرگ است خداوندی که این کتاب عظیم را، از حروف ساده الفبا به وجود آورده).
-        ///2|2|آن کتاب با عظمتی است که شک در آن [rest of string was truncated]&quot;;.
+        ///2|2|آن کتاب با عظمتی است که  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fa_makarem {
             get {
@@ -879,7 +874,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|الم‌
         ///2|2|این نامه که تردیدی در آن نیست راهنمای پرهیزکاران است‌
         ///2|3|که به نادیده ایمان آوردند و برپای دارند نماز را و از آنچه بدانان داده‌ایم ببخشند
-        ///2|4|و آن کسانی که ایمان آوردند بدانچه بر تو و پیش از تو نازل شده است و به آخرت یقین د [rest of string was truncated]&quot;;.
+        ///2|4|و آن کسانی که ایمان آوردند بدانچه بر تو و پیش از تو نازل شده است و به آ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fa_moezzi {
             get {
@@ -898,7 +893,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|الف، لام، ميم.
         ///2|2|اين كتاب، هيچ شكى در آن نيست، راهنماى پرهيزگاران است.
         ///2|3|آنان كه به غيب- نهان و ناپيدا- ايمان دارند و نماز را برپا ميدارند و از آنچه روزيشان كرده‌ايم انفاق ميكنند.
-        ///2|4|و آنان ك [rest of string was truncated]&quot;;.
+        ///2| [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fa_mojtabavi {
             get {
@@ -916,7 +911,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|راه کسانی که بر (سر و سامان)شان نعمت فروریختی، نه (راه) غضب‌‌شدگان، و نه (راه) گمراهان.
         ///2|1|الم.
         ///2|2|این همان کتاب است (که) در (حقانیت) آن هیچ شکّ مستندی نیست، (و) رهنمودی است برای تقواپیشگان.
-        ///2|3|کسانی که به غیب (وحیانی) ایمان می‌آورند و  [rest of string was truncated]&quot;;.
+        ///2|3|کسانی که به غیب (وحیانی) ایمان می [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fa_sadeqi {
             get {
@@ -933,7 +928,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|ما را به راه راست هدایت فرما.
         ///1|7|راه کسانی که به آنان نعمت دادی، همانان که نه به بیراهه رفته‌اند و به خشم تو گرفتار شده‌اند و نه گم گشتگانند که راه درست نشناخته‌اند.
         ///2|1|الف. لام. میم.
-        ///2|2|این قرآن، همان کتاب [کاملی] است که در آسمانی بودنش هیچ تردیدی نیست و راهنمای تقواپیشگان است [rest of string was truncated]&quot;;.
+        ///2|2|این قرآن، همان کتاب [کاملی] است که در آسمانی بودنش هیچ تردیدی نیست و راهنمای تقواپی [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fa_safavi {
             get {
@@ -950,7 +945,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Guide-nous dans le droit chemin,
         ///1|7|le chemin de ceux que Tu as comblés de faveurs, non pas de ceux qui ont encouru Ta colère, ni des égarés.
         ///2|1|Alif, Lâm, Mim.
-        ///2|2|C&apos;est le Livre au sujet duquel il n&apos;y a aucun doute [rest of string was truncated]&quot;;.
+        ///2|2|C&apos;est le Livre au sujet duquel il n&apos;y a auc [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string fr_hamidullah {
             get {
@@ -968,7 +963,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Hanyar waɗanda Ka yi wa ni&apos;ima, ba waɗanda aka yi wa fushi ba, kuma ba ɓatattu ba.
         ///2|1|A. L̃. M̃.
         ///2|2|Wãncan ne Littãfi, bãbu shakka a cikinsa, shiriya ne ga mãsu taƙawa.
-        ///2|3|Waɗanda suke yin ĩmãni game da gaibi, kuma suna tsayar da salla, kuma dag [rest of string was truncated]&quot;;.
+        ///2|3|Waɗanda suke yin ĩmãni game da gaibi, kuma suna tsayar da salla, [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ha_gumi {
             get {
@@ -986,7 +981,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|उन लोगों के मार्ग पर जो तेरे कृपापात्र हुए, जो न प्रकोप के भागी हुए और न पथभ्रष्ट
         ///2|1|अलीफ़॰ लाम॰ मीम॰
         ///2|2|वह किताब यही हैं, जिसमें कोई सन्देह नहीं, मार्गदर्शन हैं डर रखनेवालों के लिए,
-        ///2|3|जो अनदेखे ईमान लाते हैं, नमाज़ क़ायम करते हैं और [rest of string was truncated]&quot;;.
+        ///2|3|जो अनदेखे ईमान लाते हैं, नमाज़ क़ायम कर [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string hi_farooq {
             get {
@@ -1004,7 +999,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|उन लोगों का रास्ता जिन पर तूने इनाम फ़रमाया, जो माअतूब नहीं हुए, जो भटके हुए नहीं है।
         ///2|1|अलीफ़ लाम मीम
         ///2|2|(ये) वह किताब है। जिस (के किताबे खुदा होने) में कुछ भी शक नहीं (ये) परहेज़गारों की रहनुमा है
-        ///2|3|जो ग़ैब पर ईमान लाते हैं और (पाबन्दी से) नमाज़ अदा करते हैं और जो कुछ हम [rest of string was truncated]&quot;;.
+        ///2|3|जो ग़ैब पर ईमान लाते हैं और (पाबन्दी से) नमाज़ अदा करते हैं और  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string hi_hindi {
             get {
@@ -1021,7 +1016,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Tunjukilah kami jalan yang lurus,
         ///1|7|(yaitu) Jalan orang-orang yang telah Engkau beri nikmat kepada mereka; bukan (jalan) mereka yang dimurkai dan bukan (pula jalan) mereka yang sesat.
         ///2|1|Alif laam miim.
-        ///2|2|Kitab (Al Qu [rest of string was truncated]&quot;;.
+        ///2|2|Kita [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string id_indonesian {
             get {
@@ -1031,7 +1026,7 @@ namespace QuranTranslationImageGenerator.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 1|1|(Dengan nama Allah Yang Maha Pemurah lagi Maha Penyayang)
-        ///1|2|(Segala puji bagi Allah) Lafal ayat ini merupakan kalimat berita, dimaksud sebagai ungkapan pujian kepada Allah berikut pengertian yang terkandung di dalamnya, yaitu bahwa Allah Taala adalah yang memiliki semua pujian yang diungkapkan oleh semua hamba-Nya. Atau makna yang dimaksud ialah bahwa Allah Taala itu adalah Zat yang harus mereka puji. Lafal Allah merupakan nama bagi Zat yang berhak untuk disembah. (Tuhan semesta alam) artinya Allah ad [rest of string was truncated]&quot;;.
+        ///1|2|(Segala puji bagi Allah) Lafal ayat ini merupakan kalimat berita, dimaksud sebagai ungkapan pujian kepada Allah berikut pengertian yang terkandung di dalamnya, yaitu bahwa Allah Taala adalah yang memiliki semua pujian yang diungkapkan oleh semua hamba-Nya. Atau makna yang dimaksud ialah bahwa Allah Taala itu adalah Zat yang harus mereka puji. Lafal Allah merupakan nama bagi Zat yang berhak untuk disembah. (Tuhan semesta alam) artinya Allah a [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string id_jalalayn {
             get {
@@ -1058,7 +1053,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|la via di coloro che hai colmato di grazia, non di coloro che [sono incorsi] nella [Tua] ira, né degli sviati.
         ///2|1|Alif, Lâm, Mîm.
         ///2|2|Questo è il Libro su cui non ci sono dubbi, una guida per i timorati,
-        ///2|3|coloro che credono nell&apos;invisibile, as [rest of string was truncated]&quot;;.
+        ///2|3|coloro che credono nell&apos;invis [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string it_piccardo {
             get {
@@ -1080,7 +1075,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|4|またわれがあなた（ムハンマド）に啓示したもの，またあなた以前（の預言者たち）に啓示したものを信じ，また来世を堅く信じる者たちである。
         ///2|5|これらの者は，主から導かれた者であり，また至上の幸福を成就する者である。
         ///2|6|本当に信仰を拒否する者は，あなたが警告しても，また警告しなくても同じで，（頑固に）信じようとはしないであろう。
-        ///2|7|アッラーは，かれらの心も耳をも封じられる。また目には覆 [rest of string was truncated]&quot;;.
+        ///2|7|アッラーは，かれらの心も耳を [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ja_japanese {
             get {
@@ -1102,7 +1097,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|4|그대에게 계시된 것과 그 이 전에 계시된 것과 또한 내세를 믿는 사람들의 이정표이며
         ///2|5|그들이 바로 주님의 안내를 받아 영화를 누릴 사람들이라
         ///2|6|믿음을 부정하는 사람들은 그대가 그들에게 경고하던 또는 경고하지 아니하던 믿으려 하지 아니하매
-        ///2|7|하나님께서 그들에게 벌을 내리사 그들의 마음을 봉하고 그 [rest of string was truncated]&quot;;.
+        ///2|7|하나님께서 그들에게 벌을 내리사  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ko_korean {
             get {
@@ -1115,7 +1110,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|2|‌سوپاس و ستایش هه‌ر شایسته‌ی خوایه و بۆ خوایه‌، که خاوه‌ن و په‌روه‌ردگاری هه‌موو جیهانیان و هه‌موو بوونه‌وه‌ره.
         ///1|3|به‌خشنده‌ی میهره‌بان‌، کانگای ڕه‌حمه‌ت و میهره‌بانیه (ڕه‌حمه‌تی له دنیادا هه‌موو شتێکی گرتۆته‌وه‌، به‌ڵام له قیامه‌تدا ته‌نها بۆ ئیماندارانه‌).
         ///1|4|خاوه‌ن و سه‌رداری ڕۆژی پاداشت و سزایه (پادشای ڕۆژی قیامه‌ته که دادپه‌روه‌ری ڕه‌هاو بێ سنووری تێدا به‌رپا ده‌کات).
-        ///1|5|خوایه‌، ته‌نها هه‌ر تۆ ده‌په‌ر [rest of string was truncated]&quot;;.
+        ///1|5|خوایه‌، ته‌نها هه‌ر تۆ ده‌ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ku_asan {
             get {
@@ -1132,7 +1127,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|ഞങ്ങളെ നീ നേര്‍മാര്‍ഗത്തില്‍ ചേര്‍ക്കേണമേ.
         ///1|7|നീ അനുഗ്രഹിച്ചവരുടെ മാര്‍ഗത്തില്‍ . കോപത്തിന്ന് ഇരയായവരുടെ മാര്‍ഗത്തിലല്ല. പിഴച്ചുപോയവരുടെ മാര്‍ഗത്തിലുമല്ല.
         ///2|1|അലിഫ് ലാം മീം.
-        ///2|2|ഇതാകുന്നു ഗ്രന്ഥം. അതില്‍ സംശയമേയില്ല. സൂക്ഷ്മത പാലിക്കുന്നവര്‍ക്ക [rest of string was truncated]&quot;;.
+        ///2|2|ഇതാകുന്നു ഗ്രന്ഥം. അതില്‍ സംശയമേയില്ല. സൂക്ഷ്മത പാലിക്കുന് [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ml_abdulhameed {
             get {
@@ -1150,7 +1145,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|നീ അനുഗ്രഹിച്ചവരുടെ വഴിയില്‍. നിന്റെ കോപത്തിന്നിരയായവരുടെയും പിഴച്ചവരുടെയും വഴിയിലല്ല.
         ///2|1|അലിഫ് - ലാം - മീം. ‎
         ///2|2|ഇതാണ് വേദപുസ്തകം. ഇതില്‍ സംശയമില്ല. ‎ഭക്തന്മാര്‍ക്കിതു വഴികാട്ടി. ‎
-        ///2|3|അഭൌതിക സത്യങ്ങളില്‍ വിശ [rest of string was truncated]&quot;;.
+        ///2|3|അഭൌതിക സത്യങ്ങ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ml_karakunnu {
             get {
@@ -1165,7 +1160,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|4|Yang Menguasai pemerintahan hari Pembalasan (hari Akhirat).
         ///1|5|Engkaulah sahaja (Ya Allah) Yang Kami sembah, dan kepada Engkaulah sahaja kami memohon pertolongan.
         ///1|6|Tunjukilah kami jalan yang lurus.
-        ///1|7|Iaitu jalan orang-orang yang Engkau telah kurniakan nikmat kepada mereka, bukan (jalan) orang-orang  [rest of string was truncated]&quot;;.
+        ///1|7|Iaitu jalan orang-orang yang Engkau telah kurniakan nikmat kepada mereka, bukan (jalan) orang- [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ms_basmeih {
             get {
@@ -1182,7 +1177,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Voer ons langs den rechten weg.
         ///1|7|Langs den weg dergenen, die zich in Uwe weldaden verheugen. Niet langs den weg dergenen, die Uwen toorn hebben opgewekt, en niet op dien der dwalenden.
         ///2|1|A. L. M.
-        ///2|2|Dit is het boek, waaromtrent geen twijfel bestaat; de richtsnoer van de godvreezenden, [rest of string was truncated]&quot;;.
+        ///2|2|Dit is het boek, waaromtrent geen twijfel bestaat; de richtsnoer van de godvre [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string nl_keyzer {
             get {
@@ -1200,7 +1195,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|de weg van hen aan wie U genade geschonken hebt, op wie geen toorn rust en die niet dwalen.
         ///2|1|A[lif] Lfaam] M[iem].
         ///2|2|Dat is het boek, waaraan geen twijfel is, een leidraad voor de godvrezenden,
-        ///2|3|die geloven in het verborgene, de salaat verrichten en bijdragen [rest of string was truncated]&quot;;.
+        ///2|3|die geloven in het verborgene, de salaat verrichten en  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string nl_leemhuis {
             get {
@@ -1217,8 +1212,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Leid ons op het rechte Pad.
         ///1|7|Het Pad van degenen aan wie U gunsten hebt geschonken, niet van degenen op wie de toorn rust en niet dat van de dwalenden.
         ///2|1|Alif Lâm Mîm.
-        ///2|2|Dit is het Boek (de Koran) waaraan geen twijfel is, een leidraad voor de Moettaqôen.
-        ///2| [rest of string was truncated]&quot;;.
+        ///2|2|Dit is het Boek (de Koran) waaraan geen twijfel is, een leidraad voor de Moetta [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string nl_siregar {
             get {
@@ -1236,7 +1230,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Deres vei, som Du har beredt glede, ikke deres, som har vakt Din vrede, eller deres, som har valgt den falske vei.
         ///2|1|Alif Lam Mim
         ///2|2|Dette er skriften, tvil har ingen plass. Den gir ledelse for de gudfryktige,
-        ///2|3|for dem som tror på det skjulte, forretter bønnen, og  [rest of string was truncated]&quot;;.
+        ///2|3|for dem som tror på det skjulte, forretter bø [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string no_berg {
             get {
@@ -1254,7 +1248,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Drogą tych, których obdarzyłeś dobrodziejstwami; nie zaś tych, na których jesteś zagniewany, i nie tych, którzy błądzą.
         ///2|1|Alif. Lam. Mim.
         ///2|2|To jest Księga - nie ma, co do tego żadnej wątpliwości - droga prosta dla bogobojnych;
-        ///2|3|Dla tych, którzy wierzą w to, co skryte, którzy odprawiają modlitw [rest of string was truncated]&quot;;.
+        ///2|3|Dla tych, którzy wierzą w to, co skryte, którzy odprawiaj [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string pl_bielawskiego {
             get {
@@ -1271,8 +1265,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|ته مونږ ته سَمَه (نېغه) لاره وښَیَه
         ///1|7|د هغو خلقو لاره چې تا پر هغوى باندې انعام كړى دى؛ چې نه پر هغوى باندې غضب شوى او نه ګمراهان دي
         ///2|1|الف، لام، ميم
-        ///2|2|دا (عظیم) كتاب دى، په ده كې هېڅ شك نشته، د پرهېزګارانو لپاره هدایت دى
-        ///2|3|هغه [rest of string was truncated]&quot;;.
+        ///2|2|دا (عظیم) كتاب دى، په ده كې هېڅ شك نشته، د پرهېزګارانو لپاره هدایت دى [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ps_abdulwali {
             get {
@@ -1291,7 +1284,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|Alef, Lam, Mim.
         ///2|2|Eis o livro que é indubitavelmente a orientação dos tementes a Deus;
         ///2|3|Que crêem no incognoscível, observam a oração e gastam daquilo com que os agraciamos;
-        ///2|4|Que crêem no qu [rest of string was truncated]&quot;;.
+        ///2|4|Que c [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string pt_elhayek {
             get {
@@ -1314,6 +1307,65 @@ namespace QuranTranslationImageGenerator.Properties {
         internal static string quran_simple {
             get {
                 return ResourceManager.GetString("quran-simple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1|1|بسم الله الرحمن الرحيم
+        ///1|2|الحمد لله رب العالمين
+        ///1|3|الرحمن الرحيم
+        ///1|4|مالك يوم الدين
+        ///1|5|إياك نعبد وإياك نستعين
+        ///1|6|اهدنا الصراط المستقيم
+        ///1|7|صراط الذين أنعمت عليهم غير المغضوب عليهم ولا الضالين
+        ///2|1|بسم الله الرحمن الرحيم الم
+        ///2|2|ذلك الكتاب لا ريب ۛ فيه ۛ هدى للمتقين
+        ///2|3|الذين يؤمنون بالغيب ويقيمون الصلاة ومما رزقناهم ينفقون
+        ///2|4|والذين يؤمنون بما أنزل إليك وما أنزل من قبلك وبالآخرة هم يوقنون
+        ///2|5|أولئك على هدى من ربهم ۖ وأولئك هم المفلحون
+        ///2|6|إن الذين كفروا سواء عليهم أأنذرتهم أم لم تنذرهم لا يؤمنون
+        ///2|7 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string quran_simple_clean {
+            get {
+                return ResourceManager.GetString("quran-simple-clean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1|1|بِسمِ اللَّهِ الرَّحمـٰنِ الرَّحيمِ
+        ///1|2|الحَمدُ لِلَّهِ رَبِّ العالَمينَ
+        ///1|3|الرَّحمـٰنِ الرَّحيمِ
+        ///1|4|مالِكِ يَومِ الدّينِ
+        ///1|5|إِيّاكَ نَعبُدُ وَإِيّاكَ نَستَعينُ
+        ///1|6|اهدِنَا الصِّراطَ المُستَقيمَ
+        ///1|7|صِراطَ الَّذينَ أَنعَمتَ عَلَيهِم غَيرِ المَغضوبِ عَلَيهِم وَلَا الضّالّينَ
+        ///2|1|بِسمِ اللَّهِ الرَّحمـٰنِ الرَّحيمِ الم
+        ///2|2|ذٰلِكَ الكِتابُ لا رَيبَ ۛ فيهِ ۛ هُدًى لِلمُتَّقينَ
+        ///2|3|الَّذينَ يُؤمِنونَ بِالغَيبِ وَيُقيمونَ الصَّلاةَ وَمِمّا رَزَقناهُم يُنفِقونَ
+        ///2|4|وَالَّذينَ يُؤمِنونَ بِما أُنزِلَ إِلَيكَ  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string quran_simple_min {
+            get {
+                return ResourceManager.GetString("quran-simple-min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1|1|بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ
+        ///1|2|الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+        ///1|3|الرَّحْمَـٰنِ الرَّحِيمِ
+        ///1|4|مَالِكِ يَوْمِ الدِّينِ
+        ///1|5|إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ
+        ///1|6|اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ
+        ///1|7|صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ
+        ///2|1|بِسْمِ اللَّهِ الرَّحْمَـٰنِ الرَّحِيمِ الم
+        ///2|2|ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِلْمُتَّقِينَ
+        ///2|3|الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْن [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string quran_simple_plain {
+            get {
+                return ResourceManager.GetString("quran-simple-plain", resourceCulture);
             }
         }
         
@@ -1382,7 +1434,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|calea celor binecuvântaţi de Tine, şi nu a celor care Te-au supărat, şi nici a celor rătăciţi.
         ///2|1|Alif. Lam. Mim.
         ///2|2|Aceasta este cartea cea mai presus de orice îndoială, călăuzire celor temători,
-        ///2|3|celor care cred în Taină, celor care îşi săvârşesc rugăciunea, celor care d [rest of string was truncated]&quot;;.
+        ///2|3|celor care cred în Taină, celor care îşi săvârşesc rugăciunea, cel [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ro_grigore {
             get {
@@ -1397,7 +1449,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|4|(Единственному) Царю [Правителю] Дня Воздаяния!
         ///1|5|(Только) Тебе мы служим [посвящаем свое поклонение] и (только) к Тебе обращаемся за помощью (в том, что можешь сделать только Ты)!
         ///1|6|Веди (Ты) нас Прямым Путем,
-        ///1|7|Путем тех, которых Ты благом одарил, (а) не (путем) тех, к [rest of string was truncated]&quot;;.
+        ///1|7|Путем тех, которых Ты благом одарил, (а) не (путем)  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ru_abuadel {
             get {
@@ -1416,7 +1468,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|Алм.
         ///2|2|Эта книга - нет сомнения в том - руководство для богобоязненных,
         ///2|3|тех, которые веруют в тайное и выстаивают молитву и из того, чем Мы их наделили, расходуют,
-        ///2|4|и тех, которые веруют в  [rest of string was truncated]&quot;;.
+        ///2|4|и тех, которые [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ru_krachkovsky {
             get {
@@ -1434,7 +1486,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|путем тех, кого Ты облагодетельствовал, не тех, на кого пал гнев, и не заблудших.
         ///2|1|Алиф. Лам. Мим.
         ///2|2|Это Писание, в котором нет сомнения, является верным руководством для богобоязненных,
-        ///2|3|которые веруют в сокровенное, совершают намаз и расходуют из того, чем Мы их наделил [rest of string was truncated]&quot;;.
+        ///2|3|которые веруют в сокровенное, совершают намаз и расходуют из того, чем Мы и [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ru_kuliev {
             get {
@@ -1470,7 +1522,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|путем тех, которых Ты облагодетельствовал, не тех, что [подпали под Твой] гнев, и не [путем] заблудших.
         ///2|1|Алиф, лам, мим.
         ///2|2|Это Писание, в [божественном ниспослании] которого нет сомнения, - руководство для богобоязненных,
-        ///2|3|тех, которые веруют в сокровенное, всегда вершат м [rest of string was truncated]&quot;;.
+        ///2|3|тех, которые веруют в сокровенное, всегда [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ru_osmanov {
             get {
@@ -1488,7 +1540,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Стезею тех, Кто милостью Твоею одарен, А не стезею тех, на ком Твой гнев, И не стезей заблудших.
         ///2|1|Алеф - Лям - Мим.
         ///2|2|Книга эта, несомненно, наставление для тех, Кто, (гнева) Господа страшась, Смирен и праведен (в своих деяньях),
-        ///2|3|Кто верует в Незримое, [rest of string was truncated]&quot;;.
+        ///2|3|Кто верует в  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ru_porokhova {
             get {
@@ -1506,7 +1558,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Путём тех, которых Ты облагодетельствовал, не тех, которые под гневом, ни тех которые блуждают&quot;.
         ///2|1|(Аз, люди, мыслете.)
         ///2|2|Это писание - нет сомнения в том - есть руководство благочестивым,
-        ///2|3|Тем, которые веруют в сокровенное, совершают молитвы, делают пожертвования из того, чем [rest of string was truncated]&quot;;.
+        ///2|3|Тем, которые веруют в сокровенное, совершают молитвы, делают пожертвования из  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ru_sablukov {
             get {
@@ -1524,7 +1576,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|جا انھن جي واٽ آھي جن تي فضل ڪيو اٿئي، نه انھن جي (واٽ) جن تي (تنھنجو) ڏمر ٿيل آھي ۽ نه گمراھن جي (واٽ).
         ///2|1|الٓمٓ
         ///2|2|ھيءُ ڪتاب، جنھن ۾ ڪو شڪ ڪونھي، اُنھن خدا ترسن کي سِڌو رستو ڏيکاريندڙ آھي،
-        ///2|3|جيڪي اڻ ڏٺي تي ايمان آڻيندا آھن ۽ نماز پڙھندا آھن ۽ کين جيڪي رزق ڏنوسين تنھن  [rest of string was truncated]&quot;;.
+        ///2|3|جيڪي اڻ ڏٺي تي ايمان آڻيندا آھن ۽ نماز پڙھندا آھن ۽ کين جيڪي رزق ڏنو [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string sd_amroti {
             get {
@@ -1540,7 +1592,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|5|adiga unbaan ku caabudaynaa, adiga unbaana kaa kaalmo waydiisanaynaa (Eebow).
         ///1|6|ee nagu hanuuni jidka toosan (Xaqa).
         ///1|7|Jidka kuwii aad unicmaysay eedan u cadhoonin dhuminna.
-        ///2|1|Aad baa Macnaheeda looga hadlay, waxaana la sheegay inay magaca suuradda tahay, ama a [rest of string was truncated]&quot;;.
+        ///2|1|Aad baa Macnaheeda looga hadlay, waxaana la sheegay inay magaca suuradda tahay [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string so_abduh {
             get {
@@ -1558,7 +1610,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Në rrugën e atyre ndaj të cilëve ke bekimin, e jo në të atyre që je i hidhëruar, dhe që kanë humbur!
         ///2|1|Elif, Lam, Mim.
         ///2|2|Ky është libri në të cilin nuk ka dyshim, udhëzues për ata që frikësohen (nga All-llahu).
-        ///2|3|Të cilët e besojnë të fsh [rest of string was truncated]&quot;;.
+        ///2|3|Të cilët e besoj [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string sq_ahmeti {
             get {
@@ -1576,7 +1628,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Në rrugën e atyre, të cilët i bekove, jo të atyre që kanë merituar hidhërimin, e as të atyre që kanë humbur!
         ///2|1|Alif Lam Mim.
         ///2|2|Ky libër, në të cilin nuk ka dyshim aspak, është udhëzim për të devotshmit,
-        ///2|3|Të cilët bes [rest of string was truncated]&quot;;.
+        ///2|3|Të  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string sq_mehdiu {
             get {
@@ -1593,7 +1645,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Udhëzona në rrugë të drejtë.
         ///1|7|Në rrugën e atyre që u ke dhuruar mirësi. E jo në (rrugën) e atyre që kanë shkaktuar pezmin (Tënd), as në rrugën e atyre që janë të humbur!
         ///2|1|Elif, Lam, Mim.
-        ///2|2|Ky libër, është i padyshimtë, udhëzues për të g [rest of string was truncated]&quot;;.
+        ///2|2|Ky libër, është i padyshimtë, udhëzues  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string sq_nahi {
             get {
@@ -1610,7 +1662,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Led oss på den raka vägen -
         ///1|7|den väg de vandrat som Du har välsignat med Dina gåvor; inte de som har drabbats av [Din] vrede och inte de som har gått vilse!
         ///2|1|Alif lam meem.
-        ///2|2|DENNA Skrift - här råder inget tvivel - är en vägledning för dem som fruktar Gud och ständigt har Honom [rest of string was truncated]&quot;;.
+        ///2|2|DENNA Skrift - här råder inget tvivel - är en vägledning för dem som fruktar Gud och ständigt h [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string sv_bernstrom {
             get {
@@ -1628,7 +1680,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Njia ya ulio waneemesha, siyo ya walio kasirikiwa, wala walio potea.
         ///2|1|Alif Lam Mim.
         ///2|2|Hiki ni Kitabu kisichokuwa na shaka ndani yake; ni uwongofu kwa wachamungu,
-        ///2|3|Ambao huyaamini ya ghaibu na hushika Sala, [rest of string was truncated]&quot;;.
+        ///2|3|Ambao huyaamini ya ghaibu na hush [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string sw_barwani {
             get {
@@ -1643,7 +1695,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|4|(அவனே நியாயத்) தீர்ப்பு நாளின் அதிபதி(யும் ஆவான்).
         ///1|5|(இறைவா!) உன்னையே நாங்கள் வணங்குகிறோம், உன்னிடமே நாங்கள் உதவியும் தேடுகிறோம்.
         ///1|6|நீ எங்களை நேர் வழியில் நடத்துவாயாக!
-        ///1|7|(அது) நீ எவர்களுக்கு அருள் புரிந்தாயோ அவ்வழி, (அது) உன் கோபத்துக்கு ஆளானோர் வழியுமல் [rest of string was truncated]&quot;;.
+        ///1|7|(அது) நீ எவர்களுக்கு அருள் புரிந்தாயோ அவ்வழி, (அது) உன் கோபத்துக்கு ஆளானோர் வழ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ta_tamil {
             get {
@@ -1661,7 +1713,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|роҳи касоне, ки онҳоро неъмат додаи, на хашмгирифтагонӣ бар онҳо ва на гумроҳон.
         ///2|1|Алиф. Лом. Мим
         ///2|2|Ин аст ҳамон китобе, ки дар он ҳеҷ шакке нест. Парҳезгоронро роҳнамост:
-        ///2|3|«онон, ки ба ғайб имон меоваранд ва намоз мегузоранд ва аз он чи рӯзияшон додаем, инфоқ (харҷ) ме [rest of string was truncated]&quot;;.
+        ///2|3|«онон, ки ба ғайб имон меоваранд ва намоз мегузоранд ва аз он чи рӯзияшон додаем, инфоқ  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tg_ayati {
             get {
@@ -1678,7 +1730,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|ขอพระองค์ทรงแนะนำพวกข้าพระองค์ซึ่งทางอันเที่ยงตรง
         ///1|7|(คือ) ทางของบรรดาผู้ที่พระองค์ได้ทรงโปรดปราณแก่พวกเขา มิใช่ในทางของพวกที่ถูกกริ้ว และมิใช่ทางของพวกที่หลงผิด
         ///2|1|อะลิฟ ลาม มีม
-        ///2|2|คัมภีร์นี้ ไม [rest of string was truncated]&quot;;.
+        ///2|2|คัมภี [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string th_thai {
             get {
@@ -1696,7 +1748,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|-ni&apos;met verdiğin kimselerin yoluna. Kendilerine gazabedilmiş olanların ve sapmışların yoluna değil. (ya Rabbi)!
         ///2|1|Elif lam mim.
         ///2|2|İşte o Kitap; kendisinde hiç şüphe yoktur; müttakiler için yol göstericidir.
-        ///2|3|Onlar ki gaybde(gizlide, [rest of string was truncated]&quot;;.
+        ///2|3|Onlar ki gaybde [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tr_ates {
             get {
@@ -1714,7 +1766,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Kendilerine nimet verdiklerinin yoluna gazaba uğrayanların ve sapmışlarınkine değil.
         ///2|1|Elif, Lam, Mim,
         ///2|2|Bu, kendisinde şüphe olmayan, muttakiler için yol gösterici olan bir Kitap&apos;tır.
-        ///2|3|Onlar, gaybe inanırlar, namazı dosdoğru kılarlar ve kendilerine rızık olarak verdiklerimizden infak [rest of string was truncated]&quot;;.
+        ///2|3|Onlar, gaybe inanırlar, namazı dosdoğru kılarlar ve kendilerine rızık olarak verdiklerimiz [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tr_bulac {
             get {
@@ -1732,7 +1784,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Nimete erdirdiğin kimselerin yoluna; gazaba uğrayanların, ya da sapıtanların yoluna değil.
         ///2|1|Elif, Lam, Mim.
         ///2|2|Bu, doğruluğu şüphe götürmeyen ve Allah&apos;a karşı gelmekten sakınanlara yol gösteren Kitap&apos;dır.
-        ///2|3|Onlar, gaybe inanırlar, namazı kılarlar, kendilerine verdiğimiz r [rest of string was truncated]&quot;;.
+        ///2|3|Onlar, gaybe inanırlar, namazı kılarlar, kendilerine ver [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tr_diyanet {
             get {
@@ -1751,7 +1803,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|Elif lam mim.
         ///2|2|Bu, bir kitaptır ki onda şüphe yok. Takva sahiplerine yol göstericidir.
         ///2|3|Onlar, gaybe inanırlar, namaz kılarlar, rızıklandırdığımız şeylerin bir kısmını yoksullara harcarlar.
-        ///2|4|Onlar, sana indi [rest of string was truncated]&quot;;.
+        ///2|4|Onlar, [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tr_golpinarli {
             get {
@@ -1769,7 +1821,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Kendilerine nimet verdiklerinin, üzerlerine gazap dökülmemişlerin, karanlığa/şaşkınlığa saplanmamışların yoluna...
         ///2|1|Elif, Lâm, Mîm.
         ///2|2|İşte sana o Kitap! Kuşku/ çelişme/ tutarsızlık yok onda. Bir kılavuzdur o, sakınanlar için.
-        ///2|3|Ki onlar, gayba inananlar, [rest of string was truncated]&quot;;.
+        ///2|3|Ki onlar, gayba i [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tr_ozturk {
             get {
@@ -1789,7 +1841,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|2|ẕâlike-lkitâbü lâ raybe fîh. hüdel lilmütteḳîn.
         ///2|3|elleẕîne yü&apos;minûne bilgaybi veyüḳîmûne-ṣṣalâte vemimmâ razaḳnâhüm yünfiḳûn.
         ///2|4|velleẕîne yü&apos;minûne bimâ ünzile ileyke vemâ ünzile min ḳablik. vebil&apos;âḫirati hüm yûḳinûn.
-        ///2|5|ülâike ` [rest of string was truncated]&quot;;.
+        ///2 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tr_transliteration {
             get {
@@ -1806,7 +1858,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Bize doğru yolu göster.
         ///1|7|Kendilerine lütuf ve ikramda bulunduğun kimselerin yolunu; gazaba uğramışların ve sapmışların yolunu değil!
         ///2|1|Elif. Lam. Mim.
-        ///2|2|O kitap (Kur&apos;an); onda asla şüphe yoktur. O, müttakiler (sakınanlar ve arınmak isteyenler) için bir yol göster [rest of string was truncated]&quot;;.
+        ///2|2|O kitap (Kur&apos;an); onda asla şüphe yoktur. O, müttakiler (sakınanlar ve arınmak isteyenler) için bir yo [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tr_vakfi {
             get {
@@ -1824,7 +1876,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|O kendilerine nimet verdiğin mutlu kimselerin yoluna; o gazaba uğramışların ve o sapmışların yoluna değil.
         ///2|1|(Elif, Lâm, Mîm.)
         ///2|2|İşte o kitap, bunda şüphe yok, müttakiler (kötülükten korunacaklar) için hidayettir.
-        ///2|3|Onlar ki gaybe iman edip namaz [rest of string was truncated]&quot;;.
+        ///2|3|Onlar ki gaybe iman e [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tr_yazir {
             get {
@@ -1841,7 +1893,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|Bizi doğru yola, Sana doğru varan yola ilet.
         ///1|7|Nimet ve lütfuna nail ettiklerinin yoluna ilet. Gazaba uğrayanların ve sapkınlarınkine değil. [4,69]
         ///2|1|Elif, Lâm, Mîm.
-        ///2|2|İşte Kitap! Şüphe yoktur onda. Rehber [rest of string was truncated]&quot;;.
+        ///2|2|İşte Kitap! Şüphe yoktur onda [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tr_yildirim {
             get {
@@ -1859,7 +1911,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|Gazaba uğrayanların ve sapmışların değil; kendilerine iyilikte bulunduğun kimselerin yoluna...
         ///2|1|A. L. M.
         ///2|2|Bu, kuşkusuz, erdemliler için yol gösterici bir kitaptır.
-        ///2|3|Onlar ki duyularıyla algılayamadıkları gerçeklere de inanırlar, namazı (salat) gözetirler, kendilerine verdiğimiz rı [rest of string was truncated]&quot;;.
+        ///2|3|Onlar ki duyularıyla algılayamadıkları gerçeklere de inanırlar, namazı (salat) gözetirler, kendilerine verd [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tr_yuksel {
             get {
@@ -1873,7 +1925,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|3|Аллаһу тәгалә бу дөньяда барча кешеләргә мәрхәмәтле, ягъни мөэминнәргә дә, көферләргә дә нигъмәтләрен бирә, әмма ахирәттә мөэмин бәндәләренә генә бирәчәк.
         ///1|4|Аллаһу тәгалә, гаделлек белән хөкем итүче, ахирәт көненең патшасыдыр.
         ///1|5|Ий тәрбиячебез Аллаһ! Без сиңа гына гыйбадәт кылабыз һәм һәр эшебездә синнән генә ярдәм сорыйбыз.
-        ///1|6|Ий тәрбиячебез Аллаһ! Безләрне туры  [rest of string was truncated]&quot;;.
+        ///1|6|Ий тәрбиячебез Аллаһ! Безләрне  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tt_nugman {
             get {
@@ -1891,7 +1943,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|غەزىپىڭگە يولۇققانلارنىڭ ۋە ئازغانلارنىڭ يولىغا ئەمەس، سەن ئىنئام قىلغانلارنىڭ يولىغا (باشلىغىن)
         ///2|1|ئەلىف، لام، مىم
         ///2|2|بۇ كىتابتا (يەنى قۇرئاندا) ھېچ شەك يوق، (ئۇ) تەقۋادارلارغا يېتەكچىدۇر
-        ///2|3|ئۇلار غەيبكە ئىشىنىدۇ، ن [rest of string was truncated]&quot;;.
+        ///2|3|ئۇلار غەيبكە ئى [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ug_saleh {
             get {
@@ -1909,7 +1961,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|ان لوگوں کا راستہ جن پر تو نے انعام کیا نہ جن پر تیرا غضب نازل ہوا اور نہ وہ گمراہ ہوئے
         ///2|1|المۤ
         ///2|2|یہ وہ کتاب ہے جس میں کوئی بھی شک نہیں پرہیز گارو ں کے لیے ہدایت ہے
-        ///2|3|جو بن دیکھے ایمان لاتے ہیں اور نماز قائم کرتے ہیں ا ور جو کچھ ہم نے انہیں دیا ہ [rest of string was truncated]&quot;;.
+        ///2|3|جو بن دیکھے ایمان لاتے ہیں اور نماز قائم کرتے ہیں ا ور جو کچھ ہم نے ان [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ur_ahmedali {
             get {
@@ -1927,7 +1979,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|ان لوگوں کے رستے جن پر تو اپنا فضل وکرم کرتا رہا نہ ان کے جن پر غصے ہوتا رہا اور نہ گمراہوں کے
         ///2|1|الم
         ///2|2|یہ کتاب (قرآن مجید) اس میں کچھ شک نہیں (کہ کلامِ خدا ہے۔ خدا سے) ڈرنے والوں کی رہنما ہے
-        ///2|3|جو غیب پر ایمان لاتے اور  [rest of string was truncated]&quot;;.
+        ///2|3|جو غیب پر ایمان  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ur_jalandhry {
             get {
@@ -1944,7 +1996,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|ہمیں سیدھے راستہ کی ہدایت فرماتا رہ
         ///1|7|جو اُن لوگوں کا راستہ ہے جن پر تو نے نعمتیں نازل کی ہیں ان کا راستہ نہیں جن پر غضب نازل ہوا ہے یا جو بہکے ہوئے ہیں
         ///2|1|الۤمۤ
-        ///2|2|یہ وہ کتاب ہے جس میں کسی طرح کے شک و شبہ کی گنجائش نہیں ہے. یہ صاحبانِ تقویٰ اور پرہیزگار لوگوں کے لئ [rest of string was truncated]&quot;;.
+        ///2|2|یہ وہ کتاب ہے جس میں کسی طرح کے شک و شبہ کی گنجائش نہیں ہے. یہ صاحبانِ تقویٰ اور پرہیزگار لوگ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ur_jawadi {
             get {
@@ -1959,7 +2011,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|4|بدلے کے دن (یعنی قیامت) کا مالک ہے
         ///1|5|ہم صرف تیری ہی عبادت کرتے ہیں اور صرف تجھ ہی سے مدد چاہتے ہیں
         ///1|6|ہمیں سیدھی (اور سچی) راه دکھا
-        ///1|7|ان لوگوں کی راه جن پر تو نے انعام کیا ان کی نہیں جن پر غضب کیا گیا (یعنی وه لوگ جنہوں نے حق کو پہچانا، مگر اس پر عمل پیرا نہیں ہوئے) اور نہ گمراہوں کی (یعنی وه لوگ جو جہالت کے سبب راه حق سے برگشتہ ہ [rest of string was truncated]&quot;;.
+        ///1|7|ان لوگوں کی راه جن پر تو نے انعام کیا ان کی نہیں جن پر غضب کیا گیا (یعنی وه لوگ جنہوں نے حق کو پہچانا، مگر اس پر عمل پیرا نہیں ہوئے) اور نہ گمراہوں کی (یعنی وه لوگ جو جہالت کے سبب راه حق سے بر [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ur_junagarhi {
             get {
@@ -1978,7 +2030,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|1|الم
         ///2|2|وہ بلند رتبہ کتاب (قرآن) کوئی شک کی جگہ نہیں، اس میں ہدایت ہے ڈر والوں کو
         ///2|3|وہ جو بے دیکھے ایمان لائیں اور نماز قائم رکھیں اور ہماری دی ہوئی روزی میں سے ہماری میں اٹھائیں-
-        ///2|4|اور وہ کہ ایمان لائیں اس [rest of string was truncated]&quot;;.
+        ///2|4|اور وہ کہ ایما [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ur_kanzuliman {
             get {
@@ -1996,8 +2048,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|7|اُن لوگوں کا راستہ جن پر تو نے انعام فرمایا، جو معتوب نہیں ہوئے، جو بھٹکے ہوئے نہیں ہیں
         ///2|1|الف لام میم
         ///2|2|یہ اللہ کی کتاب ہے، اس میں کوئی شک نہیں ہدایت ہے اُن پرہیز گار لوگوں کے لیے
-        ///2|3|جو غیب پر ایمان لاتے ہیں، نماز قائم کرتے ہیں، جو رزق ہم نے اُن کو دیا ہے، اُس میں سے خرچ کرتے ہیں
-        ///2|4| [rest of string was truncated]&quot;;.
+        ///2|3|جو غیب پر ایمان لاتے ہیں، نماز قائم کرتے ہیں، جو رزق ہم نے اُن کو دیا ہے، اُس میں سے خرچ کرتے [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ur_maududi {
             get {
@@ -2013,7 +2064,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|5|(اے اللہ!) ہم تیری ہی عبادت کرتے ہیں اور تجھ ہی سے مدد مانگتے ہیں۔
         ///1|6|ہمیں سیدھے راستے کی (اور اس پر چلنے کی) ہدایت کرتا رہ۔
         ///1|7|راستہ ان لوگوں کا جن پر تو نے انعام و احسان کیا نہ ان کا (راستہ) جن پر تیرا قہر و غضب نازل ہوا۔ اور نہ ان کا جو گمراہ ہیں۔
-        ///2|1|الف۔ لام [rest of string was truncated]&quot;;.
+        ///2|1|ا [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ur_najafi {
             get {
@@ -2030,7 +2081,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///1|6|ہمیں سیدھا راستہ دکھا
         ///1|7|ان لوگوں کا راستہ جن پر تو نے انعام فرمایا ان لوگوں کا نہیں جن پر غضب کیا گیا ہے اور نہ (ہی) گمراہوں کا
         ///2|1|الف لام میم (حقیقی معنی اﷲ اور رسول صلی اللہ علیہ وآلہ وسلم ہی بہتر جانتے ہیں)
-        ///2|2|(یہ) وہ عظیم کتاب [rest of string was truncated]&quot;;.
+        ///2|2|(یہ) وہ ع [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ur_qadri {
             get {
@@ -2040,7 +2091,7 @@ namespace QuranTranslationImageGenerator.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to 1|1|Меҳрибон ва раҳмли Аллоҳнинг номи билан бошлайман. (Аллоҳ таоло ўз китобини &quot;бисмиллаҳ&quot; билан бошлагани мусулмонларга ҳам ўрнак, улар ҳам доим ўз сўзларини ва ишларини &quot;бисмиллаҳ&quot; билан бошламоқлари лозим. Пайғамбар алайҳиссалом ҳадисларидан бирида: &quot;Эътиборли ҳар бир иш &quot;бисмиллаҳ&quot; билан бошланмас экан, унинг охири кесикдир&quot;, деганлар. Яъни, баракаси бўлмайди, охирига етмайди.)
-        ///1|2|Барча мақтов, шукрлар оламларнинг тарбиячиси Аллоҳга бўлсин. (Оламларни яратгани учун ҳам, уларнинг тарбиячиси бўлгани учу [rest of string was truncated]&quot;;.
+        ///1|2|Барча мақтов, шукрлар оламларнинг тарбиячиси Аллоҳга бўлсин. (Оламларни яратгани учун ҳам, уларнинг тарбиячиси бўлгани уч [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string uz_sodik {
             get {
@@ -2068,7 +2119,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|10|他们的心里有病，故真主增加他们的心病；他们将为说谎而遭受重大的刑罚。
         ///2|11|有人对他们说：你们不要在地方上作恶。他们就说：我们只是调解的人。
         ///2|12|真的，他们确是作恶者，但他们不觉悟。
-        ///2|13|有人对他们说：你们应当象众人那 [rest of string was truncated]&quot;;.
+        ///2 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string zh_jian {
             get {
@@ -2095,8 +2146,7 @@ namespace QuranTranslationImageGenerator.Properties {
         ///2|9|他們想欺瞞真主和信士，其實，他們只是自欺，卻不覺悟。
         ///2|10|他們的心裡有病，故真主增加他們的心病；他們將為說謊而遭受重大的刑罰。
         ///2|11|有人對他們說：「你們不要在地方上作惡。」他們就說：「我們只是調解的人。」
-        ///2|12|真的，他們確是作惡者，但他們不覺悟。
-        ///2|13|有人對他們說： [rest of string was truncated]&quot;;.
+        ///2|12|真的，他們確是作惡者，但他 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string zh_majian {
             get {

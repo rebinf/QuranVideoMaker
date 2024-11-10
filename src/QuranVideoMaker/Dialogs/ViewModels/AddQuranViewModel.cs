@@ -218,7 +218,7 @@ namespace QuranVideoMaker
 
             if (IncludeBismillah && SelectedChapter.Number != 1)
             {
-                var bismillah = Quran.UthmaniScript.First();
+                var bismillah = Quran.QuranScript.First();
 
                 bismillah.ChapterNumber = SelectedChapter.Number;
                 bismillah.VerseNumber = 0;
@@ -235,13 +235,13 @@ namespace QuranVideoMaker
                 }
                 else
                 {
-                    verses = Quran.UthmaniScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber == FromVerse).ToList();
+                    verses = Quran.QuranScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber == FromVerse).ToList();
                     itemLength = TimeCode.FromSeconds(30, Project.FPS).TotalFrames;
                 }
             }
             else
             {
-                verses.AddRange(Quran.UthmaniScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber >= FromVerse && x.VerseNumber <= ToVerse));
+                verses.AddRange(Quran.QuranScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber >= FromVerse && x.VerseNumber <= ToVerse));
 
                 if (audioTrack.Items.Count > 0)
                 {

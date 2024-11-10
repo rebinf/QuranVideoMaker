@@ -11,6 +11,7 @@
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:customcontrols="clr-namespace:QuranVideoMaker.CustomControls"
         xmlns:qtg="clr-namespace:QuranTranslationImageGenerator;assembly=QuranTranslationImageGenerator"
+        xmlns:converters="clr-namespace:QuranVideoMaker.Converters"
         mc:Ignorable="d"
         Title="New Project" MinHeight="300" Width="400" SizeToContent="Height">
     <Grid Margin="5">
@@ -93,6 +94,10 @@
 
                                 <customcontrols:LayoutItem Label="Show Arabic Script">
                                     <CheckBox IsChecked="{Binding ShowArabicScript, UpdateSourceTrigger=PropertyChanged}" />
+                                </customcontrols:LayoutItem>
+
+                                <customcontrols:LayoutItem Label="Script Type">
+                                    <ComboBox ItemsSource="{Binding ScriptType, Converter={converters:EnumToCollectionConverter}}" SelectedItem="{Binding ScriptType}" />
                                 </customcontrols:LayoutItem>
 
                                 <customcontrols:LayoutItem Label="Verse Transitions">

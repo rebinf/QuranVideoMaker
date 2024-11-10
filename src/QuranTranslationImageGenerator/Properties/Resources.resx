@@ -337,6 +337,15 @@
   <data name="quran-simple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\quran-simple.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="quran-simple-clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\quran-simple-clean.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="quran-simple-min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\quran-simple-min.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="quran-simple-plain" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\quran-simple-plain.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="quran_uthmani" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\quran-uthmani.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>

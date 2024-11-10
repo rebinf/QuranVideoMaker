@@ -56,9 +56,9 @@ namespace QuranTranslationImageGenerator
                 {
                     if (verse.VerseNumber != 0 && !(verse.ChapterNumber == 1 && verse.VerseNumber == 1))
                     {
-                        if (verse.VerseText.StartsWith(Quran.UthmaniScript.First().VerseText))
+                        if (verse.VerseText.StartsWith(Quran.QuranScript.First().VerseText))
                         {
-                            verse.VerseText = verse.VerseText[Quran.UthmaniScript.First().VerseText.Length..].Trim();
+                            verse.VerseText = verse.VerseText[Quran.QuranScript.First().VerseText.Length..].Trim();
                         }
                     }
 

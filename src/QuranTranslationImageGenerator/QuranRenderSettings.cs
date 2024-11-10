@@ -31,6 +31,7 @@ namespace QuranTranslationImageGenerator
         private bool _includeBismillah;
         private bool _showArabicScript = true;
         private bool _textBackground;
+        private QuranScriptType _scriptType = QuranScriptType.Simple;
 
         private SKColor _textBackgroundColor = SKColors.Black;
         private double _textBackgroundOpacity = 0.5;
@@ -257,6 +258,23 @@ namespace QuranTranslationImageGenerator
                 if (_textBackgroundPadding != value)
                 {
                     _textBackgroundPadding = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the script type.
+        /// </summary>
+        public QuranScriptType ScriptType
+        {
+            get { return _scriptType; }
+            set
+            {
+                if (_scriptType != value)
+                {
+                    _scriptType = value;
+                    Quran.LoadQuranScript(value);
                     OnPropertyChanged();
                 }
             }

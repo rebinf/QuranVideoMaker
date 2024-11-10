@@ -556,7 +556,7 @@ namespace QuranVideoMaker.Data
 
             last.End = new TimeCode(NeedlePositionTime.TotalFrames - last.Position.TotalFrames, FPS);
 
-            var verse = Quran.UthmaniScript.FirstOrDefault(x => x.ChapterNumber == last.Verse.ChapterNumber && x.VerseNumber == last.Verse.VerseNumber + 1);
+            var verse = Quran.QuranScript.FirstOrDefault(x => x.ChapterNumber == last.Verse.ChapterNumber && x.VerseNumber == last.Verse.VerseNumber + 1);
 
             //if there is no next verse, we are done
             if (verse.ChapterNumber == 0 && verse.VerseNumber == 0)

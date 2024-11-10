@@ -28,6 +28,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         private bool _includeBismillah;
         private bool _includeVerseNumbers;
         private bool _showArabicScript = true;
+        private QuranScriptType _scriptType = QuranScriptType.Simple;
         private bool _verseTransitions = true;
         private ObservableCollection<TranslationInfo> _translations = new ObservableCollection<TranslationInfo>();
 
@@ -174,6 +175,23 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                 if (_showArabicScript != value)
                 {
                     _showArabicScript = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the script type.
+        /// </summary>
+        public QuranScriptType ScriptType
+        {
+            get { return _scriptType; }
+            set
+            {
+                if (_scriptType != value)
+                {
+                    _scriptType = value;
+                    Quran.LoadQuranScript(value);
                     OnPropertyChanged();
                 }
             }
@@ -371,6 +389,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
             Project.FPS = SelectedProfile.FPS;
 
             Project.QuranSettings.ShowArabicScript = ShowArabicScript;
+            Project.QuranSettings.ScriptType = ScriptType;
 
             var audioTrack = Project.Tracks.First(x => x.Type == TimelineTrackType.Audio);
 
@@ -391,7 +410,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                 return;
             }
 
-            var verses = Quran.UthmaniScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber >= FromVerse && x.VerseNumber <= ToVerse).ToList();
+            var verses = Quran.QuranScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber >= FromVerse && x.VerseNumber <= ToVerse).ToList();
 
             if (string.IsNullOrWhiteSpace(QuranAudioFile))
             {
@@ -400,7 +419,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
 
             if (IncludeBismillah && SelectedChapter.Number != 1)
             {
-                var bismillah = Quran.UthmaniScript.First();
+                var bismillah = Quran.QuranScript.First();
 
                 bismillah.ChapterNumber = SelectedChapter.Number;
                 bismillah.VerseNumber = 0;

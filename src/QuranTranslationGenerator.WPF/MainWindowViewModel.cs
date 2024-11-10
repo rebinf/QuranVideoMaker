@@ -175,7 +175,7 @@ namespace QuranTranslationGenerator.WPF
 
             if (Settings.IncludeBismillah && SelectedChapter.Number != 1)
             {
-                var bismillah = Quran.UthmaniScript.First().ToVerseInfo();
+                var bismillah = Quran.QuranScript.First().ToVerseInfo();
                 verses.Add(bismillah);
 
                 foreach (var t in Settings.TranslationRenderSettings)
@@ -185,7 +185,7 @@ namespace QuranTranslationGenerator.WPF
                 }
             }
 
-            foreach (var verseInfo in Quran.UthmaniScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber >= FromVerse && x.VerseNumber <= ToVerse).Select(x => x.ToVerseInfo()))
+            foreach (var verseInfo in Quran.QuranScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber >= FromVerse && x.VerseNumber <= ToVerse).Select(x => x.ToVerseInfo()))
             {
                 verses.Add(verseInfo);
 
@@ -228,7 +228,7 @@ namespace QuranTranslationGenerator.WPF
 
         private void UpdatePreview()
         {
-            var verseInfo = Quran.UthmaniScript.First(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber == PreviewVerse).ToVerseInfo();
+            var verseInfo = Quran.QuranScript.First(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber == PreviewVerse).ToVerseInfo();
 
             foreach (var t in Settings.TranslationRenderSettings)
             {

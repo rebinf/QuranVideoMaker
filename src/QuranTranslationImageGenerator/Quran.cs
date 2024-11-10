@@ -1019,7 +1019,7 @@ namespace QuranTranslationImageGenerator
             },
         };
 
-        public static IEnumerable<Verse> UthmaniScript
+        public static IEnumerable<Verse> QuranScript
         {
             get
             {
@@ -1029,7 +1029,41 @@ namespace QuranTranslationImageGenerator
 
         static Quran()
         {
-            LoadVerses(QuranIds.Quran, _verses, Properties.Resources.quran_uthmani, true, true);
+            LoadQuranScript(QuranScriptType.Simple);
+        }
+
+        public static void LoadQuranScript(QuranScriptType scriptType)
+        {
+            var script = string.Empty;
+
+            switch (scriptType)
+            {
+                case QuranScriptType.Simple:
+                    script = Properties.Resources.quran_simple;
+                    break;
+                case QuranScriptType.SimpleClean:
+                    script = Properties.Resources.quran_simple_clean;
+                    break;
+                case QuranScriptType.SimpleMinimal:
+                    script = Properties.Resources.quran_simple_min;
+                    break;
+                case QuranScriptType.SimplePlain:
+                    script = Properties.Resources.quran_simple_plain;
+                    break;
+                case QuranScriptType.Uthmani:
+                    script = Properties.Resources.quran_uthmani;
+                    break;
+                case QuranScriptType.UthmaniMinimal:
+                    script = Properties.Resources.quran_uthmani_min;
+                    break;
+                case QuranScriptType.UthmaniMe:
+                    script = Properties.Resources.quran_uthmani_me_quran;
+                    break;
+                default:
+                    break;
+            }
+
+            LoadVerses(QuranIds.Quran, _verses, script, true, true);
         }
 
         public static IEnumerable<QuranTranslation> Translations { get { return _translations; } }
@@ -1043,6 +1077,8 @@ namespace QuranTranslationImageGenerator
 
         public static void LoadVerses(Guid id, List<Verse> verses, string content, bool IsRightToLeft, bool isNonAscii)
         {
+            verses.Clear();
+
             var lines = content.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries).Where(x => !x.StartsWith("#")).ToArray();
 
             foreach (var line in lines)
