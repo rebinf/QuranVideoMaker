@@ -122,12 +122,6 @@ namespace QuranTranslationImageGenerator
                 {
                     var padding = Convert.ToSingle(renderSettings.TextBackgroundPadding);
 
-                    // draw the background color (draw a rectangle with TextBackgroundPadding property)
-                    //var left = bitmap.Width / 2 - (drawGroups.SelectMany(x => x.Draws).Max(x => x.Width) / 2);
-                    //var top = currentY - Convert.ToSingle(renderSettings.TextBackgroundPadding);
-                    //var right = bitmap.Width / 2 - (drawGroups.SelectMany(x => x.Draws).Max(x => x.Width) / 2) + drawGroups.SelectMany(x => x.Draws).Max(x => x.Width);
-                    //var bottom = top + totalHeight + Convert.ToSingle(renderSettings.TextBackgroundPadding);
-
                     var w = drawGroups.SelectMany(x => x.Draws).Max(x => x.Width) + padding * 2;
                     var h = drawGroups.SelectMany(x => x.Draws).Sum(x => x.Height) + padding * 2 + renderSettings.GapBetweenVerses * drawGroups.SelectMany(x => x.Draws).Count();
 
