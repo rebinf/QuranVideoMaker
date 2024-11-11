@@ -23,7 +23,6 @@ namespace QuranVideoMaker
         private int _fromVerse = 1;
         private int _toVerse = 7;
         private bool _includeBismillah;
-        private bool _includeVerseNumbers;
         private bool _verseTransitions = true;
         private ObservableCollection<TranslationInfo> _translations = new ObservableCollection<TranslationInfo>();
         private VerseRenderSettings _quranSettings = new VerseRenderSettings()
@@ -124,22 +123,6 @@ namespace QuranVideoMaker
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to include verse numbers.
-        /// </summary>
-        public bool IncludeVerseNumbers
-        {
-            get { return _includeVerseNumbers; }
-            set
-            {
-                if (_includeVerseNumbers != value)
-                {
-                    _includeVerseNumbers = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to add verse transitions.
         /// </summary>
         /// <value>
@@ -216,7 +199,7 @@ namespace QuranVideoMaker
             var verses = new List<Verse>();
             var itemLength = 0d;
 
-            if (IncludeBismillah && SelectedChapter.Number != 1)
+            if (AutoVerse || (IncludeBismillah && SelectedChapter.Number != 1))
             {
                 var bismillah = Quran.QuranScript.First();
 
@@ -261,7 +244,7 @@ namespace QuranVideoMaker
 
                 var verseInfo = new VerseInfo(QuranIds.Quran, verse.ChapterNumber, verse.VerseNumber, verse.VerseText);
 
-                if (IncludeVerseNumbers && verseInfo.VerseNumber != 0)
+                if (Project.QuranSettings.IncludeVerseNumbers && verseInfo.VerseNumber != 0)
                 {
                     verseInfo.VerseText = $"{verseInfo.VerseText}{Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
                 }

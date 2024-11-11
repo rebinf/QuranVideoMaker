@@ -30,7 +30,7 @@
                             </customcontrols:LayoutItem>
 
                             <customcontrols:LayoutItem Label="Include Verse Numbers">
-                                <CheckBox IsChecked="{Binding IncludeVerseNumbers, UpdateSourceTrigger=PropertyChanged}" />
+                                <CheckBox IsChecked="{Binding Project.QuranSettings.IncludeVerseNumbers, UpdateSourceTrigger=PropertyChanged}" />
                             </customcontrols:LayoutItem>
 
                             <customcontrols:LayoutItem Label="From Verse">

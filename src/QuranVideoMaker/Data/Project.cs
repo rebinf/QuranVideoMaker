@@ -566,6 +566,11 @@ namespace QuranVideoMaker.Data
 
             var verseInfo = new VerseInfo(QuranIds.Quran, verse.ChapterNumber, verse.VerseNumber, verse.VerseText);
 
+            if (QuranSettings.IncludeVerseNumbers && verseInfo.VerseNumber != 0)
+            {
+                verseInfo.VerseText = $"{verseInfo.VerseText}{Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
+            }
+
             var fadeInFrame = 0d;
             var fadeOutFrame = 0d;
 

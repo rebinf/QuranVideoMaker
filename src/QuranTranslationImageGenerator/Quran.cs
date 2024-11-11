@@ -4,6 +4,7 @@ namespace QuranTranslationImageGenerator
 {
     public static class Quran
     {
+        private static char[] _arabicNumbers = new char[] { '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩' };
         private static List<Verse> _verses = new List<Verse>();
 
         private static List<ChapterInfo> _chapters = new List<ChapterInfo>()
@@ -1094,15 +1095,19 @@ namespace QuranTranslationImageGenerator
 
         public static string ToArabicNumbers(int number)
         {
-            var arabicNumbers = new char[] { '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩' };
             var arabicNumberString = new StringBuilder();
 
             foreach (var digit in number.ToString())
             {
-                arabicNumberString.Append(arabicNumbers[digit - '0']);
+                arabicNumberString.Append(_arabicNumbers[digit - '0']);
             }
 
             return arabicNumberString.ToString();
+        }
+
+        public static bool ContainsArabicNumbers(string text)
+        {
+            return text.Any(x => _arabicNumbers.Contains(x));
         }
     }
 }

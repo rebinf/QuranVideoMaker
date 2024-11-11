@@ -26,7 +26,6 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         private int _fromVerse = 1;
         private int _toVerse = 7;
         private bool _includeBismillah;
-        private bool _includeVerseNumbers;
         private bool _showArabicScript = true;
         private QuranScriptType _scriptType = QuranScriptType.Simple;
         private bool _verseTransitions = true;
@@ -140,22 +139,6 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                 if (_includeBismillah != value)
                 {
                     _includeBismillah = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to include verse numbers.
-        /// </summary>
-        public bool IncludeVerseNumbers
-        {
-            get { return _includeVerseNumbers; }
-            set
-            {
-                if (_includeVerseNumbers != value)
-                {
-                    _includeVerseNumbers = value;
                     OnPropertyChanged();
                 }
             }
@@ -436,7 +419,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
 
                 var verseInfo = new VerseInfo(QuranIds.Quran, verse.ChapterNumber, verse.VerseNumber, verse.VerseText);
 
-                if (IncludeVerseNumbers && verseInfo.VerseNumber != 0)
+                if (Project.QuranSettings.IncludeVerseNumbers && verseInfo.VerseNumber != 0)
                 {
                     verseInfo.VerseText = $"{verseInfo.VerseText}{Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
                 }

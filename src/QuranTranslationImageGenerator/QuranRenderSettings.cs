@@ -29,6 +29,7 @@ namespace QuranTranslationImageGenerator
         private int _gapBetweenVerses = 100;
         private float _horizontalMarginPercentage = 20f;
         private bool _includeBismillah;
+        public bool _includeVerseNumbers;
         private bool _showArabicScript = true;
         private bool _textBackground;
         private QuranScriptType _scriptType = QuranScriptType.Simple;
@@ -137,6 +138,22 @@ namespace QuranTranslationImageGenerator
                 if (_includeBismillah != value)
                 {
                     _includeBismillah = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to include verse numbers.
+        /// </summary>
+        public bool IncludeVerseNumbers
+        {
+            get { return _includeVerseNumbers; }
+            set
+            {
+                if (_includeVerseNumbers != value)
+                {
+                    _includeVerseNumbers = value;
                     OnPropertyChanged();
                 }
             }
