@@ -284,6 +284,7 @@ namespace QuranTranslationImageGenerator
 
         /// <summary>
         /// Gets or sets a value indicating whether to show text background transition.
+        /// Only applicable when FullScreenTextBackground is true.
         /// </summary>
         public bool TextBackgroundTransition
         {
