@@ -126,7 +126,14 @@
                                 <customcontrols:LayoutItem Label="Text Background Padding">
                                     <TextBox Text="{Binding Settings.TextBackgroundPadding, UpdateSourceTrigger=PropertyChanged}" />
                                 </customcontrols:LayoutItem>
-                                
+
+                                <customcontrols:LayoutItem Label="Text Background Transition">
+                                    <CheckBox IsChecked="{Binding Settings.TextBackgroundTransition, UpdateSourceTrigger=PropertyChanged}" />
+                                </customcontrols:LayoutItem>
+
+                                <customcontrols:LayoutItem Label="FullScreen Text Background">
+                                    <CheckBox IsChecked="{Binding Settings.FullScreenTextBackground, UpdateSourceTrigger=PropertyChanged}" />
+                                </customcontrols:LayoutItem>
 
                             </customcontrols:StackLayout>
                         </StackPanel>

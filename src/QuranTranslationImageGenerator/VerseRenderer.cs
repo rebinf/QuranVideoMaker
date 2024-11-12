@@ -118,20 +118,25 @@ namespace QuranTranslationImageGenerator
                 float currentY = (bitmap.Height / 2) - (((totalHeight / 2) + renderSettings.GapBetweenVerses * drawGroups.SelectMany(x => x.Draws).Count()) / 2);
 
                 // does the text has a background color?
-                if (renderSettings.TextBackground)
+                if (renderSettings.TextBackground && !renderSettings.FullScreenTextBackground)
                 {
+                    var w = 0f;
+                    var h = 0f;
+                    var x = 0f;
+                    var y = 0f;
+
                     var padding = Convert.ToSingle(renderSettings.TextBackgroundPadding);
 
-                    var w = drawGroups.SelectMany(x => x.Draws).Max(x => x.Width) + padding * 2;
-                    var h = drawGroups.SelectMany(x => x.Draws).Sum(x => x.Height) + padding * 2 + renderSettings.GapBetweenVerses * drawGroups.SelectMany(x => x.Draws).Count();
+                    w = drawGroups.SelectMany(x => x.Draws).Max(x => x.Width) + padding * 2;
+                    h = drawGroups.SelectMany(x => x.Draws).Sum(x => x.Height) + padding * 2 + renderSettings.GapBetweenVerses * drawGroups.SelectMany(x => x.Draws).Count();
 
                     // add default padding
                     var defaultPadding = 100;
                     w += defaultPadding;
                     h += defaultPadding;
 
-                    var x = (bitmap.Width - w) / 2;
-                    var y = (bitmap.Height - h) / 2;
+                    x = (bitmap.Width - w) / 2;
+                    y = (bitmap.Height - h) / 2;
 
                     y -= defaultPadding / 2;
 

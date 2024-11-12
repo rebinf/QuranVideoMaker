@@ -37,6 +37,8 @@ namespace QuranTranslationImageGenerator
         private SKColor _textBackgroundColor = SKColors.Black;
         private double _textBackgroundOpacity = 0.5;
         private double _textBackgroundPadding = 100;
+        private bool _textBackgroundTransition = true;
+        private bool _fullScreenTextBackground;
 
         private VerseRenderSettings _arabicScriptRenderSettings = new VerseRenderSettings()
         {
@@ -281,6 +283,38 @@ namespace QuranTranslationImageGenerator
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to show text background transition.
+        /// </summary>
+        public bool TextBackgroundTransition
+        {
+            get { return _textBackgroundTransition; }
+            set
+            {
+                if (_textBackgroundTransition != value)
+                {
+                    _textBackgroundTransition = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to render text background full screen.
+        /// </summary>
+        public bool FullScreenTextBackground
+        {
+            get { return _fullScreenTextBackground; }
+            set
+            {
+                if (_fullScreenTextBackground != value)
+                {
+                    _fullScreenTextBackground = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the script type.
         /// </summary>
         public QuranScriptType ScriptType
@@ -404,6 +438,8 @@ namespace QuranTranslationImageGenerator
                 TextBackgroundColor = this.TextBackgroundColor,
                 TextBackgroundOpacity = this.TextBackgroundOpacity,
                 TextBackgroundPadding = this.TextBackgroundPadding,
+                TextBackgroundTransition = this.TextBackgroundTransition,
+                FullScreenTextBackground = this.FullScreenTextBackground,
             };
 
             foreach (var ts in TranslationRenderSettings)

@@ -826,6 +826,15 @@ namespace QuranVideoMaker.Data
                 height /= 4;
             }
 
+            SKBitmap background = null;
+
+            // create the background once if full screen text background is enabled
+            if (QuranSettings.TextBackground && QuranSettings.FullScreenTextBackground)
+            {
+                background = new SKBitmap(width, height);
+                background.Erase(new SKColor(QuranSettings.TextBackgroundColor.Red, QuranSettings.TextBackgroundColor.Green, QuranSettings.TextBackgroundColor.Blue, Convert.ToByte(QuranSettings.TextBackgroundOpacity * 255)));
+            }
+
             var count = 0;
 
             var parallelOptions = new ParallelOptions();
@@ -865,6 +874,13 @@ namespace QuranVideoMaker.Data
                             {
                                 var rv = VerseRenderer.RenderVerses(new[] { verseItem.Verse }, QuranSettings);
                                 renderedVerses[trackItem.Id] = rv.FirstOrDefault().Bitmap;
+                            }
+
+                            var opacity = QuranSettings.TextBackgroundTransition ? trackItem.GetOpacity(itemFrame) : 1;
+
+                            if (QuranSettings.FullScreenTextBackground)
+                            {
+                                currentFrames.Add(new FrameData(background, opacity, itemOrder));
                             }
 
                             currentFrames.Add(new FrameData(renderedVerses[trackItem.Id], trackItem.GetOpacity(itemFrame), itemOrder));
