@@ -19,7 +19,7 @@ jobs:
     - name: install dotnet
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 8.0
+        dotnet-version: 9.0
     
     - name: set version
       run: |
@@ -43,14 +43,14 @@ jobs:
       run: unzip ./ffmpeg.zip -d ./ffmpeg
      
     - name: copy ffmpeg
-      run: cp -R ./ffmpeg/ffmpeg-master-latest-win64-gpl-shared/bin/ ./src/QuranVideoMaker/bin/Release/net8.0-windows/win-x64/publish/ffmpeg/
+      run: cp -R ./ffmpeg/ffmpeg-master-latest-win64-gpl-shared/bin/ ./src/QuranVideoMaker/bin/Release/net9.0-windows/win-x64/publish/ffmpeg/
     
     - name: delete locales directory
-      run: rm -f ./src/QuranVideoMaker/bin/Release/net8.0-windows/win-x64/publish/libraries/locales -r
+      run: rm -f ./src/QuranVideoMaker/bin/Release/net9.0-windows/win-x64/publish/libraries/locales -r
       
     - name: zip release
       run: |
-        cd src/QuranVideoMaker/bin/Release/net8.0-windows/win-x64/publish
+        cd src/QuranVideoMaker/bin/Release/net9.0-windows/win-x64/publish
         zip -r ../../../../../../../QuranVideoMaker.zip *
         
     - name: create release
