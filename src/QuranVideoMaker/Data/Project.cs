@@ -40,6 +40,7 @@ namespace QuranVideoMaker.Data
         private ObservableCollection<TimelineTrack> _tracks;
         private ObservableCollection<IProjectClip> _clips = new ObservableCollection<IProjectClip>();
         private string _exportDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
+        private bool _exportIncludeAlphaChannel;
         private int _exportThreads = -1;
         private HardwareAccelerationDevice _hardwareAcceleration = HardwareAccelerationDevice.Auto;
         private Speed _encodingSpeed = Speed.Medium;
@@ -342,6 +343,22 @@ namespace QuranVideoMaker.Data
                 if (_exportDirectory != value)
                 {
                     _exportDirectory = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether export includes alpha channel.
+        /// </summary>
+        public bool ExportIncludeAlphaChannel
+        {
+            get { return _exportIncludeAlphaChannel; }
+            set
+            {
+                if (_exportIncludeAlphaChannel != value)
+                {
+                    _exportIncludeAlphaChannel = value;
                     OnPropertyChanged();
                 }
             }
@@ -730,11 +747,21 @@ namespace QuranVideoMaker.Data
                 })
                 .OutputToFile(videoExportPath, true, options =>
                 {
-                    options.WithVideoCodec(VideoCodec.LibX264);
                     options.WithFramerate(FPS);
                     options.WithFastStart();
                     options.WithSpeedPreset(EncodingSpeed);
-                    options.ForceFormat("mp4");
+
+                    if (ExportIncludeAlphaChannel)
+                    {
+                        options.WithVideoCodec("libvpx-vp9");
+                        options.ForcePixelFormat("yuva420p");
+                        options.ForceFormat("webm");
+                    }
+                    else
+                    {
+                        options.WithVideoCodec(VideoCodec.LibX264);
+                        options.ForceFormat("mp4");
+                    }
                 });
                 //.OutputToPipe(new StreamPipeSink(outputStream), options =>{})
 
@@ -777,7 +804,7 @@ namespace QuranVideoMaker.Data
                 }
                 else
                 {
-                    File.Copy(videoExportPath, exportPath);
+                    File.Copy(videoExportPath, exportPath, true);
                 }
 
                 GC.Collect();
@@ -891,7 +918,7 @@ namespace QuranVideoMaker.Data
                 var frameBitmap = new SKBitmap(width, height);
 
                 var frameCanvas = new SKCanvas(frameBitmap);
-                frameCanvas.Clear(SKColors.Black);
+                frameCanvas.Clear(SKColors.Transparent);
 
                 foreach (var cf in currentFrames.OrderBy(x => x.Order))
                 {
@@ -935,10 +962,21 @@ namespace QuranVideoMaker.Data
 
                 using (var pixMap = frameBitmap.PeekPixels())
                 {
-                    using (var data = pixMap.Encode(new SKJpegEncoderOptions() { Quality = 100, AlphaOption = SKJpegEncoderAlphaOption.BlendOnBlack }))
+                    if (ExportIncludeAlphaChannel && !preview)
                     {
-                        var frameBytes = data.ToArray();
-                        frames.Add(new FrameContainer(i) { Rendered = frameBytes });
+                        using (var data = pixMap.Encode(new SKPngEncoderOptions() { ZLibLevel = 0, FilterFlags = SKPngEncoderFilterFlags.NoFilters }))
+                        {
+                            var frameBytes = data.ToArray();
+                            frames.Add(new FrameContainer(i) { Rendered = frameBytes });
+                        }
+                    }
+                    else
+                    {
+                        using (var data = pixMap.Encode(new SKJpegEncoderOptions() { Quality = 100, AlphaOption = SKJpegEncoderAlphaOption.BlendOnBlack }))
+                        {
+                            var frameBytes = data.ToArray();
+                            frames.Add(new FrameContainer(i) { Rendered = frameBytes });
+                        }
                     }
                 }
 

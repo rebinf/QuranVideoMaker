@@ -43,6 +43,9 @@
                             <customcontrols:LayoutItem Label="Encoding Speed">
                                 <ComboBox ItemsSource="{Binding Project.EncodingSpeed, Converter={converters:EnumToCollectionConverter}}" SelectedItem="{Binding Project.EncodingSpeed}" />
                             </customcontrols:LayoutItem>
+                            <customcontrols:LayoutItem Label="Include Alpha Channel">
+                                <CheckBox IsChecked="{Binding Project.ExportIncludeAlphaChannel, UpdateSourceTrigger=PropertyChanged}" />
+                            </customcontrols:LayoutItem>
                         </customcontrols:StackLayout>
                     </GroupBox>
                 </StackPanel>
