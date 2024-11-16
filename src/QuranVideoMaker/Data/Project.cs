@@ -741,39 +741,6 @@ namespace QuranVideoMaker.Data
 
                 ExportProgressMessage = "Exporting video...";
 
-                var ffmpegArguments = FFMpegArguments.FromPipeInput(new FramePipeSource(frames, FPS), options =>
-                {
-                    options.WithHardwareAcceleration(HardwareAcceleration);
-                })
-                .OutputToFile(videoExportPath, true, options =>
-                {
-                    options.WithFramerate(FPS);
-                    options.WithFastStart();
-                    options.WithSpeedPreset(EncodingSpeed);
-
-                    if (ExportIncludeAlphaChannel)
-                    {
-                        options.WithVideoCodec("libvpx-vp9");
-                        options.ForcePixelFormat("yuva420p");
-                        options.ForceFormat("webm");
-                    }
-                    else
-                    {
-                        options.WithVideoCodec(VideoCodec.LibX264);
-                        options.ForceFormat("mp4");
-                    }
-                });
-                //.OutputToPipe(new StreamPipeSink(outputStream), options =>{})
-
-                var args = ffmpegArguments.Arguments;
-
-                ffmpegArguments.NotifyOnProgress((e) => ExportProgress?.Invoke(this, e), ExportProgressTime);
-                ffmpegArguments.ProcessSynchronously();
-
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                GC.Collect();
-
                 var audioTrackItems = GetAudioTrackItems();
 
                 if (audioTrackItems.Count > 0)
@@ -799,13 +766,44 @@ namespace QuranVideoMaker.Data
                             }
                         }
                     }
+                }
 
-                    FFMpegCore.FFMpeg.ReplaceAudio(videoExportPath, audioExportPath, exportPath);
-                }
-                else
+                var ffmpegArguments = FFMpegArguments.FromPipeInput(new FramePipeSource(frames, FPS), options =>
                 {
-                    File.Copy(videoExportPath, exportPath, true);
+                    options.WithHardwareAcceleration(HardwareAcceleration);
+                });
+
+                if (audioTrackItems.Count > 0)
+                {
+                    ffmpegArguments.AddFileInput(audioExportPath, true);
                 }
+
+                var output = ffmpegArguments.OutputToFile(videoExportPath, true, options =>
+                {
+                    options.WithFramerate(FPS);
+                    options.WithFastStart();
+                    options.WithSpeedPreset(EncodingSpeed);
+
+                    if (ExportIncludeAlphaChannel)
+                    {
+                        options.WithVideoCodec("libvpx-vp9");
+                        options.ForcePixelFormat("yuva420p");
+                        options.ForceFormat("webm");
+                    }
+                    else
+                    {
+                        options.WithVideoCodec(VideoCodec.LibX264);
+                        options.ForceFormat("mp4");
+                    }
+                });
+                //.OutputToPipe(new StreamPipeSink(outputStream), options =>{})
+
+                var args = output.Arguments;
+
+                output.NotifyOnProgress((e) => ExportProgress?.Invoke(this, e), ExportProgressTime);
+                output.ProcessSynchronously();
+
+                File.Copy(videoExportPath, exportPath, true);
 
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
