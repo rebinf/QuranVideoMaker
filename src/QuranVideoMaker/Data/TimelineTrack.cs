@@ -14,6 +14,7 @@ namespace QuranVideoMaker.Data
     [DebuggerDisplay("{Type} ({Name})")]
     public class TimelineTrack : ITimelineTrack
     {
+        private string _id = Guid.NewGuid().ToString().Replace("-", string.Empty);
         private TimelineTrackType _type;
         private string _name;
         private int _height = 50;
@@ -23,6 +24,20 @@ namespace QuranVideoMaker.Data
         /// Occurs when a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <inheritdoc/>
+        public string Id
+        {
+            get { return _id; }
+            set
+            {
+                if (_id != value)
+                {
+                    _id = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the type.

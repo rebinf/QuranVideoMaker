@@ -25,6 +25,15 @@
             <Binding Path="End" />
         </MultiBinding>
     </Border.Width>
+    
+    <Border.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Cut" Click="CutItem_Click" />
+            <MenuItem Header="Copy" Click="CopyItem_Click" />
+            <Separator />
+            <MenuItem Header="Delete" Click="DeleteItem_Click" />
+        </ContextMenu>
+    </Border.ContextMenu>
 
     <Border.Style>
         <Style TargetType="Border">

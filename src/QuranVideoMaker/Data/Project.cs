@@ -2,6 +2,7 @@
 using FFMpegCore.Enums;
 using NAudio.Wave;
 using QuranTranslationImageGenerator;
+using QuranVideoMaker.ClipboardData;
 using QuranVideoMaker.CustomControls;
 using QuranVideoMaker.Serialization;
 using QuranVideoMaker.Utilities;
@@ -710,12 +711,107 @@ namespace QuranVideoMaker.Data
         {
             try
             {
-                var project = ProjectSerializer.Deserialize(System.IO.File.ReadAllText(projectFile));
+                var project = ProjectSerializer.Deserialize<Project>(System.IO.File.ReadAllText(projectFile));
                 return new OperationResult<Project>(true, string.Empty, project);
             }
             catch (Exception ex)
             {
                 return new OperationResult<Project>(false, ex.Message, null);
+            }
+        }
+
+        public void Undo()
+        {
+        }
+
+        public void Redo()
+        {
+        }
+
+        /// <summary>
+        /// Cut current selected items.
+        /// </summary>
+        public void Cut()
+        {
+            CutCopy(true);
+        }
+
+        /// <summary>
+        /// Copy current selected items.
+        /// </summary>
+        public void Copy()
+        {
+            CutCopy(false);
+        }
+
+        /// <summary>
+        /// Paste the copied items.
+        /// </summary>
+        public void Paste()
+        {
+            // contains track items?
+            if (Clipboard.ContainsData(nameof(ClipboardDataType.QVM_TrackItems)))
+            {
+                var items = ProjectSerializer.Deserialize<TrackItemClipboardData[]>(Clipboard.GetData(nameof(ClipboardDataType.QVM_TrackItems)).ToString());
+
+                foreach (var item in items)
+                {
+                    var track = Tracks.First(x => x.Id == item.SourceTrackId);
+
+                    // paste at the needle position
+                    var trackItem = item.TrackItem;
+                    trackItem.Position = NeedlePositionTime;
+
+                    track.Items.Add(trackItem);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Cuts or copies the selected items.
+        /// </summary>
+        /// <param name="cut"></param>
+        private void CutCopy(bool cut)
+        {
+            // get selected items
+            var selectedItems = Tracks.SelectMany(x => TrackItemClipboardData.TrackItems(x.Id, x.Items)).Where(x => x.TrackItem.IsSelected).ToArray();
+
+            // if no items are selected, return
+            if (selectedItems.Length == 0)
+            {
+                return;
+            }
+
+            var serialized = ProjectSerializer.Serialize(selectedItems);
+
+            if (cut)
+            {
+                // remove the selected items
+                foreach (var item in selectedItems)
+                {
+                    var track = Tracks.First(x => x.Items.Contains(item.TrackItem));
+                    track.Items.Remove(item.TrackItem);
+                }
+            }
+
+            // clear any previous clipboard data
+            Clipboard.Clear();
+
+            // copy the serialized items to clipboard
+            Clipboard.SetData(nameof(ClipboardDataType.QVM_TrackItems), serialized);
+        }
+
+        /// <summary>
+        /// Selects all items.
+        /// </summary>
+        public void SelectAll()
+        {
+            foreach (var track in Tracks)
+            {
+                foreach (var item in track.Items)
+                {
+                    item.IsSelected = true;
+                }
             }
         }
 

@@ -26,24 +26,14 @@ namespace QuranVideoMaker.Serialization
             ProjectSerializerOptions.Converters.Add(new JsonSKColorConverter());
         }
 
-        /// <summary>
-        /// Serializes project.
-        /// </summary>
-        /// <param name="project">Project to serialize.</param>
-        /// <returns>Serialized project string.</returns>
-        public static string Serialize(Project project)
+        public static string Serialize(object obj)
         {
-            return JsonSerializer.Serialize(project, ProjectSerializerOptions);
+            return JsonSerializer.Serialize(obj, ProjectSerializerOptions);
         }
 
-        /// <summary>
-        /// Deserializes project.
-        /// </summary>
-        /// <param name="json">Serialized project string.</param>
-        /// <returns>Deserialized project.</returns>
-        public static Project Deserialize(string json)
+        public static T Deserialize<T>(string json)
         {
-            return JsonSerializer.Deserialize<Project>(json, ProjectSerializerOptions);
+            return JsonSerializer.Deserialize<T>(json, ProjectSerializerOptions);
         }
     }
 }

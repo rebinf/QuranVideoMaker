@@ -167,6 +167,42 @@ namespace QuranVideoMaker
         }
 
         [RelayCommand]
+        private void OnUndo()
+        {
+            CurrentProject.Undo();
+        }
+
+        [RelayCommand]
+        private void OnRedo()
+        {
+            CurrentProject.Redo();
+        }
+
+        [RelayCommand]
+        private void OnCut()
+        {
+            CurrentProject.Cut();
+        }
+
+        [RelayCommand]
+        private void OnCopy()
+        {
+            CurrentProject.Copy();
+        }
+
+        [RelayCommand]
+        private void OnPaste()
+        {
+            CurrentProject.Paste();
+        }
+
+        [RelayCommand]
+        private void OnSelectAll()
+        {
+            CurrentProject.SelectAll();
+        }
+
+        [RelayCommand]
         private void OnExportProject()
         {
             QuranVideoMakerUI.ShowDialog(DialogType.ExportProject, CurrentProject);

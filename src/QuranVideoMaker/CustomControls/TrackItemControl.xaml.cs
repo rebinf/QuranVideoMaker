@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using QuranVideoMaker.Data;
 using QuranVideoMaker.Dialogs;
 using QuranVideoMaker.Helpers;
-using QuranVideoMaker.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -73,5 +73,33 @@ namespace QuranVideoMaker.CustomControls
                 QuranVideoMakerUI.ShowDialog(DialogType.QuranTrackItemSettings, quranTrackItem, _timelineControl.Project);
             }
         }
+
+        private void CutItem_Click(object sender, RoutedEventArgs e)
+        {
+            _timelineControl.Project.Cut();
+        }
+
+        private void CopyItem_Click(object sender, RoutedEventArgs e)
+        {
+            _timelineControl.Project.Copy();
+        }
+
+        private void DeleteItem_Click(object sender, RoutedEventArgs e)
+        {
+            var trackItem = DataContext as TrackItem;
+
+            if (trackItem != null)
+            {
+                foreach (var track in _timelineControl.Project.Tracks)
+                {
+                    if (track.Items.Contains(trackItem))
+                    {
+                        track.Items.Remove(trackItem);
+                        break;
+                    }
+                }
+            }
+        }
+
     }
 }

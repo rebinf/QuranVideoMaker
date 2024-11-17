@@ -88,6 +88,17 @@ namespace QuranVideoMaker.CustomControls
             tracksHScrollView.ScrollToHorizontalOffset(e.NewValue);
         }
 
+        private void TracksCanvas_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.OriginalSource is FrameworkElement fe && fe.DataContext is TrackItem item)
+            {
+                item.IsSelected = true;
+            }
+
+            // move the needle to the right click position
+            UpdateNeedlePosition(e.GetPosition(header).X);
+        }
+
         private void TracksCanvas_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.Focus();
@@ -400,6 +411,11 @@ namespace QuranVideoMaker.CustomControls
                     }
                 }
             }
+        }
+
+        private void PasteItem_Click(object sender, RoutedEventArgs e)
+        {
+            Project.Paste();
         }
     }
 }

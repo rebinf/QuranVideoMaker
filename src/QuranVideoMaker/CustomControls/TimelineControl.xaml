@@ -10,6 +10,7 @@
              Background="#2a2e32" MinHeight="150"
              PreviewMouseMove="TimelineControl_PreviewMouseMove"
              PreviewMouseLeftButtonUp="TimelineControl_PreviewMouseLeftButtonUp"
+             PreviewMouseRightButtonDown="TracksCanvas_PreviewMouseRightButtonDown"
              PreviewDragOver="Timeline_PreviewDragOver"
              PreviewDrop="Timeline_PreviewDrop"
              PreviewKeyUp="Timeline_PreviewKeyUp"
@@ -78,6 +79,11 @@
                 <local:TimelineHeaderControl x:Name="header" Project="{Binding Project, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}}" />
 
                 <ItemsControl x:Name="tracksControl" ItemsSource="{Binding Project.Tracks, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}}" Width="{Binding Width, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UIElement}}" Margin="0,30,0,0">
+                    <ItemsControl.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Paste" Click="PasteItem_Click" />
+                        </ContextMenu>
+                    </ItemsControl.ContextMenu>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Height="{Binding Height}" Width="{Binding Width, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}" Background="#232629" BorderBrush="Gray" BorderThickness="0.5,0.5,0.5,0.5">

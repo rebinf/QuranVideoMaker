@@ -44,6 +44,16 @@
                 <Separator />
                 <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
             </MenuItem>
+            <MenuItem Header="Edit">
+                <!--<MenuItem Header="Undo" Command="{Binding UndoCommand}" InputGestureText="Ctrl+Z" />
+                <MenuItem Header="Redo" Command="{Binding RedoCommand}" InputGestureText="Ctrl+Y" />
+                <Separator />-->
+                <MenuItem Header="Cut" Command="{Binding CutCommand}" InputGestureText="Ctrl+X" />
+                <MenuItem Header="Copy" Command="{Binding CopyCommand}" InputGestureText="Ctrl+C" />
+                <MenuItem Header="Paste" Command="{Binding PasteCommand}" InputGestureText="Ctrl+V" />
+                <Separator />
+                <MenuItem Header="Select All" Command="{Binding SelectAllCommand}" InputGestureText="Ctrl+A" />
+            </MenuItem>
             <MenuItem Header="Quran">
                 <MenuItem Header="Add" Command="{Binding QuranAddCommand}" />
                 <Separator />
