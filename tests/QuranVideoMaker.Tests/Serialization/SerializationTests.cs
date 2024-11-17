@@ -12,7 +12,7 @@ namespace QuranVideoMaker.Tests.Serialization
 
             // Act
             var serialized = ProjectSerializer.Serialize(project);
-            var deserialized = ProjectSerializer.Deserialize(serialized);
+            var deserialized = ProjectSerializer.Deserialize<Project>(serialized);
 
             // Assert
             Assert.Equal(project.Chapter, deserialized.Chapter);
