@@ -335,7 +335,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
             var dlg = new OpenFileDialog()
             {
                 Multiselect = false,
-                Filter = "Audio Files|*.mp3"
+                Filter = $"Audio files|{FileFormats.AllSupportedOpenAudioFileExtensions}"
             };
 
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
