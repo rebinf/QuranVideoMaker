@@ -14,7 +14,7 @@
             // Arrange
             var trackItem = new TrackItem()
             {
-                SourceDuration = TimeCode.FromSeconds(60, 25),
+                SourceLength = TimeCode.FromSeconds(60, 25),
                 End = TimeCode.FromSeconds(30, 25)
             };
 
@@ -60,7 +60,7 @@
             // Arrange
             var trackItem = new TrackItem()
             {
-                SourceDuration = TimeCode.FromSeconds(60, 25),
+                SourceLength = TimeCode.FromSeconds(60, 25),
                 End = TimeCode.FromSeconds(30, 25)
             };
 
@@ -104,7 +104,7 @@
             // Arrange
             var trackItem = new TrackItem()
             {
-                SourceDuration = TimeCode.FromSeconds(60, 25),
+                SourceLength = TimeCode.FromSeconds(60, 25),
                 End = TimeCode.FromSeconds(30, 25)
             };
 
@@ -125,7 +125,7 @@
             // Arrange
             var trackItem = new TrackItem()
             {
-                SourceDuration = TimeCode.FromSeconds(60, 25),
+                SourceLength = TimeCode.FromSeconds(60, 25),
                 End = TimeCode.FromSeconds(30, 25)
             };
 
@@ -146,7 +146,7 @@
             // Arrange
             var trackItem = new TrackItem()
             {
-                SourceDuration = TimeCode.FromSeconds(60, 25),
+                SourceLength = TimeCode.FromSeconds(60, 25),
                 End = TimeCode.FromSeconds(30, 25),
                 Start = new TimeCode(start, 25),
                 Position = new TimeCode(position, 25)
@@ -167,7 +167,7 @@
             // Arrange
             var trackItem = new TrackItem()
             {
-                SourceDuration = TimeCode.FromSeconds(60, 25),
+                SourceLength = TimeCode.FromSeconds(60, 25),
                 End = TimeCode.FromSeconds(30, 25),
                 Position = new TimeCode(position, 25)
             };

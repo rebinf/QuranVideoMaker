@@ -91,11 +91,6 @@ namespace QuranVideoMaker.Data
         TimeCode Duration { get; }
 
         /// <summary>
-        /// Gets or sets the duration of the source.
-        /// </summary>
-        TimeCode SourceDuration { get; set; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether this item has an unlimited source length.
         /// </summary>
         bool UnlimitedSourceLength { get; set; }

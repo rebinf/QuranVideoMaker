@@ -31,7 +31,6 @@ namespace QuranVideoMaker.Data
         private double _fadeInFrame;
         private double _fadeOutFrame;
         private bool _isChangingFadeOut;
-        private TimeCode _sourceDuration;
 
         /// <summary>
         /// Occurs when a property value changes.
@@ -122,20 +121,6 @@ namespace QuranVideoMaker.Data
             }
         }
 
-        /// <inheritdoc/>
-        public TimeCode SourceDuration
-        {
-            get { return _sourceDuration; }
-            set
-            {
-                if (_sourceDuration != value)
-                {
-                    _sourceDuration = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         ///<inheritdoc/>
         public bool UnlimitedSourceLength
         {
@@ -199,10 +184,10 @@ namespace QuranVideoMaker.Data
                         value = new TimeCode(Start.TotalFrames + 1, value.FPS);
                     }
 
-                    // ClipEnd cannot be more than SourceDuration
-                    if (!UnlimitedSourceLength && SourceDuration.TotalFrames > 0 && value > SourceDuration)
+                    // ClipEnd cannot be more than SourceLength
+                    if (!UnlimitedSourceLength && SourceLength.TotalFrames > 0 && value > SourceLength)
                     {
-                        value = SourceDuration;
+                        value = SourceLength;
                     }
 
                     _end = value;
@@ -482,7 +467,7 @@ namespace QuranVideoMaker.Data
                 Position = Position,
                 Start = Start,
                 End = End,
-                SourceDuration = SourceDuration,
+                SourceLength = SourceLength,
                 UnlimitedSourceLength = UnlimitedSourceLength,
                 Type = Type,
             };

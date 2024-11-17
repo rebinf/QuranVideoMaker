@@ -10,7 +10,7 @@
 
             var item = new TrackItem()
             {
-                SourceDuration = new TimeCode(1500, 25),
+                SourceLength = new TimeCode(1500, 25),
                 Position = new TimeCode(100, 25), // 4 seconds
                 Start = new TimeCode(200, 25), // 8 seconds
                 End = new TimeCode(800, 25) // 32 seconds
