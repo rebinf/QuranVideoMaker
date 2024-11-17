@@ -2,6 +2,8 @@
 {
     public static class FileFormats
     {
+        public static IEnumerable<string> SupportedExportFormats = new List<string> { "mp4", "mov", "webm" };
+
         public static IEnumerable<string> SupportedVideoFormats = new List<string> { ".mp4" };
 
         public static IEnumerable<string> SupportedImageFormats = new List<string> { ".png", ".jpg", ".jpeg" };

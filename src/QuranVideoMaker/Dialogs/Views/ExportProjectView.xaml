@@ -10,6 +10,7 @@
         xmlns:customcontrols="clr-namespace:QuranVideoMaker.CustomControls"
         xmlns:ffenums="clr-namespace:FFMpegCore.Enums;assembly=FFMpegCore"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:data="clr-namespace:QuranVideoMaker.Data"
         mc:Ignorable="d"
         Title="Export Project" MinHeight="100" MaxHeight="400" SizeToContent="Height" Width="400">
     <Grid Margin="5">
@@ -34,6 +35,9 @@
                     </GroupBox>
                     <GroupBox Header="Options">
                         <customcontrols:StackLayout Padding="5">
+                            <customcontrols:LayoutItem Label="Format">
+                                <ComboBox ItemsSource="{x:Static data:FileFormats.SupportedExportFormats}" SelectedItem="{Binding Project.ExportFormat}" />
+                            </customcontrols:LayoutItem>
                             <customcontrols:LayoutItem Label="Threads">
                                 <TextBox Text="{Binding Project.ExportThreads, UpdateSourceTrigger=PropertyChanged}" />
                             </customcontrols:LayoutItem>
@@ -43,6 +47,7 @@
                             <customcontrols:LayoutItem Label="Encoding Speed">
                                 <ComboBox ItemsSource="{Binding Project.EncodingSpeed, Converter={converters:EnumToCollectionConverter}}" SelectedItem="{Binding Project.EncodingSpeed}" />
                             </customcontrols:LayoutItem>
+
                             <customcontrols:LayoutItem Label="Include Alpha Channel">
                                 <CheckBox IsChecked="{Binding Project.ExportIncludeAlphaChannel, UpdateSourceTrigger=PropertyChanged}" />
                             </customcontrols:LayoutItem>

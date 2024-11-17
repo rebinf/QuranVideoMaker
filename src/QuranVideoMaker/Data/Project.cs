@@ -40,6 +40,7 @@ namespace QuranVideoMaker.Data
         private ObservableCollection<TimelineTrack> _tracks;
         private ObservableCollection<IProjectClip> _clips = new ObservableCollection<IProjectClip>();
         private string _exportDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
+        private string _exportFormat = "mp4";
         private bool _exportIncludeAlphaChannel;
         private int _exportThreads = -1;
         private HardwareAccelerationDevice _hardwareAcceleration = HardwareAccelerationDevice.Auto;
@@ -343,6 +344,22 @@ namespace QuranVideoMaker.Data
                 if (_exportDirectory != value)
                 {
                     _exportDirectory = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the export format.
+        /// </summary>
+        public string ExportFormat
+        {
+            get { return _exportFormat; }
+            set
+            {
+                if (_exportFormat != value)
+                {
+                    _exportFormat = value;
                     OnPropertyChanged();
                 }
             }
@@ -727,7 +744,7 @@ namespace QuranVideoMaker.Data
             {
                 var sw = Stopwatch.StartNew();
 
-                var videoExportPath = Path.Combine(Path.GetTempPath(), "QuranVideoMaker", $"project_{Id}_video.mp4");
+                var videoExportPath = Path.Combine(Path.GetTempPath(), "QuranVideoMaker", $"project_{Id}_video.{ExportFormat}");
                 var audioExportPath = Path.Combine(Path.GetTempPath(), "QuranVideoMaker", $"project_{Id}_audio.mp3");
 
                 var totalFrames = GetTotalFrames();
@@ -786,15 +803,23 @@ namespace QuranVideoMaker.Data
 
                     if (ExportIncludeAlphaChannel)
                     {
-                        options.WithVideoCodec("libvpx-vp9");
-                        options.ForcePixelFormat("yuva420p");
-                        options.ForceFormat("webm");
+                        if (ExportFormat == "mov")
+                        {
+                            options.WithVideoCodec("qtrle");
+                            options.ForcePixelFormat("argb");
+                        }
+                        else if (ExportFormat == "webm")
+                        {
+                            options.WithVideoCodec("libvpx-vp9");
+                            options.ForcePixelFormat("yuva420p");
+                        }
                     }
                     else
                     {
                         options.WithVideoCodec(VideoCodec.LibX264);
-                        options.ForceFormat("mp4");
                     }
+
+                    options.ForceFormat(ExportFormat);
                 });
                 //.OutputToPipe(new StreamPipeSink(outputStream), options =>{})
 
