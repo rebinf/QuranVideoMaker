@@ -42,6 +42,12 @@ I wrote this app in my spare time, so most of the effort is to make something th
 It is written in C# using WPF for the UI, the performance is not great.
 So it needs major work in several areas.
 
+## Contributing
+Short guide on how to contribute to this project:
+* Open an issue if you find a bug or have a feature request.
+* If you want to fix a bug, implement a feature or improve the project, create an issue first, then fork the repository and create a pull request.
+
+For more details, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Resources
 * Quran and Translations: https://tanzil.net/
