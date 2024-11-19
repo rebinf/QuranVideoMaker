@@ -28,10 +28,10 @@
     
     <Border.ContextMenu>
         <ContextMenu>
-            <MenuItem Header="Cut" Click="CutItem_Click" />
-            <MenuItem Header="Copy" Click="CopyItem_Click" />
+            <MenuItem Header="Cut" Click="CutItem_Click" InputGestureText="Ctrl+X" />
+            <MenuItem Header="Copy" Click="CopyItem_Click" InputGestureText="Ctrl+C" />
             <Separator />
-            <MenuItem Header="Delete" Click="DeleteItem_Click" />
+            <MenuItem Header="Delete" Click="DeleteItem_Click" InputGestureText="Del" />
         </ContextMenu>
     </Border.ContextMenu>
 
