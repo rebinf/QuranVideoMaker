@@ -42,9 +42,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the type.
         /// </summary>
-        /// <value>
-        /// The type.
-        /// </value>
         public TimelineTrackType Type
         {
             get { return _type; }
@@ -61,9 +58,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
         public string Name
         {
             get { return _name; }
@@ -80,9 +74,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the height.
         /// </summary>
-        /// <value>
-        /// The height.
-        /// </value>
         public int Height
         {
             get { return _height; }
@@ -99,9 +90,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the items.
         /// </summary>
-        /// <value>
-        /// The items.
-        /// </value>
         public ObservableCollection<ITrackItem> Items
         {
             get { return _items ??= new ObservableCollection<ITrackItem>(); }

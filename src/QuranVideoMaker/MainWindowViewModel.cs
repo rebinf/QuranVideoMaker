@@ -31,6 +31,9 @@ namespace QuranVideoMaker
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Gets or sets the current project.
+        /// </summary>
         public Project CurrentProject
         {
             get { return _currentProject; }
@@ -47,9 +50,6 @@ namespace QuranVideoMaker
         /// <summary>
         /// Gets or sets the project file path.
         /// </summary>
-        /// <value>
-        /// The project file path.
-        /// </value>
         public string ProjectFilePath
         {
             get { return _projectFilePath; }
@@ -63,6 +63,9 @@ namespace QuranVideoMaker
             }
         }
 
+        /// <summary>
+        /// Gets the application title.
+        /// </summary>
         public string Title
         {
             get
@@ -78,6 +81,9 @@ namespace QuranVideoMaker
             }
         }
 
+        /// <summary>
+        /// Gets the main window view model instance.
+        /// </summary>
         public static MainWindowViewModel Instance { get; private set; }
 
         /// <summary>

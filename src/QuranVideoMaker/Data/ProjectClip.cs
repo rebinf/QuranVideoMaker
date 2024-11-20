@@ -40,9 +40,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
         public string Id
         {
             get { return _id; }
@@ -59,9 +56,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the type.
         /// </summary>
-        /// <value>
-        /// The type.
-        /// </value>
         public TimelineTrackType TrackType
         {
             get { return _trackType; }
@@ -78,9 +72,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the type of the item.
         /// </summary>
-        /// <value>
-        /// The type of the item.
-        /// </value>
         public TrackItemType ItemType
         {
             get { return _itemType; }
@@ -97,9 +88,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the file path.
         /// </summary>
-        /// <value>
-        /// The file path.
-        /// </value>
         public string FilePath
         {
             get { return _filePath; }
@@ -117,9 +105,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets the name of the file.
         /// </summary>
-        /// <value>
-        /// The name of the file.
-        /// </value>
         public string FileName
         {
             get
@@ -157,9 +142,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets a value indicating whether this clip is selected.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if this clip is selected; otherwise, <c>false</c>.
-        /// </value>
         [JsonIgnore]
         public bool IsSelected
         {
@@ -183,9 +165,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the thumbnail.
         /// </summary>
-        /// <value>
-        /// The thumbnail.
-        /// </value>
         public string Thumbnail
         {
             get { return _thumbnail; }

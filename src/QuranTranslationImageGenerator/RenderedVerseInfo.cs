@@ -20,9 +20,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the image path.
         /// </summary>
-        /// <value>
-        /// The image path.
-        /// </value>
         public string ImagePath
         {
             get { return _imagePath; }
@@ -39,9 +36,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the content of the image.
         /// </summary>
-        /// <value>
-        /// The content of the image.
-        /// </value>
         public byte[] ImageContent
         {
             get { return _imageContent; }
@@ -58,9 +52,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the bitmap.
         /// </summary>
-        /// <value>
-        /// The bitmap.
-        /// </value>
         public SKBitmap Bitmap
         {
             get { return _bitmap; }

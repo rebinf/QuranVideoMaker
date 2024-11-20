@@ -58,7 +58,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
             }
         }
 
-        private void DettachEvents()
+        private void DetachEvents()
         {
             CurrentVerse.PropertyChanged -= VerseContent_PropertyChanged;
 
@@ -93,7 +93,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
 
         public override void OnClosed()
         {
-            DettachEvents();
+            DetachEvents();
             base.OnClosed();
         }
     }

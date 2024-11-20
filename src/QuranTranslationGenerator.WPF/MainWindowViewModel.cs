@@ -42,9 +42,6 @@ namespace QuranTranslationGenerator.WPF
         /// <summary>
         /// Gets or sets the selected chapter.
         /// </summary>
-        /// <value>
-        /// The selected chapter.
-        /// </value>
         public ChapterInfo SelectedChapter
         {
             get { return _selectedChapter; }
@@ -68,9 +65,6 @@ namespace QuranTranslationGenerator.WPF
         /// <summary>
         /// Gets or sets from verse.
         /// </summary>
-        /// <value>
-        /// From verse.
-        /// </value>
         public int FromVerse
         {
             get { return _fromVerse; }
@@ -93,9 +87,6 @@ namespace QuranTranslationGenerator.WPF
         /// <summary>
         /// Converts to verse.
         /// </summary>
-        /// <value>
-        /// To verse.
-        /// </value>
         public int ToVerse
         {
             get { return _toVerse; }
@@ -123,9 +114,6 @@ namespace QuranTranslationGenerator.WPF
         /// <summary>
         /// Gets or sets the preview verse.
         /// </summary>
-        /// <value>
-        /// The preview verse.
-        /// </value>
         public int PreviewVerse
         {
             get { return _previewVerse; }
@@ -146,9 +134,6 @@ namespace QuranTranslationGenerator.WPF
         /// <summary>
         /// Gets or sets the settings.
         /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
         public QuranRenderSettings Settings
         {
             get { return _settings; }
@@ -165,9 +150,6 @@ namespace QuranTranslationGenerator.WPF
         /// <summary>
         /// Gets or sets the preview bitmap.
         /// </summary>
-        /// <value>
-        /// The preview bitmap.
-        /// </value>
         public byte[] PreviewBitmap
         {
             get { return _previewBitmap; }

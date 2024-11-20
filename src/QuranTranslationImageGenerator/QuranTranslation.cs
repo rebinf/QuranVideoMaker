@@ -34,9 +34,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
         public Guid Id
         {
             get { return _id; }
@@ -52,9 +49,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the language.
         /// </summary>
-        /// <value>
-        /// The language.
-        /// </value>
         public string Language
         {
             get { return _language; }
@@ -71,9 +65,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
         public string Name
         {
             get { return _name; }
@@ -90,9 +81,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the content.
         /// </summary>
-        /// <value>
-        /// The content.
-        /// </value>
         public string Content
         {
             get { return _content; }
@@ -109,9 +97,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the translator.
         /// </summary>
-        /// <value>
-        /// The translator.
-        /// </value>
         public string Translator
         {
             get { return _translator; }
@@ -128,9 +113,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets a value indicating whether text is right to left.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if text is right to left; otherwise, <c>false</c>.
-        /// </value>
         public bool IsRightToLeft
         {
             get { return _isRightToLeft; }
@@ -147,9 +129,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets a value indicating whether this verse is the arabic script.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if this verse is the arabic script; otherwise, <c>false</c>.
-        /// </value>
         public bool IsNonAscii
         {
             get { return _isNonAscii; }
@@ -166,9 +145,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the font.
         /// </summary>
-        /// <value>
-        /// The font.
-        /// </value>
         public string Font
         {
             get { return _font; }
@@ -185,9 +161,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets a value indicating whether to use bold font.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if use bold font; otherwise, <c>false</c>.
-        /// </value>
         public bool BoldFont
         {
             get { return _boldFont; }
@@ -204,9 +177,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets a value indicating whether to use italic font.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if use italic font; otherwise, <c>false</c>.
-        /// </value>
         public bool ItalicFont
         {
             get { return _italicFont; }
@@ -223,9 +193,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets the verses.
         /// </summary>
-        /// <value>
-        /// The verses.
-        /// </value>
         public IEnumerable<Verse> Verses
         {
             get
@@ -242,9 +209,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets the information.
         /// </summary>
-        /// <value>
-        /// The information.
-        /// </value>
         public string Info { get { return $"{Language} - {Name}"; } }
 
         /// <summary>

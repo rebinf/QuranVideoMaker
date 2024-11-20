@@ -70,9 +70,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
         public string Id
         {
             get { return _id; }
@@ -89,9 +86,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the width of the track headers.
         /// </summary>
-        /// <value>
-        /// The width of the track headers.
-        /// </value>
         public int TrackHeadersWidth
         {
             get { return _trackHeadersWidth; }
@@ -156,9 +150,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the FPS.
         /// </summary>
-        /// <value>
-        /// The FPS.
-        /// </value>
         public double FPS
         {
             get { return _fps; }
@@ -175,9 +166,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the zoom.
         /// </summary>
-        /// <value>
-        /// The zoom.
-        /// </value>
         public int TimelineZoom
         {
             get { return _timelineZoom; }
@@ -194,9 +182,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the needle position.
         /// </summary>
-        /// <value>
-        /// The needle position.
-        /// </value>
         public TimeCode NeedlePositionTime
         {
             get { return _needlePositionTime; }
@@ -213,9 +198,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the tracks.
         /// </summary>
-        /// <value>
-        /// The tracks.
-        /// </value>
         public ObservableCollection<TimelineTrack> Tracks
         {
             get { return _tracks ??= new ObservableCollection<TimelineTrack>(); }
@@ -232,9 +214,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the clips.
         /// </summary>
-        /// <value>
-        /// The clips.
-        /// </value>
         public ObservableCollection<IProjectClip> Clips
         {
             get { return _clips; }
@@ -251,9 +230,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the width.
         /// </summary>
-        /// <value>
-        /// The width.
-        /// </value>
         public int Width
         {
             get { return QuranSettings.ImageWidth; }
@@ -267,9 +243,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the height.
         /// </summary>
-        /// <value>
-        /// The height.
-        /// </value>
         public int Height
         {
             get { return QuranSettings.ImageHeight; }
@@ -283,9 +256,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the width of the preview.
         /// </summary>
-        /// <value>
-        /// The width of the preview.
-        /// </value>
         public int PreviewWidth
         {
             get { return _previewWidth; }
@@ -302,9 +272,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the height of the preview.
         /// </summary>
-        /// <value>
-        /// The height of the preview.
-        /// </value>
         public int PreviewHeight
         {
             get { return _previewHeight; }
@@ -334,9 +301,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the export directory.
         /// </summary>
-        /// <value>
-        /// The export directory.
-        /// </value>
         public string ExportDirectory
         {
             get { return _exportDirectory; }
@@ -443,9 +407,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the Quran settings.
         /// </summary>
-        /// <value>
-        /// The Quran settings.
-        /// </value>
         public QuranRenderSettings QuranSettings
         {
             get { return _quranSettings ??= new QuranRenderSettings(); }
@@ -471,9 +432,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the current image.
         /// </summary>
-        /// <value>
-        /// The current image.
-        /// </value>
         [JsonIgnore]
         public byte[] CurrentPreviewFrame
         {

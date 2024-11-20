@@ -26,9 +26,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
         public string Name
         {
             get { return _name; }
@@ -45,9 +42,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the language.
         /// </summary>
-        /// <value>
-        /// The language.
-        /// </value>
         public string Language
         {
             get { return _language; }
@@ -64,9 +58,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets a value indicating whether text is right to left.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if text is right to left; otherwise, <c>false</c>.
-        /// </value>
         public bool IsRightToLeft
         {
             get { return RenderSettings.IsRightToLeft; }
@@ -75,9 +66,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets a value indicating whether this verse is the arabic script.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if this verse is the arabic script; otherwise, <c>false</c>.
-        /// </value>
         public bool IsNonAscii
         {
             get { return RenderSettings.IsNonAscii; }
@@ -86,9 +74,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the render settings.
         /// </summary>
-        /// <value>
-        /// The render settings.
-        /// </value>
         public VerseRenderSettings RenderSettings
         {
             get { return _renderSettings; }
@@ -105,9 +90,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the translated verses.
         /// </summary>
-        /// <value>
-        /// The translated verses.
-        /// </value>
         public List<VerseInfo> TranslatedVerses
         {
             get { return _translatedVerses; }

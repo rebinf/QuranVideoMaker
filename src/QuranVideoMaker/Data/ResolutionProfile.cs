@@ -30,9 +30,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
         public string Name
         {
             get { return _name; }
@@ -49,9 +46,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the width.
         /// </summary>
-        /// <value>
-        /// The width.
-        /// </value>
         public int Width
         {
             get { return _width; }
@@ -68,9 +62,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the height.
         /// </summary>
-        /// <value>
-        /// The height.
-        /// </value>
         public int Height
         {
             get { return _height; }
@@ -87,9 +78,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the width of the preview.
         /// </summary>
-        /// <value>
-        /// The width of the preview.
-        /// </value>
         public int PreviewWidth
         {
             get { return _previewWidth; }
@@ -106,9 +94,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the height of the preview.
         /// </summary>
-        /// <value>
-        /// The height of the preview.
-        /// </value>
         public int PreviewHeight
         {
             get { return _previewHeight; }
@@ -125,9 +110,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the FPS.
         /// </summary>
-        /// <value>
-        /// The FPS.
-        /// </value>
         public double FPS
         {
             get { return _fps; }
@@ -144,9 +126,6 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets the presets.
         /// </summary>
-        /// <value>
-        /// The presets.
-        /// </value>
         public static IEnumerable<ResolutionProfile> Presets
         {
             get
