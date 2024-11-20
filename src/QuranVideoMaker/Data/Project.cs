@@ -793,6 +793,14 @@ namespace QuranVideoMaker.Data
                     track.Items.Remove(item.TrackItem);
                 }
             }
+            else
+            {
+                // set new Ids for the copied items
+                foreach (var item in selectedItems)
+                {
+                    item.TrackItem.GenerateNewId();
+                }
+            }
 
             // clear any previous clipboard data
             Clipboard.Clear();

@@ -59,5 +59,12 @@ namespace QuranVideoMaker.Data
         bool IsCompatibleWith(TimelineTrackType trackType);
 
         void CacheFrames();
+
+        /// <summary>
+        /// Generates a new Id for the clip.
+        /// </summary>
+        /// <returns>The new Id.</returns>
+        string GenerateNewId();
+
     }
 }

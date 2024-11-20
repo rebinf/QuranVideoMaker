@@ -174,6 +174,13 @@ namespace QuranVideoMaker.Data
             return Items.FirstOrDefault(x => x.Position.TotalSeconds <= timelineFrame && x.GetRightTime().TotalSeconds >= timelineFrame);
         }
 
+        /// <inheritdoc/>
+        public string GenerateNewId()
+        {
+            Id = Guid.NewGuid().ToString().Replace("-", string.Empty);
+            return Id;
+        }
+
         /// <summary>
         /// Called when public properties changed.
         /// </summary>
