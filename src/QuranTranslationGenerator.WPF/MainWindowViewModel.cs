@@ -53,6 +53,13 @@ namespace QuranTranslationGenerator.WPF
                 if (_selectedChapter != value)
                 {
                     _selectedChapter = value;
+
+                    if (_selectedChapter != null)
+                    {
+                        FromVerse = 1;
+                        ToVerse = _selectedChapter.VersesCount;
+                    }
+
                     OnPropertyChanged();
                 }
             }
@@ -72,6 +79,12 @@ namespace QuranTranslationGenerator.WPF
                 if (_fromVerse != value)
                 {
                     _fromVerse = value;
+
+                    if (_fromVerse < 1)
+                    {
+                        _fromVerse = 1;
+                    }
+
                     OnPropertyChanged();
                 }
             }
@@ -91,6 +104,17 @@ namespace QuranTranslationGenerator.WPF
                 if (_toVerse != value)
                 {
                     _toVerse = value;
+
+                    if (_toVerse < _fromVerse)
+                    {
+                        _toVerse = _fromVerse;
+                    }
+
+                    if (SelectedChapter != null && _toVerse > SelectedChapter.VersesCount)
+                    {
+                        _toVerse = SelectedChapter.VersesCount;
+                    }
+
                     OnPropertyChanged();
                 }
             }
@@ -187,6 +211,11 @@ namespace QuranTranslationGenerator.WPF
 
             foreach (var verseInfo in Quran.QuranScript.Where(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber >= FromVerse && x.VerseNumber <= ToVerse).Select(x => x.ToVerseInfo()))
             {
+                if (Settings.IncludeVerseNumbers && verseInfo.VerseNumber != 0)
+                {
+                    verseInfo.VerseText = $"{verseInfo.VerseText}{Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
+                }
+
                 verses.Add(verseInfo);
 
                 foreach (var t in Settings.TranslationRenderSettings)
@@ -229,6 +258,11 @@ namespace QuranTranslationGenerator.WPF
         private void UpdatePreview()
         {
             var verseInfo = Quran.QuranScript.First(x => x.ChapterNumber == SelectedChapter.Number && x.VerseNumber == PreviewVerse).ToVerseInfo();
+
+            if (Settings.IncludeVerseNumbers && verseInfo.VerseNumber != 0)
+            {
+                verseInfo.VerseText = $"{verseInfo.VerseText}{Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
+            }
 
             foreach (var t in Settings.TranslationRenderSettings)
             {

@@ -101,6 +101,12 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                 if (_fromVerse != value)
                 {
                     _fromVerse = value;
+
+                    if (_fromVerse < 1)
+                    {
+                        _fromVerse = 1;
+                    }
+
                     OnPropertyChanged();
                 }
             }
@@ -120,6 +126,17 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                 if (_toVerse != value)
                 {
                     _toVerse = value;
+
+                    if (_toVerse < _fromVerse)
+                    {
+                        _toVerse = _fromVerse;
+                    }
+
+                    if (SelectedChapter != null && _toVerse > SelectedChapter.VersesCount)
+                    {
+                        _toVerse = SelectedChapter.VersesCount;
+                    }
+
                     OnPropertyChanged();
                 }
             }

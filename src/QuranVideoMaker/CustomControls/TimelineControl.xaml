@@ -81,7 +81,7 @@
                 <ItemsControl x:Name="tracksControl" ItemsSource="{Binding Project.Tracks, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}}" Width="{Binding Width, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UIElement}}" Margin="0,30,0,0">
                     <ItemsControl.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Paste" Click="PasteItem_Click" />
+                            <MenuItem Header="Paste" Click="PasteItem_Click" InputGestureText="Ctrl+V" />
                         </ContextMenu>
                     </ItemsControl.ContextMenu>
                     <ItemsControl.ItemTemplate>

@@ -311,8 +311,24 @@ namespace QuranVideoMaker
         [RelayCommand]
         private void OnRemoveMedia()
         {
+            // confirm as this will remove the track items in the timeline as well
+            if (MessageBox.Show("Are you sure you want to remove the selected media?\r\nThis will also remove the track items in the timeline.", "Remove Media", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
             foreach (var clip in CurrentProject.Clips.Where(x => x.IsSelected).ToArray())
             {
+                foreach (var track in CurrentProject.Tracks)
+                {
+                    var items = track.Items.Where(x => x.ClipId == clip.Id).ToArray();
+
+                    foreach (var item in items)
+                    {
+                        track.Items.Remove(item);
+                    }
+                }
+
                 CurrentProject.Clips.Remove(clip);
             }
         }
