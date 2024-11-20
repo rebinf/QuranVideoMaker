@@ -134,6 +134,10 @@ namespace QuranTranslationGenerator.WPF
                 if (_previewVerse != value)
                 {
                     _previewVerse = value;
+
+                    // preview verse needs to be within the selected chapter
+                    _previewVerse = Math.Clamp(_previewVerse, 1, SelectedChapter.VersesCount);
+
                     OnPropertyChanged();
                 }
             }
