@@ -48,7 +48,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         {
             Clip = clip;
             Clip.CacheProgress += Clip_CacheProgress;
-            _importTimer = new System.Timers.Timer(1000);
+            _importTimer = new System.Timers.Timer(500);
             _importTimer.Elapsed += ImportTimer_Elapsed;
             Import();
         }
