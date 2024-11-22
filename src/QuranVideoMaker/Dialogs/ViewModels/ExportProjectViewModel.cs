@@ -28,17 +28,11 @@ namespace QuranVideoMaker
         /// <summary>
         /// Gets the project.
         /// </summary>
-        /// <value>
-        /// The project.
-        /// </value>
         public Project Project { get; }
 
         /// <summary>
         /// Gets or sets the export progress.
         /// </summary>
-        /// <value>
-        /// The export progress.
-        /// </value>
         public double ExportProgress
         {
             get { return _exportProgress; }
@@ -87,9 +81,6 @@ namespace QuranVideoMaker
         /// <summary>
         /// Gets or sets a value indicating whether project is exporting.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if project is exporting; otherwise, <c>false</c>.
-        /// </value>
         public bool IsExporting
         {
             get { return _isExporting; }

@@ -33,18 +33,16 @@ namespace QuranVideoMaker
         /// <summary>
         /// Gets the project.
         /// </summary>
-        /// <value>
-        /// The project.
-        /// </value>
         public Project Project { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the settings are for auto verse.
+        /// </summary>
         public bool AutoVerse { get; }
 
         /// <summary>
         /// Gets or sets the selected chapter.
         /// </summary>
-        /// <value>
-        /// The selected chapter.
-        /// </value>
         public ChapterInfo SelectedChapter
         {
             get { return _selectedChapter; }
@@ -68,9 +66,6 @@ namespace QuranVideoMaker
         /// <summary>
         /// Gets or sets from verse.
         /// </summary>
-        /// <value>
-        /// From verse.
-        /// </value>
         public int FromVerse
         {
             get { return _fromVerse; }
@@ -93,9 +88,6 @@ namespace QuranVideoMaker
         /// <summary>
         /// Converts to verse.
         /// </summary>
-        /// <value>
-        /// To verse.
-        /// </value>
         public int ToVerse
         {
             get { return _toVerse; }
@@ -123,9 +115,6 @@ namespace QuranVideoMaker
         /// <summary>
         /// Gets or sets a value indicating whether to include bismillah.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if include bismillah; otherwise, <c>false</c>.
-        /// </value>
         public bool IncludeBismillah
         {
             get { return _includeBismillah; }
@@ -142,9 +131,6 @@ namespace QuranVideoMaker
         /// <summary>
         /// Gets or sets a value indicating whether to add verse transitions.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if add verse transitions; otherwise, <c>false</c>.
-        /// </value>
         public bool VerseTransitions
         {
             get { return _verseTransitions; }
@@ -159,11 +145,8 @@ namespace QuranVideoMaker
         }
 
         /// <summary>
-        /// Gets or sets the quran settings.
+        /// Gets or sets the Quran settings.
         /// </summary>
-        /// <value>
-        /// The quran settings.
-        /// </value>
         public VerseRenderSettings QuranSettings
         {
             get { return _quranSettings; }
@@ -180,9 +163,6 @@ namespace QuranVideoMaker
         /// <summary>
         /// Gets or sets the translations.
         /// </summary>
-        /// <value>
-        /// The translations.
-        /// </value>
         public ObservableCollection<TranslationInfo> Translations
         {
             get { return _translations; }

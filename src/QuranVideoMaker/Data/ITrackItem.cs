@@ -124,5 +124,11 @@ namespace QuranVideoMaker.Data
         /// Clones this instance.
         /// </summary>
         ITrackItem Clone();
+
+        /// <summary>
+        /// Generates a new id for the track item.
+        /// </summary>
+        /// <returns>The new Id.</returns>
+        string GenerateNewId();
     }
 }

@@ -27,9 +27,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the number.
         /// </summary>
-        /// <value>
-        /// The number.
-        /// </value>
         public int Number
         {
             get { return _number; }
@@ -46,9 +43,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the name of the english.
         /// </summary>
-        /// <value>
-        /// The name of the english.
-        /// </value>
         public string EnglishName
         {
             get { return _englishName; }
@@ -65,9 +59,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the name meaning.
         /// </summary>
-        /// <value>
-        /// The name meaning.
-        /// </value>
         public string NameMeaning
         {
             get { return _nameMeaning; }
@@ -84,9 +75,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the name of the arabic.
         /// </summary>
-        /// <value>
-        /// The name of the arabic.
-        /// </value>
         public string ArabicName
         {
             get { return _arabicName; }
@@ -103,9 +91,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the verses count.
         /// </summary>
-        /// <value>
-        /// The verses count.
-        /// </value>
         public int VersesCount
         {
             get { return _versesCount; }

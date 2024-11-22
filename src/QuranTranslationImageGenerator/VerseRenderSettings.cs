@@ -36,9 +36,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
         public Guid Id
         {
             get { return _id; }
@@ -55,9 +52,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the color of the text.
         /// </summary>
-        /// <value>
-        /// The color of the text.
-        /// </value>
         public SKColor TextColor
         {
             get { return _textColor; }
@@ -74,9 +68,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the color of the shadow.
         /// </summary>
-        /// <value>
-        /// The color of the shadow.
-        /// </value>
         public SKColor TextShadowColor
         {
             get { return _textShadowColor; }
@@ -93,9 +84,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets a value indicating whether text should have shadows.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if text should have shadows; otherwise, <c>false</c>.
-        /// </value>
         public bool TextShadow
         {
             get { return _textShadow; }
@@ -112,9 +100,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the text shadow offset.
         /// </summary>
-        /// <value>
-        /// The text shadow offset.
-        /// </value>
         public SKPoint TextShadowOffset
         {
             get { return _textShadowOffset; }
@@ -131,9 +116,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the size of the font.
         /// </summary>
-        /// <value>
-        /// The size of the font.
-        /// </value>
         public int FontSize
         {
             get { return _fontSize; }
@@ -150,9 +132,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the gap between lines.
         /// </summary>
-        /// <value>
-        /// The gap.
-        /// </value>
         public int GapBetweenLines
         {
             get { return _gapBetweenLines; }
@@ -169,9 +148,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets a value indicating whether text is right to left.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if text is right to left; otherwise, <c>false</c>.
-        /// </value>
         public bool IsRightToLeft
         {
             get { return _isRightToLeft; }
@@ -188,9 +164,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets a value indicating whether this instance is non ASCII.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is non ASCII; otherwise, <c>false</c>.
-        /// </value>
         public bool IsNonAscii
         {
             get { return _isNonAscii; }
@@ -207,9 +180,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the font.
         /// </summary>
-        /// <value>
-        /// The font.
-        /// </value>
         public string Font
         {
             get { return _font; }
@@ -226,9 +196,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets a value indicating whether to use bold font.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if use bold font; otherwise, <c>false</c>.
-        /// </value>
         public bool BoldFont
         {
             get { return _boldFont; }
@@ -245,9 +212,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets a value indicating whether to use italic font.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if use italic font; otherwise, <c>false</c>.
-        /// </value>
         public bool ItalicFont
         {
             get { return _italicFont; }

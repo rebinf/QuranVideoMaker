@@ -22,11 +22,11 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         /// <summary>
         /// Gets the project.
         /// </summary>
-        /// <value>
-        /// The project.
-        /// </value>
         public Project Project { get; }
 
+        /// <summary>
+        /// Gets the selected resolution profile.
+        /// </summary>
         public ResolutionProfile SelectedProfile
         {
             get { return _selectedProfile; }

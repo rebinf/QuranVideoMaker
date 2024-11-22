@@ -50,5 +50,10 @@ namespace QuranVideoMaker.Data
         /// </summary>
         ITrackItem GetItemAtTimelineFrame(double timelineFrame);
 
+        /// <summary>
+        /// Generates a new Id for the track.
+        /// </summary>
+        /// <returns>The new Id.</returns>
+        string GenerateNewId();
     }
 }

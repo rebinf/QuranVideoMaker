@@ -24,9 +24,6 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         /// <summary>
         /// Gets or sets the data.
         /// </summary>
-        /// <value>
-        /// The data.
-        /// </value>
         public object Data
         {
             get { return _data; }
@@ -43,9 +40,6 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         /// <summary>
         /// Gets or sets the close window.
         /// </summary>
-        /// <value>
-        /// The close window.
-        /// </value>
         public Action<bool> CloseWindow { get; set; }
 
         /// <summary>

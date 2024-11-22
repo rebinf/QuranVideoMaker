@@ -37,17 +37,11 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         /// <summary>
         /// Gets the project.
         /// </summary>
-        /// <value>
-        /// The project.
-        /// </value>
         public Project Project { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to add verses.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if add verses; otherwise, <c>false</c>.
-        /// </value>
         public bool AddVerses
         {
             get { return _addVerses; }
@@ -64,9 +58,6 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         /// <summary>
         /// Gets or sets the selected chapter.
         /// </summary>
-        /// <value>
-        /// The selected chapter.
-        /// </value>
         public ChapterInfo SelectedChapter
         {
             get { return _selectedChapter; }
@@ -90,9 +81,6 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         /// <summary>
         /// Gets or sets from verse.
         /// </summary>
-        /// <value>
-        /// From verse.
-        /// </value>
         public int FromVerse
         {
             get { return _fromVerse; }
@@ -115,9 +103,6 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         /// <summary>
         /// Converts to verse.
         /// </summary>
-        /// <value>
-        /// To verse.
-        /// </value>
         public int ToVerse
         {
             get { return _toVerse; }
@@ -145,9 +130,6 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         /// <summary>
         /// Gets or sets a value indicating whether to include bismillah.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if include bismillah; otherwise, <c>false</c>.
-        /// </value>
         public bool IncludeBismillah
         {
             get { return _includeBismillah; }
@@ -164,9 +146,6 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         /// <summary>
         /// Gets or sets a value indicating whether to include Arabic script.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if include Arabic script; otherwise, <c>false</c>.
-        /// </value>
         public bool ShowArabicScript
         {
             get { return _showArabicScript; }
@@ -200,9 +179,6 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         /// <summary>
         /// Gets or sets a value indicating whether to add verse transitions.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if add verse transitions; otherwise, <c>false</c>.
-        /// </value>
         public bool VerseTransitions
         {
             get { return _verseTransitions; }
@@ -219,9 +195,6 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         /// <summary>
         /// Gets or sets the translations.
         /// </summary>
-        /// <value>
-        /// The translations.
-        /// </value>
         public ObservableCollection<TranslationInfo> Translations
         {
             get { return _translations; }
@@ -235,6 +208,9 @@ namespace QuranVideoMaker.Dialogs.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the selected resolution profile.
+        /// </summary>
         public ResolutionProfile SelectedProfile
         {
             get { return _selectedProfile; }
@@ -258,9 +234,6 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         /// <summary>
         /// Gets or sets the project directory.
         /// </summary>
-        /// <value>
-        /// The project directory.
-        /// </value>
         public string ProjectDirectory
         {
             get { return _projectDirectory; }
@@ -275,11 +248,8 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets the quran audio file.
+        /// Gets or sets the Quran audio file.
         /// </summary>
-        /// <value>
-        /// The quran audio file.
-        /// </value>
         public string QuranAudioFile
         {
             get { return _quranAudioFile; }

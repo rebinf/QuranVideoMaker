@@ -29,9 +29,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the type identifier.
         /// </summary>
-        /// <value>
-        /// The type identifier.
-        /// </value>
         public Guid TypeId
         {
             get { return _typeId; }
@@ -48,9 +45,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the chapter.
         /// </summary>
-        /// <value>
-        /// The chapter.
-        /// </value>
         public int ChapterNumber
         {
             get { return _chapterNumber; }
@@ -67,9 +61,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the number.
         /// </summary>
-        /// <value>
-        /// The number.
-        /// </value>
         public int VerseNumber
         {
             get { return _verseNumber; }
@@ -86,9 +77,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the verse part.
         /// </summary>
-        /// <value>
-        /// The verse part.
-        /// </value>
         public int VersePart
         {
             get { return _versePart; }
@@ -105,9 +93,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the verse text.
         /// </summary>
-        /// <value>
-        /// The verse text.
-        /// </value>
         public string VerseText
         {
             get { return _verseText; }
@@ -124,9 +109,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the translations.
         /// </summary>
-        /// <value>
-        /// The translations.
-        /// </value>
         public ObservableCollection<VerseInfo> Translations
         {
             get { return _translations; }

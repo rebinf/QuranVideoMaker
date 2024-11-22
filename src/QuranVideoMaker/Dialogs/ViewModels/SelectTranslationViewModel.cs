@@ -13,6 +13,9 @@ namespace QuranVideoMaker.Dialogs.ViewModels
     [DebuggerDisplay("SelectTranslationViewModel")]
     public class SelectTranslationViewModel : DialogViewModelBase
     {
+        /// <summary>
+        /// Gets or sets the selected translation.
+        /// </summary>
         public QuranTranslation SelectedTranslation { get; set; }
 
         /// <summary>

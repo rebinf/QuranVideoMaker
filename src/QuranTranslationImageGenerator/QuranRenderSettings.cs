@@ -53,9 +53,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the width of the screen.
         /// </summary>
-        /// <value>
-        /// The width of the screen.
-        /// </value>
         public int ImageWidth
         {
             get { return _imageWidth; }
@@ -72,9 +69,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the height of the screen.
         /// </summary>
-        /// <value>
-        /// The height of the screen.
-        /// </value>
         public int ImageHeight
         {
             get { return _imageHeight; }
@@ -91,9 +85,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the color of the background.
         /// </summary>
-        /// <value>
-        /// The color of the background.
-        /// </value>
         public SKColor BackgroundColor
         {
             get { return _backgroundColor; }
@@ -110,9 +101,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the text position.
         /// </summary>
-        /// <value>
-        /// The text position.
-        /// </value>
         public TextPosition TextPosition
         {
             get { return _textPosition; }
@@ -129,9 +117,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets a value indicating whether to include bismillah.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if include bismillah; otherwise, <c>false</c>.
-        /// </value>
         public bool IncludeBismillah
         {
             get { return _includeBismillah; }
@@ -164,9 +149,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets a value indicating whether to include arabic script.
         /// </summary>
-        /// <value>
-        ///   <c>true</c> if include arabic script; otherwise, <c>false</c>.
-        /// </value>
         public bool ShowArabicScript
         {
             get { return _showArabicScript; }
@@ -183,9 +165,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the gap between verses.
         /// </summary>
-        /// <value>
-        /// The gap.
-        /// </value>
         public int GapBetweenVerses
         {
             get { return _gapBetweenVerses; }
@@ -202,9 +181,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the horizontal margin percentage.
         /// </summary>
-        /// <value>
-        /// The horizontal margin percentage.
-        /// </value>
         public float HorizontalMarginPercentage
         {
             get { return _horizontalMarginPercentage; }
@@ -335,9 +311,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the output directory.
         /// </summary>
-        /// <value>
-        /// The output directory.
-        /// </value>
         public string OutputDirectory
         {
             get { return _outputDirectory; }
@@ -354,9 +327,6 @@ namespace QuranTranslationImageGenerator
         /// <summary>
         /// Gets or sets the output storage location.
         /// </summary>
-        /// <value>
-        /// The output storage location.
-        /// </value>
         public OutputType OutputType
         {
             get { return _outputLocation; }

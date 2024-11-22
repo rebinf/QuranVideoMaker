@@ -8,11 +8,12 @@
         WindowStyle="None"
         BorderBrush="#FF707070"
         BorderThickness="1"
-        Title="Importing Clip..." Height="50" Width="250">
+        Title="Importing Clip..." Height="70" Width="250" SizeToContent="Height">
     <Grid>
         <StackPanel>
             <TextBlock Text="Importing Clip..." Foreground="WhiteSmoke" Margin="5,5,5,0" />
             <ProgressBar Height="10" Margin="5,3,5,5" Minimum="0" Maximum="100" Value="{Binding Progress}" />
+            <TextBlock Text="{Binding Elapsed}" Foreground="WhiteSmoke" Margin="5,0,5,5" />
         </StackPanel>
     </Grid>
 </local:DialogViewBase>

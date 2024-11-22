@@ -474,5 +474,12 @@ namespace QuranVideoMaker.Data
 
             return item;
         }
+
+        /// <inheritdoc/>
+        public string GenerateNewId()
+        {
+            Id = Guid.NewGuid().ToString().Replace("-", string.Empty);
+            return Id;
+        }
     }
 }
