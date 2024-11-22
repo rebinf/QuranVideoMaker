@@ -380,9 +380,13 @@ namespace QuranVideoMaker.Data
                 }
                 else
                 {
-                    var cache = JsonSerializer.Deserialize<List<FrameCache>>(File.ReadAllText(TempFramesCacheFile));
-                    FramesCache.AddRange(cache);
-                    CacheProgress?.Invoke(this, 100);
+                    using (var reader = File.OpenRead(TempFramesCacheFile))
+                    {
+                        // use system text json to deserialize the cache
+                        var cache = JsonSerializer.Deserialize<List<FrameCache>>(reader);
+                        FramesCache.AddRange(cache);
+                        CacheProgress?.Invoke(this, 100);
+                    }
                 }
             }
             else if (ItemType == TrackItemType.Image)
