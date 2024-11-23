@@ -118,7 +118,7 @@ namespace QuranVideoMaker
 
         public override void OnOK()
         {
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(async () =>
             {
                 IsExporting = true;
 
@@ -135,7 +135,7 @@ namespace QuranVideoMaker
 
                 var filePath = Path.Combine(Project.ExportDirectory, fileName);
 
-                var result = Project.Export(filePath);
+                var result = await Project.ExportAsync(filePath);
 
                 _exportTimer.Stop();
 
