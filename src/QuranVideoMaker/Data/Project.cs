@@ -893,11 +893,6 @@ namespace QuranVideoMaker.Data
 
                     var range = Enumerable.Range(1, totalFrames).ToArray();
 
-                    while (!pipe.IsReady)
-                    {
-                        // wait for the pipe to be ready
-                    }
-
                     var chunkSize = 10;
                     var chunkQueueLimit = chunkSize * 3;
 
