@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Text.Json;
 using System.Windows;
 
 namespace QuranVideoMaker
@@ -25,6 +26,7 @@ namespace QuranVideoMaker
     {
         private Project _currentProject = new DefaultNewProject();
         private string _projectFilePath;
+        private List<RecentProject> _recentProjects;
 
         /// <summary>
         /// Occurs when a property value changes.
@@ -82,6 +84,22 @@ namespace QuranVideoMaker
         }
 
         /// <summary>
+        /// Gets or sets the recent projects.
+        /// </summary>
+        public List<RecentProject> RecentProjects
+        {
+            get { return _recentProjects; }
+            set
+            {
+                if (_recentProjects != value)
+                {
+                    _recentProjects = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the main window view model instance.
         /// </summary>
         public static MainWindowViewModel Instance { get; private set; }
@@ -129,6 +147,12 @@ namespace QuranVideoMaker
             {
                 OpenProject(dlg.FileName);
             }
+        }
+
+        [RelayCommand]
+        private void OnOpenRecentProject(RecentProject recentProject)
+        {
+            OpenProject(recentProject.Path);
         }
 
         [RelayCommand]
@@ -408,6 +432,8 @@ namespace QuranVideoMaker
                 }
 
                 CurrentProject.PreviewCurrentFrame();
+
+                AddRecentProject(projectFile);
             }
             else
             {
@@ -433,7 +459,86 @@ namespace QuranVideoMaker
 
         public void OnLoaded()
         {
+            LoadRecentProjects();
+        }
 
+        private void AddRecentProject(string projectFile)
+        {
+            if (RecentProjects.FirstOrDefault(x => x.Path.Equals(projectFile, StringComparison.OrdinalIgnoreCase)) is RecentProject recentProject)
+            {
+                RecentProjects.Remove(recentProject);
+            }
+
+            RecentProjects.Insert(0, new RecentProject(1, projectFile));
+
+            // update the numbers
+
+            for (int i = 0; i < RecentProjects.Count; i++)
+            {
+                RecentProjects[i].Number = i + 1;
+                RecentProjects[i].Name = $"{i + 1} - {RecentProjects[i].Path}";
+            }
+
+            SaveRecentProjects();
+
+            OnPropertyChanged(nameof(RecentProjects));
+        }
+
+        private void LoadRecentProjects()
+        {
+            try
+            {
+                var recentProjectsFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "QuranVideoMaker", "RecentProjects.json");
+
+                if (File.Exists(recentProjectsFilePath))
+                {
+                    var json = File.ReadAllText(recentProjectsFilePath);
+                    var recent = JsonSerializer.Deserialize<List<string>>(json);
+
+                    // remove any non-existing files
+                    recent = recent.Where(x => File.Exists(x)).ToList();
+
+                    var recentProjects = new List<RecentProject>();
+
+                    for (int i = 0; i < recent.Count; i++)
+                    {
+                        recentProjects.Add(new RecentProject(i + 1, recent[i]));
+                    }
+
+                    RecentProjects = recentProjects;
+                }
+                else
+                {
+                    RecentProjects = new List<RecentProject>();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load recent projects: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SaveRecentProjects()
+        {
+            var dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "QuranVideoMaker");
+
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+
+            var recentProjectsFilePath = Path.Combine(dir, "RecentProjects.json");
+
+            var lastTenProjects = RecentProjects.Take(10);
+
+            var lastTenProjectsPaths = lastTenProjects.Select(x => x.Path).ToList();
+
+            var json = JsonSerializer.Serialize(lastTenProjectsPaths);
+            File.WriteAllText(recentProjectsFilePath, json);
+
+            RecentProjects = lastTenProjects.ToList();
+
+            OnPropertyChanged(nameof(RecentProjects));
         }
 
         /// <summary>
