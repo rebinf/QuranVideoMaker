@@ -1,6 +1,5 @@
 ﻿using FFMpegCore.Pipes;
 using QuranVideoMaker.Data;
-using System.Collections.Concurrent;
 using System.IO;
 
 namespace QuranVideoMaker.Utilities
@@ -17,8 +16,6 @@ namespace QuranVideoMaker.Utilities
         public double FPS { get; set; }
 
         public bool IsFinished { get; set; }
-
-        public bool IsReady { get; set; }
 
         public MultithreadedFramePipeSource(double fps = 25, int totalFrames = 0)
         {
@@ -57,8 +54,6 @@ namespace QuranVideoMaker.Utilities
 
         public async Task WriteAsync(Stream outputStream, CancellationToken cancellationToken)
         {
-            IsReady = true;
-
             while (!IsFinished)
             {
                 if (_lastFrameNumber == _totalFrames)
