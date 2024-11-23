@@ -340,6 +340,19 @@ namespace QuranVideoMaker
         }
 
         [RelayCommand]
+        private void OpenQuranImageMaker()
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo("QuranImageMaker.App.exe") { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        [RelayCommand]
         private void ReportIssue()
         {
             Process.Start(new ProcessStartInfo("https://github.com/rebinf/QuranVideoMaker/issues/new") { UseShellExecute = true });
