@@ -7,10 +7,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuranVideoMaker"
         xmlns:data="clr-namespace:QuranVideoMaker.Data"
-        xmlns:quran="clr-namespace:QuranTranslationImageGenerator;assembly=QuranTranslationImageGenerator"
+        xmlns:quran="clr-namespace:QuranImageMaker;assembly=QuranImageMaker"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:customcontrols="clr-namespace:QuranVideoMaker.CustomControls"
-        xmlns:qtg="clr-namespace:QuranTranslationImageGenerator;assembly=QuranTranslationImageGenerator"
+        xmlns:qtg="clr-namespace:QuranImageMaker;assembly=QuranImageMaker"
         mc:Ignorable="d"
         Title="Project Settings" MinHeight="300" Width="400" SizeToContent="Height">
     <Grid Margin="5">

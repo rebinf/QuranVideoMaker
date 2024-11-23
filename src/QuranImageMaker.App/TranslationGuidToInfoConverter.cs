@@ -1,8 +1,10 @@
-﻿using System.Globalization;
+﻿using QuranImageMaker;
+using System;
+using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace QuranVideoMaker.Converters
+namespace QuranImageMaker.App
 {
     public class TranslationGuidToInfoConverter : MarkupExtension, IValueConverter
     {
@@ -10,7 +12,7 @@ namespace QuranVideoMaker.Converters
         {
             if (value is Guid guid)
             {
-                return QuranImageMaker.Quran.GetTranslation(guid).Info;
+                return Quran.GetTranslation(guid).Info;
             }
 
             return null;

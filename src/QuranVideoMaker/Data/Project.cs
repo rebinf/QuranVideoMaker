@@ -1,7 +1,7 @@
 ﻿using FFMpegCore;
 using FFMpegCore.Enums;
 using NAudio.Wave;
-using QuranTranslationImageGenerator;
+using QuranImageMaker;
 using QuranVideoMaker.ClipboardData;
 using QuranVideoMaker.CustomControls;
 using QuranVideoMaker.Serialization;

@@ -11,7 +11,7 @@ namespace QuranVideoMaker.Converters
         {
             if (value is Guid guid)
             {
-                return QuranTranslationImageGenerator.Quran.GetTranslation(guid).IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+                return QuranImageMaker.Quran.GetTranslation(guid).IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
             }
 
             return null;

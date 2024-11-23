@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using QuranTranslationImageGenerator;
+using QuranImageMaker;
 using System.ComponentModel;
 using System.Diagnostics;
 

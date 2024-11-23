@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net9.0-windows</TargetFramework>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\QuranImageMaker\QuranImageMaker.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Fonts\**\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

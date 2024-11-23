@@ -5,10 +5,6 @@ VisualStudioVersion = 17.3.32708.82
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuranVideoMaker", "QuranVideoMaker\QuranVideoMaker.csproj", "{AD5C2903-8D71-4D21-A775-A75E6AD8000A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuranTranslationImageGenerator", "QuranTranslationImageGenerator\QuranTranslationImageGenerator.csproj", "{7BD290AE-4772-4DA8-BEBE-5B20B0C827A9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuranTranslationGenerator.WPF", "QuranTranslationGenerator.WPF\QuranTranslationGenerator.WPF.csproj", "{DD293227-D07A-4B72-9185-AC4B3B6B0E8E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0B6F73F6-6A49-4CA7-8661-B8104D8001E4}"
 	ProjectSection(SolutionItems) = preProject
 		..\LICENSE.md = ..\LICENSE.md
@@ -18,6 +14,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{119C65FE-07D8-49E0-A0B0-5771CB3222F2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuranVideoMaker.Tests", "..\tests\QuranVideoMaker.Tests\QuranVideoMaker.Tests.csproj", "{F7CD3851-9E99-4B10-9948-82DA69C03986}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuranImageMaker", "QuranImageMaker\QuranImageMaker.csproj", "{7F459CA2-CC79-19A2-BCB7-A06A448C62B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuranImageMaker.App", "QuranImageMaker.App\QuranImageMaker.App.csproj", "{86E209AA-37C7-5E4F-365F-007E277E01C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,18 +29,18 @@ Global
 		{AD5C2903-8D71-4D21-A775-A75E6AD8000A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD5C2903-8D71-4D21-A775-A75E6AD8000A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD5C2903-8D71-4D21-A775-A75E6AD8000A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7BD290AE-4772-4DA8-BEBE-5B20B0C827A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BD290AE-4772-4DA8-BEBE-5B20B0C827A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7BD290AE-4772-4DA8-BEBE-5B20B0C827A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7BD290AE-4772-4DA8-BEBE-5B20B0C827A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD293227-D07A-4B72-9185-AC4B3B6B0E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD293227-D07A-4B72-9185-AC4B3B6B0E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD293227-D07A-4B72-9185-AC4B3B6B0E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD293227-D07A-4B72-9185-AC4B3B6B0E8E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F7CD3851-9E99-4B10-9948-82DA69C03986}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F7CD3851-9E99-4B10-9948-82DA69C03986}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7CD3851-9E99-4B10-9948-82DA69C03986}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7CD3851-9E99-4B10-9948-82DA69C03986}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F459CA2-CC79-19A2-BCB7-A06A448C62B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F459CA2-CC79-19A2-BCB7-A06A448C62B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F459CA2-CC79-19A2-BCB7-A06A448C62B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F459CA2-CC79-19A2-BCB7-A06A448C62B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86E209AA-37C7-5E4F-365F-007E277E01C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E209AA-37C7-5E4F-365F-007E277E01C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E209AA-37C7-5E4F-365F-007E277E01C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E209AA-37C7-5E4F-365F-007E277E01C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuranVideoMaker.Dialogs.Views"
         xmlns:converters="clr-namespace:QuranVideoMaker.Converters"
-        xmlns:qtg="clr-namespace:QuranTranslationImageGenerator;assembly=QuranTranslationImageGenerator" 
+        xmlns:qtg="clr-namespace:QuranImageMaker;assembly=QuranImageMaker" 
         xmlns:customcontrols="clr-namespace:QuranVideoMaker.CustomControls"
         mc:Ignorable="d"
         Title="Quran Settings" Height="500" Width="900">

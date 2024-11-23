@@ -1,4 +1,4 @@
-﻿using QuranTranslationImageGenerator;
+﻿using QuranImageMaker;
 using System.Windows;
 
 namespace QuranVideoMaker.Dialogs.Views

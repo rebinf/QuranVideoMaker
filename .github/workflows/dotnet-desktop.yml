@@ -48,8 +48,8 @@ jobs:
     - name: delete locales directory
       run: rm -f ./src/QuranVideoMaker/bin/Release/net9.0-windows/win-x64/publish/libraries/locales -r
       
-    - name: copy QuranTranslationGenerator.WPF* files to QuranVideoMaker publish directory
-      run: cp -R ./src/QuranTranslationGenerator.WPF/bin/Release/net9.0-windows/win-x64/publish/QuranTranslationGenerator.WPF* ./src/QuranVideoMaker/bin/Release/net9.0-windows/win-x64/publish/
+    - name: copy QuranImageMaker.App* files to QuranVideoMaker publish directory
+      run: cp -R ./src/QuranImageMaker.App/bin/Release/net9.0-windows/win-x64/publish/QuranImageMaker.App* ./src/QuranVideoMaker/bin/Release/net9.0-windows/win-x64/publish/
 
     - name: zip release
       run: |

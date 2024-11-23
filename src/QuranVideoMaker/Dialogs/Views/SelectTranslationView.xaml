@@ -6,7 +6,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuranVideoMaker"
-        xmlns:quran="clr-namespace:QuranTranslationImageGenerator;assembly=QuranTranslationImageGenerator"
+        xmlns:quran="clr-namespace:QuranImageMaker;assembly=QuranImageMaker"
         xmlns:customcontrols="clr-namespace:QuranVideoMaker.CustomControls"
         mc:Ignorable="d"
         Title="Select Translation" Height="100" Width="300" SizeToContent="Height">
