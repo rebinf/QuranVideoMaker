@@ -42,6 +42,19 @@
                 <MenuItem Header="Save" Command="{Binding SaveProjectCommand}" InputGestureText="Ctrl+S" />
                 <MenuItem Header="Save As..." Command="{Binding SaveProjectAsCommand}" InputGestureText="Ctrl+Shift+S" />
                 <Separator />
+                <MenuItem Header="Recent Projects" ItemsSource="{Binding RecentProjects}" DisplayMemberPath="Name">
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Command" Value="{Binding DataContext.OpenRecentProjectCommand, RelativeSource={RelativeSource AncestorType=Menu}}" />
+                            <Setter Property="CommandParameter" Value="{Binding}" />
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                    <!--<MenuItem.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" Command="{Binding DataContext.OpenRecentProjectCommand, RelativeSource={RelativeSource AncestorType=Menu}}" CommandParameter="{Binding}" />
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>-->
+                </MenuItem>
                 <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
             </MenuItem>
             <MenuItem Header="Edit">
@@ -112,6 +125,10 @@
                         <svgc:SvgIcon UriSource="/Resources/Icons/ffw.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />
                     </MenuItem.Icon>
                 </MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="Tools">
+                <MenuItem Header="Quran Image Maker" Command="{Binding OpenQuranImageMakerCommand}" />
             </MenuItem>
 
             <MenuItem Header="Help">

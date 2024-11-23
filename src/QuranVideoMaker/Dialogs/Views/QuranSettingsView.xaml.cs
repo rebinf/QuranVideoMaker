@@ -1,4 +1,4 @@
-﻿using QuranTranslationImageGenerator;
+﻿using QuranImageMaker;
 using QuranVideoMaker.Dialogs.ViewModels;
 using SkiaSharp;
 using System.Windows;

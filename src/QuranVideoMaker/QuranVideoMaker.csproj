@@ -63,7 +63,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\QuranTranslationImageGenerator\QuranTranslationImageGenerator.csproj" />
+		<ProjectReference Include="..\QuranImageMaker\QuranImageMaker.csproj" />
+		<ProjectReference Include="..\QuranImageMaker\QuranImageMaker.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

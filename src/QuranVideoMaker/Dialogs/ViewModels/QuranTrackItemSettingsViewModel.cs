@@ -1,4 +1,4 @@
-﻿using QuranTranslationImageGenerator;
+﻿using QuranImageMaker;
 using QuranVideoMaker.Data;
 using System.ComponentModel;
 

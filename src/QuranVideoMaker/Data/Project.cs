@@ -1,9 +1,10 @@
 ﻿using FFMpegCore;
 using FFMpegCore.Enums;
 using NAudio.Wave;
-using QuranTranslationImageGenerator;
+using QuranImageMaker;
 using QuranVideoMaker.ClipboardData;
 using QuranVideoMaker.CustomControls;
+using QuranVideoMaker.Extensions;
 using QuranVideoMaker.Serialization;
 using QuranVideoMaker.Utilities;
 using SkiaSharp;
@@ -29,6 +30,8 @@ namespace QuranVideoMaker.Data
     public class Project : INotifyPropertyChanged
     {
         private string _id = Guid.NewGuid().ToString().Replace("-", string.Empty).ToLower();
+        private ConcurrentDictionary<string, SKBitmap> _renderedVerses = new ConcurrentDictionary<string, SKBitmap>();
+
         private int _previewWidth;
         private int _previewHeight;
         private int _chapter;
@@ -800,7 +803,7 @@ namespace QuranVideoMaker.Data
             }
         }
 
-        public OperationResult Export(string exportPath)
+        public async Task<OperationResult> ExportAsync(string exportPath)
         {
             try
             {
@@ -809,14 +812,14 @@ namespace QuranVideoMaker.Data
                 var videoExportPath = Path.Combine(Path.GetTempPath(), "QuranVideoMaker", $"project_{Id}_video.{ExportFormat}");
                 var audioExportPath = Path.Combine(Path.GetTempPath(), "QuranVideoMaker", $"project_{Id}_audio.mp3");
 
-                var totalFrames = GetTotalFrames();
+                var totalFrames = Convert.ToInt32(GetTotalFrames());
 
-                //extract video frames
-                var videoItems = Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Video);
+                var pipe = new MultithreadedFramePipeSource(FPS, totalFrames);
 
-                var frames = RenderTimeline(0, Convert.ToInt32(GetTotalFrames()), false).OrderBy(x => x.Frame).Select(x => x.Rendered);
-
-                Debug.WriteLine($"Elapsed: {sw.Elapsed}");
+                var parallelOptions = new ParallelOptions()
+                {
+                    MaxDegreeOfParallelism = ExportThreads
+                };
 
                 ExportProgressMessage = "Exporting video...";
 
@@ -847,7 +850,7 @@ namespace QuranVideoMaker.Data
                     }
                 }
 
-                var ffmpegArguments = FFMpegArguments.FromPipeInput(new FramePipeSource(frames, FPS), options =>
+                var ffmpegArguments = FFMpegArguments.FromPipeInput(pipe, options =>
                 {
                     options.WithHardwareAcceleration(HardwareAcceleration);
                 });
@@ -883,12 +886,55 @@ namespace QuranVideoMaker.Data
 
                     options.ForceFormat(ExportFormat);
                 });
-                //.OutputToPipe(new StreamPipeSink(outputStream), options =>{})
 
-                var args = output.Arguments;
+                _ = Task.Run(() =>
+                {
+                    var count = 0;
 
-                output.NotifyOnProgress((e) => ExportProgress?.Invoke(this, e), ExportProgressTime);
-                output.ProcessSynchronously();
+                    var range = Enumerable.Range(1, totalFrames).ToArray();
+
+                    while (!pipe.IsReady)
+                    {
+                        // wait for the pipe to be ready
+                    }
+
+                    var chunkSize = 10;
+                    var chunkQueueLimit = chunkSize * 3;
+
+                    var split = range.Split(chunkSize);
+
+                    foreach (var chunk in split)
+                    {
+                        Parallel.ForEach(chunk.AsParallel().AsOrdered(), parallelOptions, frameNumber =>
+                        {
+                            // if pipe is has more than chunkQueueLimit, wait for it to process
+                            while (pipe.GetUnprocessedFramesCount() > chunkQueueLimit)
+                            {
+                                Task.Delay(500).Wait();
+                            }
+
+                            var frame = RenderFrame(frameNumber, false);
+                            pipe.AddFrame(frame);
+
+                            count++;
+
+                            var progress = Math.Round(((double)count / (double)totalFrames) * 100d, 2);
+
+                            // deal with NaN and Infinity
+                            if (double.IsNaN(progress) || double.IsInfinity(progress))
+                            {
+                                progress = 0;
+                            }
+
+                            ExportProgressMessage = $"Frames rendered: {count} of {totalFrames}...";
+                            ExportProgress?.Invoke(null, progress);
+                            ExportProgressTime = sw.Elapsed;
+                            Debug.WriteLine($"Progress: {progress}%");
+                        });
+                    }
+                });
+
+                await output.ProcessAsynchronously();
 
                 File.Copy(videoExportPath, exportPath, true);
 
@@ -907,63 +953,37 @@ namespace QuranVideoMaker.Data
             }
         }
 
-        public List<FrameContainer> RenderTimeline(int fromFrame, int toFrame, bool preview)
+        public FrameContainer RenderFrame(int frameNumber, bool preview)
         {
-            var frames = new List<int>();
-
-            for (int i = fromFrame; i < toFrame; i++)
+            try
             {
-                frames.Add(i);
-            }
+                var frameContainer = new FrameContainer(frameNumber);
 
-            return RenderFrames(frames.ToArray(), preview);
-        }
+                var width = Width;
+                var height = Height;
 
-        public List<FrameContainer> RenderFrames(int[] frameNumbers, bool preview)
-        {
-            var sw = Stopwatch.StartNew();
-            var lastProgress = 0d;
-            //extract video frames
-            var videoItems = Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Video);
+                if (preview)
+                {
+                    width /= 4;
+                    height /= 4;
+                }
 
-            var frames = new ConcurrentBag<FrameContainer>();
-            var renderedVerses = new ConcurrentDictionary<string, SKBitmap>();
+                SKBitmap background = null;
 
-            var width = Width;
-            var height = Height;
+                // create the background once if full screen text background is enabled
+                if (QuranSettings.TextBackground && QuranSettings.FullScreenTextBackground)
+                {
+                    background = new SKBitmap(width, height);
+                    background.Erase(new SKColor(QuranSettings.TextBackgroundColor.Red, QuranSettings.TextBackgroundColor.Green, QuranSettings.TextBackgroundColor.Blue, Convert.ToByte(QuranSettings.TextBackgroundOpacity * 255)));
+                }
 
-            if (preview)
-            {
-                width /= 4;
-                height /= 4;
-            }
+                var visualItems = GetVisualTrackItemsAtFrame(frameNumber);
 
-            SKBitmap background = null;
-
-            // create the background once if full screen text background is enabled
-            if (QuranSettings.TextBackground && QuranSettings.FullScreenTextBackground)
-            {
-                background = new SKBitmap(width, height);
-                background.Erase(new SKColor(QuranSettings.TextBackgroundColor.Red, QuranSettings.TextBackgroundColor.Green, QuranSettings.TextBackgroundColor.Blue, Convert.ToByte(QuranSettings.TextBackgroundOpacity * 255)));
-            }
-
-            var count = 0;
-
-            var parallelOptions = new ParallelOptions();
-
-            if (!preview)
-            {
-                parallelOptions.MaxDegreeOfParallelism = ExportThreads;
-            }
-
-            Parallel.ForEach(frameNumbers, parallelOptions, i =>
-            {
-                var visualItems = GetVisualTrackItemsAtFrame(i);
                 var currentFrames = new List<FrameData>();
 
                 foreach (var trackItem in visualItems)
                 {
-                    var itemFrame = trackItem.GetLocalFrame(i);
+                    var itemFrame = trackItem.GetLocalFrame(frameNumber);
                     var itemOrder = GetItemRenderOrder(trackItem);
 
                     if (itemFrame > 0 && itemFrame >= trackItem.Start.TotalFrames && itemFrame <= trackItem.End.TotalFrames)
@@ -982,10 +1002,10 @@ namespace QuranVideoMaker.Data
                         {
                             var verseItem = trackItem as QuranTrackItem;
 
-                            if (!renderedVerses.ContainsKey(trackItem.Id))
+                            if (!_renderedVerses.ContainsKey(trackItem.Id))
                             {
                                 var rv = VerseRenderer.RenderVerses(new[] { verseItem.Verse }, QuranSettings);
-                                renderedVerses[trackItem.Id] = rv.FirstOrDefault().Bitmap;
+                                _renderedVerses[trackItem.Id] = rv.FirstOrDefault().Bitmap;
                             }
 
                             var opacity = QuranSettings.TextBackgroundTransition ? trackItem.GetOpacity(itemFrame) : 1;
@@ -995,110 +1015,78 @@ namespace QuranVideoMaker.Data
                                 currentFrames.Add(new FrameData(background, opacity, itemOrder));
                             }
 
-                            currentFrames.Add(new FrameData(renderedVerses[trackItem.Id], trackItem.GetOpacity(itemFrame), itemOrder));
+                            currentFrames.Add(new FrameData(_renderedVerses[trackItem.Id], trackItem.GetOpacity(itemFrame), itemOrder));
                         }
                     }
                 }
 
-                var frameBitmap = new SKBitmap(width, height);
-
-                var frameCanvas = new SKCanvas(frameBitmap);
-                frameCanvas.Clear(SKColors.Transparent);
-
-                foreach (var cf in currentFrames.OrderBy(x => x.Order))
+                using (var frameBitmap = new SKBitmap(width, height))
                 {
-                    var cfBitmap = cf.Bitmap ?? SKBitmap.Decode(cf.Data);
-
-                    var left = 0;
-                    var top = 0;
-                    var right = cfBitmap.Width;
-                    var bottom = cfBitmap.Height;
-
-                    if (cfBitmap.Width != width || cfBitmap.Height != height)
+                    using (var frameCanvas = new SKCanvas(frameBitmap))
                     {
-                        double ratio = Math.Max((double)cfBitmap.Width / (double)width, (double)cfBitmap.Height / (double)height);
-                        var newWidth = (int)(cfBitmap.Width / ratio);
-                        var newHeight = (int)(cfBitmap.Height / ratio);
+                        frameCanvas.Clear(SKColors.Transparent);
 
-                        left = (width - newWidth) / 2;
-                        top = (height - newHeight) / 2;
-                        right = left + newWidth;
-                        bottom = top + newHeight;
-
-                        cfBitmap = cfBitmap.Resize(new SKSizeI(newWidth, newHeight), SKFilterQuality.High);
-                    }
-
-                    if (cf.Opacity != 1)
-                    {
-                        var alpha = (byte)(255 * cf.Opacity);
-
-                        var textPaint = new SKPaint()
+                        foreach (var cf in currentFrames.OrderBy(x => x.Order))
                         {
-                            Color = new SKColor(255, 255, 255, alpha)
-                        };
-
-                        frameCanvas.DrawBitmap(cfBitmap, new SKRect(left, top, right, bottom), textPaint);
-                    }
-                    else
-                    {
-                        frameCanvas.DrawBitmap(cfBitmap, new SKRect(left, top, right, bottom));
-                    }
-                }
-
-                using (var pixMap = frameBitmap.PeekPixels())
-                {
-                    if (ExportIncludeAlphaChannel && !preview)
-                    {
-                        using (var data = pixMap.Encode(new SKPngEncoderOptions() { ZLibLevel = 0, FilterFlags = SKPngEncoderFilterFlags.NoFilters }))
-                        {
-                            var frameBytes = data.ToArray();
-                            frames.Add(new FrameContainer(i) { Rendered = frameBytes });
+                            var cfBitmap = cf.Bitmap ?? SKBitmap.Decode(cf.Data);
+                            var left = 0;
+                            var top = 0;
+                            var right = cfBitmap.Width;
+                            var bottom = cfBitmap.Height;
+                            if (cfBitmap.Width != width || cfBitmap.Height != height)
+                            {
+                                double ratio = Math.Max((double)cfBitmap.Width / (double)width, (double)cfBitmap.Height / (double)height);
+                                var newWidth = (int)(cfBitmap.Width / ratio);
+                                var newHeight = (int)(cfBitmap.Height / ratio);
+                                left = (width - newWidth) / 2;
+                                top = (height - newHeight) / 2;
+                                right = left + newWidth;
+                                bottom = top + newHeight;
+                                cfBitmap = cfBitmap.Resize(new SKSizeI(newWidth, newHeight), SKFilterQuality.High);
+                            }
+                            if (cf.Opacity != 1)
+                            {
+                                var alpha = (byte)(255 * cf.Opacity);
+                                var textPaint = new SKPaint()
+                                {
+                                    Color = new SKColor(255, 255, 255, alpha)
+                                };
+                                frameCanvas.DrawBitmap(cfBitmap, new SKRect(left, top, right, bottom), textPaint);
+                            }
+                            else
+                            {
+                                frameCanvas.DrawBitmap(cfBitmap, new SKRect(left, top, right, bottom));
+                            }
                         }
-                    }
-                    else
-                    {
-                        using (var data = pixMap.Encode(new SKJpegEncoderOptions() { Quality = 100, AlphaOption = SKJpegEncoderAlphaOption.BlendOnBlack }))
+
+                        using (var pixMap = frameBitmap.PeekPixels())
                         {
-                            var frameBytes = data.ToArray();
-                            frames.Add(new FrameContainer(i) { Rendered = frameBytes });
+                            if (ExportIncludeAlphaChannel && !preview)
+                            {
+                                using (var data = pixMap.Encode(new SKPngEncoderOptions() { ZLibLevel = 0, FilterFlags = SKPngEncoderFilterFlags.NoFilters }))
+                                {
+                                    frameContainer.Data = data.ToArray();
+                                }
+                            }
+                            else
+                            {
+                                using (var data = pixMap.Encode(new SKJpegEncoderOptions() { Quality = 100, AlphaOption = SKJpegEncoderAlphaOption.BlendOnBlack }))
+                                {
+                                    frameContainer.Data = data.ToArray();
+                                }
+                            }
                         }
                     }
                 }
 
-                count++;
-
-                var progress = Math.Round(((double)count / (double)frameNumbers.Length) * 100d, 2);
-
-                // if current progress is up by 5%, collect garbage
-                if (progress - lastProgress >= 5)
-                {
-                    lastProgress = progress;
-                    if (!preview)
-                    {
-                        GC.Collect();
-                        GC.WaitForPendingFinalizers();
-                        GC.Collect();
-                    }
-                }
-
-                ExportProgressMessage = $"Rendering frame {count} of {frameNumbers.Length}...";
-                ExportProgress?.Invoke(null, progress);
-                ExportProgressTime = sw.Elapsed;
-                Debug.WriteLine($"Progress: {progress}%");
+                return frameContainer;
             }
-            );
-
-            sw.Stop();
-            Debug.WriteLine($"Elapsed: {sw.ElapsedMilliseconds}");
-
-            if (!preview)
+            catch (Exception ex)
             {
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                GC.Collect();
+                Debug.WriteLine(ex.Message);
             }
 
-            return frames.ToList();
+            return null;
         }
 
         #region [Play]
@@ -1192,11 +1180,11 @@ namespace QuranVideoMaker.Data
         {
             var currentFrame = Convert.ToInt32(NeedlePositionTime.TotalFrames);
 
-            var render = RenderFrames(new[] { currentFrame }, true);
+            var render = RenderFrame(currentFrame, true);
 
-            if (render.Count > 0)
+            if (render != null)
             {
-                CurrentPreviewFrame = render[0].Rendered;
+                CurrentPreviewFrame = render.Data;
             }
         }
 
