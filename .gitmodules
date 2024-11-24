@@ -1,0 +1,3 @@
+[submodule "ext/NAudio.WaveFormRenderer"]
+	path = ext/NAudio.WaveFormRenderer
+	url = https://github.com/naudio/NAudio.WaveFormRenderer.git

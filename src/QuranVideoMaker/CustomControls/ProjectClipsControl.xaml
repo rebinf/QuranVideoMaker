@@ -36,8 +36,7 @@
                                             <Setter Property="Source" Value="{Binding Thumbnail}" />
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding ItemType}" Value="Audio">
-                                            <Setter Property="Source" Value="{svgc:SvgImage Source=/Resources/Icons/Sound.svg}" />
-                                            <Setter Property="Margin" Value="7" />
+                                            <Setter Property="Source" Value="{Binding Thumbnail}" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
