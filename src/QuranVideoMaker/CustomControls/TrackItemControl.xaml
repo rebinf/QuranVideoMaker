@@ -65,6 +65,29 @@
         <Canvas ClipToBounds="True">
 
             <Grid IsHitTestVisible="False">
+                <Border Height="50">
+                    <Image Stretch="Fill" HorizontalAlignment="Stretch">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Type}" Value="Audio">
+                                        <Setter Property="Source">
+                                            <Setter.Value>
+                                                <MultiBinding Converter="{converters:AudioTrackItemThumbnailGeneratorConverter}">
+                                                    <Binding Path="Project" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}" />
+                                                    <Binding Path="." />
+                                                    <Binding Path="." RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TrackItemControl}" />
+                                                    <Binding Path="ActualWidth" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=local:TrackItemControl}" />
+                                                </MultiBinding>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Border>
+
                 <Border Grid.Column="0" Height="50" Width="80" HorizontalAlignment="Left">
                     <Image Stretch="Uniform" HorizontalAlignment="Left">
                         <Image.Style>
@@ -76,10 +99,9 @@
                                     <DataTrigger Binding="{Binding Type}" Value="Image">
                                         <Setter Property="Source" Value="{Binding Thumbnail}" />
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Type}" Value="Audio">
-                                        <Setter Property="Source" Value="{svgc:SvgImage Source=/Resources/Icons/sound.svg}" />
-                                        <Setter Property="Margin" Value="7" />
-                                    </DataTrigger>
+                                    <!--<DataTrigger Binding="{Binding Type}" Value="Audio">
+                                        <Setter Property="Source" Value="{Binding Thumbnail}" />
+                                    </DataTrigger>-->
                                 </Style.Triggers>
                             </Style>
                         </Image.Style>

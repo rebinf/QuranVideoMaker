@@ -1,5 +1,9 @@
 ﻿using FFMpegCore;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
+using NAudio.WaveFormRenderer;
 using OpenCvSharp;
+using QuranVideoMaker.Utilities;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -288,6 +292,17 @@ namespace QuranVideoMaker.Data
 
             if (FileFormats.SupportedAudioFormats.Contains(extension))
             {
+                var audioThumb = Path.Combine(Path.GetTempPath(), "QuranVideoMaker", $"{GetFileHash()}_thumbnail.png");
+
+                if (File.Exists(audioThumb))
+                {
+                    Thumbnail = audioThumb;
+                    return;
+                }
+                else
+                {
+                    WaveFormGenerator.Generate(320, 200, System.Drawing.Color.Green, FilePath, audioThumb);
+                }
             }
 
             if (FileFormats.SupportedImageFormats.Contains(extension))
