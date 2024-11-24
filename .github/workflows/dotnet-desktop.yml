@@ -20,6 +20,11 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 9.0
+
+    - name: install powershell
+      uses: cakhanif/action-install-powershell@v1
+      with:
+        pwsh-version: '7.1'
     
     - name: run build script
       run: pwsh ./build.ps1

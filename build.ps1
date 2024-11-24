@@ -1,7 +1,12 @@
 # cd to current script directory
 $scriptPath = $MyInvocation.MyCommand.Path;
 $scriptDirectory = Split-Path -Path $scriptPath -Parent;
+
 Set-Location -Path $scriptDirectory;
+
+$releaseDir = "./QuranVideoMaker/bin/Release";
+$publishDir = "${releaseDir}/net9.0-windows/win-x64/publish";
+Write-Output "Publish directory: $publishDir";
 
 $deletePublishDir = $true;
 $downloadFfmpeg = $true;
@@ -10,6 +15,9 @@ $zipPublishDir = $true;
 
 # update version
 $version = "1.0.0";
+
+# cd to src directory
+Set-Location -Path src;
 
 # get version from github run number
 if ($env:GITHUB_RUN_NUMBER)
@@ -22,14 +30,14 @@ if ($env:GITHUB_RUN_NUMBER)
 
 Write-Output "Version: $version";
 
-# cd to src directory
-Set-Location -Path src;
-
 if ($deletePublishDir)
 {
-    # delete publish directory
-    Write-Output "Deleting publish directory...";
-    Remove-Item -Path $publishDir -Recurse -Force;
+    if (Test-Path -Path $publishDir)
+    {
+        # delete publish directory
+        Write-Output "Deleting publish directory...";
+        Remove-Item -Path $publishDir -Recurse -Force;
+    }
 }
 
 # restore nuget packages
@@ -39,11 +47,6 @@ dotnet restore;
 # publish solution
 Write-Output "Publishing solution...";
 dotnet publish -c release -r win-x64 --self-contained;
-
-# publish dir
-$releaseDir = "./QuranVideoMaker/bin/Release";
-$publishDir = "${releaseDir}/net9.0-windows/win-x64/publish";
-Write-Output "Publish directory: $publishDir";
 
 if ($downloadFfmpeg)
 {
