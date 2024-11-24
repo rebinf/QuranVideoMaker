@@ -57,6 +57,7 @@ namespace QuranVideoMaker.Data
         private System.Timers.Timer _playTimer = new System.Timers.Timer() { AutoReset = true, Enabled = false };
         private AudioFileReader _audioReader;
         private WaveOutEvent _outputDevice;
+        private int _framesPerBatch = 10;
 
         public event EventHandler<double> ExportProgress;
 
@@ -418,6 +419,22 @@ namespace QuranVideoMaker.Data
                 if (_quranSettings != value)
                 {
                     _quranSettings = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets how many frames to render per batch.
+        /// </summary>
+        public int FramesPerBatch
+        {
+            get { return _framesPerBatch; }
+            set
+            {
+                if (_framesPerBatch != value)
+                {
+                    _framesPerBatch = value;
                     OnPropertyChanged();
                 }
             }
@@ -893,7 +910,7 @@ namespace QuranVideoMaker.Data
 
                     var range = Enumerable.Range(1, totalFrames).ToArray();
 
-                    var chunkSize = 10;
+                    var chunkSize = FramesPerBatch;
                     var chunkQueueLimit = chunkSize * 3;
 
                     var split = range.Split(chunkSize);
