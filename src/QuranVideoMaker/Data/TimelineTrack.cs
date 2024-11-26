@@ -1,7 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using QuranImageMaker;
+using QuranVideoMaker.Extensions;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace QuranVideoMaker.Data
 {
@@ -12,7 +16,7 @@ namespace QuranVideoMaker.Data
     [Description("TimelineTrack")]
     [DisplayName("TimelineTrack")]
     [DebuggerDisplay("{Type} ({Name})")]
-    public class TimelineTrack : ITimelineTrack
+    public class TimelineTrack : ITimelineTrack, IJsonOnDeserialized
     {
         private string _id = Guid.NewGuid().ToString().Replace("-", string.Empty);
         private TimelineTrackType _type;
@@ -24,6 +28,9 @@ namespace QuranVideoMaker.Data
         /// Occurs when a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <inheritdoc/>
+        public event EventHandler Changed;
 
         /// <inheritdoc/>
         public string Id
@@ -110,6 +117,7 @@ namespace QuranVideoMaker.Data
         /// </summary>
         public TimelineTrack()
         {
+            HookEvents();
         }
 
         /// <summary>
@@ -117,7 +125,7 @@ namespace QuranVideoMaker.Data
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="name">The name.</param>
-        public TimelineTrack(TimelineTrackType type, string name)
+        public TimelineTrack(TimelineTrackType type, string name) : this()
         {
             Type = type;
             Name = name;
@@ -177,5 +185,40 @@ namespace QuranVideoMaker.Data
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        public void OnDeserialized()
+        {
+            HookEvents();
+        }
+
+        private void HookEvents()
+        {
+            this.Items.CollectionChanged -= Items_CollectionChanged;
+            this.Items.CollectionChanged += Items_CollectionChanged;
+
+            foreach (var item in Items)
+            {
+                item.PropertyChanged -= Item_PropertyChanged;
+                item.PropertyChanged += Item_PropertyChanged;
+            }
+        }
+
+        private void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Changed?.Invoke(sender, EventArgs.Empty);
+        }
+
+        private void Items_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (Type == TimelineTrackType.Quran)
+            {
+                var items = Items.Cast<QuranTrackItem>().OrderBy(x => x.Position.TotalFrames).ToList();
+                items.Select(x => x.Verse).UpdateVerseParts();
+                items.ForEach(x => x.UpdateName());
+            }
+
+            Changed?.Invoke(this, EventArgs.Empty);
+        }
+
     }
 }

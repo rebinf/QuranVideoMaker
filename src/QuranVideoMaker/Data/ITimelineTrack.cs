@@ -9,6 +9,11 @@ namespace QuranVideoMaker.Data
     public interface ITimelineTrack : INotifyPropertyChanged
     {
         /// <summary>
+        /// Occurs when the track is changed.
+        /// </summary>
+        event EventHandler Changed;
+
+        /// <summary>
         /// The Id of the timeline track.
         /// </summary>
         public string Id { get; }
