@@ -210,7 +210,7 @@ namespace QuranImageMaker.App
             {
                 if (Settings.IncludeVerseNumbers && verseInfo.VerseNumber != 0)
                 {
-                    verseInfo.VerseText = $"{verseInfo.VerseText}{Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
+                    verseInfo.VerseText = $"{verseInfo.VerseText} {Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
                 }
 
                 verses.Add(verseInfo);
@@ -258,7 +258,7 @@ namespace QuranImageMaker.App
 
             if (Settings.IncludeVerseNumbers && verseInfo.VerseNumber != 0)
             {
-                verseInfo.VerseText = $"{verseInfo.VerseText}{Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
+                verseInfo.VerseText = $"{verseInfo.VerseText} {Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
             }
 
             foreach (var t in Settings.TranslationRenderSettings)

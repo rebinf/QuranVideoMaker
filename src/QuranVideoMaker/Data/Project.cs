@@ -603,7 +603,7 @@ namespace QuranVideoMaker.Data
 
             if (QuranSettings.IncludeVerseNumbers && verseInfo.VerseNumber != 0)
             {
-                verseInfo.VerseText = $"{verseInfo.VerseText}{Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
+                verseInfo.VerseText = $"{verseInfo.VerseText} {Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
             }
 
             var fadeInFrame = 0d;
