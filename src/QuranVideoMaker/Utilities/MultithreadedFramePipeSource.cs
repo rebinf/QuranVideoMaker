@@ -62,17 +62,17 @@ namespace QuranVideoMaker.Utilities
                     break;
                 }
 
-                var currentFrame = _lastFrameNumber + 1;
+                var currentFrameNumber = _lastFrameNumber + 1;
 
-                var frame = _frames.FirstOrDefault(x => x.Frame == currentFrame);
+                var frame = _frames.FirstOrDefault(x => x.FrameNumber == currentFrameNumber);
 
                 // make sure next frame is the last frame number + 1
                 if (frame != null)
                 {
                     await outputStream.WriteAsync(frame.Data, 0, frame.Data.Length, cancellationToken);
-                    _lastFrameNumber = frame.Frame;
+                    _lastFrameNumber = frame.FrameNumber;
 
-                    _processedFrames.Add(frame.Frame);
+                    _processedFrames.Add(frame.FrameNumber);
 
                     // remove the frame from the list
                     using (_lock.EnterScope())
