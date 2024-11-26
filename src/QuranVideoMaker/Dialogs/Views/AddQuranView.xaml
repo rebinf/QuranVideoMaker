@@ -34,11 +34,11 @@
                             </customcontrols:LayoutItem>
 
                             <customcontrols:LayoutItem Label="From Verse">
-                                <TextBox Text="{Binding FromVerse, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox Text="{Binding FromVerse, UpdateSourceTrigger=LostFocus}" />
                             </customcontrols:LayoutItem>
 
                             <customcontrols:LayoutItem Label="To Verse" Visibility="{Binding AutoVerse, Converter={converters:BoolToVisibilityConverter Invert=True}}">
-                                <TextBox Text="{Binding ToVerse, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBox Text="{Binding ToVerse, UpdateSourceTrigger=LostFocus}" />
                             </customcontrols:LayoutItem>
 
                             <customcontrols:LayoutItem Label="Verse Transitions">
