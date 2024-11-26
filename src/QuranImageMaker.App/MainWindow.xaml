@@ -123,6 +123,8 @@
                             </customcontrols:LayoutItem>
 
                         </customcontrols:StackLayout>
+                        <Button Content="Browse" Command="{Binding BrowseOutputDirectoryCommand}" />
+
                         <Button Content="Export" Grid.Column="0" Grid.Row="20" Grid.ColumnSpan="3" Command="{Binding ExportCommand}" />
                     </StackPanel>
                 </TabItem>

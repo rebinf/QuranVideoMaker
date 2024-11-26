@@ -179,6 +179,17 @@ namespace QuranImageMaker.App
         }
 
         [RelayCommand]
+        private void BrowseOutputDirectory()
+        {
+            var dlg = new System.Windows.Forms.FolderBrowserDialog();
+
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Settings.OutputDirectory = dlg.SelectedPath;
+            }
+        }
+
+        [RelayCommand]
         private void Export()
         {
             var verses = new List<VerseInfo>();
