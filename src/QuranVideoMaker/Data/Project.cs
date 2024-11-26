@@ -10,6 +10,7 @@ using QuranVideoMaker.Utilities;
 using SkiaSharp;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -27,7 +28,7 @@ namespace QuranVideoMaker.Data
     [Description("Project")]
     [DisplayName("Project")]
     [DebuggerDisplay("Project")]
-    public class Project : INotifyPropertyChanged
+    public class Project : INotifyPropertyChanged, IJsonOnDeserialized
     {
         private string _id = Guid.NewGuid().ToString().Replace("-", string.Empty).ToLower();
         private ConcurrentDictionary<string, SKBitmap> _renderedVerses = new ConcurrentDictionary<string, SKBitmap>();
@@ -492,6 +493,7 @@ namespace QuranVideoMaker.Data
         public Project()
         {
             _playTimer.Elapsed += PlayTimer_Elapsed;
+            HookEvents();
         }
 
         /// <summary>
@@ -511,11 +513,6 @@ namespace QuranVideoMaker.Data
 
             if (item.Type == TrackItemType.Quran)
             {
-                var verseNumber = (item as QuranTrackItem).Verse.VerseNumber;
-
-                // how many items have the same verse number?
-                var sameVerses = track.Items.Cast<QuranTrackItem>().Where(x => x.Verse.VerseNumber == verseNumber);
-
                 var newItem = new QuranTrackItem
                 {
                     ClipId = item.ClipId,
@@ -529,19 +526,6 @@ namespace QuranVideoMaker.Data
                     FadeOutFrame = item.FadeOutFrame,
                 };
 
-                // update the verse part for all items with the same verse number
-                var count = 1;
-
-                foreach (var verse in sameVerses)
-                {
-                    verse.Verse.VersePart = count;
-                    verse.UpdateName();
-                    count++;
-                }
-
-                newItem.Verse.VersePart = count;
-                newItem.UpdateName();
-
                 track.Items.Add(newItem);
             }
             else
@@ -550,8 +534,6 @@ namespace QuranVideoMaker.Data
 
                 track.Items.Add(newItem);
             }
-
-            ClearVerseRenderCache();
         }
 
         /// <summary>
@@ -643,8 +625,6 @@ namespace QuranVideoMaker.Data
             }
 
             quranTrack.Items.Add(newItem);
-
-            ClearVerseRenderCache();
         }
 
         /// <summary>
@@ -767,8 +747,6 @@ namespace QuranVideoMaker.Data
                     track.Items.Add(trackItem);
                 }
             }
-
-            ClearVerseRenderCache();
         }
 
         /// <summary>
@@ -811,8 +789,6 @@ namespace QuranVideoMaker.Data
 
             // copy the serialized items to clipboard
             Clipboard.SetData(nameof(ClipboardDataType.QVM_TrackItems), serialized);
-
-            ClearVerseRenderCache();
         }
 
         /// <summary>
@@ -852,6 +828,8 @@ namespace QuranVideoMaker.Data
         {
             try
             {
+                ClearVerseRenderCache();
+
                 var sw = Stopwatch.StartNew();
 
                 var videoExportPath = Path.Combine(Path.GetTempPath(), "QuranVideoMaker", $"project_{Id}_video.{ExportFormat}");
@@ -997,6 +975,8 @@ namespace QuranVideoMaker.Data
         {
             try
             {
+                ClearVerseRenderCache();
+
                 await Task.Run(() =>
                 {
                     var verses = Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Quran).Cast<QuranTrackItem>().ToArray();
@@ -1157,6 +1137,8 @@ namespace QuranVideoMaker.Data
 
         public void Play()
         {
+            ClearVerseRenderCache();
+
             if (IsPlaying)
             {
                 Stop();
@@ -1218,6 +1200,7 @@ namespace QuranVideoMaker.Data
             _playTimer?.Stop();
             _outputDevice?.Stop();
             IsPlaying = false;
+            ClearVerseRenderCache();
         }
 
         private void PlayTimer_Elapsed(object sender, ElapsedEventArgs e)
@@ -1293,6 +1276,7 @@ namespace QuranVideoMaker.Data
 
         public void ClearVerseRenderCache()
         {
+            Debug.WriteLine("Clearing verse render cache...");
             _renderedVerses.Clear();
         }
 
@@ -1303,6 +1287,43 @@ namespace QuranVideoMaker.Data
         public void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+            if (name != nameof(NeedlePositionTime) && name != nameof(CurrentPreviewFrame))
+            {
+                ClearVerseRenderCache();
+            }
+        }
+
+        public void OnDeserialized()
+        {
+            HookEvents();
+        }
+
+        private void HookEvents()
+        {
+            Tracks.CollectionChanged -= TracksChangedEventHandler;
+            Tracks.CollectionChanged += TracksChangedEventHandler;
+
+            HookTrackChangedEvents();
+        }
+
+        private void TracksChangedEventHandler(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            HookTrackChangedEvents();
+        }
+
+        private void HookTrackChangedEvents()
+        {
+            foreach (var track in Tracks)
+            {
+                track.Changed -= Track_Changed;
+                track.Changed += Track_Changed;
+            }
+        }
+
+        private void Track_Changed(object sender, EventArgs e)
+        {
+            ClearVerseRenderCache();
         }
     }
 }
