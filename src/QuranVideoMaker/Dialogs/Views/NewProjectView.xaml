@@ -85,11 +85,11 @@
                                 </customcontrols:LayoutItem>
 
                                 <customcontrols:LayoutItem Label="From Verse">
-                                    <TextBox Text="{Binding FromVerse, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox Text="{Binding FromVerse, UpdateSourceTrigger=LostFocus}" />
                                 </customcontrols:LayoutItem>
 
                                 <customcontrols:LayoutItem Label="To Verse">
-                                    <TextBox Text="{Binding ToVerse, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox Text="{Binding ToVerse, UpdateSourceTrigger=LostFocus}" />
                                 </customcontrols:LayoutItem>
 
                                 <customcontrols:LayoutItem Label="Show Arabic Script">
