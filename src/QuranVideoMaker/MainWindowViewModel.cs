@@ -192,6 +192,9 @@ namespace QuranVideoMaker
                 }
 
                 ProjectFilePath = dlg.FileName;
+
+                AddRecentProject(dlg.FileName);
+
                 OnPropertyChanged(nameof(Title));
             }
         }
