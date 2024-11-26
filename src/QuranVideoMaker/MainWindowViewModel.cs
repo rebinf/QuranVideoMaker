@@ -242,6 +242,26 @@ namespace QuranVideoMaker
         }
 
         [RelayCommand]
+        private async Task ExportVerses()
+        {
+            var dlg = new System.Windows.Forms.FolderBrowserDialog();
+
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var result = await CurrentProject.ExportVersesAsync(dlg.SelectedPath);
+
+                if (result.Success)
+                {
+                    System.Windows.MessageBox.Show("Export Complete", "Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show($"Export Failed.\r\n{result.Message}", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        [RelayCommand]
         private void OnQuranAdd()
         {
             QuranVideoMakerUI.ShowDialog(DialogType.AddQuran, CurrentProject, false);

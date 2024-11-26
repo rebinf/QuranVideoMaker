@@ -229,7 +229,16 @@ namespace QuranImageMaker
                 var data = image.Encode(SKEncodedImageFormat.Png, 100);
                 var bytes = data.ToArray();
 
-                var path = Path.Combine(renderSettings.OutputDirectory, $"{renderedVerse.ChapterNumber}-{renderedVerse.VerseNumber}.png");
+                var path = string.Empty;
+
+                if (renderedVerse.VersePart != 0)
+                {
+                    path = Path.Combine(renderSettings.OutputDirectory, $"{renderedVerse.ChapterNumber}-{renderedVerse.VerseNumber}.{renderedVerse.VersePart}.png");
+                }
+                else
+                {
+                    path = Path.Combine(renderSettings.OutputDirectory, $"{renderedVerse.ChapterNumber}-{renderedVerse.VerseNumber}.png");
+                }
 
                 if (!Directory.Exists(renderSettings.OutputDirectory))
                 {
