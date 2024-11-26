@@ -551,7 +551,7 @@ namespace QuranVideoMaker.Data
                 track.Items.Add(newItem);
             }
 
-            _renderedVerses.Clear();
+            ClearVerseRenderCache();
         }
 
         /// <summary>
@@ -579,6 +579,8 @@ namespace QuranVideoMaker.Data
                     right.End = new TimeCode(oldRight - newItemPosition.TotalFrames, FPS);
                 }
             }
+
+            ClearVerseRenderCache();
         }
 
         public void AutoVerse()
@@ -641,6 +643,8 @@ namespace QuranVideoMaker.Data
             }
 
             quranTrack.Items.Add(newItem);
+
+            ClearVerseRenderCache();
         }
 
         /// <summary>
@@ -763,6 +767,8 @@ namespace QuranVideoMaker.Data
                     track.Items.Add(trackItem);
                 }
             }
+
+            ClearVerseRenderCache();
         }
 
         /// <summary>
@@ -805,6 +811,8 @@ namespace QuranVideoMaker.Data
 
             // copy the serialized items to clipboard
             Clipboard.SetData(nameof(ClipboardDataType.QVM_TrackItems), serialized);
+
+            ClearVerseRenderCache();
         }
 
         /// <summary>
@@ -1281,6 +1289,11 @@ namespace QuranVideoMaker.Data
             PreviewCurrentFrame();
 
             NeedlePositionTimeChanged?.Invoke(this, time);
+        }
+
+        public void ClearVerseRenderCache()
+        {
+            _renderedVerses.Clear();
         }
 
         /// <summary>

@@ -114,6 +114,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                 Project.PreviewHeight = SelectedProfile.PreviewHeight;
             }
 
+            Project.ClearVerseRenderCache();
             CloseWindow?.Invoke(true);
         }
     }

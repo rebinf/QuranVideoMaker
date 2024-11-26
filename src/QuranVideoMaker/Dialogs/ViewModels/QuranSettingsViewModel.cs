@@ -125,6 +125,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
 
         public override void OnClosed()
         {
+            MainWindowViewModel.Instance.CurrentProject.ClearVerseRenderCache();
             DetachEvents();
             base.OnClosed();
         }
