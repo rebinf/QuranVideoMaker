@@ -408,7 +408,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
 
                 if (Project.QuranSettings.IncludeVerseNumbers && verseInfo.VerseNumber != 0)
                 {
-                    verseInfo.VerseText = $"{verseInfo.VerseText}{Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
+                    verseInfo.VerseText = $"{verseInfo.VerseText} {Quran.ToArabicNumbers(verseInfo.VerseNumber)}";
                 }
 
                 var newItem = new QuranTrackItem()
