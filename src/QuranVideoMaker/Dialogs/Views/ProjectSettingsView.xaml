@@ -53,7 +53,7 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBox Grid.Column="0" Text="{Binding Project.ExportDirectory}" />
                                 <Button Grid.Column="1" Padding="5" Margin="5,0,0,0" Command="{Binding BrowseProjectDirectoryCommand}">
-                                    <Image Source="{svgc:SvgImage Source=/Resources/Icons/folder.svg}" />
+                                    <svgc:SvgIcon UriSource="/Resources/Icons/folder.svg" Fill="LightGray" />
                                 </Button>
                             </Grid>
                         </GroupBox>

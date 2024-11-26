@@ -39,9 +39,6 @@
                 <RadioButton Style="{StaticResource {x:Type ToggleButton}}" Margin="1" IsChecked="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolToSelectedConverter SelectedTool=AutoVerse}}" Command="{Binding ToolSelectedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:TimelineControl}}" CommandParameter="{x:Static local:TimelineSelectedTool.AutoVerse}" ToolTip="Auto Verse">
                     <svgc:SvgIcon UriSource="/Resources/Icons/select_new.svg" Fill="LightGray" Width="14" Height="14" Margin="4" />
                 </RadioButton>
-                <!--<ToggleButton Margin="1">
-                    <Image Source="{svgc:SvgImage Source=/Resources/Icons/Select.svg}" Width="24" Height="24" />
-                </ToggleButton>-->
             </StackPanel>
         </Border>
     </Grid>
