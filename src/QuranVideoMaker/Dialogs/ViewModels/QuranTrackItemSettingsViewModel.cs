@@ -88,6 +88,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         {
             QuranTrackItem.Verse = CurrentVerse;
 
+            Project.ClearVerseRenderCache();
             base.OnOK();
         }
 

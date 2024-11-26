@@ -275,6 +275,8 @@ namespace QuranVideoMaker
                 quranTrack.Items.Add(newItem);
             }
 
+            Project.ClearVerseRenderCache();
+
             CloseWindow?.Invoke(true);
         }
 
