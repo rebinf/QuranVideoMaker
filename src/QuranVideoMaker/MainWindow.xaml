@@ -80,6 +80,8 @@
             <MenuItem Header="Project">
                 <MenuItem Header="Export" Command="{Binding ExportProjectCommand}" />
                 <Separator />
+                <MenuItem Header="Export Verses" Command="{Binding ExportVersesCommand}" />
+                <Separator />
                 <MenuItem Header="Settings" Command="{Binding ProjectSettingsCommand}" />
             </MenuItem>
 

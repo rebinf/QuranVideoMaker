@@ -511,6 +511,11 @@ namespace QuranVideoMaker.Data
 
             if (item.Type == TrackItemType.Quran)
             {
+                var verseNumber = (item as QuranTrackItem).Verse.VerseNumber;
+
+                // how many items have the same verse number?
+                var sameVerses = track.Items.Cast<QuranTrackItem>().Where(x => x.Verse.VerseNumber == verseNumber);
+
                 var newItem = new QuranTrackItem
                 {
                     ClipId = item.ClipId,
@@ -521,8 +526,21 @@ namespace QuranVideoMaker.Data
                     End = oldEnd - item.End,
                     Verse = (item as QuranTrackItem).Verse.Clone(),
                     FadeInFrame = item.FadeInFrame,
-                    FadeOutFrame = item.FadeOutFrame
+                    FadeOutFrame = item.FadeOutFrame,
                 };
+
+                // update the verse part for all items with the same verse number
+                var count = 1;
+
+                foreach (var verse in sameVerses)
+                {
+                    verse.Verse.VersePart = count;
+                    verse.UpdateName();
+                    count++;
+                }
+
+                newItem.Verse.VersePart = count;
+                newItem.UpdateName();
 
                 track.Items.Add(newItem);
             }
@@ -532,6 +550,8 @@ namespace QuranVideoMaker.Data
 
                 track.Items.Add(newItem);
             }
+
+            _renderedVerses.Clear();
         }
 
         /// <summary>
@@ -956,6 +976,30 @@ namespace QuranVideoMaker.Data
 
                 sw.Stop();
                 Debug.WriteLine($"Elapsed: {sw.Elapsed}");
+
+                return new OperationResult(true, string.Empty);
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult(false, ex.Message);
+            }
+        }
+
+        public async Task<OperationResult> ExportVersesAsync(string exportPath)
+        {
+            try
+            {
+                await Task.Run(() =>
+                {
+                    var verses = Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Quran).Cast<QuranTrackItem>().ToArray();
+
+                    var verseInfo = verses.Select(x => x.Verse).ToArray();
+                    var settings = QuranSettings.Clone();
+                    settings.OutputDirectory = exportPath;
+                    settings.OutputType = OutputType.File;
+
+                    VerseRenderer.RenderVerses(verseInfo, settings);
+                });
 
                 return new OperationResult(true, string.Empty);
             }

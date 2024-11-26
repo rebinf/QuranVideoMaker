@@ -49,5 +49,10 @@ namespace QuranVideoMaker.Data
 
             return clone;
         }
+
+        public void UpdateName()
+        {
+            Name = $"{Verse.ChapterNumber}:{Verse.VerseNumber}.{Verse.VersePart}";
+        }
     }
 }
