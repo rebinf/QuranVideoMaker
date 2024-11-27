@@ -213,7 +213,18 @@ namespace QuranVideoMaker.Data
                 FixVerseNumbers();
             }
 
+            HookEvents();
+
             Changed?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Called when public properties changed.
+        /// </summary>
+        /// <param name="name">The name of the property.</param>
+        public void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
     }
