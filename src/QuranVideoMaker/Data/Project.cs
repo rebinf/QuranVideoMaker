@@ -1274,6 +1274,12 @@ namespace QuranVideoMaker.Data
             NeedlePositionTimeChanged?.Invoke(this, time);
         }
 
+        public void FixVerseNumbers()
+        {
+            var quranTrack = Tracks.First(x => x.Type == TimelineTrackType.Quran);
+            quranTrack.FixVerseNumbers();
+        }
+
         public void ClearVerseRenderCache()
         {
             Debug.WriteLine("Clearing verse render cache...");
