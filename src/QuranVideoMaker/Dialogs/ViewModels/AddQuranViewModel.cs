@@ -239,6 +239,8 @@ namespace QuranVideoMaker
             {
                 var verse = verses[i];
 
+                var position = Project.NeedlePositionTime.TotalFrames + i * itemLength;
+
                 var verseInfo = new VerseInfo(QuranIds.Quran, verse.ChapterNumber, verse.VerseNumber, verse.VerseText);
 
                 if (Project.QuranSettings.IncludeVerseNumbers && verseInfo.VerseNumber != 0)
@@ -254,7 +256,7 @@ namespace QuranVideoMaker
                     //SourceLength = new TimeCode(itemLength, Project.FPS),
                     Start = new TimeCode(0, Project.FPS),
                     End = new TimeCode(itemLength, Project.FPS),
-                    Position = new TimeCode(i * itemLength, Project.FPS),
+                    Position = new TimeCode(position, Project.FPS),
                     FadeInFrame = VerseTransitions ? 25 : 0,
                     FadeOutFrame = VerseTransitions ? 25 : 0,
                 };
