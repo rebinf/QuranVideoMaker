@@ -177,13 +177,11 @@ namespace QuranVideoMaker.Data
             return Id;
         }
 
-        /// <summary>
-        /// Called when public properties changed.
-        /// </summary>
-        /// <param name="name">The name of the property.</param>
-        public void OnPropertyChanged([CallerMemberName] string name = null)
+        public void FixVerseNumbers()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            var items = Items.Cast<QuranTrackItem>().OrderBy(x => x.Position.TotalFrames).ToList();
+            items.Select(x => x.Verse).UpdateVerseParts();
+            items.ForEach(x => x.UpdateName());
         }
 
         public void OnDeserialized()
@@ -212,9 +210,7 @@ namespace QuranVideoMaker.Data
         {
             if (Type == TimelineTrackType.Quran)
             {
-                var items = Items.Cast<QuranTrackItem>().OrderBy(x => x.Position.TotalFrames).ToList();
-                items.Select(x => x.Verse).UpdateVerseParts();
-                items.ForEach(x => x.UpdateName());
+                FixVerseNumbers();
             }
 
             Changed?.Invoke(this, EventArgs.Empty);

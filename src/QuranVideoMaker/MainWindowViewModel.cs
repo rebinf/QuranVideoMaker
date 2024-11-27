@@ -268,6 +268,12 @@ namespace QuranVideoMaker
         }
 
         [RelayCommand]
+        private void OnFixVerseNumbers()
+        {
+            CurrentProject.FixVerseNumbers();
+        }
+
+        [RelayCommand]
         private void OnRemoveAllVerses()
         {
             var quranTrack = CurrentProject.Tracks.First(x => x.Type == TimelineTrackType.Quran);
