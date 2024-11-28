@@ -1,13 +1,23 @@
 ﻿using HarfBuzzSharp;
+using QuranImageMaker.Extensions;
 using SkiaSharp;
 using SkiaSharp.HarfBuzz;
 
 namespace QuranImageMaker
 {
-    public static class VerseRenderer
+    /// <summary>
+    /// Provides functionality to render verses with specified settings.
+    /// </summary>
+    public static partial class VerseRenderer
     {
+        /// <summary>
+        /// Gets the list of typefaces.
+        /// </summary>
         public static List<SKTypeface> Typefaces { get; private set; } = new List<SKTypeface>();
 
+        /// <summary>
+        /// Gets the available fonts.
+        /// </summary>
         public static IEnumerable<string> Fonts
         {
             get
@@ -16,6 +26,9 @@ namespace QuranImageMaker
             }
         }
 
+        /// <summary>
+        /// Initializes the <see cref="VerseRenderer"/> class.
+        /// </summary>
         static VerseRenderer()
         {
             foreach (var file in Directory.GetFiles(Path.Combine(AppContext.BaseDirectory, "Fonts"), "*.*", SearchOption.AllDirectories))
@@ -29,6 +42,12 @@ namespace QuranImageMaker
             }
         }
 
+        /// <summary>
+        /// Renders the specified verses with the given render settings.
+        /// </summary>
+        /// <param name="verses">The verses to render.</param>
+        /// <param name="renderSettings">The render settings.</param>
+        /// <returns>A collection of rendered verse information.</returns>
         public static IEnumerable<RenderedVerseInfo> RenderVerses(IEnumerable<VerseInfo> verses, QuranRenderSettings renderSettings)
         {
             var list = new List<RenderedVerseInfo>();
@@ -210,6 +229,12 @@ namespace QuranImageMaker
             return list;
         }
 
+        /// <summary>
+        /// Exports the rendered verse to the specified output type.
+        /// </summary>
+        /// <param name="renderedVerse">The rendered verse information.</param>
+        /// <param name="bitmap">The bitmap containing the rendered verse.</param>
+        /// <param name="renderSettings">The render settings.</param>
         private static void ExportVerse(RenderedVerseInfo renderedVerse, SKBitmap bitmap, QuranRenderSettings renderSettings)
         {
             var image = SKImage.FromBitmap(bitmap);
@@ -250,6 +275,12 @@ namespace QuranImageMaker
             }
         }
 
+        /// <summary>
+        /// Creates the text paints for the specified render settings.
+        /// </summary>
+        /// <param name="renderSettings">The render settings.</param>
+        /// <param name="typeface">The typeface to use.</param>
+        /// <returns>The created text paints.</returns>
         private static TextPaints CreatePaints(VerseRenderSettings renderSettings, SKTypeface typeface = null)
         {
             var textPaint = new SKPaint()
@@ -277,6 +308,13 @@ namespace QuranImageMaker
             };
         }
 
+        /// <summary>
+        /// Gets the width of the specified text.
+        /// </summary>
+        /// <param name="text">The text to measure.</param>
+        /// <param name="paint">The paint to use for measuring.</param>
+        /// <param name="fontSize">The font size.</param>
+        /// <returns>The width of the text.</returns>
         private static float GetWidth(string text, SKPaint paint, float fontSize)
         {
             using (var blob = paint.Typeface.OpenStream().ToHarfBuzzBlob())
@@ -293,6 +331,15 @@ namespace QuranImageMaker
             }
         }
 
+        /// <summary>
+        /// Splits the text into multiple lines based on the specified width and margin.
+        /// </summary>
+        /// <param name="text">The text to split.</param>
+        /// <param name="maxWidth">The maximum width.</param>
+        /// <param name="horizontalMarginPercentage">The horizontal margin percentage.</param>
+        /// <param name="shaper">The shaper to use.</param>
+        /// <param name="paint">The paint to use.</param>
+        /// <returns>A list of text sizes representing the split text.</returns>
         private static List<TextSize> SplitText(string text, int maxWidth, float horizontalMarginPercentage, SKShaper shaper, SKPaint paint)
         {
             var marginedWidth = maxWidth - maxWidth * 0.1;
@@ -338,6 +385,13 @@ namespace QuranImageMaker
             return result;
         }
 
+        /// <summary>
+        /// Gets the size of the specified text.
+        /// </summary>
+        /// <param name="text">The text to measure.</param>
+        /// <param name="shaper">The shaper to use.</param>
+        /// <param name="paint">The paint to use.</param>
+        /// <returns>The width and height of the text.</returns>
         private static (float Width, float Height) GetSize(string text, SKShaper shaper, SKPaint paint)
         {
             float height = paint.FontMetrics.CapHeight;
@@ -356,6 +410,13 @@ namespace QuranImageMaker
             }
         }
 
+        /// <summary>
+        /// Gets the typeface based on the specified font name, bold, and italic settings.
+        /// </summary>
+        /// <param name="name">The font name.</param>
+        /// <param name="bold">if set to <c>true</c> use bold font.</param>
+        /// <param name="italic">if set to <c>true</c> use italic font.</param>
+        /// <returns>The matching typeface.</returns>
         public static SKTypeface GetTypeface(string name, bool bold, bool italic)
         {
             var weight = bold ? SKFontStyleWeight.Bold : SKFontStyleWeight.Normal;
@@ -367,71 +428,6 @@ namespace QuranImageMaker
             }
 
             return SKFontManager.Default.MatchFamily(name, new SKFontStyle(weight, SKFontStyleWidth.Normal, slant));
-        }
-
-        private class TextPaints
-        {
-            public SKPaint TextPaint { get; set; }
-
-            public SKPaint TextShadowPaint { get; set; }
-
-        }
-
-        private class DrawGroup
-        {
-            public VerseRenderSettings RenderSettings { get; set; }
-
-            public List<DrawInfo> Draws { get; set; } = new List<DrawInfo>();
-
-            public DrawGroup(VerseRenderSettings renderSettings)
-            {
-                RenderSettings = renderSettings;
-            }
-        }
-
-        private class DrawInfo
-        {
-            public string Text { get; set; }
-
-            public SKPaint Paint { get; set; }
-
-            public SKPaint ShadowPaint { get; set; }
-
-            public SKPoint ShadowOffset { get; set; }
-
-            public SKShaper Shaper { get; set; }
-
-            public float Width { get; }
-
-            public float Height { get; }
-
-            public bool HasShadow { get; }
-
-            public DrawInfo(string text, SKPaint paint, SKPaint shadowPaint, SKShaper shaper, float width, float height, bool hasShadow, SKPoint shadowOffset)
-            {
-                Text = text;
-                Paint = paint;
-                ShadowPaint = shadowPaint;
-                Shaper = shaper;
-                Width = width;
-                Height = height;
-                HasShadow = hasShadow;
-                ShadowOffset = shadowOffset;
-            }
-        }
-    }
-}
-
-public static class StringExtensions
-{
-    public static IEnumerable<string> SplitAndKeep(this string s, string seperator)
-    {
-        string[] obj = s.Split(new string[] { seperator }, StringSplitOptions.None);
-
-        for (int i = 0; i < obj.Length; i++)
-        {
-            string result = i == obj.Length - 1 ? obj[i] : obj[i] + seperator;
-            yield return result;
         }
     }
 }
