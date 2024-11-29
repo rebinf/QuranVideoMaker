@@ -541,8 +541,13 @@ namespace QuranVideoMaker.Data
         /// </summary>
         /// <param name="item">The item.</param>
         /// <param name="frame">The frame.</param>
-        public void ResizeQuranItem(TrackItem item, double frame)
+        public void ResizeQuranItem(ITrackItem item, double frame)
         {
+            if (item == null)
+            {
+                return;
+            }
+
             if (item.Type == TrackItemType.Quran)
             {
                 var cutFrame = frame - item.Position.TotalFrames;
@@ -667,6 +672,11 @@ namespace QuranVideoMaker.Data
         {
             return this.Tracks.SelectMany(x => x.Items).Where(x => x.Type != TrackItemType.Audio)
                 .Where(x => x.Position.TotalFrames <= frame && x.GetRightTime().TotalFrames >= frame).ToList();
+        }
+
+        public ITrackItem GetTrackItemAtFrame(int frame, TimelineTrackType type)
+        {
+            return Tracks.FirstOrDefault(x => x.Type == type)?.Items.FirstOrDefault(x => x.Position.TotalFrames <= frame && x.GetRightTime().TotalFrames >= frame);
         }
 
         public List<ITrackItem> GetAudioTrackItemsAtFrame(int frame)

@@ -14,10 +14,20 @@
         <local:MainWindowViewModel />
     </Window.DataContext>
     <Window.InputBindings>
+        
+        <!--File-->
         <KeyBinding Modifiers="Ctrl" Key="N" Command="{Binding NewProjectCommand}" />
         <KeyBinding Modifiers="Ctrl" Key="O" Command="{Binding OpenProjectCommand}" />
         <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding SaveProjectCommand}" />
         <KeyBinding Modifiers="Ctrl+Shift" Key="S" Command="{Binding SaveProjectAsCommand}" />
+        <KeyBinding Modifiers="Alt" Key="F4" Command="{Binding ExitApplicationCommand}" />
+
+        <!--Edit-->
+        <KeyBinding Modifiers="Ctrl" Key="X" Command="{Binding CutCommand}" />
+        <KeyBinding Modifiers="Ctrl" Key="C" Command="{Binding CopyCommand}" />
+        <KeyBinding Modifiers="Ctrl" Key="V" Command="{Binding PasteCommand}" />
+        <KeyBinding Modifiers="Ctrl" Key="A" Command="{Binding SelectAllCommand}" />
+        
 
         <KeyBinding Key="X" Command="{Binding AutoVerseCommand}" />
         <KeyBinding Key="R" Command="{Binding ResizeVerseCommand}" />
@@ -49,11 +59,6 @@
                             <Setter Property="CommandParameter" Value="{Binding}" />
                         </Style>
                     </MenuItem.ItemContainerStyle>
-                    <!--<MenuItem.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}" Command="{Binding DataContext.OpenRecentProjectCommand, RelativeSource={RelativeSource AncestorType=Menu}}" CommandParameter="{Binding}" />
-                        </DataTemplate>
-                    </MenuItem.ItemTemplate>-->
                 </MenuItem>
                 <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
             </MenuItem>

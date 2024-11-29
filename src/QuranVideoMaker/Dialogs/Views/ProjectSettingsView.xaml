@@ -66,8 +66,8 @@
         <customcontrols:DialogButtonsGrid Grid.Row="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <customcontrols:DialogButton Content="OK" Command="{Binding OKCommand}" />
-                <customcontrols:DialogButton Content="Cancel" Command="{Binding CancelCommand}" />
+                <customcontrols:DialogButton Content="OK" IsDefault="True" Command="{Binding OKCommand}" />
+                <customcontrols:DialogButton Content="Cancel" IsCancel="True" Command="{Binding CancelCommand}" />
             </StackPanel>
         </customcontrols:DialogButtonsGrid>
         
