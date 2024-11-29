@@ -53,7 +53,7 @@ jobs:
       run: rm -f ./src/QuranVideoMaker/bin/Release/net9.0-windows/win-x64/publish/libraries/locales -r
       
     - name: copy QuranImageMaker.App* files to QuranVideoMaker publish directory
-      run: cp -R ./src/QuranImageMaker.App/bin/Release/net9.0-windows/win-x64/publish/QuranImageMaker.App* ./src/QuranVideoMaker/bin/Release/net9.0-windows/win-x64/publish/libraries/
+      run: cp -R ./src/QuranImageMaker.App/bin/Release/net9.0-windows/win-x64/publish/QuranImageMaker.App* ./src/QuranVideoMaker/bin/Release/net9.0-windows/win-x64/publish/
 
     - name: zip release
       run: |
