@@ -84,3 +84,9 @@ jobs:
         asset_name: QuranVideoMaker.zip
         asset_content_type: application/zip
         
+    - name: upload artifact
+      if: github.ref == 'refs/heads/dev'
+      uses: actions/upload-artifact@v2
+      with:
+        name: QuranVideoMaker
+        path: ./QuranVideoMaker.zip
