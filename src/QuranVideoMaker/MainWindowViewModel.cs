@@ -401,7 +401,7 @@ namespace QuranVideoMaker
         {
             try
             {
-                Process.Start(new ProcessStartInfo("QuranImageMaker.App.exe") { UseShellExecute = true });
+                Process.Start(new ProcessStartInfo("./libraries/QuranImageMaker.App.exe") { UseShellExecute = true });
             }
             catch (Exception ex)
             {
