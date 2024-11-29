@@ -20,7 +20,7 @@ namespace QuranVideoMaker.Converters
             var control = values[2] as TrackItemControl;
 
             // convert width to pixels
-            var width = control.RenderSize.Width * control.LayoutTransform.Value.M11;
+            var width = control.RenderSize.Width * control.LayoutTransform.Value.M11 + 50;
             var lastWidth = 0.0;
 
             // get last width

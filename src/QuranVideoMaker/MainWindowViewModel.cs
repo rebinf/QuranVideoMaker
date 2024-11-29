@@ -337,7 +337,11 @@ namespace QuranVideoMaker
         {
             if (CurrentProject.SelectedTool == TimelineSelectedTool.VerseResizer)
             {
-                CurrentProject.AutoVerse();
+                var needlePosition = CurrentProject.NeedlePositionTime;
+
+                var item = CurrentProject.GetTrackItemAtFrame(Convert.ToInt32(needlePosition.TotalFrames), TimelineTrackType.Quran);
+
+                CurrentProject.ResizeQuranItem(item, needlePosition.TotalFrames);
             }
         }
 
