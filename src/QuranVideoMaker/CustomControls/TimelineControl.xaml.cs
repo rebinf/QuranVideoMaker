@@ -2,6 +2,8 @@
 using QuranVideoMaker.Data;
 using QuranVideoMaker.Dialogs;
 using QuranVideoMaker.Helpers;
+using QuranVideoMaker.Undo;
+using QuranVideoMaker.Undo.UndoUnits;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
@@ -21,7 +23,14 @@ namespace QuranVideoMaker.CustomControls
         private Ellipse _mouseDownFadeControl;
         private double _mouseDownX;
         private double _trackMouseDownX;
-        private TrackItem _mouseDownTrackItem;
+        private ITrackItem _mouseDownTrackItem;
+        private double _mouseDownFadeIn;
+        private double _mouseDownFadeOut;
+        private ITimelineTrack _mouseDownTrack;
+        private ITimelineTrack _mouseUpTrack;
+        private TimeCode _mouseDownTrackItemPosition;
+        private TimeCode _mouseDownTrackItemStart;
+        private TimeCode _mouseDownTrackItemEnd;
         private bool _resizingLeft;
         private bool _resizingRight;
 
@@ -124,6 +133,12 @@ namespace QuranVideoMaker.CustomControls
                 _mouseDownElement = trackItemControl;
                 _mouseDownX = e.GetPosition(_mouseDownElement).X;
                 _mouseDownTrackItem = item;
+                _mouseDownFadeIn = item.FadeInFrame;
+                _mouseDownFadeOut = item.FadeOutFrame;
+                _mouseDownTrack = Project.Tracks.First(x => x.Items.Contains(item));
+                _mouseDownTrackItemPosition = item.Position;
+                _mouseDownTrackItemStart = item.Start;
+                _mouseDownTrackItemEnd = item.End;
 
                 if (Project.SelectedTool == TimelineSelectedTool.SelectionTool)
                 {
@@ -155,6 +170,11 @@ namespace QuranVideoMaker.CustomControls
             else if (e.OriginalSource is Ellipse fadeControl && fadeControl.DataContext is TrackItem trackItem)
             {
                 _mouseDownTrackItem = trackItem;
+
+                _mouseDownTrackItemPosition = trackItem.Position;
+                _mouseDownTrackItemStart = trackItem.Start;
+                _mouseDownTrackItemEnd = trackItem.End;
+
                 _mouseDownFadeControl = fadeControl;
                 _mouseDownElement = VisualHelper.GetAncestor<TrackItemControl>(fadeControl);
             }
@@ -168,6 +188,44 @@ namespace QuranVideoMaker.CustomControls
 
         private void TimelineControl_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            _mouseUpTrack = Project.Tracks.FirstOrDefault(x => x.Items.Contains(_mouseDownTrackItem));
+
+            if (_mouseDownTrackItem != null)
+            {
+                var data = new TrackItemResizeData(_mouseDownTrackItem, _mouseDownTrackItemPosition, _mouseDownTrackItemStart, _mouseDownTrackItemEnd)
+                {
+                    NewPosition = _mouseDownTrackItem.Position,
+                    NewStart = _mouseDownTrackItem.Start,
+                    NewEnd = _mouseDownTrackItem.End
+                };
+
+                var multiUnit = new MultipleUndoUnits();
+                multiUnit.UndoUnits.Add(new TrackItemResizeUndoUnit(data));
+
+                // is source track different than destination track?
+                if (_mouseDownTrack != _mouseUpTrack)
+                {
+                    var removeUndoUnit = new TrackItemRemoveUndoUnit();
+
+                    removeUndoUnit.Items.Add(new TrackAndItemData(_mouseDownTrack, _mouseDownTrackItem));
+                    multiUnit.UndoUnits.Add(removeUndoUnit);
+
+                    var addUndoUnit = new TrackItemAddUndoUnit(_mouseUpTrack, _mouseDownTrackItem);
+                    multiUnit.UndoUnits.Add(addUndoUnit);
+                }
+
+                if (_mouseDownTrackItem.FadeInFrame != _mouseDownFadeIn || _mouseDownTrackItem.FadeOutFrame != _mouseDownFadeOut)
+                {
+                    multiUnit.UndoUnits.Add(new TrackItemFadeUndoUnit(_mouseDownTrackItem, _mouseDownFadeIn, _mouseDownFadeOut)
+                    {
+                        NewFadeInFrame = _mouseDownTrackItem.FadeInFrame,
+                        NewFadeOutFrame = _mouseDownTrackItem.FadeOutFrame
+                    });
+                }
+
+                UndoEngine.Instance.AddUndoUnit(multiUnit);
+            }
+
             _mouseDownElement = null;
             _mouseDownTrackItem = null;
             _resizingLeft = false;
@@ -225,8 +283,7 @@ namespace QuranVideoMaker.CustomControls
 
                 if (destinationTrack != null && destinationTrack != track && _mouseDownTrackItem.IsCompatibleWith(destinationTrack.Type))
                 {
-                    track.Items.Remove(_mouseDownTrackItem);
-                    destinationTrack.Items.Add(_mouseDownTrackItem);
+                    Project.RemoveAndAddTrackItem(track, destinationTrack, _mouseDownTrackItem);
                 }
             }
             else if (_tracksCanvasLeftMouseButtonDown && _mouseDownTrackItem != null && _resizingLeft)
@@ -382,7 +439,7 @@ namespace QuranVideoMaker.CustomControls
 
                     var trackItem = new TrackItem(clip, position, TimeCode.Zero, clip.Length);
 
-                    track.Items.Add(trackItem);
+                    track.AddTrackItem(trackItem);
                 }
             }
         }
@@ -402,13 +459,7 @@ namespace QuranVideoMaker.CustomControls
             {
                 if (e.Key == Key.Delete)
                 {
-                    foreach (var track in Project.Tracks)
-                    {
-                        foreach (var item in track.Items.Where(x => x.IsSelected).ToArray())
-                        {
-                            track.Items.Remove(item);
-                        }
-                    }
+                    Project.DeleteSelectedItems();
                 }
             }
         }

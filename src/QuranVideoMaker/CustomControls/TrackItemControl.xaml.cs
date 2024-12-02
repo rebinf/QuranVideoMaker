@@ -90,14 +90,7 @@ namespace QuranVideoMaker.CustomControls
 
             if (trackItem != null)
             {
-                foreach (var track in _timelineControl.Project.Tracks)
-                {
-                    if (track.Items.Contains(trackItem))
-                    {
-                        track.Items.Remove(trackItem);
-                        break;
-                    }
-                }
+                _timelineControl.Project.DeleteSelectedItems();
             }
         }
 

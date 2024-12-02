@@ -23,6 +23,9 @@
         <KeyBinding Modifiers="Alt" Key="F4" Command="{Binding ExitApplicationCommand}" />
 
         <!--Edit-->
+        <KeyBinding Modifiers="Ctrl" Key="Z" Command="{Binding UndoCommand}" />
+        <KeyBinding Modifiers="Ctrl" Key="Y" Command="{Binding RedoCommand}" />
+        
         <KeyBinding Modifiers="Ctrl" Key="X" Command="{Binding CutCommand}" />
         <KeyBinding Modifiers="Ctrl" Key="C" Command="{Binding CopyCommand}" />
         <KeyBinding Modifiers="Ctrl" Key="V" Command="{Binding PasteCommand}" />
@@ -63,9 +66,9 @@
                 <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
             </MenuItem>
             <MenuItem Header="Edit">
-                <!--<MenuItem Header="Undo" Command="{Binding UndoCommand}" InputGestureText="Ctrl+Z" />
+                <MenuItem Header="Undo" Command="{Binding UndoCommand}" InputGestureText="Ctrl+Z" />
                 <MenuItem Header="Redo" Command="{Binding RedoCommand}" InputGestureText="Ctrl+Y" />
-                <Separator />-->
+                <Separator />
                 <MenuItem Header="Cut" Command="{Binding CutCommand}" InputGestureText="Ctrl+X" />
                 <MenuItem Header="Copy" Command="{Binding CopyCommand}" InputGestureText="Ctrl+C" />
                 <MenuItem Header="Paste" Command="{Binding PasteCommand}" InputGestureText="Ctrl+V" />
