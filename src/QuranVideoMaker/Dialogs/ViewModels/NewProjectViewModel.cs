@@ -371,7 +371,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                 totalFrames = clip.Length.TotalFrames;
                 Project.Clips.Add(clip);
 
-                audioTrack.Items.Add(new TrackItem(clip, new TimeCode(0, Project.FPS), new TimeCode(0, Project.FPS), clip.Length));
+                audioTrack.AddTrackItem(new TrackItem(clip, new TimeCode(0, Project.FPS), new TimeCode(0, Project.FPS), clip.Length));
             }
 
             if (!AddVerses)
@@ -437,7 +437,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
                     }
                 }
 
-                quranTrack.Items.Add(newItem);
+                quranTrack.AddTrackItem(newItem);
             }
 
             CloseWindow?.Invoke(true);

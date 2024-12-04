@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using QuranVideoMaker.CustomControls;
 using QuranVideoMaker.Data;
 using QuranVideoMaker.Dialogs;
+using QuranVideoMaker.Undo;
 using QuranVideoMaker.Utilities;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -133,6 +134,8 @@ namespace QuranVideoMaker
             {
                 CurrentProject = project;
             }
+
+            UndoEngine.Instance.ClearAll();
         }
 
         [RelayCommand]
@@ -202,13 +205,13 @@ namespace QuranVideoMaker
         [RelayCommand]
         private void OnUndo()
         {
-            CurrentProject.Undo();
+            UndoEngine.Instance.Undo();
         }
 
         [RelayCommand]
         private void OnRedo()
         {
-            CurrentProject.Redo();
+            UndoEngine.Instance.Redo();
         }
 
         [RelayCommand]
@@ -362,12 +365,7 @@ namespace QuranVideoMaker
 
             if (dlg.ShowDialog() == true)
             {
-                foreach (var file in dlg.FileNames)
-                {
-                    var clip = new ProjectClip(file);
-                    CurrentProject.Clips.Add(clip);
-                    QuranVideoMakerUI.ShowDialog(DialogType.ClipImport, clip);
-                }
+                CurrentProject.AddClips(dlg.FileNames);
             }
         }
 
@@ -380,20 +378,7 @@ namespace QuranVideoMaker
                 return;
             }
 
-            foreach (var clip in CurrentProject.Clips.Where(x => x.IsSelected).ToArray())
-            {
-                foreach (var track in CurrentProject.Tracks)
-                {
-                    var items = track.Items.Where(x => x.ClipId == clip.Id).ToArray();
-
-                    foreach (var item in items)
-                    {
-                        track.Items.Remove(item);
-                    }
-                }
-
-                CurrentProject.Clips.Remove(clip);
-            }
+            CurrentProject.DeleteSelectedClips();
         }
 
         [RelayCommand]
@@ -472,6 +457,8 @@ namespace QuranVideoMaker
             {
                 MessageBox.Show(result.Message);
             }
+
+            UndoEngine.Instance.ClearAll();
         }
 
         public string GetProjectFileHash()

@@ -4,8 +4,11 @@ using NAudio.Wave;
 using QuranImageMaker;
 using QuranVideoMaker.ClipboardData;
 using QuranVideoMaker.CustomControls;
+using QuranVideoMaker.Dialogs;
 using QuranVideoMaker.Extensions;
 using QuranVideoMaker.Serialization;
+using QuranVideoMaker.Undo;
+using QuranVideoMaker.Undo.UndoUnits;
 using QuranVideoMaker.Utilities;
 using SkiaSharp;
 using System.Collections.Concurrent;
@@ -503,10 +506,20 @@ namespace QuranVideoMaker.Data
         /// <param name="frame">The frame.</param>
         public void CutItem(TrackItem item, double frame)
         {
+            var undoData = new MultipleUndoUnits("Cut Item");
+
+            var resizeUndoUnit = new TrackItemResizeUndoUnit();
+            undoData.UndoUnits.Add(resizeUndoUnit);
+            var firstItemData = new TrackItemResizeData(item, item.Position, item.Start, item.End);
+
+            resizeUndoUnit.Items.Add(firstItemData);
+
             var cutFrame = frame - item.Position.TotalFrames;
             var oldEnd = item.End;
             item.End = new TimeCode(item.Start.TotalFrames + cutFrame, FPS);
             var track = Tracks.First(x => x.Items.Contains(item));
+
+            firstItemData.NewEnd = item.End;
 
             var newItemPosition = new TimeCode(frame, FPS);
             var newItemStart = item.End;
@@ -527,13 +540,23 @@ namespace QuranVideoMaker.Data
                 };
 
                 track.Items.Add(newItem);
+
+                var secondItemData = new TrackItemAddUndoUnit(track, newItem);
+
+                undoData.UndoUnits.Add(secondItemData);
             }
             else
             {
                 var newItem = new TrackItem(item.Type, item.UnlimitedSourceLength, item.ClipId, item.Name, item.Thumbnail, newItemPosition, item.SourceLength, newItemStart, oldEnd);
 
                 track.Items.Add(newItem);
+
+                var secondItemData = new TrackItemAddUndoUnit(track, newItem);
+
+                undoData.UndoUnits.Add(secondItemData);
             }
+
+            UndoEngine.Instance.AddUndoUnit(undoData);
         }
 
         /// <summary>
@@ -550,21 +573,35 @@ namespace QuranVideoMaker.Data
 
             if (item.Type == TrackItemType.Quran)
             {
+                var undoData = new TrackItemResizeUndoUnit();
+                var firstItemData = new TrackItemResizeData(item, item.Position, item.Start, item.End);
+
+                undoData.Items.Add(firstItemData);
+
                 var cutFrame = frame - item.Position.TotalFrames;
                 var oldEnd = item.End;
                 item.End = new TimeCode(item.Start.TotalFrames + cutFrame, FPS);
                 var track = Tracks.First(x => x.Items.Contains(item));
+
+                firstItemData.NewEnd = item.End;
 
                 var newItemPosition = new TimeCode(frame, FPS);
                 var newItemStart = item.End;
 
                 if (Tracks.First(x => x.Type == TimelineTrackType.Quran).Items.Cast<QuranTrackItem>().FirstOrDefault(x => x.Verse.VerseNumber == (item as QuranTrackItem).Verse.VerseNumber + 1) is QuranTrackItem right)
                 {
+                    var secondItemData = new TrackItemResizeData(right, right.Position, right.Start, right.End);
+                    undoData.Items.Add(secondItemData);
+
                     var oldRight = right.GetRightTime().TotalFrames;
                     right.Position = newItemPosition;
-
                     right.End = new TimeCode(oldRight - newItemPosition.TotalFrames, FPS);
+
+                    secondItemData.NewPosition = right.Position;
+                    secondItemData.NewEnd = right.End;
                 }
+
+                UndoEngine.Instance.AddUndoUnit(undoData);
             }
 
             ClearVerseRenderCache();
@@ -629,7 +666,7 @@ namespace QuranVideoMaker.Data
                 }
             }
 
-            quranTrack.Items.Add(newItem);
+            quranTrack.AddTrackItem(newItem);
         }
 
         /// <summary>
@@ -712,14 +749,6 @@ namespace QuranVideoMaker.Data
             }
         }
 
-        public void Undo()
-        {
-        }
-
-        public void Redo()
-        {
-        }
-
         /// <summary>
         /// Cut current selected items.
         /// </summary>
@@ -746,6 +775,8 @@ namespace QuranVideoMaker.Data
             {
                 var items = ProjectSerializer.Deserialize<TrackItemClipboardData[]>(Clipboard.GetData(nameof(ClipboardDataType.QVM_TrackItems)).ToString());
 
+                var undoData = new TrackItemRemoveUndoUnit();
+
                 foreach (var item in items)
                 {
                     var track = Tracks.First(x => x.Id == item.SourceTrackId);
@@ -755,6 +786,13 @@ namespace QuranVideoMaker.Data
                     trackItem.Position = NeedlePositionTime;
 
                     track.Items.Add(trackItem);
+
+                    undoData.Items.Add(new TrackAndItemData(track, trackItem));
+                }
+
+                if (undoData.Items.Count > 0)
+                {
+                    UndoEngine.Instance.AddUndoUnit(undoData);
                 }
             }
         }
@@ -778,11 +816,20 @@ namespace QuranVideoMaker.Data
 
             if (cut)
             {
+                var undoData = new TrackItemRemoveUndoUnit();
+
                 // remove the selected items
                 foreach (var item in selectedItems)
                 {
                     var track = Tracks.First(x => x.Items.Contains(item.TrackItem));
                     track.Items.Remove(item.TrackItem);
+
+                    undoData.Items.Add(new TrackAndItemData(track, item.TrackItem));
+                }
+
+                if (undoData.Items.Count > 0)
+                {
+                    UndoEngine.Instance.AddUndoUnit(undoData);
                 }
             }
             else
@@ -813,6 +860,90 @@ namespace QuranVideoMaker.Data
                     item.IsSelected = true;
                 }
             }
+        }
+
+        public void DeleteSelectedItems()
+        {
+            var undoData = new TrackItemRemoveUndoUnit();
+
+            foreach (var track in Tracks)
+            {
+                foreach (var item in track.Items.Where(x => x.IsSelected).ToArray())
+                {
+                    track.Items.Remove(item);
+                    undoData.Items.Add(new TrackAndItemData(track, item));
+                }
+            }
+
+            UndoEngine.Instance.AddUndoUnit(undoData);
+        }
+
+        public void RemoveAndAddTrackItem(ITimelineTrack fromTrack, ITimelineTrack toTrack, ITrackItem item)
+        {
+            //var undoData = new MultipleUndoUnits("Move Track Item");
+            //var removeUndoUnit = new TrackItemRemoveUndoUnit();
+
+            //removeUndoUnit.Items.Add(new TrackAndItemData(fromTrack, item));
+            //undoData.UndoUnits.Add(removeUndoUnit);
+            fromTrack.Items.Remove(item);
+
+            //var addUndoUnit = new TrackItemAddUndoUnit(toTrack, item);
+            //undoData.UndoUnits.Add(addUndoUnit);
+            toTrack.Items.Add(item);
+
+            //UndoEngine.Instance.AddUndoUnit(undoData);
+        }
+
+        public void AddClips(string[] files)
+        {
+            var undoData = new ClipAddUndoUnit(this);
+
+            foreach (var file in files)
+            {
+                var clip = new ProjectClip(file);
+                Clips.Add(clip);
+                undoData.Clips.Add(clip);
+
+                QuranVideoMakerUI.ShowDialog(DialogType.ClipImport, clip);
+            }
+
+            UndoEngine.Instance.AddUndoUnit(undoData);
+        }
+
+        public void DeleteSelectedClips()
+        {
+            DeleteClips(Clips.Where(x => x.IsSelected));
+        }
+
+        public void DeleteClips(IEnumerable<IProjectClip> clips)
+        {
+            var undoData = new MultipleUndoUnits("Delete Clips");
+
+            var removeUndoUnit = new ClipRemoveUndoUnit(this);
+
+            foreach (var clip in clips.ToArray())
+            {
+                removeUndoUnit.Clips.Add(clip);
+
+                foreach (var track in Tracks)
+                {
+                    var items = track.Items.Where(x => x.ClipId == clip.Id).ToArray();
+
+                    foreach (var item in items)
+                    {
+                        track.Items.Remove(item);
+
+                        var trackItemRemoveUndoUnit = new TrackItemRemoveUndoUnit();
+                        trackItemRemoveUndoUnit.Items.Add(new TrackAndItemData(track, item));
+                        undoData.UndoUnits.Add(trackItemRemoveUndoUnit);
+                    }
+                }
+
+                undoData.UndoUnits.Add(removeUndoUnit);
+                Clips.Remove(clip);
+            }
+
+            UndoEngine.Instance.AddUndoUnit(undoData);
         }
 
         /// <summary>

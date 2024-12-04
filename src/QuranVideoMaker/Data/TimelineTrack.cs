@@ -1,5 +1,7 @@
 ﻿using QuranImageMaker;
 using QuranVideoMaker.Extensions;
+using QuranVideoMaker.Undo;
+using QuranVideoMaker.Undo.UndoUnits;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -110,8 +112,6 @@ namespace QuranVideoMaker.Data
             }
         }
 
-        ObservableCollection<ITrackItem> ITimelineTrack.Items { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="TimelineTrack"/> class.
         /// </summary>
@@ -129,6 +129,46 @@ namespace QuranVideoMaker.Data
         {
             Type = type;
             Name = name;
+        }
+
+        /// <inheritdoc/>
+        public void AddTrackItem(ITrackItem item)
+        {
+            Items.Add(item);
+            UndoEngine.Instance.AddUndoUnit(new TrackItemAddUndoUnit(this, item));
+        }
+
+        /// <inheritdoc/>
+        public void AddTrackItems(IEnumerable<ITrackItem> items)
+        {
+            var undoUnit = new TrackItemAddUndoUnit(items.Select(x => new TrackAndItemData(this, x)));
+
+            foreach (var item in items)
+            {
+                Items.Add(item);
+            }
+
+            UndoEngine.Instance.AddUndoUnit(undoUnit);
+        }
+
+        /// <inheritdoc/>
+        public void RemoveTrackItem(ITrackItem item)
+        {
+            Items.Remove(item);
+            UndoEngine.Instance.AddUndoUnit(new TrackItemRemoveUndoUnit(this, item));
+        }
+
+        /// <inheritdoc/>
+        public void RemoveTrackItems(IEnumerable<ITrackItem> items)
+        {
+            var undoUnit = new TrackItemRemoveUndoUnit(items.Select(x => new TrackAndItemData(this, x)));
+
+            foreach (var item in items)
+            {
+                Items.Remove(item);
+            }
+
+            UndoEngine.Instance.AddUndoUnit(undoUnit);
         }
 
         /// <inheritdoc/>
@@ -161,7 +201,7 @@ namespace QuranVideoMaker.Data
             copy.Start = new TimeCode(localFrame, item.Start.FPS);
             copy.Position = new TimeCode(item.GetRightTime().TotalFrames, item.Position.FPS);
 
-            Items.Add(copy);
+            AddTrackItem(copy);
         }
 
         /// <inheritdoc/>

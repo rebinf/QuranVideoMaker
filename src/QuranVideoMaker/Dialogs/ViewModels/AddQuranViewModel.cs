@@ -235,6 +235,8 @@ namespace QuranVideoMaker
                 }
             }
 
+            var newItems = new List<QuranTrackItem>();
+
             for (int i = 0; i < verses.Count; i++)
             {
                 var verse = verses[i];
@@ -274,9 +276,10 @@ namespace QuranVideoMaker
                     }
                 }
 
-                quranTrack.Items.Add(newItem);
+                newItems.Add(newItem);
             }
 
+            quranTrack.AddTrackItems(newItems);
             Project.ClearVerseRenderCache();
 
             CloseWindow?.Invoke(true);
