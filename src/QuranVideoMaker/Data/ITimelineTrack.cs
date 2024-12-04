@@ -39,20 +39,47 @@ namespace QuranVideoMaker.Data
         ObservableCollection<ITrackItem> Items { get; set; }
 
         /// <summary>
+        /// Adds a track item to the track.
+        /// </summary>
+        /// <param name="item">The track item to add.</param>
+        void AddTrackItem(ITrackItem item);
+
+        /// <summary>
+        /// Adds a collection of track items to the track.
+        /// </summary>
+        /// <param name="items">The collection of track items to add.</param>
+        void AddTrackItems(IEnumerable<ITrackItem> items);
+
+        /// <summary>
+        /// Removes a track item from the track.
+        /// </summary>
+        /// <param name="item">The track item to remove.</param>
+        void RemoveTrackItem(ITrackItem item);
+
+        /// <summary>
+        /// Removes a collection of track items from the track.
+        /// </summary>
+        /// <param name="items">The collection of track items to remove.</param>
+        void RemoveTrackItems(IEnumerable<ITrackItem> items);
+
+        /// <summary>
         /// Gets the duration of the track, calculated by the longest track item.
         /// </summary>
+        /// <returns>The duration of the track.</returns>
         TimeCode GetDuration();
 
         /// <summary>
         /// Cuts the item at the specified timeline frame.
         /// </summary>
-        /// <param name="item">The item.</param>
-        /// <param name="timelineFrame">The timeline frame.</param>
+        /// <param name="item">The item to cut.</param>
+        /// <param name="timelineFrame">The timeline frame at which to cut the item.</param>
         void CutItem(ITrackItem item, double timelineFrame);
 
         /// <summary>
         /// Gets the track item at the specified timeline frame.
         /// </summary>
+        /// <param name="timelineFrame">The timeline frame to get the item at.</param>
+        /// <returns>The track item at the specified timeline frame.</returns>
         ITrackItem GetItemAtTimelineFrame(double timelineFrame);
 
         /// <summary>
