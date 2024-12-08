@@ -965,6 +965,30 @@ namespace QuranVideoMaker.Data
             }
         }
 
+        public void AddTrack(TimelineTrackType type)
+        {
+            var count = Tracks.Count(x => x.Type == type);
+
+            var track = new TimelineTrack(type, $"{type} {count + 1}");
+
+            var indexOfTheLastTrackOfTheSameType = Tracks.IndexOf(Tracks.Last(x => x.Type == type));
+
+            Tracks.Insert(indexOfTheLastTrackOfTheSameType + 1, track);
+
+            var undoUnit = new TrackAddUndoUnit(this, track, Tracks.IndexOf(track));
+
+            UndoEngine.Instance.AddUndoUnit(undoUnit);
+        }
+
+        public void RemoveTrack(TimelineTrack track)
+        {
+            Tracks.Remove(track);
+
+            var undoUnit = new TrackRemoveUndoUnit(this, track, Tracks.IndexOf(track));
+
+            UndoEngine.Instance.AddUndoUnit(undoUnit);
+        }
+
         public async Task<OperationResult> ExportAsync(string exportPath)
         {
             try

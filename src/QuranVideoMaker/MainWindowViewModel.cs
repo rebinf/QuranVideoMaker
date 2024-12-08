@@ -239,6 +239,12 @@ namespace QuranVideoMaker
         }
 
         [RelayCommand]
+        private void AddVideoTrack()
+        {
+            CurrentProject.AddTrack(TimelineTrackType.Video);
+        }
+
+        [RelayCommand]
         private void OnExportProject()
         {
             QuranVideoMakerUI.ShowDialog(DialogType.ExportProject, CurrentProject);
