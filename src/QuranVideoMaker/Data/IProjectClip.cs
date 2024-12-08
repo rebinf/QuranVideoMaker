@@ -31,7 +31,7 @@ namespace QuranVideoMaker.Data
         /// <summary>
         /// Gets or sets the length.
         /// </summary>
-        TimeCode Length { get; }
+        TimeCode Length { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this clip has an unlimited length.
