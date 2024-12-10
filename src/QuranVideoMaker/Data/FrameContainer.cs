@@ -5,7 +5,7 @@ namespace QuranVideoMaker.Data
     /// <summary>
     /// Represents a container for a single frame of video data.
     /// </summary>
-    [DebuggerDisplay("Frame: {Frame}")]
+    [DebuggerDisplay("FrameNumber: {Frame}")]
     public class FrameContainer
     {
         /// <summary>
