@@ -10,6 +10,7 @@
         NewProject,
         ExportProject,
         ProjectSettings,
-        About
+        About,
+        EditLength,
     }
 }

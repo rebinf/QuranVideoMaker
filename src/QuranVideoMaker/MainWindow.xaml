@@ -88,8 +88,9 @@
                 <MenuItem Header="Resize Verse" Command="{Binding ResizeVerseCommand}" Visibility="{Binding CurrentProject.SelectedTool, Converter={converters:TimelineSelectedToolVisibilityConverter SelectedTool=VerseResizer, IsVisible=True}}" InputGestureText="R" />
             </MenuItem>
             <MenuItem Header="Project">
-                <MenuItem Header="Export" Command="{Binding ExportProjectCommand}" />
+                <MenuItem Header="Add Video Track" Command="{Binding AddVideoTrackCommand}" />
                 <Separator />
+                <MenuItem Header="Export" Command="{Binding ExportProjectCommand}" />
                 <MenuItem Header="Export Verses" Command="{Binding ExportVersesCommand}" />
                 <Separator />
                 <MenuItem Header="Settings" Command="{Binding ProjectSettingsCommand}" />

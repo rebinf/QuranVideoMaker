@@ -4,6 +4,7 @@ using NAudio.Wave.SampleProviders;
 using NAudio.WaveFormRenderer;
 using OpenCvSharp;
 using QuranVideoMaker.Utilities;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -30,6 +31,7 @@ namespace QuranVideoMaker.Data
         private string _filePath;
         private string _thumbnail;
         private bool _isSelected;
+        private TimeCode _length;
 
         private int _width;
         private int _height;
@@ -160,7 +162,18 @@ namespace QuranVideoMaker.Data
             }
         }
 
-        public TimeCode Length { get; private set; }
+        public TimeCode Length
+        {
+            get { return _length; }
+            set
+            {
+                if (_length != value)
+                {
+                    _length = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public bool UnlimitedLength { get; private set; }
 

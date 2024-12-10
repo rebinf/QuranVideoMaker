@@ -297,9 +297,17 @@ namespace QuranVideoMaker.CustomControls
                 var frameDifference = itemFrame - currentMouseFrame;
                 var oldStart = _mouseDownTrackItem.Start;
 
-                _mouseDownTrackItem.Start = new TimeCode(_mouseDownTrackItem.Start.TotalFrames - frameDifference, Project.FPS);
+                if (!_mouseDownTrackItem.UnlimitedSourceLength)
+                {
+                    _mouseDownTrackItem.Start = new TimeCode(_mouseDownTrackItem.Start.TotalFrames - frameDifference, Project.FPS);
+                }
 
-                if (oldStart != _mouseDownTrackItem.Start)
+                if (_mouseDownTrackItem.UnlimitedSourceLength)
+                {
+                    _mouseDownTrackItem.Position = new TimeCode(_mouseDownTrackItem.Position.TotalFrames - frameDifference, Project.FPS);
+                    _mouseDownTrackItem.End = new TimeCode(_mouseDownTrackItem.End.TotalFrames + frameDifference, Project.FPS);
+                }
+                else if (oldStart != _mouseDownTrackItem.Start)
                 {
                     _mouseDownTrackItem.Position = new TimeCode(_mouseDownTrackItem.Position.TotalFrames - frameDifference, Project.FPS);
                 }

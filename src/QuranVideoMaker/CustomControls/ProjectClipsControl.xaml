@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:local="clr-namespace:QuranVideoMaker.CustomControls"
+             xmlns:converters="clr-namespace:QuranVideoMaker.Converters"
              PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown"
              PreviewKeyUp="ListBox_PreviewKeyUp"
              DragDrop.PreviewDragOver="ListBox_PreviewDragOver"
@@ -18,6 +19,18 @@
     <ListBox.ItemTemplate>
         <DataTemplate>
             <Border BorderBrush="#3DAEE9" BorderThickness="1">
+                <Border.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Delete" Click="Delete_Click">
+                            <MenuItem.Icon>
+                                <svgc:SvgIcon UriSource="/Resources/Icons/bin.svg" Fill="PaleVioletRed" Width="13" Height="13" Margin="-8" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator Visibility="{Binding ItemType, Converter={converters:EnumComparisonToVisibilityConverter Value='Image'}}" />
+                        <MenuItem Header="Edit Length" Click="EditLength_Click" Visibility="{Binding ItemType, Converter={converters:EnumComparisonToVisibilityConverter Value='Image'}}" />
+                    </ContextMenu>
+                </Border.ContextMenu>
+
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80" />

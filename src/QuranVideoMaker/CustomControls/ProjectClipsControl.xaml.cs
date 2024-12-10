@@ -1,4 +1,5 @@
 ﻿using QuranVideoMaker.Data;
+using QuranVideoMaker.Dialogs;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -86,6 +87,25 @@ namespace QuranVideoMaker.CustomControls
                         (ItemsSource as ObservableCollection<IProjectClip>).Remove((ProjectClip)SelectedItem);
                     }
                 }
+            }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            var clip = (sender as FrameworkElement).DataContext as ProjectClip;
+
+            MainWindowViewModel.Instance.CurrentProject.DeleteClips([clip]);
+        }
+
+        private void EditLength_Click(object sender, RoutedEventArgs e)
+        {
+            var clip = (sender as FrameworkElement).DataContext as ProjectClip;
+
+            var dlgResult = QuranVideoMakerUI.ShowDialog(DialogType.EditLength, clip.Length);
+
+            if (dlgResult.Result == true && dlgResult.Data is TimeCode tc && tc != TimeCode.Zero)
+            {
+                clip.Length = tc;
             }
         }
     }

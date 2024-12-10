@@ -229,6 +229,42 @@ namespace QuranVideoMaker.Data
             return (TotalFrames + FPS).GetHashCode();
         }
 
+        /// <summary>
+        /// Try to parse a string into a TimeCode instance.
+        /// </summary>
+        /// <param name="timeCode">The time code string to parse</param>
+        /// <param name="result">The resulting TimeCode instance</param>
+        /// <returns>True if the string was successfully parsed, false otherwise</returns>
+        public static bool TryParse(string timeCode, out TimeCode result)
+        {
+            try
+            {
+                var parts = timeCode.Split(':');
+
+                if (parts.Length != 4)
+                {
+                    result = Zero;
+                    return false;
+                }
+                if (int.TryParse(parts[0], out int hours) &&
+                    int.TryParse(parts[1], out int minutes) &&
+                    int.TryParse(parts[2], out int seconds) &&
+                    int.TryParse(parts[3], out int frame))
+                {
+                    result = FromTime(hours, minutes, seconds, 25);
+                    return true;
+                }
+
+                result = Zero;
+                return true;
+            }
+            catch
+            {
+                result = Zero;
+                return false;
+            }
+        }
+
         internal TimeSpan ToTimeSpan()
         {
             return new TimeSpan(0, Hours, Minutes, Seconds, Convert.ToInt32((Frame * 1000d) / FPS));
