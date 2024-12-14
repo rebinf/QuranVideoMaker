@@ -201,6 +201,8 @@
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
 
+                    <ComboBox Margin="5,0" Width="150" ItemsSource="{Binding CurrentProject.PreviewRenderedTranslations}" DisplayMemberPath="Name" SelectedValuePath="Guid" SelectedValue="{Binding CurrentProject.PreviewRenderedTranslation}" />
+
                     <StackPanel Orientation="Horizontal">
                         <Button Command="{Binding ProjectRewindCommand}" ToolTip="Rewind (J)" Width="30" Padding="5" Margin="1,0">
                             <svgc:SvgIcon UriSource="/Resources/Icons/rew.svg" Fill="LightGray" Width="13" Height="13" Margin="-8" />

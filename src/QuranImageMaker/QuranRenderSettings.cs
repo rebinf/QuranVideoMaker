@@ -39,6 +39,7 @@ namespace QuranImageMaker
         private double _textBackgroundPadding = 100;
         private bool _textBackgroundTransition = true;
         private bool _fullScreenTextBackground;
+        private Guid _renderedTranslation = Guid.Empty;
 
         private VerseRenderSettings _arabicScriptRenderSettings = new VerseRenderSettings()
         {
@@ -367,6 +368,23 @@ namespace QuranImageMaker
         }
 
         /// <summary>
+        /// Gets or sets the rendered translation (i.e which translation to render).
+        /// Empty means all translations (if any) will be rendered.
+        /// </summary>
+        public Guid RenderedTranslation
+        {
+            get { return _renderedTranslation; }
+            set
+            {
+                if (_renderedTranslation != value)
+                {
+                    _renderedTranslation = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="VerseRenderSettings"/> class.
         /// </summary>
         public QuranRenderSettings()
@@ -411,6 +429,9 @@ namespace QuranImageMaker
                 TextBackgroundPadding = this.TextBackgroundPadding,
                 TextBackgroundTransition = this.TextBackgroundTransition,
                 FullScreenTextBackground = this.FullScreenTextBackground,
+                IncludeVerseNumbers = this.IncludeVerseNumbers,
+                RenderedTranslation = this.RenderedTranslation,
+                ScriptType = this.ScriptType,
             };
 
             foreach (var ts in TranslationRenderSettings)

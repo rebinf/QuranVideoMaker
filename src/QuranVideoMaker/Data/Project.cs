@@ -62,6 +62,8 @@ namespace QuranVideoMaker.Data
         private AudioFileReader _audioReader;
         private WaveOutEvent _outputDevice;
         private int _framesPerBatch = 10;
+        private Guid _previewRenderedTranslation = Guid.Empty;
+        private Guid _exportRenderedTranslation;
 
         public event EventHandler<double> ExportProgress;
 
@@ -454,6 +456,38 @@ namespace QuranVideoMaker.Data
         public IEnumerable<QuranTrackItem> OrderedVerses { get { return Tracks.FirstOrDefault(x => x.Type == TimelineTrackType.Quran)?.Items.Cast<QuranTrackItem>().OrderBy(x => x.Verse.VerseNumber); } }
 
         /// <summary>
+        /// Gets or sets the preview rendered translation.
+        /// </summary>
+        public Guid PreviewRenderedTranslation
+        {
+            get { return _previewRenderedTranslation; }
+            set
+            {
+                if (_previewRenderedTranslation != value)
+                {
+                    _previewRenderedTranslation = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the export rendered translation.
+        /// </summary>
+        public Guid ExportRenderedTranslation
+        {
+            get { return _exportRenderedTranslation; }
+            set
+            {
+                if (_exportRenderedTranslation != value)
+                {
+                    _exportRenderedTranslation = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the current image.
         /// </summary>
         [JsonIgnore]
@@ -481,6 +515,30 @@ namespace QuranVideoMaker.Data
                     _selectedTool = value;
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        [JsonIgnore]
+        public IEnumerable<RenderedTranslation> PreviewRenderedTranslations
+        {
+            get
+            {
+                var items = QuranSettings.TranslationRenderSettings.Select(x => new RenderedTranslation() { Guid = x.Id, Name = $"{Quran.GetTranslation(x.Id).Language} - {Quran.GetTranslation(x.Id).Name}" });
+
+                // add 'All' option
+                return new RenderedTranslation[] { new RenderedTranslation() { Guid = QuranIds.AllTranslations, Name = "All Translations" } }.Concat(items);
+            }
+        }
+
+        [JsonIgnore]
+        public IEnumerable<RenderedTranslation> ExportRenderedTranslations
+        {
+            get
+            {
+                var items = PreviewRenderedTranslations;
+
+                // add 'Separate Videos' as the second option
+                return new RenderedTranslation[] { items.First(), new RenderedTranslation() { Guid = QuranIds.SeparateTranslations, Name = "Separate Videos" } }.Concat(items.Skip(1));
             }
         }
 
@@ -989,7 +1047,48 @@ namespace QuranVideoMaker.Data
             UndoEngine.Instance.AddUndoUnit(undoUnit);
         }
 
-        public async Task<OperationResult> ExportAsync(string exportPath)
+        public async Task<OperationResult> ExportAsync(string exportDirectory)
+        {
+            var verses = OrderedVerses;
+
+            var fileName = $"Quran.{ExportFormat}";
+
+            if (verses.Any())
+            {
+                fileName = $"Quran {verses.First().Verse.ChapterNumber} {verses.First().Verse.VerseNumber}-{verses.Last().Verse.VerseNumber}.{ExportFormat}";
+            }
+
+            // if all translations, or a single translation is selected
+            if (ExportRenderedTranslation == QuranIds.AllTranslations)
+            {
+                var filePath = Path.Combine(ExportDirectory, fileName);
+
+                return await ExportCoreAsync(filePath, ExportRenderedTranslation);
+            }
+            else if (ExportRenderedTranslation == QuranIds.SeparateTranslations)
+            {
+                foreach (var translation in QuranSettings.TranslationRenderSettings)
+                {
+                    var translationInfo = Quran.GetTranslation(translation.Id);
+                    var translationPath = Path.Combine(exportDirectory, $"Quran {verses.First().Verse.ChapterNumber} {verses.First().Verse.VerseNumber}-{verses.Last().Verse.VerseNumber} ({translationInfo.Language} - {translationInfo.Name}).{ExportFormat}");
+
+                    var result = await ExportCoreAsync(translationPath, translation.Id);
+
+                    if (!result.Success)
+                    {
+                        return result;
+                    }
+                }
+            }
+            else
+            {
+                return await ExportCoreAsync(Path.Combine(exportDirectory, fileName), ExportRenderedTranslation);
+            }
+
+            return new OperationResult(true, string.Empty);
+        }
+
+        public async Task<OperationResult> ExportCoreAsync(string exportPath, Guid translationId)
         {
             try
             {
@@ -1096,7 +1195,7 @@ namespace QuranVideoMaker.Data
                                 Task.Delay(500).Wait();
                             }
 
-                            var frame = RenderFrame(frameNumber, false);
+                            var frame = RenderFrame(frameNumber, translationId, false);
                             pipe.AddFrame(frame);
 
                             count++;
@@ -1162,7 +1261,7 @@ namespace QuranVideoMaker.Data
             }
         }
 
-        public FrameContainer RenderFrame(int frameNumber, bool preview)
+        public FrameContainer RenderFrame(int frameNumber, Guid translationId, bool preview)
         {
             try
             {
@@ -1170,6 +1269,9 @@ namespace QuranVideoMaker.Data
 
                 var width = Width;
                 var height = Height;
+
+                var quranSettings = QuranSettings.Clone();
+                quranSettings.RenderedTranslation = translationId;
 
                 if (preview)
                 {
@@ -1180,10 +1282,10 @@ namespace QuranVideoMaker.Data
                 SKBitmap background = null;
 
                 // create the background once if full screen text background is enabled
-                if (QuranSettings.TextBackground && QuranSettings.FullScreenTextBackground)
+                if (quranSettings.TextBackground && quranSettings.FullScreenTextBackground)
                 {
                     background = new SKBitmap(width, height);
-                    background.Erase(new SKColor(QuranSettings.TextBackgroundColor.Red, QuranSettings.TextBackgroundColor.Green, QuranSettings.TextBackgroundColor.Blue, Convert.ToByte(QuranSettings.TextBackgroundOpacity * 255)));
+                    background.Erase(new SKColor(quranSettings.TextBackgroundColor.Red, quranSettings.TextBackgroundColor.Green, quranSettings.TextBackgroundColor.Blue, Convert.ToByte(quranSettings.TextBackgroundOpacity * 255)));
                 }
 
                 var visualItems = GetVisualTrackItemsAtFrame(frameNumber);
@@ -1213,13 +1315,13 @@ namespace QuranVideoMaker.Data
 
                             if (!_renderedVerses.ContainsKey(trackItem.Id))
                             {
-                                var rv = VerseRenderer.RenderVerses(new[] { verseItem.Verse }, QuranSettings);
+                                var rv = VerseRenderer.RenderVerses(new[] { verseItem.Verse }, quranSettings);
                                 _renderedVerses[trackItem.Id] = rv.FirstOrDefault().Bitmap;
                             }
 
-                            var opacity = QuranSettings.TextBackgroundTransition ? trackItem.GetOpacity(itemFrame) : 1;
+                            var opacity = quranSettings.TextBackgroundTransition ? trackItem.GetOpacity(itemFrame) : 1;
 
-                            if (QuranSettings.FullScreenTextBackground)
+                            if (quranSettings.FullScreenTextBackground)
                             {
                                 currentFrames.Add(new FrameData(background, opacity, itemOrder));
                             }
@@ -1392,7 +1494,7 @@ namespace QuranVideoMaker.Data
         {
             var currentFrame = Convert.ToInt32(NeedlePositionTime.TotalFrames);
 
-            var render = RenderFrame(currentFrame, true);
+            var render = RenderFrame(currentFrame, PreviewRenderedTranslation, true);
 
             if (render != null)
             {

@@ -124,18 +124,7 @@ namespace QuranVideoMaker
 
                 _exportTimer.Restart();
 
-                var verses = Project.OrderedVerses;
-
-                var fileName = $"Quran.{Project.ExportFormat}";
-
-                if (verses.Any())
-                {
-                    fileName = $"Quran {verses.First().Verse.ChapterNumber} {verses.First().Verse.VerseNumber}-{verses.Last().Verse.VerseNumber}.{Project.ExportFormat}";
-                }
-
-                var filePath = Path.Combine(Project.ExportDirectory, fileName);
-
-                var result = await Project.ExportAsync(filePath);
+                var result = await Project.ExportAsync(Project.ExportDirectory);
 
                 _exportTimer.Stop();
 
