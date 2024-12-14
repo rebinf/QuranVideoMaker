@@ -1400,6 +1400,16 @@ namespace QuranVideoMaker.Data
             return null;
         }
 
+        public IEnumerable<TrackItem> GetQuranTrackItems()
+        {
+            return Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Quran).Cast<TrackItem>();
+        }
+
+        public IEnumerable<VerseInfo> GetVerses()
+        {
+            return GetQuranTrackItems().Cast<QuranTrackItem>().Select(x => x.Verse);
+        }
+
         #region [Play]
 
         public void Play()

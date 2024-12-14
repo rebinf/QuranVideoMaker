@@ -102,7 +102,21 @@ namespace QuranVideoMaker.Dialogs.Views
 
         private void RemoveTranslation_Click(object sender, RoutedEventArgs e)
         {
-            ((QuranSettingsViewModel)DataContext).Settings.TranslationRenderSettings.Remove((sender as FrameworkElement).DataContext as VerseRenderSettings);
+            var settings = (sender as FrameworkElement).DataContext as VerseRenderSettings;
+            ((QuranSettingsViewModel)DataContext).Settings.TranslationRenderSettings.Remove(settings);
+
+            // need to remove it from the project as well
+            foreach (var verse in MainWindowViewModel.Instance.CurrentProject.GetVerses())
+            {
+                foreach (var item in verse.Translations.ToArray())
+                {
+                    if (item.TypeId == settings.Id)
+                    {
+                        verse.Translations.Remove(item);
+                    }
+                }
+            }
+
             ((QuranSettingsViewModel)DataContext).UpdatePreview();
         }
 
