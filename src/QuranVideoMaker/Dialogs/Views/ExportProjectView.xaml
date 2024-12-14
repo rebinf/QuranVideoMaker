@@ -35,6 +35,9 @@
                     </GroupBox>
                     <GroupBox Header="Options">
                         <customcontrols:StackLayout Padding="5">
+                            <customcontrols:LayoutItem Label="Translations">
+                                <ComboBox ItemsSource="{Binding Project.ExportRenderedTranslations}" DisplayMemberPath="Name" SelectedValuePath="Guid" SelectedValue="{Binding Project.ExportRenderedTranslation}" />
+                            </customcontrols:LayoutItem>
                             <customcontrols:LayoutItem Label="Format">
                                 <ComboBox ItemsSource="{x:Static data:FileFormats.SupportedExportFormats}" SelectedItem="{Binding Project.ExportFormat}" />
                             </customcontrols:LayoutItem>

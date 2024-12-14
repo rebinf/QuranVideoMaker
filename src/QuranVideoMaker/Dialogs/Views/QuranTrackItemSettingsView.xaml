@@ -45,6 +45,9 @@
             </StackPanel>
         </Grid>
         <customcontrols:DialogButtonsGrid Grid.Row="1" Grid.ColumnSpan="3">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <ComboBox Margin="5,0" Height="23" Width="200" ItemsSource="{Binding Project.PreviewRenderedTranslations}" DisplayMemberPath="Name" SelectedValuePath="Guid" SelectedValue="{Binding Project.PreviewRenderedTranslation}" />
+            </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <customcontrols:DialogButton Content="OK" IsDefault="True" Command="{Binding OKCommand}" />
                 <customcontrols:DialogButton Content="Cancel" IsCancel="True" Command="{Binding CancelCommand}" />

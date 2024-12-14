@@ -2,6 +2,7 @@
 using QuranImageMaker;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Transactions;
 
 namespace QuranVideoMaker.Dialogs.ViewModels
 {
@@ -113,7 +114,16 @@ namespace QuranVideoMaker.Dialogs.ViewModels
 
             if (result.Result == true)
             {
+                var settings = (result.Data as QuranTranslation).GetVerseRenderSettings();
                 Settings.TranslationRenderSettings.Add((result.Data as QuranTranslation).GetVerseRenderSettings());
+
+                foreach (var verse in MainWindowViewModel.Instance.CurrentProject.GetVerses())
+                {
+                    var translationInfo = Quran.Translations.First(x => x.Id == settings.Id);
+                    var translatedVerse = translationInfo.GetVerse(verse.ChapterNumber, verse.VerseNumber);
+                    var translatedVerseInfo = new VerseInfo(translationInfo.Id, translatedVerse.ChapterNumber, translatedVerse.ChapterNumber, translatedVerse.VerseText);
+                    verse.Translations.Add(translatedVerseInfo);
+                }
             }
         }
 

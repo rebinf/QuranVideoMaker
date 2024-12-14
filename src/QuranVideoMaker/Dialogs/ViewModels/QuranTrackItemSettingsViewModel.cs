@@ -50,25 +50,27 @@ namespace QuranVideoMaker.Dialogs.ViewModels
 
         private void AttachEvents()
         {
-            CurrentVerse.PropertyChanged += VerseContent_PropertyChanged;
+            CurrentVerse.PropertyChanged += Related_PropertyChanged;
+            Project.PropertyChanged += Related_PropertyChanged;
 
             foreach (var item in CurrentVerse.Translations)
             {
-                item.PropertyChanged += VerseContent_PropertyChanged;
+                item.PropertyChanged += Related_PropertyChanged;
             }
         }
 
         private void DetachEvents()
         {
-            CurrentVerse.PropertyChanged -= VerseContent_PropertyChanged;
+            CurrentVerse.PropertyChanged -= Related_PropertyChanged;
+            Project.PropertyChanged -= Related_PropertyChanged;
 
             foreach (var item in CurrentVerse.Translations)
             {
-                item.PropertyChanged -= VerseContent_PropertyChanged;
+                item.PropertyChanged -= Related_PropertyChanged;
             }
         }
 
-        private void VerseContent_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void Related_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             UpdatePreview();
         }
@@ -76,6 +78,7 @@ namespace QuranVideoMaker.Dialogs.ViewModels
         private void UpdatePreview()
         {
             var tempSettings = Project.QuranSettings.Clone();
+            tempSettings.RenderedTranslation = Project.PreviewRenderedTranslation;
 
             tempSettings.OutputType = OutputType.Bytes;
 

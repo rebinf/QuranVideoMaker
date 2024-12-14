@@ -100,6 +100,12 @@ namespace QuranImageMaker
                     var translationSettings = renderSettings.GetSettingsById(translation.TypeId);
                     var translationId = translationSettings.Id.ToString();
 
+                    // render if rendered translation guid is either empty or matches the current translation guid
+                    if (renderSettings.RenderedTranslation != Guid.Empty && renderSettings.RenderedTranslation != translationSettings.Id)
+                    {
+                        continue;
+                    }
+
                     var translationDrawGroup = new DrawGroup(translationSettings);
                     drawGroups.Add(translationDrawGroup);
 

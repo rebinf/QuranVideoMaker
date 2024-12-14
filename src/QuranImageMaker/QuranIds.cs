@@ -3,6 +3,8 @@
     public static class QuranIds
     {
         public static Guid Quran { get; } = new Guid("8E8936E9-0575-47A5-A468-F78840DC51BA");
+        public static Guid AllTranslations { get; } = Guid.Empty;
+        public static Guid SeparateTranslations { get; } = new Guid("7C4C82DF-3A46-4A75-B2D7-55D76A3A3675");
 
         public static Guid AlbanianEfendiNahi { get; } = new Guid("04ED1EE8-54AA-4887-AECD-4AFAF9F85376");
         public static Guid AlbanianFetiMehdiu { get; } = new Guid("067AA3D5-DDCB-4925-9F0F-DACA4FCA116A");
