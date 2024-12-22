@@ -40,6 +40,8 @@ namespace QuranVideoMaker.Serialization
                     {
                         case TrackItemType.Quran:
                             return JsonSerializer.Deserialize<QuranTrackItem>(json, options);
+                        case TrackItemType.Audio:
+                            return JsonSerializer.Deserialize<AudioTrackItem>(json, options);
                         default:
                             return JsonSerializer.Deserialize<TrackItem>(json, options);
                     }

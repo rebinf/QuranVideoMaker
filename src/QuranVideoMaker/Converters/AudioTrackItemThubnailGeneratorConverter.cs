@@ -16,7 +16,7 @@ namespace QuranVideoMaker.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var project = values[0] as Project;
-            var trackItem = values[1] as TrackItem;
+            var trackItem = values[1] as AudioTrackItem;
             var control = values[2] as TrackItemControl;
 
             // convert width to pixels
@@ -45,11 +45,24 @@ namespace QuranVideoMaker.Converters
 
             if (!System.IO.File.Exists(audioThumb))
             {
-                WaveFormGenerator.Generate((int)width, height, System.Drawing.Color.Transparent, clip.FilePath, audioThumb);
+                if (width > 0)
+                {
+                    var stream = trackItem.GetWaveStream();
+
+                    if (stream != null)
+                    {
+                        WaveFormGenerator.Generate((int)width, height, System.Drawing.Color.Transparent, stream, audioThumb);
+                    }
+                }
             }
 
             // return image source
-            return new BitmapImage(new System.Uri(audioThumb));
+            if (System.IO.File.Exists(audioThumb))
+            {
+                return new BitmapImage(new System.Uri(audioThumb));
+            }
+
+            return null;
         }
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {

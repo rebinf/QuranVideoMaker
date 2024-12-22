@@ -59,8 +59,7 @@ namespace QuranVideoMaker.Data
         private TimelineSelectedTool _selectedTool;
 
         private System.Timers.Timer _playTimer = new System.Timers.Timer() { AutoReset = true, Enabled = false };
-        private AudioFileReader _audioReader;
-        private WaveOutEvent _outputDevice;
+
         private int _framesPerBatch = 10;
         private Guid _previewRenderedTranslation = Guid.Empty;
         private Guid _exportRenderedTranslation;
@@ -603,6 +602,15 @@ namespace QuranVideoMaker.Data
 
                 undoData.UndoUnits.Add(secondItemData);
             }
+            else if (item.Type == TrackItemType.Audio)
+            {
+                var clip = Clips.FirstOrDefault(x => x.Id == item.ClipId);
+                var newItem = new AudioTrackItem(clip, newItemPosition, newItemStart, oldEnd);
+                track.Items.Add(newItem);
+                var secondItemData = new TrackItemAddUndoUnit(track, newItem);
+
+                undoData.UndoUnits.Add(secondItemData);
+            }
             else
             {
                 var newItem = new TrackItem(item.Type, item.UnlimitedSourceLength, item.ClipId, item.Name, item.Thumbnail, newItemPosition, item.SourceLength, newItemStart, oldEnd);
@@ -774,19 +782,18 @@ namespace QuranVideoMaker.Data
             return Tracks.FirstOrDefault(x => x.Type == type)?.Items.FirstOrDefault(x => x.Position.TotalFrames <= frame && x.GetRightTime().TotalFrames >= frame);
         }
 
-        public List<ITrackItem> GetAudioTrackItemsAtFrame(int frame)
+        public List<AudioTrackItem> GetAudioTrackItemsAtFrame(int frame)
         {
-            return this.Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Audio)
-                .Where(x => x.Position.TotalFrames <= frame && x.GetRightTime().TotalFrames >= frame).ToList();
+            return GetAudioTrackItems().Where(x => x.Position.TotalFrames <= frame && x.GetRightTime().TotalFrames >= frame).ToList();
         }
 
         /// <summary>
         /// Gets the audio track items.
         /// </summary>
         /// <returns></returns>
-        public List<ITrackItem> GetAudioTrackItems()
+        public List<AudioTrackItem> GetAudioTrackItems()
         {
-            return this.Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Audio).ToList();
+            return this.Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Audio).Cast<AudioTrackItem>().ToList();
         }
 
         /// <summary>
@@ -799,6 +806,8 @@ namespace QuranVideoMaker.Data
             try
             {
                 var project = ProjectSerializer.Deserialize<Project>(System.IO.File.ReadAllText(projectFile));
+                MainWindowViewModel.Instance.CurrentProject = project;
+                project.Initialize();
                 return new OperationResult<Project>(true, string.Empty, project);
             }
             catch (Exception ex)
@@ -1100,6 +1109,7 @@ namespace QuranVideoMaker.Data
                 var audioExportPath = Path.Combine(Path.GetTempPath(), "QuranVideoMaker", $"project_{Id}_audio.mp3");
 
                 var totalFrames = Convert.ToInt32(GetTotalFrames());
+                var totalSeconds = totalFrames / FPS;
 
                 var pipe = new MultithreadedFramePipeSource(FPS, totalFrames);
 
@@ -1112,30 +1122,7 @@ namespace QuranVideoMaker.Data
 
                 var audioTrackItems = GetAudioTrackItems();
 
-                if (audioTrackItems.Count > 0)
-                {
-                    using (var audioOutStream = new FileStream(audioExportPath, FileMode.Create))
-                    {
-                        foreach (var audioItem in GetAudioTrackItems())
-                        {
-                            var clip = Clips.FirstOrDefault(x => x.Id == audioItem.ClipId);
-
-                            using (var reader = new Mp3FileReader(clip.FilePath))
-                            {
-                                Mp3Frame frame;
-                                while ((frame = reader.ReadNextFrame()) != null)
-                                {
-                                    var currentSecond = reader.CurrentTime.TotalSeconds;
-
-                                    if (currentSecond >= audioItem.Start.TotalSeconds && currentSecond <= audioItem.End.TotalSeconds)
-                                    {
-                                        audioOutStream.Write(frame.RawData, 0, frame.RawData.Length);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                await ExportAudioAsync(audioExportPath, audioTrackItems);
 
                 var ffmpegArguments = FFMpegArguments.FromPipeInput(pipe, options =>
                 {
@@ -1231,6 +1218,72 @@ namespace QuranVideoMaker.Data
             }
             catch (Exception ex)
             {
+                return new OperationResult(false, ex.Message);
+            }
+        }
+
+        public async Task<OperationResult> ExportAudioAsync(string audioExportPath, IEnumerable<AudioTrackItem> audioTrackItems)
+        {
+            try
+            {
+                if (!audioTrackItems.Any())
+                {
+                    return new OperationResult(true, string.Empty);
+                }
+
+                var waveFormat = new WaveFormat();
+
+                using (var writer = new WaveFileWriter(audioExportPath, waveFormat))
+                {
+                    var lastPosition = TimeCode.FromSeconds(0, FPS);
+
+                    foreach (var audioItem in audioTrackItems)
+                    {
+                        if (audioItem.Position > lastPosition)
+                        {
+                            // add silence
+                            var silence = audioItem.Position - lastPosition;
+                            var silenceSeconds = silence.TotalSeconds;
+
+                            var silenceData = new byte[(int)(silenceSeconds * waveFormat.AverageBytesPerSecond)];
+
+                            await writer.WriteAsync(silenceData, 0, silenceData.Length);
+                        }
+
+                        lastPosition = audioItem.Position;
+
+                        var itemWaveStream = audioItem.GetWaveStream();
+
+                        await itemWaveStream.CopyToAsync(writer);
+
+                        //var clip = Clips.FirstOrDefault(x => x.Id == audioItem.ClipId);
+
+                        //using (var reader = new AudioFileReader(clip.FilePath))
+                        //{
+                        //    // seek to the start of the audio item
+                        //    reader.CurrentTime = audioItem.Start.ToTimeSpan();
+
+                        //    // resample the audio
+                        //    using (var resampler = new MediaFoundationResampler(reader, waveFormat))
+                        //    {
+                        //        var itemLength = audioItem.End - audioItem.Start;
+                        //        var itemLengthSeconds = itemLength.TotalSeconds;
+
+                        //        var buffer = new byte[(int)(itemLengthSeconds * waveFormat.AverageBytesPerSecond)];
+
+                        //        resampler.Read(buffer, 0, buffer.Length);
+
+                        //        await writer.WriteAsync(buffer, 0, buffer.Length);
+                        //    }
+                        //}
+                    }
+                }
+
+                return new OperationResult(true, string.Empty);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
                 return new OperationResult(false, ex.Message);
             }
         }
@@ -1427,33 +1480,12 @@ namespace QuranVideoMaker.Data
             var audioItems = GetAudioTrackItemsAtFrame(Convert.ToInt32(NeedlePositionTime.TotalFrames));
             var firstAudio = audioItems.FirstOrDefault();
 
-            if (firstAudio == null)
+            if (firstAudio != null)
             {
-                return;
+                firstAudio.Play(NeedlePositionTime);
             }
-
-            var clip = Clips.FirstOrDefault(x => x.Id == firstAudio.ClipId);
-
-            if (_outputDevice != null)
-            {
-                _outputDevice?.Dispose();
-                _audioReader?.Dispose();
-                _outputDevice = null;
-                _audioReader = null;
-            }
-
-            var playTime = NeedlePositionTime.ToTimeSpan();
-
-            _audioReader = new AudioFileReader(clip.FilePath)
-            {
-                CurrentTime = playTime
-            };
-
-            _outputDevice = new WaveOutEvent();
-            _outputDevice.Init(_audioReader);
 
             _playTimer.Start();
-            _outputDevice.Play();
 
             IsPlaying = true;
         }
@@ -1474,8 +1506,15 @@ namespace QuranVideoMaker.Data
 
         public void Stop()
         {
+            var audioItems = GetAudioTrackItems();
+
             _playTimer?.Stop();
-            _outputDevice?.Stop();
+
+            foreach (var audioItem in audioItems)
+            {
+                audioItem.Stop();
+            }
+
             IsPlaying = false;
             ClearVerseRenderCache();
         }
@@ -1492,9 +1531,20 @@ namespace QuranVideoMaker.Data
                 NeedlePositionTime = NeedlePositionTime.AddFrames(1);
             });
 
-            if (GetAudioTrackItemsAtFrame(Convert.ToInt32(NeedlePositionTime.TotalFrames)).Count == 0)
+            if (GetAudioTrackItemsAtFrame(Convert.ToInt32(NeedlePositionTime.TotalFrames)).FirstOrDefault() is AudioTrackItem trackItem)
             {
-                _outputDevice?.Stop();
+                if (!trackItem.IsPlaying())
+                {
+                    trackItem.Play(NeedlePositionTime);
+                }
+            }
+            else
+            {
+                // if there is no audio at the current position, stop all audio
+                foreach (var audioItem in GetAudioTrackItems())
+                {
+                    audioItem.Stop();
+                }
             }
 
             PreviewCurrentFrame();
@@ -1528,21 +1578,19 @@ namespace QuranVideoMaker.Data
         /// <param name="time">The time.</param>
         public void RaiseNeedlePositionTimeChanged(TimeCode time)
         {
-            if (_outputDevice != null)
+            var audioItems = GetAudioTrackItemsAtFrame(Convert.ToInt32(NeedlePositionTime.TotalFrames));
+            var firstAudio = audioItems.FirstOrDefault();
+
+            if (firstAudio != null)
             {
-                var audioItems = GetAudioTrackItemsAtFrame(Convert.ToInt32(NeedlePositionTime.TotalFrames));
-                var firstAudio = audioItems.FirstOrDefault();
-
-                if (firstAudio != null)
+                firstAudio.Seek(NeedlePositionTime);
+            }
+            else
+            {
+                // if there is no audio at the current position, stop all audio
+                foreach (var audioItem in GetAudioTrackItems())
                 {
-                    var playTime = NeedlePositionTime.ToTimeSpan();
-                    _outputDevice.Stop();
-                    _audioReader.CurrentTime = playTime;
-
-                    if (IsPlaying)
-                    {
-                        _outputDevice.Play();
-                    }
+                    audioItem.Stop();
                 }
             }
 
@@ -1561,6 +1609,17 @@ namespace QuranVideoMaker.Data
         {
             Debug.WriteLine("Clearing verse render cache...");
             _renderedVerses.Clear();
+        }
+
+        public void Initialize()
+        {
+            foreach (var track in Tracks)
+            {
+                foreach (var item in track.Items)
+                {
+                    item.Initialize();
+                }
+            }
         }
 
         /// <summary>
