@@ -346,7 +346,7 @@ namespace QuranVideoMaker.Data
             End = end;
         }
 
-        public TrackItem(ProjectClip clipInfo, TimeCode position, TimeCode start, TimeCode end)
+        public TrackItem(IProjectClip clipInfo, TimeCode position, TimeCode start, TimeCode end)
         {
             Type = clipInfo.ItemType;
             UnlimitedSourceLength = clipInfo.UnlimitedLength;
@@ -449,7 +449,7 @@ namespace QuranVideoMaker.Data
         /// Called when public properties changed.
         /// </summary>
         /// <param name="name">The name of the property.</param>
-        public void OnPropertyChanged([CallerMemberName] string name = null)
+        public virtual void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
@@ -473,6 +473,10 @@ namespace QuranVideoMaker.Data
             };
 
             return item;
+        }
+
+        public virtual void Initialize()
+        {
         }
 
         /// <inheritdoc/>

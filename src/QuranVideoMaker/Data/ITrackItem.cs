@@ -126,6 +126,11 @@ namespace QuranVideoMaker.Data
         ITrackItem Clone();
 
         /// <summary>
+        /// Initializes the track item.
+        /// </summary>
+        void Initialize();
+
+        /// <summary>
         /// Generates a new id for the track item.
         /// </summary>
         /// <returns>The new Id.</returns>
