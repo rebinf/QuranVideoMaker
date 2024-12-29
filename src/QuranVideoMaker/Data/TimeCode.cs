@@ -267,7 +267,17 @@ namespace QuranVideoMaker.Data
 
         internal TimeSpan ToTimeSpan()
         {
-            return new TimeSpan(0, Hours, Minutes, Seconds, Convert.ToInt32((Frame * 1000d) / FPS));
+            if (TotalFrames > 0)
+            {
+                if (FPS > 0 && Frame > 0)
+                {
+                    return new TimeSpan(0, Hours, Minutes, Seconds, Convert.ToInt32((Frame * 1000d) / FPS));
+                }
+
+                return new TimeSpan(0, Hours, Minutes, Seconds);
+            }
+
+            return TimeSpan.Zero;
         }
     }
 }
