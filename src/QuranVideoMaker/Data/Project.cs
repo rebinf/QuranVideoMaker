@@ -1482,7 +1482,8 @@ namespace QuranVideoMaker.Data
 
             if (firstAudio != null)
             {
-                firstAudio.Play(NeedlePositionTime);
+                var localTime = firstAudio.GetLocalTime(NeedlePositionTime);
+                firstAudio.Play(localTime);
             }
 
             _playTimer.Start();
@@ -1535,7 +1536,14 @@ namespace QuranVideoMaker.Data
             {
                 if (!trackItem.IsPlaying())
                 {
-                    trackItem.Play(NeedlePositionTime);
+                    // if there is no audio at the current position, stop all audio
+                    foreach (var audioItem in GetAudioTrackItems())
+                    {
+                        audioItem.Stop();
+                    }
+
+                    var localTime = trackItem.GetLocalTime(NeedlePositionTime);
+                    trackItem.Play(localTime);
                 }
             }
             else
@@ -1583,7 +1591,8 @@ namespace QuranVideoMaker.Data
 
             if (firstAudio != null)
             {
-                firstAudio.Seek(NeedlePositionTime);
+                var localTime = firstAudio.GetLocalTime(NeedlePositionTime);
+                firstAudio.Seek(localTime);
             }
             else
             {

@@ -281,7 +281,7 @@ namespace QuranVideoMaker.CustomControls
 
                 _mouseDownTrackItem.Position = new TimeCode(resultFrame, Project.FPS);
 
-                if (destinationTrack != null && destinationTrack != track && _mouseDownTrackItem.IsCompatibleWith(destinationTrack.Type))
+                if (track != destinationTrack && destinationTrack != null && destinationTrack != track && _mouseDownTrackItem.IsCompatibleWith(destinationTrack.Type))
                 {
                     Project.RemoveAndAddTrackItem(track, destinationTrack, _mouseDownTrackItem);
                 }
@@ -445,7 +445,16 @@ namespace QuranVideoMaker.CustomControls
 
                     var position = new TimeCode(frame, Project.FPS);
 
-                    var trackItem = new TrackItem(clip, position, TimeCode.Zero, clip.Length);
+                    ITrackItem trackItem = null;
+
+                    if (clip.TrackType == TimelineTrackType.Audio)
+                    {
+                        trackItem = new AudioTrackItem(clip, position, TimeCode.Zero, clip.Length);
+                    }
+                    else
+                    {
+                        trackItem = new TrackItem(clip, position, TimeCode.Zero, clip.Length);
+                    }
 
                     track.AddTrackItem(trackItem);
                 }
