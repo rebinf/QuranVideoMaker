@@ -414,6 +414,16 @@ namespace QuranVideoMaker.Data
             return timelineFrame - Position.TotalFrames + Start.TotalFrames;
         }
 
+        public TimeCode GetLocalTime(double timelineFrame)
+        {
+            return new TimeCode(GetLocalFrame(timelineFrame), Position.FPS);
+        }
+
+        public TimeCode GetLocalTime(TimeCode timelineTime)
+        {
+            return new TimeCode(GetLocalFrame(timelineTime.TotalFrames), Position.FPS);
+        }
+
         /// <inheritdoc/>
         public double GetTimelineFrame(double localFrame)
         {
