@@ -1,10 +1,6 @@
 ﻿using FFMpegCore;
-using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
-using NAudio.WaveFormRenderer;
 using OpenCvSharp;
 using QuranVideoMaker.Utilities;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -428,6 +424,11 @@ namespace QuranVideoMaker.Data
         {
             Id = Guid.NewGuid().ToString().Replace("-", string.Empty);
             return Id;
+        }
+
+        public double GetWidth(int zoom)
+        {
+            return PixelCalculator.GetPixels(Length.TotalFrames, zoom);
         }
 
         /// <summary>

@@ -793,7 +793,7 @@ namespace QuranVideoMaker.Data
         /// <returns></returns>
         public List<AudioTrackItem> GetAudioTrackItems()
         {
-            return this.Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Audio).Cast<AudioTrackItem>().ToList();
+            return this.Tracks.SelectMany(x => x.Items).Where(x => x.Type == TrackItemType.Audio).Cast<AudioTrackItem>().OrderBy(x => x.Position.TotalFrames).ToList();
         }
 
         /// <summary>
@@ -1222,6 +1222,11 @@ namespace QuranVideoMaker.Data
             }
         }
 
+        public async Task<OperationResult> ExportAudioAsync(string audioExportPath)
+        {
+            return await ExportAudioAsync(audioExportPath, GetAudioTrackItems());
+        }
+
         public async Task<OperationResult> ExportAudioAsync(string audioExportPath, IEnumerable<AudioTrackItem> audioTrackItems)
         {
             try
@@ -1250,7 +1255,7 @@ namespace QuranVideoMaker.Data
                             await writer.WriteAsync(silenceData, 0, silenceData.Length);
                         }
 
-                        lastPosition = audioItem.Position;
+                        lastPosition = audioItem.Position + audioItem.Duration;
 
                         var itemWaveStream = audioItem.GetWaveStream();
 

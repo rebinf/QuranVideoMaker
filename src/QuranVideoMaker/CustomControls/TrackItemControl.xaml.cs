@@ -2,6 +2,7 @@
 using QuranVideoMaker.Data;
 using QuranVideoMaker.Dialogs;
 using QuranVideoMaker.Helpers;
+using QuranVideoMaker.Utilities;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -94,5 +95,16 @@ namespace QuranVideoMaker.CustomControls
             }
         }
 
+        private void Border_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (DataContext is AudioTrackItem trackItem)
+            {
+                var project = MainWindowViewModel.Instance.CurrentProject;
+
+                var startLength = PixelCalculator.GetPixels(trackItem.Start.TotalFrames, project.TimelineZoom);
+
+                img.Margin = new Thickness(-startLength, 0, 0, 0);
+            }
+        }
     }
 }

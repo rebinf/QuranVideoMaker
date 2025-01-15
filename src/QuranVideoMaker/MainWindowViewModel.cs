@@ -251,6 +251,29 @@ namespace QuranVideoMaker
         }
 
         [RelayCommand]
+        private async Task ExportAudio()
+        {
+            var dlg = new SaveFileDialog()
+            {
+                Filter = "Audio File|*.wav"
+            };
+
+            if (dlg.ShowDialog() == true)
+            {
+                var result = await CurrentProject.ExportAudioAsync(dlg.FileName);
+
+                if (result.Success)
+                {
+                    System.Windows.MessageBox.Show("Export Complete", "Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show($"Export Failed.\r\n{result.Message}", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        [RelayCommand]
         private async Task ExportVerses()
         {
             var dlg = new System.Windows.Forms.FolderBrowserDialog();

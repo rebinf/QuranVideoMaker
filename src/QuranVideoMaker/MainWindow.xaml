@@ -91,6 +91,7 @@
                 <MenuItem Header="Add Video Track" Command="{Binding AddVideoTrackCommand}" />
                 <Separator />
                 <MenuItem Header="Export" Command="{Binding ExportProjectCommand}" />
+                <MenuItem Header="Export Audio" Command="{Binding ExportAudioCommand}" />
                 <MenuItem Header="Export Verses" Command="{Binding ExportVersesCommand}" />
                 <Separator />
                 <MenuItem Header="Settings" Command="{Binding ProjectSettingsCommand}" />
