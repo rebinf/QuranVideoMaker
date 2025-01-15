@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using QuranVideoMaker.Utilities;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
@@ -398,8 +399,7 @@ namespace QuranVideoMaker.Data
 
         public double GetWidth(int zoom)
         {
-            var length = Duration.TotalFrames / Constants.TimelineZooms[zoom] * Constants.TimelinePixelsInSeparator;
-            return length;
+            return PixelCalculator.GetPixels(Duration.TotalFrames, zoom);
         }
 
         /// <inheritdoc/>

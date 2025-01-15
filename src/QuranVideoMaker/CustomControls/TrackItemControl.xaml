@@ -11,6 +11,7 @@
              BorderThickness="1"
              VerticalAlignment="Stretch"
              Height="48"
+             SizeChanged="Border_SizeChanged"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="100">
     <Border.InputBindings>
@@ -66,7 +67,7 @@
 
             <Grid IsHitTestVisible="False">
                 <Border Height="50">
-                    <Image Stretch="Fill" HorizontalAlignment="Stretch">
+                    <Image x:Name="img" Stretch="UniformToFill">
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Style.Triggers>
