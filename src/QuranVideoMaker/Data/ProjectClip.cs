@@ -250,7 +250,7 @@ namespace QuranVideoMaker.Data
 
         private void GetThumbnail()
         {
-            Task.Factory.StartNew(CreateThumbnail);
+            CreateThumbnail();
         }
 
         public string GetFileHash()
