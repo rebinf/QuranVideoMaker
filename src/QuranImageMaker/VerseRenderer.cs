@@ -77,7 +77,10 @@ namespace QuranImageMaker
                     {
                         if (verse.VerseText.StartsWith(Quran.QuranScript.First().VerseText))
                         {
-                            verse.VerseText = verse.VerseText[Quran.QuranScript.First().VerseText.Length..].Trim();
+                            if (verse.VerseText.Length >= Quran.QuranScript.First().VerseText.Length)
+                            {
+                                verse.VerseText = verse.VerseText[Quran.QuranScript.First().VerseText.Length..].Trim();
+                            }
                         }
                     }
 
